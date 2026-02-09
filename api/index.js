@@ -625,14 +625,18 @@ app.post('/api/admin/settings/aviation-provider', verifyAdmin, async (req, res) 
 // Banner Management (Admin)
 app.post('/api/admin/settings/banners', verifyAdmin, async (req, res) => {
     try {
+        console.log('📸 Updating banners:', JSON.stringify(req.body, null, 2));
         if (db) {
             await db.ref('settings/banners').set(req.body);
+            console.log('✅ Banners updated successfully via Admin SDK');
         } else {
             await firebaseRest.patch('settings/banners', req.body, req.token);
+            console.log('✅ Banners updated successfully via REST');
         }
         res.json({ success: true });
     } catch (e) {
-        res.status(500).send("Error updating banners");
+        console.error('❌ Banner update error:', e.message, e.stack);
+        res.status(500).json({ error: "Error updating banners", details: e.message });
     }
 });
 

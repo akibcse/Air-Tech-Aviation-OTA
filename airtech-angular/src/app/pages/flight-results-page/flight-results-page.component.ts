@@ -5,7 +5,7 @@ import { FlightSearchFormComponent } from '../../components/flight-search-form/f
 import { FlightResultsComponent } from '../../components/flight-results/flight-results.component';
 import { SearchStateService } from '../../services/search-state.service';
 import { FlightService } from '../../services/flight.service';
-import { LucideAngularModule, Filter, ArrowUpDown } from 'lucide-angular';
+import { LucideAngularModule, Filter, ArrowUpDown, ChevronDown, ChevronUp, Search } from 'lucide-angular';
 
 @Component({
   selector: 'app-flight-results-page',
@@ -18,10 +18,33 @@ import { LucideAngularModule, Filter, ArrowUpDown } from 'lucide-angular';
   ],
   template: `
     <div class="min-h-screen bg-gray-50 pb-12">
-      <!-- Top Search Bar (Collapsed by default on this page ideally, but we'll see) -->
+      <!-- Top Search Bar (Collapsible) -->
       <div class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-           <app-flight-search-form></app-flight-search-form>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Toggle Button -->
+          <button 
+            (click)="toggleSearchPanel()"
+            class="w-full py-3 flex items-center justify-between text-left hover:bg-gray-50 transition-colors rounded-lg px-2"
+          >
+            <div class="flex items-center gap-3">
+              <lucide-icon [name]="searchIcon" class="w-5 h-5 text-blue-600"></lucide-icon>
+              <div>
+                <h3 class="font-bold text-gray-900">Modify Search</h3>
+                <p class="text-xs text-gray-500">Click to {{ showSearchPanel() ? 'hide' : 'show' }} search options</p>
+              </div>
+            </div>
+            <lucide-icon 
+              [name]="showSearchPanel() ? chevronUpIcon : chevronDownIcon" 
+              class="w-5 h-5 text-gray-400"
+            ></lucide-icon>
+          </button>
+          
+          <!-- Collapsible Search Form -->
+          @if (showSearchPanel()) {
+            <div class="py-4 border-t border-gray-100 animate-in slide-in-from-top-2 duration-200">
+              <app-flight-search-form></app-flight-search-form>
+            </div>
+          }
         </div>
       </div>
 
@@ -83,7 +106,7 @@ import { LucideAngularModule, Filter, ArrowUpDown } from 'lucide-angular';
             </div>
 
             <app-flight-results 
-              [results]="results()" 
+              [flights]="results()" 
               [loading]="loading()"
             ></app-flight-results>
           </div>
@@ -101,10 +124,18 @@ export class FlightResultsPageComponent implements OnInit {
 
   results = signal<any[]>([]);
   loading = signal(false);
+  showSearchPanel = signal(false); // Hidden by default
 
   // Icons
   filterIcon = Filter;
   sortIcon = ArrowUpDown;
+  searchIcon = Search;
+  chevronDownIcon = ChevronDown;
+  chevronUpIcon = ChevronUp;
+
+  toggleSearchPanel() {
+    this.showSearchPanel.set(!this.showSearchPanel());
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -157,18 +188,23 @@ export class FlightResultsPageComponent implements OnInit {
   }
 
   performSearch(params: any) {
-    if (Object.keys(params).length === 0) return;
+    if (Object.keys(params).length === 0) {
+      console.warn('⚠️ No search params provided');
+      return;
+    }
 
+    console.log('🔍 Starting search with params:', params);
     this.loading.set(true);
     this.results.set([]); // Clear previous
 
     this.flightService.searchFlights(params).subscribe({
       next: (data) => {
+        console.log('✅ Search results received:', data.length, 'flights');
         this.results.set(data);
         this.loading.set(false);
       },
       error: (err) => {
-        console.error("Search failed", err);
+        console.error('❌ Search failed:', err);
         this.loading.set(false);
       }
     });

@@ -26,7 +26,7 @@ import { Subject } from 'rxjs';
       />
 
       @if (showResults() && results().length > 0) {
-        <div class="fixed mt-1 bg-white border border-gray-200 rounded-xl shadow-2xl z-[1000] max-h-80 overflow-y-auto overflow-x-hidden w-full max-w-sm sm:max-w-md custom-scrollbar" [style.top]="dropdownTop + 'px'" [style.left]="dropdownLeft + 'px'" [style.width]="dropdownWidth + 'px'">
+        <div class="absolute mt-1 bg-white border border-gray-200 rounded-xl shadow-2xl z-[1000] max-h-80 overflow-y-auto overflow-x-hidden w-full custom-scrollbar">
           @for (loc of results(); track loc.iata) {
             <button
               type="button"
