@@ -83,9 +83,21 @@ export class AdminService {
         );
     }
 
+    getBanners(): Observable<any[]> {
+        return this.getAuthHeaders().pipe(
+            switchMap(headers => this.http.get<any[]>(`${this.apiUrl}/settings/banners`, { headers }))
+        );
+    }
+
     updateBanners(banners: any[]): Observable<any> {
         return this.getAuthHeaders().pipe(
             switchMap(headers => this.http.post<any>(`${this.apiUrl}/settings/banners`, banners, { headers }))
+        );
+    }
+
+    updateHeroBackground(backgroundUrl: string): Observable<any> {
+        return this.getAuthHeaders().pipe(
+            switchMap(headers => this.http.post<any>(`${this.apiUrl}/settings/hero-background`, { backgroundUrl }, { headers }))
         );
     }
 }

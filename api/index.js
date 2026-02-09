@@ -73,6 +73,19 @@ const firebaseRest = {
         }
     },
 
+    async put(path, data, token = null) {
+        try {
+            const url = `${this.baseUrl}/${path}.json${token ? `?auth=${token}` : ''}`;
+            const response = await axios.put(url, data, {
+                headers: { 'Content-Type': 'application/json' }
+            });
+            return response.data;
+        } catch (error) {
+            console.error(`Firebase REST PUT Error (${path}):`, error.message);
+            throw error;
+        }
+    },
+
     async push(path, data, token = null) {
         const result = await this.post(path, data, token);
         return { key: result.name };
@@ -622,6 +635,24 @@ app.post('/api/admin/settings/aviation-provider', verifyAdmin, async (req, res) 
     }
 });
 
+// Get Banners (Admin - for editing)
+app.get('/api/admin/settings/banners', verifyAdmin, async (req, res) => {
+    try {
+        let banners = [];
+        if (db) {
+            const snap = await db.ref('settings/banners').once('value');
+            banners = snap.val() || [];
+        } else {
+            banners = await firebaseRest.get('settings/banners', req.token) || [];
+        }
+        console.log('📸 Fetched banners for admin:', banners);
+        res.json(Array.isArray(banners) ? banners : []);
+    } catch (e) {
+        console.error('❌ Error fetching banners:', e.message);
+        res.status(500).json({ error: "Error fetching banners", details: e.message });
+    }
+});
+
 // Banner Management (Admin)
 app.post('/api/admin/settings/banners', verifyAdmin, async (req, res) => {
     try {
@@ -630,7 +661,7 @@ app.post('/api/admin/settings/banners', verifyAdmin, async (req, res) => {
             await db.ref('settings/banners').set(req.body);
             console.log('✅ Banners updated successfully via Admin SDK');
         } else {
-            await firebaseRest.patch('settings/banners', req.body, req.token);
+            await firebaseRest.put('settings/banners', req.body, req.token);
             console.log('✅ Banners updated successfully via REST');
         }
         res.json({ success: true });
@@ -657,6 +688,42 @@ app.get('/api/public/banners', async (req, res) => {
         res.json(activeBanners);
     } catch (e) {
         res.json([]);
+    }
+});
+
+// Get Hero Background (Public)
+app.get('/api/public/hero-background', async (req, res) => {
+    try {
+        let backgroundUrl = '';
+        if (db) {
+            const snap = await db.ref('settings/heroBackground').once('value');
+            backgroundUrl = snap.val() || '';
+        } else {
+            backgroundUrl = await firebaseRest.get('settings/heroBackground') || '';
+        }
+        res.json({ backgroundUrl });
+    } catch (e) {
+        res.json({ backgroundUrl: '' });
+    }
+});
+
+// Update Hero Background (Admin)
+app.post('/api/admin/settings/hero-background', verifyAdmin, async (req, res) => {
+    try {
+        const { backgroundUrl } = req.body;
+        console.log('🖼️ Updating hero background:', backgroundUrl);
+        if (db) {
+            await db.ref('settings/heroBackground').set(backgroundUrl);
+            console.log('✅ Hero background updated successfully via Admin SDK');
+        } else {
+            // Firebase REST API requires the value to be JSON-encoded
+            await firebaseRest.put('settings/heroBackground', JSON.stringify(backgroundUrl), req.token);
+            console.log('✅ Hero background updated successfully via REST');
+        }
+        res.json({ success: true });
+    } catch (e) {
+        console.error('❌ Hero background update error:', e.message, e.stack);
+        res.status(500).json({ error: "Error updating hero background", details: e.message });
     }
 });
 

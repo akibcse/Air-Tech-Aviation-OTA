@@ -150,6 +150,47 @@ import { AdminService } from '../../../services/admin.service';
             </button>
           </div>
         </div>
+
+        <!-- Hero Background Configuration -->
+        <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mt-8">
+          <h3 class="text-lg font-semibold mb-4">Hero Background Image</h3>
+          <p class="text-sm text-gray-500 mb-6 font-medium">
+            Set the background image for the homepage hero section.
+          </p>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-bold text-gray-700 mb-2">Background Image URL</label>
+              <input 
+                type="text" 
+                [(ngModel)]="heroBackgroundUrl" 
+                placeholder="https://example.com/hero-background.jpg"
+                class="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              />
+            </div>
+            
+            @if (heroBackgroundUrl) {
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <img 
+                  [src]="heroBackgroundUrl" 
+                  alt="Hero Background Preview"
+                  class="w-full h-48 object-cover"
+                />
+                <p class="text-xs text-gray-500 p-2 bg-gray-50">Preview</p>
+              </div>
+            }
+          </div>
+
+          <div class="pt-6 border-t border-gray-100 mt-6">
+            <button
+              (click)="saveHeroBackground()"
+              [disabled]="saving()"
+              class="px-8 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 disabled:opacity-50 shadow-lg shadow-indigo-100 transition-all"
+            >
+              {{ saving() ? 'Saving...' : 'Update Hero Background' }}
+            </button>
+          </div>
+        </div>
       }
     </div>
   `
@@ -160,6 +201,7 @@ export class AdminSystemSettingsComponent implements OnInit {
   provider = signal<'AMADEUS' | 'AVIATIONSTACK'>('AMADEUS');
   markup = { type: 'percentage', value: 0 };
   banners = signal<any[]>([]);
+  heroBackgroundUrl = '';
   loading = signal(true);
   saving = signal(false);
 
@@ -171,6 +213,7 @@ export class AdminSystemSettingsComponent implements OnInit {
         if (data.banners && Array.isArray(data.banners)) {
           this.banners.set(data.banners.map((b: any, i: number) => ({ ...b, order: i })));
         }
+        if (data.heroBackground) this.heroBackgroundUrl = data.heroBackground;
         this.loading.set(false);
       },
       error: (err) => {
@@ -198,14 +241,18 @@ export class AdminSystemSettingsComponent implements OnInit {
   }
 
   saveBanners() {
+    console.log('📸 Saving banners:', this.banners());
     this.saving.set(true);
     this.adminService.updateBanners(this.banners()).subscribe({
-      next: () => {
+      next: (response) => {
+        console.log('✅ Banner update response:', response);
         alert('Banners updated successfully!');
         this.saving.set(false);
       },
       error: (err) => {
-        alert('Failed to update banners.');
+        console.error('❌ Banner update error:', err);
+        console.error('Error details:', err.error);
+        alert(`Failed to update banners: ${err.error?.details || err.message || 'Unknown error'}`);
         this.saving.set(false);
       }
     });
@@ -234,6 +281,23 @@ export class AdminSystemSettingsComponent implements OnInit {
       },
       error: (err) => {
         alert("Failed to update pricing.");
+        this.saving.set(false);
+      }
+    });
+  }
+
+  saveHeroBackground() {
+    console.log('🖼️ Saving hero background:', this.heroBackgroundUrl);
+    this.saving.set(true);
+    this.adminService.updateHeroBackground(this.heroBackgroundUrl).subscribe({
+      next: (response) => {
+        console.log('✅ Hero background update response:', response);
+        alert('Hero background updated successfully!');
+        this.saving.set(false);
+      },
+      error: (err) => {
+        console.error('❌ Hero background update error:', err);
+        alert(`Failed to update hero background: ${err.error?.details || err.message || 'Unknown error'}`);
         this.saving.set(false);
       }
     });

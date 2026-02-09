@@ -1,18 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchTabsComponent } from '../search-tabs/search-tabs.component';
 import { FlightSearchFormComponent } from '../flight-search-form/flight-search-form.component';
+import { PublicService } from '../../services/public.service';
 
 @Component({
-    selector: 'app-hero',
-    standalone: true,
-    imports: [CommonModule, SearchTabsComponent, FlightSearchFormComponent],
-    template: `
+  selector: 'app-hero',
+  standalone: true,
+  imports: [CommonModule, SearchTabsComponent, FlightSearchFormComponent],
+  template: `
     <div class="relative bg-[#000000] text-white pt-12 pb-20 px-4 sm:px-6 lg:px-8">
       <!-- Dynamic Background Image -->
       <div
         class="absolute inset-0 z-0 opacity-50 bg-cover bg-center"
-        style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop')"
+        [style.background-image]="'url(' + backgroundUrl() + ')'"
       ></div>
       <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/20 z-0"></div>
 
@@ -43,6 +44,18 @@ import { FlightSearchFormComponent } from '../flight-search-form/flight-search-f
     </div>
   `
 })
-export class HeroComponent {
-    activeTab = signal<'flights' | 'hotels' | 'cars'>('flights');
+export class HeroComponent implements OnInit {
+  private publicService = inject(PublicService);
+
+  activeTab = signal<'flights' | 'hotels' | 'cars'>('flights');
+  backgroundUrl = signal('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop');
+
+  ngOnInit() {
+    this.publicService.getHeroBackground().subscribe({
+      next: (url) => {
+        if (url) this.backgroundUrl.set(url);
+      },
+      error: (err) => console.error('Failed to load hero background', err)
+    });
+  }
 }
