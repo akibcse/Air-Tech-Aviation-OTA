@@ -1,0 +1,15 @@
+/* @tailwind v4 directives - Safe to ignore "Unknown at rule" IDE warnings */
+@import "tailwindcss";
+
+/* Ensure scanning of all component files */
+@source "../src/**/*.{ts,html}";
+
+@theme {
+    --color-brand: #2563eb;
+}
+
+/* Base styles to verify CSS is working */
+body {
+    background-color: #f3f4f6;
+    margin: 0;
+}

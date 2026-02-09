@@ -1,0 +1,8234 @@
+[
+  {
+    "city": "AARHUS",
+    "airport": "AARHUS",
+    "iata": "AAR",
+    "country": "DENMARK",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ABADAN",
+    "airport": "ABADAN",
+    "iata": "ABD",
+    "country": "IRAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ABECHE",
+    "airport": "ABECHE",
+    "iata": "AEH",
+    "country": "CHAD",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ABERDEEN",
+    "airport": "ABERDEEN",
+    "iata": "ABZ",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ABERDEEN (SD)",
+    "airport": "ABERDEEN (SD)",
+    "iata": "ABR",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ABIDJAN",
+    "airport": "ABIDJAN",
+    "iata": "ABJ",
+    "country": "COTE D'IVOIRE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ABILENE (TX)",
+    "airport": "ABILENE (TX)",
+    "iata": "ABI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ABU DHABI",
+    "airport": "ABU DHABI - ABU DHABI INTERNATIONAL",
+    "iata": "AUH",
+    "country": "UNITED ARAB EMIRATES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ABU RUDEIS",
+    "airport": "ABU RUDEIS",
+    "iata": "AUE",
+    "country": "EGYPT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ABU SIMBEL",
+    "airport": "ABU SIMBEL",
+    "iata": "ABS",
+    "country": "EGYPT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ABUJA",
+    "airport": "ABUJA - NNAMDI AZIKIWE INTERNATIONAL AIRPORT",
+    "iata": "ABV",
+    "country": "NIGERIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ACAPULCO",
+    "airport": "ACAPULCO",
+    "iata": "ACA",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ACCRA",
+    "airport": "ACCRA - KOTOKA INTERNATIONAL AIRPORT",
+    "iata": "ACC",
+    "country": "GHANA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ADANA",
+    "airport": "ADANA",
+    "iata": "ADA",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ADDIS ABABA",
+    "airport": "ADDIS ABABA - BOLE INTERNATIONAL AIRPORT",
+    "iata": "ADD",
+    "country": "ETHIOPIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ADELAIDE",
+    "airport": "ADELAIDE",
+    "iata": "ADL",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ADEN",
+    "airport": "ADEN - ADEN INTERNATIONAL AIRPORT",
+    "iata": "ADE",
+    "country": "YEMEN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ADIYAMAN",
+    "airport": "ADIYAMAN",
+    "iata": "ADF",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ADLER/SOCHI",
+    "airport": "ADLER/SOCHI",
+    "iata": "AER",
+    "country": "RUSSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AGADES",
+    "airport": "AGADES",
+    "iata": "AJY",
+    "country": "NIGER",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AGADIR",
+    "airport": "AGADIR",
+    "iata": "AGA",
+    "country": "MOROCCO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AGANA (HAGÅTÑA)",
+    "airport": "AGANA (HAGÅTÑA)",
+    "iata": "SUM",
+    "country": "GUAM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AGGENEYS",
+    "airport": "AGGENEYS",
+    "iata": "AGZ",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AGUADILLA",
+    "airport": "AGUADILLA",
+    "iata": "BQN",
+    "country": "PUERTO RICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AGUASCALIENTE",
+    "airport": "AGUASCALIENTE",
+    "iata": "AGU",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AHMEDABAD",
+    "airport": "AHMEDABAD",
+    "iata": "AMD",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AIYURA",
+    "airport": "AIYURA",
+    "iata": "AYU",
+    "country": "PAPUA NEW GUINEA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AJACCIO",
+    "airport": "AJACCIO",
+    "iata": "AJA",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AKITA",
+    "airport": "AKITA",
+    "iata": "AXT",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AKRON (OH)",
+    "airport": "AKRON (OH)",
+    "iata": "CAK",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AKROTIRI",
+    "airport": "AKROTIRI - RAF",
+    "iata": "AKT",
+    "country": "CYPRUS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AL AIN",
+    "airport": "AL AIN",
+    "iata": "AAN",
+    "country": "UNITED ARAB EMIRATES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AL ARISH",
+    "airport": "AL ARISH",
+    "iata": "AAC",
+    "country": "EGYPT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AL HOCEIMA",
+    "airport": "AL HOCEIMA",
+    "iata": "AHU",
+    "country": "MOROCCO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALBANY",
+    "airport": "ALBANY",
+    "iata": "ALH",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALBANY (GA)",
+    "airport": "ALBANY (GA)",
+    "iata": "ABY",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALBANY (NY)",
+    "airport": "ALBANY (NY) - ALBANY INTERNATIONAL AIRPORT",
+    "iata": "ALB",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALBI",
+    "airport": "ALBI",
+    "iata": "LBI",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALBORG",
+    "airport": "ALBORG",
+    "iata": "AAL",
+    "country": "DENMARK",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALBUQUERQUE (NM)",
+    "airport": "ALBUQUERQUE (NM)",
+    "iata": "ABQ",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALBURY",
+    "airport": "ALBURY",
+    "iata": "ABX",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALDERNEY",
+    "airport": "ALDERNEY",
+    "iata": "ACI",
+    "country": "CHANNEL ISLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALEPPO",
+    "airport": "ALEPPO",
+    "iata": "ALP",
+    "country": "SYRIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALESUND",
+    "airport": "ALESUND",
+    "iata": "AES",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALEXANDER BAY",
+    "airport": "ALEXANDER BAY - KORTDOORN",
+    "iata": "ALJ",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALEXANDRIA",
+    "airport": "ALEXANDRIA - ESLER FIELD USA",
+    "iata": "ESF",
+    "country": "(LA)",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALEXANDRIA",
+    "airport": "ALEXANDRIA - BORG EL ARAB AIRPORT",
+    "iata": "HBH",
+    "country": "EGYPT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALEXANDRIA",
+    "airport": "ALEXANDRIA - EL NHOUZA AIRPORT",
+    "iata": "ALY",
+    "country": "EGYPT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALFUJAIRAH (FUJAIRAH)",
+    "airport": "ALFUJAIRAH (FUJAIRAH)",
+    "iata": "FJR",
+    "country": "UNITED ARAB EMIRATES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALGHERO SASSARI",
+    "airport": "ALGHERO SASSARI",
+    "iata": "AHO",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALGIERS",
+    "airport": "ALGIERS, HOUARI BOUMEDIENE AIRPORT",
+    "iata": "ALG",
+    "country": "ALGERIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALICANTE",
+    "airport": "ALICANTE",
+    "iata": "ALC",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALICE SPRINGS",
+    "airport": "ALICE SPRINGS",
+    "iata": "ASP",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALLDAYS",
+    "airport": "ALLDAYS",
+    "iata": "ADY",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALLENTOWN (PA)",
+    "airport": "ALLENTOWN (PA)",
+    "iata": "ABE",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALMATY (ALMA ATA)",
+    "airport": "ALMATY (ALMA ATA) - ALMATY INTERNATIONAL AIRPORT",
+    "iata": "ALA",
+    "country": "KAZAKHSTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALMERIA",
+    "airport": "ALMERIA",
+    "iata": "LEI",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALTA",
+    "airport": "ALTA",
+    "iata": "ALF",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALTAY PR",
+    "airport": "ALTAY PR",
+    "iata": "AAT",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALTENRHEIN",
+    "airport": "ALTENRHEIN",
+    "iata": "ACH",
+    "country": "SWITZERLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALTOONA (PA)",
+    "airport": "ALTOONA (PA)",
+    "iata": "AOO",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ALTUS",
+    "airport": "ALTUS",
+    "iata": "AXS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AMAMI",
+    "airport": "AMAMI",
+    "iata": "ASJ",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AMARILLO (TX)",
+    "airport": "AMARILLO (TX)",
+    "iata": "AMA",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AMAZON BAY",
+    "airport": "AMAZON BAY",
+    "iata": "AZB",
+    "country": "PAPUA NEW GUINEA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AMMAN",
+    "airport": "AMMAN - AMMAN-MARKA INTERNATIONAL AIRPORT",
+    "iata": "ADJ",
+    "country": "JORDAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AMMAN",
+    "airport": "AMMAN - QUEEN ALIA INTERNATIONAL AIRPORT",
+    "iata": "AMM",
+    "country": "JORDAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AMRITSAR",
+    "airport": "AMRITSAR",
+    "iata": "ATQ",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AMSTERDAM",
+    "airport": "AMSTERDAM - AMSTERDAM AIRPORT SCHIPHOL",
+    "iata": "AMS",
+    "country": "NETHERLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANAND",
+    "airport": "ANAND",
+    "iata": "QNB",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANCHORAGE (AK)",
+    "airport": "ANCHORAGE (AK) - TED STEVENS ANCHORAGE INTERNATIONAL",
+    "iata": "ANC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANCONA",
+    "airport": "ANCONA - ANCONA FALCONARA AIRPORT",
+    "iata": "AOI",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANDORRA LA VELLA",
+    "airport": "ANDORRA LA VELLA - HELIPORT",
+    "iata": "ALV",
+    "country": "ANDORRA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANGUILLA",
+    "airport": "ANGUILLA",
+    "iata": "AXA",
+    "country": "ANGUILLA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANJOUAN",
+    "airport": "ANJOUAN - ANJOUAN AIRPORT COMOROS",
+    "iata": "AJN",
+    "country": "(COMORES)",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANKARA",
+    "airport": "ANKARA",
+    "iata": "ANK",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANKARA",
+    "airport": "ANKARA - ESENBOĞA INTERNATIONAL AIRPORT",
+    "iata": "ESB",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANN ARBOR (MI)",
+    "airport": "ANN ARBOR (MI)",
+    "iata": "ARB",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANNABA",
+    "airport": "ANNABA",
+    "iata": "AAE",
+    "country": "ALGERIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANNECY",
+    "airport": "ANNECY",
+    "iata": "NCY",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANNISTON (AL)",
+    "airport": "ANNISTON (AL)",
+    "iata": "ANB",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANTALYA",
+    "airport": "ANTALYA",
+    "iata": "AYT",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANTANANARIVO (TANANNARIVE)",
+    "airport": "ANTANANARIVO (TANANNARIVE) - IVATO INTERNATIONAL AIRPORT",
+    "iata": "TNR",
+    "country": "MADAGASCAR",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANTIGUA",
+    "airport": "ANTIGUA, V.C. BIRD INTERNATIONAL",
+    "iata": "ANU",
+    "country": "ANTIGUA AND BARBUDA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ANTWERP",
+    "airport": "ANTWERP",
+    "iata": "ANR",
+    "country": "BELGIUM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AOMORI",
+    "airport": "AOMORI",
+    "iata": "AOJ",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "APIA",
+    "airport": "APIA - FALEOLO INTERNATIONAL AIRPORT",
+    "iata": "APW",
+    "country": "SAMOA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "APPELTON/NEENAH/MENASHA (WI)",
+    "airport": "APPELTON/NEENAH/MENASHA (WI)",
+    "iata": "ATW",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AQABA",
+    "airport": "AQABA",
+    "iata": "AQJ",
+    "country": "JORDAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ARACAJU",
+    "airport": "ARACAJU",
+    "iata": "AJU",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ARAXOS",
+    "airport": "ARAXOS",
+    "iata": "GPA",
+    "country": "GREECE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ARKHANGELSK",
+    "airport": "ARKHANGELSK",
+    "iata": "ARH",
+    "country": "RUSSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ARLIT",
+    "airport": "ARLIT",
+    "iata": "RLT",
+    "country": "NIGER",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ARRECIFE/LANZAROTE",
+    "airport": "ARRECIFE/LANZAROTE",
+    "iata": "ACE",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ARUBA",
+    "airport": "ARUBA - REINA BEATRIX INTERNATIONAL, ORANJESTAD",
+    "iata": "AUA",
+    "country": "ARUBA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ARUSHA",
+    "airport": "ARUSHA",
+    "iata": "ARK",
+    "country": "TANZANIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ASHEVILLE (NC)",
+    "airport": "ASHEVILLE (NC)",
+    "iata": "AVL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ASHGABAT",
+    "airport": "ASHGABAT - SAPARMURAT TURKMENBASHY INT. AIRPORT",
+    "iata": "ASB",
+    "country": "TURKMENISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ASMARA",
+    "airport": "ASMARA - ASMARA INTERNATIONAL",
+    "iata": "ASM",
+    "country": "ERITREA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ASPEN",
+    "airport": "ASPEN, (CO) - ASPEN-PITKIN COUNTY AIRPORT",
+    "iata": "ASE",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ASSIUT",
+    "airport": "ASSIUT",
+    "iata": "ATZ",
+    "country": "EGYPT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ASTANA",
+    "airport": "ASTANA - ASTANA INTERNATIONAL AIRPORT",
+    "iata": "TSE",
+    "country": "KAZAKHSTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ASUNCION",
+    "airport": "ASUNCION - ASUNCIÓN INTERNATIONAL AIRPORT",
+    "iata": "ASU",
+    "country": "PARAGUAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ASWAN",
+    "airport": "ASWAN - DARAW AIRPORT",
+    "iata": "ASW",
+    "country": "EGYPT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ATHENS (GA)",
+    "airport": "ATHENS (GA)",
+    "iata": "AHN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ATHENS (OH)",
+    "airport": "ATHENS (OH)",
+    "iata": "ATO",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ATHENS",
+    "airport": "ATHENS - ELEFTHÉRIOS VENIZÉLOS INTERNATIONAL AIRPORT",
+    "iata": "ATH",
+    "country": "GREECE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ATHENS",
+    "airport": "ATHENS, HELLINIKON AIRPORT",
+    "iata": "HEW",
+    "country": "GREECE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ATLANTA (GA)",
+    "airport": "ATLANTA (GA) - HARTSFIELD ATLANTA INTERNATIONAL AIRPORT",
+    "iata": "ATL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ATLANTIC CITY (NJ)",
+    "airport": "ATLANTIC CITY (NJ) - ATLANTIC CITY INTERNATIONAL",
+    "iata": "ACY",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ATTAWAPISKAT",
+    "airport": "ATTAWAPISKAT, NT",
+    "iata": "YAT",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AUCKLAND",
+    "airport": "AUCKLAND - AUCKLAND INTERNATIONAL AIRPORT",
+    "iata": "AKL",
+    "country": "NEW ZEALAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AUGSBURG",
+    "airport": "AUGSBURG - AUGSBUR GAIRPORT",
+    "iata": "AGB",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AUGUSTA (GA)",
+    "airport": "AUGUSTA (GA)",
+    "iata": "AGS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AUGUSTA (ME)",
+    "airport": "AUGUSTA (ME) - AUGUSTA STATE AIRPORT",
+    "iata": "AUG",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AURILLAC",
+    "airport": "AURILLAC",
+    "iata": "AUR",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AUSTIN (TX)",
+    "airport": "AUSTIN (TX) - AUSTIN-BERGSTROM AIRPORT",
+    "iata": "AUS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AYAWASI",
+    "airport": "AYAWASI",
+    "iata": "AYW",
+    "country": "INDONESIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AYERS ROCK",
+    "airport": "AYERS ROCK - CONNELLAN",
+    "iata": "AYQ",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "AYR",
+    "airport": "AYR",
+    "iata": "AYR",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BADAJOZ",
+    "airport": "BADAJOZ",
+    "iata": "BJZ",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BAGDAD",
+    "airport": "BAGDAD - BAGHDAD INTERNATIONAL AIRPORT",
+    "iata": "BGW",
+    "country": "IRAQ",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BAGDOGRA",
+    "airport": "BAGDOGRA",
+    "iata": "IXB",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BAHAMAS",
+    "airport": "BAHAMAS - LYNDEN PINDLING INTERNATIONAL AIRPORT THE",
+    "iata": "NAS",
+    "country": "BAHAMAS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BAHAWALPUR",
+    "airport": "BAHAWALPUR",
+    "iata": "BHV",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BAHRAIN",
+    "airport": "BAHRAIN - BAHRAIN INTERNATIONAL AIRPORT",
+    "iata": "BAH",
+    "country": "BAHRAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BAKERSFIELD (CA)",
+    "airport": "BAKERSFIELD (CA)",
+    "iata": "BFL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BAKU",
+    "airport": "BAKU - HEYDAR ALIYEV INTERNATIONAL AIRPORT",
+    "iata": "BAK",
+    "country": "AZERBAIJAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BALLINA",
+    "airport": "BALLINA",
+    "iata": "BNK",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BALTIMORE (MD)",
+    "airport": "BALTIMORE (MD) - WASHINGTON INTERNATIONAL AIRPORT",
+    "iata": "BWI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BAMAGA",
+    "airport": "BAMAGA",
+    "iata": "ABM",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BAMAKO",
+    "airport": "BAMAKO - BAMAKO-SÉNOU INTERNATIONAL AIRPORT",
+    "iata": "BKO",
+    "country": "MALI",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BAMBARI",
+    "airport": "BAMBARI",
+    "iata": "BBY",
+    "country": "CENTRAL AFRICAN REPUBLIC",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BANDAR SERI BEGAWAN",
+    "airport": "BANDAR SERI BEGAWAN - BRUNEI INTERNATIONAL AIRPORT",
+    "iata": "BWN",
+    "country": "BRUNEI",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BANDUNG",
+    "airport": "BANDUNG - HUSEIN SASTRANEGARA INTERNATIONAL AIRPORT",
+    "iata": "BDO",
+    "country": "INDONESIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BANGALORE",
+    "airport": "BANGALORE",
+    "iata": "BLR",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BANGASSOU",
+    "airport": "BANGASSOU",
+    "iata": "BGU",
+    "country": "CENTRAL AFRICAN REPUBLIC",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BANGKOK",
+    "airport": "BANGKOK, DON MUANG",
+    "iata": "DMK",
+    "country": "THAILAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BANGKOK",
+    "airport": "BANGKOK, SUVARNABHUMI INTERNATIONAL",
+    "iata": "BKK",
+    "country": "THAILAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BANGOR (ME)",
+    "airport": "BANGOR (ME)",
+    "iata": "BGR",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BANGUI",
+    "airport": "BANGUI - M'POKO INTERNATIONAL AIRPORT",
+    "iata": "BGF",
+    "country": "CENTRAL AFRICAN REPUBLIC",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BANJUL",
+    "airport": "BANJUL - BANJUL INTERNATIONAL AIRPORT (YUNDUM INTERNATIONAL)",
+    "iata": "BJL",
+    "country": "GAMBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BANNU",
+    "airport": "BANNU",
+    "iata": "BNP",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BARCELONA",
+    "airport": "BARCELONA",
+    "iata": "BCN",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BARCELONA",
+    "airport": "BARCELONA",
+    "iata": "BLA",
+    "country": "VENEZUELA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BARDUFOSS",
+    "airport": "BARDUFOSS",
+    "iata": "BDU",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BARI",
+    "airport": "BARI",
+    "iata": "BRI",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BARISAL",
+    "airport": "BARISAL",
+    "iata": "BZL",
+    "country": "BANGLADESH",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BARODA",
+    "airport": "BARODA",
+    "iata": "BDQ",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BARRA (THE FAMOUS TIDAL BEACH LANDING)",
+    "airport": "BARRA (THE FAMOUS TIDAL BEACH LANDING)",
+    "iata": "BRR",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BARRA (THE FAMOUS TIDAL BEACH LANDING)",
+    "airport": "BARRA (THE FAMOUS TIDAL BEACH LANDING)",
+    "iata": "BRR",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BARRANQUILLA",
+    "airport": "BARRANQUILLA",
+    "iata": "BAQ",
+    "country": "COLOMBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BASEL",
+    "airport": "BASEL",
+    "iata": "BSL",
+    "country": "SWITZERLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BASEL/MULHOUSE",
+    "airport": "BASEL/MULHOUSE",
+    "iata": "EAP",
+    "country": "SWITZERLAND/FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BASRA",
+    "airport": "BASRA, BASRAH",
+    "iata": "BSR",
+    "country": "IRAQ",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BASSE-TERRE",
+    "airport": "BASSE-TERRE - POINTE-À-PITRE INTERNATIONAL AIRPORT",
+    "iata": "PTP",
+    "country": "GUADELOUPE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BASSETERRE",
+    "airport": "BASSETERRE - ROBERT L. BRADSHAW INTERNATIONAL AIRPORT",
+    "iata": "SKB",
+    "country": "SAINT KITTS AND NEVIS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BASTIA",
+    "airport": "BASTIA",
+    "iata": "BIA",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BATON ROUGE (LA)",
+    "airport": "BATON ROUGE (LA) - BATON ROUGE METROPOLITAN AIRPORT",
+    "iata": "BTR",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BAYREUTH",
+    "airport": "BAYREUTH - BINDLACHER-BERG",
+    "iata": "BYU",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BEAUMONT/PT. ARTHUR (TX)",
+    "airport": "BEAUMONT/PT. ARTHUR (TX)",
+    "iata": "BPT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BECKLEY (WV)",
+    "airport": "BECKLEY (WV)",
+    "iata": "BKW",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BEEF ISLAND",
+    "airport": "BEEF ISLAND - TERRANCE B. LETTSOME VIRGIN ISLANDS",
+    "iata": "EIS",
+    "country": "(BRITISH)",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BEIJING",
+    "airport": "BEIJING",
+    "iata": "PEK",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BEIJING",
+    "airport": "BEIJING - NANYUAN AIRPORT",
+    "iata": "NAY",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BEIRA",
+    "airport": "BEIRA",
+    "iata": "BEW",
+    "country": "MOZAMBIQUE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BEIRUT",
+    "airport": "BEIRUT - BEIRUT RAFIC HARIRI INTERNATIONAL AIRPORT",
+    "iata": "BEY",
+    "country": "LEBANON",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BELEM",
+    "airport": "BELEM - VAL DE CANS INTERNATIONAL AIRPORT",
+    "iata": "BEL",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BELFAST",
+    "airport": "BELFAST - BELFAST INTERNATIONAL AIRPORT",
+    "iata": "BFS",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BELFAST",
+    "airport": "BELFAST - GEORGE BEST BELFAST CITY AIRPORT",
+    "iata": "BHD",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BELGAUM",
+    "airport": "BELGAUM",
+    "iata": "IXG",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BELGRAD (BEOGRAD)",
+    "airport": "BELGRAD (BEOGRAD) - BELGRADE NIKOLA TESLA INTERNATIONAL",
+    "iata": "BEG",
+    "country": "SERBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BELIZE CITY",
+    "airport": "BELIZE CITY - PHILIP S.W.GOLDSON INTERNATIONAL",
+    "iata": "BZE",
+    "country": "BELIZE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BELLINGHAM (WA)",
+    "airport": "BELLINGHAM (WA)",
+    "iata": "BLI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BELO HORIZONTE",
+    "airport": "BELO HORIZONTE - TANCREDO NEVES INTERNATIONAL AIRPORT",
+    "iata": "CNF",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BEMIDJI (MN)",
+    "airport": "BEMIDJI (MN)",
+    "iata": "BJI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BENBECULA",
+    "airport": "BENBECULA",
+    "iata": "BEB",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BENGHAZI (BENGASI)",
+    "airport": "BENGHAZI (BENGASI)",
+    "iata": "BEN",
+    "country": "LIBYA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BENGUELA",
+    "airport": "BENGUELA",
+    "iata": "BUG",
+    "country": "ANGOLA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BENTON HARBOUR (MI)",
+    "airport": "BENTON HARBOUR (MI)",
+    "iata": "BEH",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BERBERATI",
+    "airport": "BERBERATI",
+    "iata": "BBT",
+    "country": "CENTRAL AFRICAN REPUBLIC",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BERGAMO/MILAN",
+    "airport": "BERGAMO/MILAN - ORIO AL SERIO",
+    "iata": "BGY",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BERGEN",
+    "airport": "BERGEN",
+    "iata": "BGO",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BERGERAC",
+    "airport": "BERGERAC - ROUMANIERES",
+    "iata": "EGC",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BERLIN",
+    "airport": "BERLIN",
+    "iata": "BER",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BERLIN",
+    "airport": "BERLIN, SCHOENEFELD",
+    "iata": "SXF",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BERLIN",
+    "airport": "BERLIN, TEGEL",
+    "iata": "TXL",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BERLIN",
+    "airport": "BERLIN, TEMPELHOF (CEASED OPERATING IN 2008)",
+    "iata": "THF",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BERMUDA",
+    "airport": "BERMUDA - L.F. WADE INTERNATIONAL AIRPORT",
+    "iata": "BDA",
+    "country": "BERMUDA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BERNE",
+    "airport": "BERNE, BERN-BELP",
+    "iata": "BRN",
+    "country": "SWITZERLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BERNE",
+    "airport": "BERNE, RAILWAY SERVICE",
+    "iata": "ZDJ",
+    "country": "SWITZERLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BETHEL (AK)",
+    "airport": "BETHEL (AK)",
+    "iata": "BET",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BHOPAL",
+    "airport": "BHOPAL",
+    "iata": "BHO",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BHUBANESWAR",
+    "airport": "BHUBANESWAR",
+    "iata": "BBI",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BIARRITZ",
+    "airport": "BIARRITZ",
+    "iata": "BIQ",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BILBAO",
+    "airport": "BILBAO",
+    "iata": "BIO",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BILLINGS (MT)",
+    "airport": "BILLINGS (MT)",
+    "iata": "BIL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BILLUND",
+    "airport": "BILLUND",
+    "iata": "BLL",
+    "country": "DENMARK",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BINTULU",
+    "airport": "BINTULU",
+    "iata": "BTU",
+    "country": "MALAYSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BIRARO",
+    "airport": "BIRARO",
+    "iata": "IRO",
+    "country": "CENTRAL AFRICAN REPUBLIC",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BIRMINGHAM (AL)",
+    "airport": "BIRMINGHAM (AL)",
+    "iata": "BHM",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BIRMINGHAM",
+    "airport": "BIRMINGHAM - BIRMINGHAM INTERNATIONAL AIRPORT",
+    "iata": "BHX",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BISHKEK",
+    "airport": "BISHKEK - MANAS INTERNATIONAL AIRPORT",
+    "iata": "FRU",
+    "country": "KYRGYZSTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BISMARCK (ND)",
+    "airport": "BISMARCK (ND) - BISMARCK MUNICIPAL AIRPORT",
+    "iata": "BIS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BISSAU",
+    "airport": "BISSAU - OSVALDO VIEIRO INTERNATIONAL AIRPORT",
+    "iata": "BXO",
+    "country": "GUINEA-BISSAU",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BLACKPOOL",
+    "airport": "BLACKPOOL",
+    "iata": "BLK",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BLACKWATER",
+    "airport": "BLACKWATER",
+    "iata": "BLT",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BLANTYRE (MANDALA)",
+    "airport": "BLANTYRE (MANDALA) - CHILEKA INTERNATIONAL AIRPORT",
+    "iata": "BLZ",
+    "country": "MALAWI",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BLENHEIM",
+    "airport": "BLENHEIM",
+    "iata": "BHE",
+    "country": "NEW ZEALAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BLOEMFONTEIN",
+    "airport": "BLOEMFONTEIN - BLOEMFONTEIN AIRPORT",
+    "iata": "BFN",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BLOOMINGTON (IL)",
+    "airport": "BLOOMINGTON (IL)",
+    "iata": "BMI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BLOOMINGTON (IN)",
+    "airport": "BLOOMINGTON (IN)",
+    "iata": "BMG",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BLUEFIELD (WV)",
+    "airport": "BLUEFIELD (WV)",
+    "iata": "BLF",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BOA VISTA",
+    "airport": "BOA VISTA",
+    "iata": "BVB",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BOBO/DIOULASSO BURKINA",
+    "airport": "BOBO/DIOULASSO BURKINA",
+    "iata": "BOY",
+    "country": "FASO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BODO",
+    "airport": "BODO",
+    "iata": "BOO",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BODRUM",
+    "airport": "BODRUM - MILAS AIRPORT",
+    "iata": "BJV",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BOGOTA",
+    "airport": "BOGOTA - EL NUEVO DORADO INTERNATIONAL AIRPORT",
+    "iata": "BOG",
+    "country": "COLOMBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BOISE (ID)",
+    "airport": "BOISE (ID) - BOISE AIR TERMINAL",
+    "iata": "BOI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BOLOGNA",
+    "airport": "BOLOGNA",
+    "iata": "BLQ",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BOMBAY (MUMBAI)",
+    "airport": "BOMBAY (MUMBAI) - CHHATRAPATI SHIVAJI INTERNATIONAL",
+    "iata": "BOM",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BONAIRE",
+    "airport": "BONAIRE",
+    "iata": "BON",
+    "country": "NETHERLANDS ANTILLES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BONAVENTURE",
+    "airport": "BONAVENTURE, PQ",
+    "iata": "YVB",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BORA BORA FRENCH",
+    "airport": "BORA BORA FRENCH",
+    "iata": "BOB",
+    "country": "POLYNESIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BORDEAUX",
+    "airport": "BORDEAUX - BORDEAUX AIRPORT",
+    "iata": "BOD",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BORREGO SPRINGS (CA)",
+    "airport": "BORREGO SPRINGS (CA)",
+    "iata": "BXS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BOSTON (MA)",
+    "airport": "BOSTON (MA) - GENERAL EDWARD LAWRENCE LOGAN",
+    "iata": "BOS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BOUAKE",
+    "airport": "BOUAKE",
+    "iata": "BYK",
+    "country": "COTE D'IVOIRE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BOURGAS/BURGAS",
+    "airport": "BOURGAS/BURGAS",
+    "iata": "BOJ",
+    "country": "BULGARIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BOURNEMOUTH",
+    "airport": "BOURNEMOUTH",
+    "iata": "BOH",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BOWEN",
+    "airport": "BOWEN",
+    "iata": "ZBO",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BOZEMAN (MT)",
+    "airport": "BOZEMAN (MT)",
+    "iata": "BZN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRADFORD/WARREN (PA) /OLEAN (NY)",
+    "airport": "BRADFORD/WARREN (PA) /OLEAN (NY)",
+    "iata": "BFD",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRAINERD (MN)",
+    "airport": "BRAINERD (MN)",
+    "iata": "BRD",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRAMPTON ISLAND",
+    "airport": "BRAMPTON ISLAND",
+    "iata": "BMP",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRASILIA",
+    "airport": "BRASILIA - PRESIDENT JUSCELINO MCKITSCHEK INTERNATIONAL",
+    "iata": "BSB",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRATISLAVA",
+    "airport": "BRATISLAVA - M. R. ŠTEFÁNIK AIRPORT",
+    "iata": "BTS",
+    "country": "SLOVAKIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRAZZAVILLE",
+    "airport": "BRAZZAVILLE - MAYA-MAYA AIRPORT CONGO",
+    "iata": "BZV",
+    "country": "(ROC)",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BREMEN",
+    "airport": "BREMEN - BREMEN AIRPORT (FLUGHAFEN BREMEN)",
+    "iata": "BRE",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRESCIA",
+    "airport": "BRESCIA, MONTICHIARI",
+    "iata": "VBS",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BREST",
+    "airport": "BREST",
+    "iata": "BES",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRIA",
+    "airport": "BRIA",
+    "iata": "BIV",
+    "country": "CENTRAL AFRICAN REPUBLIC",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRIDGEPORT (CT)",
+    "airport": "BRIDGEPORT (CT)",
+    "iata": "BDR",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRIDGETOWN",
+    "airport": "BRIDGETOWN - GRANTLEY ADAMS INTERNATIONAL",
+    "iata": "BGI",
+    "country": "BARBADOS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRINDISI",
+    "airport": "BRINDISI",
+    "iata": "BDS",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRISBANE",
+    "airport": "BRISBANE",
+    "iata": "BNE",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRISTOL",
+    "airport": "BRISTOL",
+    "iata": "BRS",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BROENNOEYSUND",
+    "airport": "BROENNOEYSUND",
+    "iata": "BNN",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BROKEN HILL",
+    "airport": "BROKEN HILL",
+    "iata": "BHQ",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BROOKINGS (SD)",
+    "airport": "BROOKINGS (SD)",
+    "iata": "BKX",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BROOME",
+    "airport": "BROOME",
+    "iata": "BME",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRUNSWICK (GA)",
+    "airport": "BRUNSWICK (GA)",
+    "iata": "BQK",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BRUSSELS",
+    "airport": "BRUSSELS - BRUSSELS AIRPORT",
+    "iata": "BRU",
+    "country": "BELGIUM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BUCARAMANGA",
+    "airport": "BUCARAMANGA",
+    "iata": "BGA",
+    "country": "COLOMBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BUCHAREST",
+    "airport": "BUCHAREST",
+    "iata": "BUH",
+    "country": "ROMANIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BUCHAREST",
+    "airport": "BUCHAREST - HENRI COANDĂ INTERNATIONAL AIRPORT",
+    "iata": "OTP",
+    "country": "ROMANIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BUDAPEST",
+    "airport": "BUDAPEST - BUDAPEST FERIHEGY INTERNATIONAL AIRPORT",
+    "iata": "BUD",
+    "country": "HUNGARY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BUENOS AIRES",
+    "airport": "BUENOS AIRES",
+    "iata": "BUE",
+    "country": "ARGENTINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BUENOS AIRES",
+    "airport": "BUENOS AIRES, EZEIZA INTERNATIONAL AIRPORT",
+    "iata": "EZE",
+    "country": "ARGENTINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BUENOS AIRES",
+    "airport": "BUENOS AIRES, JORGE NEWBERY",
+    "iata": "AEP",
+    "country": "ARGENTINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BUFFALO RANGE",
+    "airport": "BUFFALO RANGE",
+    "iata": "BFO",
+    "country": "ZIMBABWE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BUFFALO/NIAGARA FALLS (NY)",
+    "airport": "BUFFALO/NIAGARA FALLS (NY)",
+    "iata": "BUF",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BUJUMBURA",
+    "airport": "BUJUMBURA - BUJUMBURA INTERNATIONAL AIRPORT",
+    "iata": "BJM",
+    "country": "BURUNDI",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BULAWAYO",
+    "airport": "BULAWAYO",
+    "iata": "BUQ",
+    "country": "ZIMBABWE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BULLHEAD CITY (NV)",
+    "airport": "BULLHEAD CITY (NV)",
+    "iata": "BHC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BUNDABERG",
+    "airport": "BUNDABERG",
+    "iata": "BDB",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BURBANK (CA)",
+    "airport": "BURBANK (CA)",
+    "iata": "BUR",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BURLINGTON (VT)",
+    "airport": "BURLINGTON (VT)",
+    "iata": "BTV",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BURLINGTON IA",
+    "airport": "BURLINGTON IA",
+    "iata": "BRL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BURNIE (WYNYARD)",
+    "airport": "BURNIE (WYNYARD)",
+    "iata": "BWT",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BUTTE (MT)",
+    "airport": "BUTTE (MT)",
+    "iata": "BTM",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CABINDA",
+    "airport": "CABINDA",
+    "iata": "CAB",
+    "country": "ANGOLA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CAGLIARI",
+    "airport": "CAGLIARI",
+    "iata": "CAG",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CAIRNS",
+    "airport": "CAIRNS",
+    "iata": "CNS",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CAIRO",
+    "airport": "CAIRO - CAIRO INTERNATIONAL AIRPORT",
+    "iata": "CAI",
+    "country": "EGYPT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CALAMA",
+    "airport": "CALAMA - EL LOA",
+    "iata": "CJC",
+    "country": "CHILE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CALCUTTA (KOLKATA)",
+    "airport": "CALCUTTA (KOLKATA) - NETAJI SUBHAS CHANDRA",
+    "iata": "CCU",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CALGARY",
+    "airport": "CALGARY - CALGARY INTERNATIONAL AIRPORT",
+    "iata": "YYC",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CALI",
+    "airport": "CALI",
+    "iata": "CLO",
+    "country": "COLOMBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CALICUT",
+    "airport": "CALICUT",
+    "iata": "CCJ",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CALVI",
+    "airport": "CALVI",
+    "iata": "CLY",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CAMBRIDGE BAY",
+    "airport": "CAMBRIDGE BAY",
+    "iata": "YCB",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CAMBRIGDE",
+    "airport": "CAMBRIGDE",
+    "iata": "CBG",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CAMPBELTOWN",
+    "airport": "CAMPBELTOWN",
+    "iata": "CAL",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CAMPO GRANDE",
+    "airport": "CAMPO GRANDE",
+    "iata": "CGR",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CANBERRA",
+    "airport": "CANBERRA - CANBERRA AIRPORT",
+    "iata": "CBR",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CANCUN",
+    "airport": "CANCUN",
+    "iata": "CUN",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CANNES – MANDELIEU AIRPORT",
+    "airport": "CANNES – MANDELIEU AIRPORT",
+    "iata": "CEQ",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CANOUAN (ISLAND)",
+    "airport": "CANOUAN (ISLAND) - CANOUAN AIRPORT",
+    "iata": "CIW",
+    "country": "SAINT VINCENT & THE GRENADINES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CAPE TOWN",
+    "airport": "CAPE TOWN - CAPE TOWN INTERNATIONAL AIRPORT",
+    "iata": "CPT",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CARACAS",
+    "airport": "CARACAS - SIMÓN BOLÍVAR INTERNATIONAL AIRPORT",
+    "iata": "CCS",
+    "country": "VENEZUELA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CARDIFF",
+    "airport": "CARDIFF - CARDIFF AIRPORT",
+    "iata": "CWL",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CARLSBAD (CA)",
+    "airport": "CARLSBAD (CA)",
+    "iata": "CLD",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CARNARVON",
+    "airport": "CARNARVON",
+    "iata": "CVQ",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CARNOT",
+    "airport": "CARNOT",
+    "iata": "CRF",
+    "country": "CENTRAL AFRICAN REPUBLIC",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CARSON CITY (NV)",
+    "airport": "CARSON CITY (NV)",
+    "iata": "CSN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CARTAGENA",
+    "airport": "CARTAGENA - RAFAEL NÚÑEZ INTERNATIONAL AIRPORT",
+    "iata": "CTG",
+    "country": "COLOMBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CASA DE CAMPO",
+    "airport": "CASA DE CAMPO - LA ROMANA INTERNATIONAL AIRPORT",
+    "iata": "LRM",
+    "country": "DOMINICAN REPUBLIC",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CASABLANCA",
+    "airport": "CASABLANCA",
+    "iata": "CAS",
+    "country": "MOROCCO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CASABLANCA",
+    "airport": "CASABLANCA, MOHAMED V",
+    "iata": "CMN",
+    "country": "MOROCCO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CASINO",
+    "airport": "CASINO",
+    "iata": "CSI",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CASPER (WY)",
+    "airport": "CASPER (WY)",
+    "iata": "CPR",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CASTAWAY",
+    "airport": "CASTAWAY",
+    "iata": "CST",
+    "country": "FIJI",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CASTRIES",
+    "airport": "CASTRIES - GEORGE F. L. CHARLES AIRPORT SAINT",
+    "iata": "SLU",
+    "country": "LUCIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CATANIA",
+    "airport": "CATANIA",
+    "iata": "CTA",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CAYENNE",
+    "airport": "CAYENNE - CAYENNE-ROCHAMBEAU AIRPORT FRENCH",
+    "iata": "CAY",
+    "country": "GUIANA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CEBU CITY",
+    "airport": "CEBU CITY - MACTAN-CEBU INTERNATIONAL",
+    "iata": "CEB",
+    "country": "PHILIPPINES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CEDAR CITY (UT)",
+    "airport": "CEDAR CITY (UT)",
+    "iata": "CDC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CEDAR RAPIDS IA",
+    "airport": "CEDAR RAPIDS IA",
+    "iata": "CID",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CEDUNA",
+    "airport": "CEDUNA",
+    "iata": "CED",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CESSNOCK",
+    "airport": "CESSNOCK",
+    "iata": "CES",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHABAROVSK (KHABAROVSK)",
+    "airport": "CHABAROVSK (KHABAROVSK)",
+    "iata": "KHV",
+    "country": "RUSSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHAMBERY",
+    "airport": "CHAMBERY",
+    "iata": "CMF",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHAMPAIGN (IL)",
+    "airport": "CHAMPAIGN (IL)",
+    "iata": "CMI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHANDIGARH",
+    "airport": "CHANDIGARH - CHANDIGARH INTERNATIONAL AIRPORT",
+    "iata": "IXC",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHANGCHUN JILIN",
+    "airport": "CHANGCHUN JILIN, PR",
+    "iata": "CGQ",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHANIA",
+    "airport": "CHANIA",
+    "iata": "CHQ",
+    "country": "GREECE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHAOYANG",
+    "airport": "CHAOYANG, BEIJING - CHAOYANG AIRPORT PR",
+    "iata": "CHG",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHARLESTON (SC)",
+    "airport": "CHARLESTON (SC)",
+    "iata": "CHS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHARLESTON (WV)",
+    "airport": "CHARLESTON (WV) - YEAGER AIRPORT",
+    "iata": "CRW",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHARLOTTE (NC)",
+    "airport": "CHARLOTTE (NC)",
+    "iata": "CLT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHARLOTTESVILLE (VA)",
+    "airport": "CHARLOTTESVILLE (VA)",
+    "iata": "CHO",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHARTERS TOWERS",
+    "airport": "CHARTERS TOWERS",
+    "iata": "CXT",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHATTANOOGA (TN)",
+    "airport": "CHATTANOOGA (TN)",
+    "iata": "CHA",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHENGDU",
+    "airport": "CHENGDU - SHUANGLIU SICHUAN, PR",
+    "iata": "CTU",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHENNAI (MADRAS)",
+    "airport": "CHENNAI (MADRAS)",
+    "iata": "MAA",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHEYENNE (WY)",
+    "airport": "CHEYENNE (WY) - CHEYENNE REGIONAL AIRPORT",
+    "iata": "CYS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHIANG MAI",
+    "airport": "CHIANG MAI - CHIANG MAI INTERNATIONAL AIRPORT",
+    "iata": "CNX",
+    "country": "THAILAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHIBA CITY",
+    "airport": "CHIBA CITY",
+    "iata": "QCB",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHICAGO (IL)",
+    "airport": "CHICAGO (IL)",
+    "iata": "CHI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHICAGO (IL)",
+    "airport": "CHICAGO (IL), MIDWAY",
+    "iata": "MDW",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHICAGO (IL)",
+    "airport": "CHICAGO (IL), O'HARE INTERNATIONAL AIRPORT",
+    "iata": "ORD",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHICHEN ITZA",
+    "airport": "CHICHEN ITZA",
+    "iata": "CZA",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHICO (CA)",
+    "airport": "CHICO (CA)",
+    "iata": "CIC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHIHUAHUA",
+    "airport": "CHIHUAHUA - GEN FIERRO VILLALOBOS",
+    "iata": "CUU",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHIOS",
+    "airport": "CHIOS",
+    "iata": "JKH",
+    "country": "GREECE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHIPATA",
+    "airport": "CHIPATA",
+    "iata": "CIP",
+    "country": "ZAMBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHISINAU",
+    "airport": "CHISINAU - CHIŞINĂU INTERNATIONAL AIRPORT",
+    "iata": "KIV",
+    "country": "MOLDOVA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHITA (TSCHITA)",
+    "airport": "CHITA (TSCHITA)",
+    "iata": "HTA",
+    "country": "RUSSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHITRAL",
+    "airport": "CHITRAL",
+    "iata": "CJL",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHITTAGONG",
+    "airport": "CHITTAGONG",
+    "iata": "CGP",
+    "country": "BANGLADESH",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHONGQING",
+    "airport": "CHONGQING - JIANGBEI INTERNATIONAL AIRPORT SICHUAN, PR",
+    "iata": "CKG",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHRISTCHURCH",
+    "airport": "CHRISTCHURCH",
+    "iata": "CHC",
+    "country": "NEW ZEALAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHUB CAY",
+    "airport": "CHUB CAY",
+    "iata": "CCZ",
+    "country": "BAHAMAS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CHURCHILL",
+    "airport": "CHURCHILL",
+    "iata": "YYQ",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CIENFUEGOS",
+    "airport": "CIENFUEGOS - JAIME GONZÁLEZ AIRPORT",
+    "iata": "CFG",
+    "country": "CUBA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CINCINNATI (OH)",
+    "airport": "CINCINNATI (OH) - CINCINNATI/NORTHERN KENTUCKY INT'L",
+    "iata": "CVG",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CIUDAD DEL CARMEN",
+    "airport": "CIUDAD DEL CARMEN",
+    "iata": "CME",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CIUDAD GUAYANA",
+    "airport": "CIUDAD GUAYANA",
+    "iata": "CGU",
+    "country": "VENEZUELA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CIUDAD JUAREZ",
+    "airport": "CIUDAD JUAREZ",
+    "iata": "CJS",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CIUDAD OBREGON",
+    "airport": "CIUDAD OBREGON",
+    "iata": "CEN",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CIUDAD VICTORIA",
+    "airport": "CIUDAD VICTORIA",
+    "iata": "CVM",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CLARKSBURG (WV)",
+    "airport": "CLARKSBURG (WV)",
+    "iata": "CKB",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CLERMONT",
+    "airport": "CLERMONT",
+    "iata": "CMQ",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CLERMONT FERRAND",
+    "airport": "CLERMONT FERRAND",
+    "iata": "CFE",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CLEVELAND (OH)",
+    "airport": "CLEVELAND (OH) - CLEVELAND HOPKINS INTERNATIONAL",
+    "iata": "CLE",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CLEVELAND (OH)",
+    "airport": "CLEVELAND (OH) , BURKE LAKEFRONT",
+    "iata": "BKL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COCHABAMBA",
+    "airport": "COCHABAMBA",
+    "iata": "CBB",
+    "country": "BOLIVIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COCHIN",
+    "airport": "COCHIN",
+    "iata": "COK",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CODY/POWELL/YELLOWSTONE (WY)",
+    "airport": "CODY/POWELL/YELLOWSTONE (WY)",
+    "iata": "COD",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COFFMANN COVE (AK)",
+    "airport": "COFFMANN COVE (AK)",
+    "iata": "KCC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COFFS HARBOUR",
+    "airport": "COFFS HARBOUR",
+    "iata": "CFS",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COIMBATORE",
+    "airport": "COIMBATORE",
+    "iata": "CJB",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COLIMA",
+    "airport": "COLIMA",
+    "iata": "CLQ",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COLLEGE STATION/BRYAN (TX)",
+    "airport": "COLLEGE STATION/BRYAN (TX)",
+    "iata": "CLL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COLLINSVILLE",
+    "airport": "COLLINSVILLE",
+    "iata": "KCE",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COLOGNE",
+    "airport": "COLOGNE - COLOGNE AIRPORT (FLUGHAFEN KÖLN/BONN)",
+    "iata": "CGN",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COLOMBO",
+    "airport": "COLOMBO - BANDARANAIKE INTERNATIONAL AIRPORT",
+    "iata": "CMB",
+    "country": "SRI LANKA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COLORADO SPRINGS (CO)",
+    "airport": "COLORADO SPRINGS (CO)",
+    "iata": "COS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COLUMBIA (SC)",
+    "airport": "COLUMBIA (SC) - COLUMBIA METROPOLITAN AIRPORT",
+    "iata": "CAE",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COLUMBUS (GA)",
+    "airport": "COLUMBUS (GA)",
+    "iata": "CSG",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COLUMBUS (OH)",
+    "airport": "COLUMBUS (OH) - PORT COLUMBUS INTERNATIONAL",
+    "iata": "CMH",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CONAKRY",
+    "airport": "CONAKRY - CONAKRY INTERNATIONAL AIRPORT",
+    "iata": "CKY",
+    "country": "GUINEA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CONCORD (CA)",
+    "airport": "CONCORD (CA) - BUCHANAN FIELD",
+    "iata": "CCR",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CONCORD (NH)",
+    "airport": "CONCORD (NH) - CONCORD MUNICIPAL AIRPORT",
+    "iata": "CON",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CONSTANTA (CONSTANȚA)",
+    "airport": "CONSTANTA (CONSTANȚA) - CONSTANTA INT'L AIRPORT",
+    "iata": "CND",
+    "country": "ROMANIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CONSTANTINE",
+    "airport": "CONSTANTINE",
+    "iata": "CZL",
+    "country": "ALGERIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COOBER PEDY",
+    "airport": "COOBER PEDY",
+    "iata": "CPD",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COOKTOWN",
+    "airport": "COOKTOWN",
+    "iata": "CTN",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COOMA",
+    "airport": "COOMA",
+    "iata": "OOM",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COPENHAGEN",
+    "airport": "COPENHAGEN - COPENHAGEN AIRPORT",
+    "iata": "CPH",
+    "country": "DENMARK",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CORDOBA",
+    "airport": "CORDOBA",
+    "iata": "COR",
+    "country": "ARGENTINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CORDOBA",
+    "airport": "CORDOBA",
+    "iata": "ODB",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CORDOVA (AK)",
+    "airport": "CORDOVA (AK)",
+    "iata": "CDV",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CORFU",
+    "airport": "CORFU",
+    "iata": "CFU",
+    "country": "GREECE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CORK",
+    "airport": "CORK",
+    "iata": "ORK",
+    "country": "IRELAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CORPUS CHRISTI (TX)",
+    "airport": "CORPUS CHRISTI (TX)",
+    "iata": "CRP",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COTONOU",
+    "airport": "COTONOU - COTONOU CADJEHOUN AIRPORT",
+    "iata": "COO",
+    "country": "BENIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COTTBUS",
+    "airport": "COTTBUS - COTTBUS-DREWITZ AIRPORT",
+    "iata": "CBU",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COVENTRY",
+    "airport": "COVENTRY - BAGINTON",
+    "iata": "CVT",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "COZMEL",
+    "airport": "COZMEL",
+    "iata": "CZM",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CRAIG (AK)",
+    "airport": "CRAIG (AK)",
+    "iata": "CGA",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CRESCENT CITY (CA)",
+    "airport": "CRESCENT CITY (CA)",
+    "iata": "CEC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CUIABA",
+    "airport": "CUIABA - MARECHAL RONDON INTERNATIONAL AIRPORT",
+    "iata": "CGB",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CULIACAN",
+    "airport": "CULIACAN",
+    "iata": "CUL",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CURACAO",
+    "airport": "CURACAO - CURAÇAO INTERNATIONAL AIRPORT",
+    "iata": "CUR",
+    "country": "NETHERLANDS ANTILLES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CURITIBA",
+    "airport": "CURITIBA - AFONSO PENA INTERNATIONAL AIRPORT",
+    "iata": "CWB",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "CUYO",
+    "airport": "CUYO",
+    "iata": "CYU",
+    "country": "PHILIPPINES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DAKAR",
+    "airport": "DAKAR - LÉOPOLD SÉDAR SENGHOR INTERNATIONAL AIRPORT",
+    "iata": "DKR",
+    "country": "SENEGAL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DALAMAN",
+    "airport": "DALAMAN",
+    "iata": "DLM",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DALBY",
+    "airport": "DALBY",
+    "iata": "DBY",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DALIAN",
+    "airport": "DALIAN - ZHOUSHUIZI INTERNATIONAL AIRPORT LIAONING, PR",
+    "iata": "DLC",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DALLAS (TX)",
+    "airport": "DALLAS (TX) , LOVE FIELD",
+    "iata": "DAL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DALLAS/FT. WORTH (TX)",
+    "airport": "DALLAS/FT. WORTH (TX) - DALLAS/FORT WORTH INTERNATIONAL",
+    "iata": "DFW",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DALOA",
+    "airport": "DALOA",
+    "iata": "DJO",
+    "country": "COTE D'IVOIRE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DAMASCUS",
+    "airport": "DAMASCUS, INTERNATIONAL",
+    "iata": "DAM",
+    "country": "SYRIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DAMMAM",
+    "airport": "DAMMAM, KING FAHAD INTERNATIONAL SAUDI",
+    "iata": "DMM",
+    "country": "ARABIEN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DANVILLE (VA)",
+    "airport": "DANVILLE (VA)",
+    "iata": "DAN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DAR ES SALAM (DARESSALAM)",
+    "airport": "DAR ES SALAM (DARESSALAM) - JULIUS NYERERE INT'L",
+    "iata": "DAR",
+    "country": "TANZANIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DARWIN",
+    "airport": "DARWIN",
+    "iata": "DRW",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DAYDREAM ISLAND",
+    "airport": "DAYDREAM ISLAND",
+    "iata": "DDI",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DAYTON (OH)",
+    "airport": "DAYTON (OH)",
+    "iata": "DAY",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DAYTONA BEACH (FL)",
+    "airport": "DAYTONA BEACH (FL)",
+    "iata": "DAB",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DECATUR (IL)",
+    "airport": "DECATUR (IL)",
+    "iata": "DEC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DEER LAKE/CORNER BROOK",
+    "airport": "DEER LAKE/CORNER BROOK",
+    "iata": "YDF",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DELHI",
+    "airport": "DELHI - INDIRA GANDHI INTERNATIONAL AIRPORT",
+    "iata": "DEL",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DEN HAAG (THE HAGUE)",
+    "airport": "DEN HAAG (THE HAGUE)",
+    "iata": "HAG",
+    "country": "NETHERLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DENIZLI",
+    "airport": "DENIZLI",
+    "iata": "DNZ",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DENPASAR/BALI",
+    "airport": "DENPASAR/BALI",
+    "iata": "DPS",
+    "country": "INDONESIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DENVER (CO)",
+    "airport": "DENVER (CO) - DENVER INTERNATIONAL AIRPORT",
+    "iata": "DEN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DERA ISMAIL KHAN",
+    "airport": "DERA ISMAIL KHAN - DERA ISMAIL KHAN AIRPORT",
+    "iata": "DSK",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DERBY",
+    "airport": "DERBY",
+    "iata": "DRB",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DERRY (LONDONDERRY)",
+    "airport": "DERRY (LONDONDERRY)",
+    "iata": "LDY",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DES MOINES (IA)",
+    "airport": "DES MOINES (IA) - DES MOINES INTERNATIONAL AIRPORT",
+    "iata": "DSM",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DETROIT (MI)",
+    "airport": "DETROIT (MI) , COLEMAN A. YOUNG MUNICIPAL",
+    "iata": "DET",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DETROIT (MI)",
+    "airport": "DETROIT (MI) , METROPOLITAN AREA",
+    "iata": "DTT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DETROIT (MI)",
+    "airport": "DETROIT (MI) , WAYNE COUNTY AIRPORT",
+    "iata": "DTW",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DEVILS LAKE (ND)",
+    "airport": "DEVILS LAKE (ND)",
+    "iata": "DVL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DEVONPORT",
+    "airport": "DEVONPORT",
+    "iata": "DPO",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DHAHRAN",
+    "airport": "DHAHRAN",
+    "iata": "DHA",
+    "country": "SAUDI ARABIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DHAKA",
+    "airport": "HAZRAT SHAHJALAL INTL",
+    "iata": "DAC",
+    "country": "BANGLADESH",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DILI",
+    "airport": "DILI - NICOLAU LOBATO INTERNATIONAL AIRPORT TIMOR LESTE (EAST",
+    "iata": "DIL",
+    "country": "TIMOR)",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DILLINGHAM (AK)",
+    "airport": "DILLINGHAM (AK)",
+    "iata": "DLG",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DINARD",
+    "airport": "DINARD",
+    "iata": "DNR",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DISNEYLAND PARIS",
+    "airport": "DISNEYLAND PARIS",
+    "iata": "DLP",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DJERBA",
+    "airport": "DJERBA",
+    "iata": "DJE",
+    "country": "TUNISIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DJIBOUTI (CITY)",
+    "airport": "DJIBOUTI (CITY) - DJIBOUTI-AMBOULI INTERNATIONAL AIRPORT",
+    "iata": "JIB",
+    "country": "DJIBOUTI",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DODOMA",
+    "airport": "DODOMA - DODOMA AIRPORT",
+    "iata": "DOD",
+    "country": "TANZANIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DOHA",
+    "airport": "DOHA - DOHA INTERNATIONAL AIRPORT",
+    "iata": "DOH",
+    "country": "QATAR",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DONCASTER/SHEFFIELD",
+    "airport": "DONCASTER/SHEFFIELD, ROBIN HOOD INTERNATIONAL AIRPORT",
+    "iata": "DSA",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DONEGAL (CARRICKFIN)",
+    "airport": "DONEGAL (CARRICKFIN)",
+    "iata": "CFN",
+    "country": "IRELAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DORTMUND",
+    "airport": "DORTMUND",
+    "iata": "DTM",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DOTHAN (AL)",
+    "airport": "DOTHAN (AL)",
+    "iata": "DHN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DOUALA",
+    "airport": "DOUALA",
+    "iata": "DLA",
+    "country": "CAMEROON",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DRESDEN",
+    "airport": "DRESDEN - DRESDEN AIRPORT",
+    "iata": "DRS",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DUBAI",
+    "airport": "DUBAI - DUBAI INTERNATIONAL AIRPORT",
+    "iata": "DXB",
+    "country": "UNITED ARAB EMIRATES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DUBBO",
+    "airport": "DUBBO",
+    "iata": "DBO",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DUBLIN",
+    "airport": "DUBLIN - DUBLIN INTERNATIONAL AIRPORT",
+    "iata": "DUB",
+    "country": "IRELAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DUBOIS (PA)",
+    "airport": "DUBOIS (PA)",
+    "iata": "DUJ",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DUBROVNIK CROATIA",
+    "airport": "DUBROVNIK CROATIA",
+    "iata": "DBV",
+    "country": "(HRVATSKA)",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DUBUQUE IA",
+    "airport": "DUBUQUE IA",
+    "iata": "DBQ",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DUESSELDORF",
+    "airport": "DUESSELDORF - DÜSSELDORF INTERNATIONAL AIRPORT",
+    "iata": "DUS",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DULUTH (MN) /SUPERIOR (WI)",
+    "airport": "DULUTH (MN) /SUPERIOR (WI)",
+    "iata": "DLH",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DUNDEE",
+    "airport": "DUNDEE",
+    "iata": "DND",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DUNEDIN",
+    "airport": "DUNEDIN",
+    "iata": "DUD",
+    "country": "NEW ZEALAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DUNK ISLAND",
+    "airport": "DUNK ISLAND",
+    "iata": "DKI",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DURANGO (CO)",
+    "airport": "DURANGO (CO)",
+    "iata": "DRO",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DURBAN",
+    "airport": "DURBAN",
+    "iata": "DUR",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DUSHANBE (DUSCHANBE)",
+    "airport": "DUSHANBE (DUSCHANBE) - DUSHANBE AIRPORT",
+    "iata": "DYU",
+    "country": "TAJIKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DUTCH HARBOR (AK)",
+    "airport": "DUTCH HARBOR (AK)",
+    "iata": "DUT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DYSART",
+    "airport": "DYSART",
+    "iata": "DYA",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DZAOUDZI",
+    "airport": "DZAOUDZI",
+    "iata": "DZA",
+    "country": "MAYOTTE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EAST LONDON",
+    "airport": "EAST LONDON",
+    "iata": "ELS",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EASTER ISLAND",
+    "airport": "EASTER ISLAND",
+    "iata": "IPC",
+    "country": "CHILE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EAU CLARIE (WI)",
+    "airport": "EAU CLARIE (WI)",
+    "iata": "EAU",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EDINBURGH",
+    "airport": "EDINBURGH - EDINBURGH AIRPORT SCOTLAND,",
+    "iata": "EDI",
+    "country": "UK",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EDMONTON",
+    "airport": "EDMONTON",
+    "iata": "YEA",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EDMONTON",
+    "airport": "EDMONTON, INTERNATIONAL",
+    "iata": "YEG",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EDMONTON",
+    "airport": "EDMONTON, MUNICIPAL",
+    "iata": "YXD",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EGILSSTADIR",
+    "airport": "EGILSSTADIR",
+    "iata": "EGS",
+    "country": "ICELAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EINDHOVEN",
+    "airport": "EINDHOVEN",
+    "iata": "EIN",
+    "country": "NETHERLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EL MINYA",
+    "airport": "EL MINYA",
+    "iata": "EMY",
+    "country": "EGYPT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EL PASO (TX)",
+    "airport": "EL PASO (TX) - EL PASO INTERNATIONAL AIRPORT",
+    "iata": "ELP",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ELAT",
+    "airport": "ELAT",
+    "iata": "ETH",
+    "country": "ISRAEL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ELAT",
+    "airport": "ELAT, OVULA",
+    "iata": "VDA",
+    "country": "ISRAEL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ELBA ISLAND",
+    "airport": "ELBA ISLAND, MARINA DI CAMPO",
+    "iata": "EBA",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ELKHART (IN)",
+    "airport": "ELKHART (IN)",
+    "iata": "EKI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ELKO (NV)",
+    "airport": "ELKO (NV)",
+    "iata": "EKO",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ELLISRAS",
+    "airport": "ELLISRAS",
+    "iata": "ELL",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ELMIRA (NY)",
+    "airport": "ELMIRA (NY)",
+    "iata": "ELM",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ELY (NV)",
+    "airport": "ELY (NV)",
+    "iata": "ELY",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EMERALD",
+    "airport": "EMERALD",
+    "iata": "EDR",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EMERALD",
+    "airport": "EMERALD",
+    "iata": "EMD",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ENONTEKIOE",
+    "airport": "ENONTEKIOE",
+    "iata": "ENF",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ENTEBBE",
+    "airport": "ENTEBBE - ENTEBBE INTERNATIONAL AIRPORT",
+    "iata": "EBB",
+    "country": "UGANDA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ERFURT",
+    "airport": "ERFURT - ERFURT AIRPORT (FLUGHAFEN ERFURT)",
+    "iata": "ERF",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ERIE (PA)",
+    "airport": "ERIE (PA)",
+    "iata": "ERI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ERIWAN (YEREVAN",
+    "airport": "ERIWAN (YEREVAN, JEREVAN)",
+    "iata": "EVN",
+    "country": "ARMENIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ERZINCAN",
+    "airport": "ERZINCAN",
+    "iata": "ERC",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ERZURUM",
+    "airport": "ERZURUM",
+    "iata": "ERZ",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ESBJERG",
+    "airport": "ESBJERG",
+    "iata": "EBJ",
+    "country": "DENMARK",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ESCANABA (MI)",
+    "airport": "ESCANABA (MI)",
+    "iata": "ESC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ESPERANCE",
+    "airport": "ESPERANCE",
+    "iata": "EPR",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EUGENE (OR)",
+    "airport": "EUGENE (OR)",
+    "iata": "EUG",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EUREKA (CA)",
+    "airport": "EUREKA (CA)",
+    "iata": "ACV",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EVANSVILLE (IN)",
+    "airport": "EVANSVILLE (IN)",
+    "iata": "EVV",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EVENES",
+    "airport": "EVENES",
+    "iata": "EVE",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "EXETER",
+    "airport": "EXETER",
+    "iata": "EXT",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FAIR ISLE (SHETLAND)",
+    "airport": "FAIR ISLE (SHETLAND)",
+    "iata": "FIE",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FAIRBANKS (AK)",
+    "airport": "FAIRBANKS (AK)",
+    "iata": "FAI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FAISALABAD",
+    "airport": "FAISALABAD",
+    "iata": "LYP",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FARGO (ND) (MN)",
+    "airport": "FARGO (ND) (MN)",
+    "iata": "FAR",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FARMINGTON (NM)",
+    "airport": "FARMINGTON (NM)",
+    "iata": "FMN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FARO",
+    "airport": "FARO",
+    "iata": "FAO",
+    "country": "PORTUGAL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FAROER",
+    "airport": "FAROER - VÁGAR AIRPORT",
+    "iata": "FAE",
+    "country": "DENMARK",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FAYETTEVILLE (AR)",
+    "airport": "FAYETTEVILLE (AR)",
+    "iata": "FYV",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FAYETTEVILLE/FT. BRAGG (NC)",
+    "airport": "FAYETTEVILLE/FT. BRAGG (NC)",
+    "iata": "FAY",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FES",
+    "airport": "FES",
+    "iata": "FEZ",
+    "country": "MOROCCO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FIGARI",
+    "airport": "FIGARI",
+    "iata": "FSC",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FLAGSTAFF (AZ)",
+    "airport": "FLAGSTAFF (AZ)",
+    "iata": "FLG",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FLIN FLON",
+    "airport": "FLIN FLON",
+    "iata": "YFO",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FLINT (MI)",
+    "airport": "FLINT (MI)",
+    "iata": "FNT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FLORENCE (SC)",
+    "airport": "FLORENCE (SC)",
+    "iata": "FLO",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FLORENCE (FIRENZE)",
+    "airport": "FLORENCE (FIRENZE) - PERETOLA AIRPORT",
+    "iata": "FLR",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FLORIANOPOLIS",
+    "airport": "FLORIANOPOLIS",
+    "iata": "FLN",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FLORO",
+    "airport": "FLORO",
+    "iata": "FRO",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT ALBERT",
+    "airport": "FORT ALBERT",
+    "iata": "YFA",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT DE FRANCE",
+    "airport": "FORT DE FRANCE - MARTINIQUE AIMÉ CÉSAIRE INTERNATIONAL",
+    "iata": "FDF",
+    "country": "MARTINIQUE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT DODGE IA",
+    "airport": "FORT DODGE IA",
+    "iata": "FOD",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT HUACHUCA/SIERRA VISTA (AZ)",
+    "airport": "FORT HUACHUCA/SIERRA VISTA (AZ)",
+    "iata": "FHU",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT LAUDERDALE/HOLLYWOOD (FL)",
+    "airport": "FORT LAUDERDALE/HOLLYWOOD (FL)",
+    "iata": "FLL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT MCMURRAY",
+    "airport": "FORT MCMURRAY",
+    "iata": "YMM",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT MYERS",
+    "airport": "FORT MYERS, METROPOLITAN AREA (FL)",
+    "iata": "FMY",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT MYERS",
+    "airport": "FORT MYERS, SOUTHWEST FLORIDA REG (FL)",
+    "iata": "RSW",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT RILEY (KS)",
+    "airport": "FORT RILEY (KS) - MARSHALL AAF",
+    "iata": "FRI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT SMITH",
+    "airport": "FORT SMITH",
+    "iata": "YSM",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT SMITH (AR)",
+    "airport": "FORT SMITH (AR)",
+    "iata": "FSM",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT ST. JOHN",
+    "airport": "FORT ST. JOHN",
+    "iata": "YXJ",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT WALTON BEACH (FL)",
+    "airport": "FORT WALTON BEACH (FL)",
+    "iata": "VPS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT WAYNE (IN)",
+    "airport": "FORT WAYNE (IN)",
+    "iata": "FWA",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORT WORTH (TX)",
+    "airport": "FORT WORTH (TX) - DALLAS/FORT WORTH INTERNATIONAL AIRPORT",
+    "iata": "DFW",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FORTALEZA",
+    "airport": "FORTALEZA - PINTO MARTINS AIRPORT",
+    "iata": "FOR",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FOULA (SHETLAND)",
+    "airport": "FOULA (SHETLAND)",
+    "iata": "FOU",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FRANCISTOWN",
+    "airport": "FRANCISTOWN",
+    "iata": "FRW",
+    "country": "BOTSWANA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FRANKFURT/HAHN",
+    "airport": "FRANKFURT/HAHN",
+    "iata": "HHN",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FRANKFURT/MAIN",
+    "airport": "FRANKFURT/MAIN - FRANKFURT AIRPORT (RHEIN-MAIN-FLUGHAFEN)",
+    "iata": "FRA",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FRANKLIN/OIL CITY (PA)",
+    "airport": "FRANKLIN/OIL CITY (PA)",
+    "iata": "FKL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FREDERICTON",
+    "airport": "FREDERICTON",
+    "iata": "YFC",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FREEPORT",
+    "airport": "FREEPORT - GRAND BAHAMA INTERNATIONAL AIRPORT",
+    "iata": "FPO",
+    "country": "BAHAMAS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FREETOWN",
+    "airport": "FREETOWN - FREETOWN-LUNGI INTERNATIONAL AIRPORT SIERRA",
+    "iata": "FNA",
+    "country": "LEONE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FREJUS",
+    "airport": "FREJUS",
+    "iata": "FRJ",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FRESNO (CA)",
+    "airport": "FRESNO (CA)",
+    "iata": "FAT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FRIEDRICHSHAFEN",
+    "airport": "FRIEDRICHSHAFEN - BODENSEE-AIRPORT FRIEDRICHSHAFEN",
+    "iata": "FDH",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FUERTEVENTURA",
+    "airport": "FUERTEVENTURA",
+    "iata": "FUE",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FUJAIRAH",
+    "airport": "FUJAIRAH, INTERNATIONAL AIRPORT",
+    "iata": "FJR",
+    "country": "UNITED ARAB EMIRATES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FUKUOKA",
+    "airport": "FUKUOKA",
+    "iata": "FUK",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FUKUSHIMA",
+    "airport": "FUKUSHIMA - FUKUSHIMA AIRPORT",
+    "iata": "FKS",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FUNCHAL",
+    "airport": "FUNCHAL",
+    "iata": "FNC",
+    "country": "PORTUGAL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "FUTUNA",
+    "airport": "FUTUNA",
+    "iata": "FUT",
+    "country": "WALLIS AND FUTUNA ISLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GABORONE",
+    "airport": "GABORONE - SIR SERETSE KHAMA INTERNATIONAL AIRPORT",
+    "iata": "GBE",
+    "country": "BOTSWANA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GADSDEN (AL)",
+    "airport": "GADSDEN (AL)",
+    "iata": "GAD",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GAINESVILLE (FL)",
+    "airport": "GAINESVILLE (FL)",
+    "iata": "GNV",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GALWAY",
+    "airport": "GALWAY",
+    "iata": "GWY",
+    "country": "IRELAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GANDER",
+    "airport": "GANDER",
+    "iata": "YQX",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GAROUA",
+    "airport": "GAROUA",
+    "iata": "GOU",
+    "country": "CAMEROON",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GAZA CITY",
+    "airport": "GAZA CITY - GAZA INTERNATIONAL AIRPORT PALESTINIAN",
+    "iata": "GZA",
+    "country": "TERRITORY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GAZIANTEP",
+    "airport": "GAZIANTEP",
+    "iata": "GZT",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GDANSK",
+    "airport": "GDANSK",
+    "iata": "GDN",
+    "country": "POLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GEELONG",
+    "airport": "GEELONG",
+    "iata": "GEX",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GENEVA",
+    "airport": "GENEVA - GENEVA-COINTRIN INTERNATIONAL AIRPORT",
+    "iata": "GVA",
+    "country": "SWITZERLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GENOA",
+    "airport": "GENOA",
+    "iata": "GOA",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GEORGE",
+    "airport": "GEORGE",
+    "iata": "GRJ",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GEORGETOWN",
+    "airport": "GEORGETOWN - CHEDDI JAGAN INTERNATIONAL AIRPORT",
+    "iata": "GEO",
+    "country": "GUYANA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GERALDTON",
+    "airport": "GERALDTON",
+    "iata": "GET",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GERONA",
+    "airport": "GERONA",
+    "iata": "GRO",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GHENT (GENT)",
+    "airport": "GHENT (GENT)",
+    "iata": "GNE",
+    "country": "BELGIUM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GIBRALTAR",
+    "airport": "GIBRALTAR",
+    "iata": "GIB",
+    "country": "GIBRALTAR",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GILETTE (WY)",
+    "airport": "GILETTE (WY)",
+    "iata": "GCC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GILGIT",
+    "airport": "GILGIT",
+    "iata": "GIL",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GILLAM",
+    "airport": "GILLAM",
+    "iata": "YGX",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GLADSTONE",
+    "airport": "GLADSTONE",
+    "iata": "GLT",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GLASGOW",
+    "airport": "GLASGOW",
+    "iata": "GLA",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GLASGOW (MT)",
+    "airport": "GLASGOW (MT)",
+    "iata": "GGW",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GLASGOW",
+    "airport": "GLASGOW, PRESTWICK",
+    "iata": "PIK",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GLENDIVE (MT)",
+    "airport": "GLENDIVE (MT)",
+    "iata": "GDV",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GOA",
+    "airport": "GOA",
+    "iata": "GOI",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GOIANIA",
+    "airport": "GOIANIA, SANTA GENOVEVA AIRPORT",
+    "iata": "GYN",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GOLD COAST",
+    "airport": "GOLD COAST",
+    "iata": "OOL",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GOONDIWINDI",
+    "airport": "GOONDIWINDI",
+    "iata": "GOO",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GOOSE BAY",
+    "airport": "GOOSE BAY",
+    "iata": "YYR",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GORNA",
+    "airport": "GORNA",
+    "iata": "GOZ",
+    "country": "BULGARIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GOTHENBURG (GÖTEBORG)",
+    "airport": "GOTHENBURG (GÖTEBORG) - LANDVETTER",
+    "iata": "GOT",
+    "country": "SWEDEN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GOVE (NHULUNBUY)",
+    "airport": "GOVE (NHULUNBUY)",
+    "iata": "GOV",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GOVENORS HARBOUR",
+    "airport": "GOVENORS HARBOUR",
+    "iata": "GHB",
+    "country": "BAHAMAS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GRANADA",
+    "airport": "GRANADA",
+    "iata": "GRX",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GRAND BAHAMA INTERNATIONAL",
+    "airport": "GRAND BAHAMA INTERNATIONAL",
+    "iata": "FPO",
+    "country": "BAHAMAS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GRAND CANYON (AZ)",
+    "airport": "GRAND CANYON (AZ)",
+    "iata": "GCN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GRAND CAYMAN",
+    "airport": "GRAND CAYMAN - OWEN ROBERTS INTERNATIONAL",
+    "iata": "GCM",
+    "country": "CAYMAN ISLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GRAND FORKS (ND)",
+    "airport": "GRAND FORKS (ND)",
+    "iata": "GFK",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GRAND JUNCTION (CO)",
+    "airport": "GRAND JUNCTION (CO)",
+    "iata": "GJT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GRAND RAPIDS (MI)",
+    "airport": "GRAND RAPIDS (MI)",
+    "iata": "GRR",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GRAND RAPIDS (MN)",
+    "airport": "GRAND RAPIDS (MN)",
+    "iata": "GPZ",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GRAZ",
+    "airport": "GRAZ",
+    "iata": "GRZ",
+    "country": "AUSTRIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GREAT FALLS (MT)",
+    "airport": "GREAT FALLS (MT)",
+    "iata": "GTF",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GREAT KEPPEL ISLAND",
+    "airport": "GREAT KEPPEL ISLAND",
+    "iata": "GKL",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GREEN BAY (WI)",
+    "airport": "GREEN BAY (WI)",
+    "iata": "GRB",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GREENBRIER/LEWISBURG (WV)",
+    "airport": "GREENBRIER/LEWISBURG (WV)",
+    "iata": "LWB",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GREENSBORO/WINSTON SALEM (NC)",
+    "airport": "GREENSBORO/WINSTON SALEM (NC)",
+    "iata": "GSO",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GREENVILLE (MS)",
+    "airport": "GREENVILLE (MS)",
+    "iata": "GLH",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GREENVILLE (NC)",
+    "airport": "GREENVILLE (NC)",
+    "iata": "PGV",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GREENVILLE/SPARTANBURG (SC)",
+    "airport": "GREENVILLE/SPARTANBURG (SC)",
+    "iata": "GSP",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GRENADA",
+    "airport": "GRENADA - POINT SALINES AIRPORT ALSO MAURICE BISHOP",
+    "iata": "GND",
+    "country": "GRENADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GRENOBLE",
+    "airport": "GRENOBLE",
+    "iata": "GNB",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GRIFFITH",
+    "airport": "GRIFFITH",
+    "iata": "GFF",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GRONINGEN",
+    "airport": "GRONINGEN - EELDE",
+    "iata": "GRQ",
+    "country": "NETHERLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GROOTE EYLANDT",
+    "airport": "GROOTE EYLANDT - ALYANGULA",
+    "iata": "GTE",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GROTON/NEW LONDON (CT)",
+    "airport": "GROTON/NEW LONDON (CT)",
+    "iata": "GON",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GUADALAJARA",
+    "airport": "GUADALAJARA",
+    "iata": "GDL",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GUADALCANAL",
+    "airport": "GUADALCANAL",
+    "iata": "GSI",
+    "country": "SOLOMON ISLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GUAM",
+    "airport": "GUAM",
+    "iata": "GUM",
+    "country": "GUAM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GUANGZHOU (CANTON)",
+    "airport": "GUANGZHOU (CANTON) - BAIYUN INTERNATIONAL AIRPORT GUANGDONG, PR",
+    "iata": "CAN",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GUATEMALA CITY",
+    "airport": "GUATEMALA CITY - LA AURORA INTERNATIONAL AIRPORT",
+    "iata": "GUA",
+    "country": "GUATEMALA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GUAYAQUIL",
+    "airport": "GUAYAQUIL - SIMON BOLIVAR",
+    "iata": "GYE",
+    "country": "ECUADOR",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GUERNSEY",
+    "airport": "GUERNSEY",
+    "iata": "GCI",
+    "country": "CHANNEL ISLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GUETTIN",
+    "airport": "GUETTIN",
+    "iata": "GTI",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GUILIN",
+    "airport": "GUILIN - LIANGJIANG GUANGXI, PR",
+    "iata": "KWL",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GULFPORT/BILOXI (MS)",
+    "airport": "GULFPORT/BILOXI (MS)",
+    "iata": "GPT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GULU",
+    "airport": "GULU",
+    "iata": "ULU",
+    "country": "UGANDA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GUNNISON/CRESTED BUTTE (CO)",
+    "airport": "GUNNISON/CRESTED BUTTE (CO)",
+    "iata": "GUC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GUWAHATI",
+    "airport": "GUWAHATI",
+    "iata": "GAU",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GWADAR",
+    "airport": "GWADAR",
+    "iata": "GWD",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GWERU",
+    "airport": "GWERU",
+    "iata": "GWE",
+    "country": "ZIMBABWE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "GYMPIE",
+    "airport": "GYMPIE",
+    "iata": "GYP",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HACHIJO JIMA",
+    "airport": "HACHIJO JIMA",
+    "iata": "HAC",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAGÅTÑA",
+    "airport": "HAGÅTÑA - GUAM INTERNATIONAL AIRPORT",
+    "iata": "GUM",
+    "country": "GUAM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAIFA",
+    "airport": "HAIFA",
+    "iata": "HFA",
+    "country": "ISRAEL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAINES (AK)",
+    "airport": "HAINES (AK)",
+    "iata": "HNS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAKODATE",
+    "airport": "HAKODATE",
+    "iata": "HKD",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HALIFAX INTERNATIONAL",
+    "airport": "HALIFAX INTERNATIONAL",
+    "iata": "YHZ",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HALL BEACH",
+    "airport": "HALL BEACH",
+    "iata": "YUX",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAMBURG",
+    "airport": "HAMBURG - FUHLSBUETTEL",
+    "iata": "HAM",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAMILTON",
+    "airport": "HAMILTON",
+    "iata": "HLT",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAMILTON",
+    "airport": "HAMILTON",
+    "iata": "HLZ",
+    "country": "NEW ZEALAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAMILTON",
+    "airport": "HAMILTON",
+    "iata": "YHM",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAMILTON ISLAND",
+    "airport": "HAMILTON ISLAND",
+    "iata": "HTI",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAMMERFEST",
+    "airport": "HAMMERFEST",
+    "iata": "HFT",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HANCOCK (MI)",
+    "airport": "HANCOCK (MI)",
+    "iata": "CMX",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HANGCHOW (HANGZHOU) ZHEJIANG",
+    "airport": "HANGCHOW (HANGZHOU) ZHEJIANG, PR",
+    "iata": "HGH",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HANNOVER",
+    "airport": "HANNOVER",
+    "iata": "HAJ",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HANOI",
+    "airport": "HANOI - NOI BAI INTERNATIONAL AIRPORT",
+    "iata": "HAN",
+    "country": "VIETNAM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HARARE",
+    "airport": "HARARE - HARARE INTERNATIONAL AIRPORT",
+    "iata": "HRE",
+    "country": "ZIMBABWE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HARBIN (HAERBIN) HEILONGJIANG",
+    "airport": "HARBIN (HAERBIN) HEILONGJIANG, PR",
+    "iata": "HRB",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HARLINGEN/SOUTH PADRE ISLAND (TX)",
+    "airport": "HARLINGEN/SOUTH PADRE ISLAND (TX)",
+    "iata": "HRL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HARRINGTON HARBOUR",
+    "airport": "HARRINGTON HARBOUR, PQ",
+    "iata": "YHR",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HARRISBURG (PA)",
+    "airport": "HARRISBURG (PA) - HARRISBURG INTERNATIONAL",
+    "iata": "MDT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HARRISBURG (PA)",
+    "airport": "HARRISBURG (PA) - HARRISBURG SKYPORT",
+    "iata": "HAR",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HARTFORD (CT) /SPRINGFIELD (MA)",
+    "airport": "HARTFORD (CT) /SPRINGFIELD (MA)",
+    "iata": "BDL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HATYAI (HAT YAI)",
+    "airport": "HATYAI (HAT YAI)",
+    "iata": "HDY",
+    "country": "THAILAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAUGESUND",
+    "airport": "HAUGESUND",
+    "iata": "HAU",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAVANA",
+    "airport": "HAVANA - JOSÉ MARTÍ INTERNATIONAL",
+    "iata": "HAV",
+    "country": "CUBA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAVRE (MT)",
+    "airport": "HAVRE (MT)",
+    "iata": "HVR",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HAYMAN ISLAND",
+    "airport": "HAYMAN ISLAND",
+    "iata": "HIS",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HELENA (MT)",
+    "airport": "HELENA (MT)",
+    "iata": "HLN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HELSINGBORG",
+    "airport": "HELSINGBORG",
+    "iata": "JHE",
+    "country": "SWEDEN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HELSINKI",
+    "airport": "HELSINKI - VANTAA",
+    "iata": "HEL",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HERAKLION",
+    "airport": "HERAKLION",
+    "iata": "HER",
+    "country": "GREECE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HERMOSILLO",
+    "airport": "HERMOSILLO - GEN. PESQUEIRA GARCIA",
+    "iata": "HMO",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HERVEY BAY",
+    "airport": "HERVEY BAY",
+    "iata": "HVB",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HIBBING (MN)",
+    "airport": "HIBBING (MN)",
+    "iata": "HIB",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HICKORY (NC)",
+    "airport": "HICKORY (NC)",
+    "iata": "HKY",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HILO (HI)",
+    "airport": "HILO (HI)",
+    "iata": "ITO",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HILTON HEAD ISLAND (SC)",
+    "airport": "HILTON HEAD ISLAND (SC)",
+    "iata": "HHH",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HINCHINBROOK ISLAND",
+    "airport": "HINCHINBROOK ISLAND",
+    "iata": "HNK",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HIROSHIMA INTERNATIONAL",
+    "airport": "HIROSHIMA INTERNATIONAL",
+    "iata": "HIJ",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HO CHI MINH CITY (SAIGON)",
+    "airport": "HO CHI MINH CITY (SAIGON) - TAN SON NHAT INTERNATIONAL VIET",
+    "iata": "SGN",
+    "country": "NAM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HOBART",
+    "airport": "HOBART",
+    "iata": "HBA",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HOF",
+    "airport": "HOF",
+    "iata": "HOQ",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HOLGUIN",
+    "airport": "HOLGUIN",
+    "iata": "HOG",
+    "country": "CUBA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HOME HILL",
+    "airport": "HOME HILL",
+    "iata": "HMH",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HOMER (AK)",
+    "airport": "HOMER (AK)",
+    "iata": "HOM",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HONG KONG",
+    "airport": "HONG KONG - CHEK LAP KOK HONG",
+    "iata": "ZJK",
+    "country": "KONG",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HONG KONG",
+    "airport": "HONG KONG - INTERNATIONAL AIRPORT (HKIA) HONG",
+    "iata": "HKG",
+    "country": "KONG",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HONIARA HENDERSON INTERNATIONAL",
+    "airport": "HONIARA HENDERSON INTERNATIONAL",
+    "iata": "HIR",
+    "country": "SOLOMON ISLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HONOLULU (HI)",
+    "airport": "HONOLULU (HI) - HONOLULU INTERNATIONAL AIRPORT",
+    "iata": "HNL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HOONAH (AK)",
+    "airport": "HOONAH (AK)",
+    "iata": "HNH",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HORTA",
+    "airport": "HORTA",
+    "iata": "HOR",
+    "country": "PORTUGAL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HOUSTON (TX)",
+    "airport": "HOUSTON (TX) , HOBBY",
+    "iata": "HOU",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HOUSTON",
+    "airport": "HOUSTON, TX - GEORGE BUSH INTERCONTINENTAL AIRPORT",
+    "iata": "IAH",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HUAHINE FRENCH",
+    "airport": "HUAHINE FRENCH",
+    "iata": "HUH",
+    "country": "POLYNESIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HUATULCO",
+    "airport": "HUATULCO",
+    "iata": "HUX",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HUE",
+    "airport": "HUE - PHU BAI VIET",
+    "iata": "HUI",
+    "country": "NAM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HUMBERSIDE",
+    "airport": "HUMBERSIDE",
+    "iata": "HUY",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HUNTINGTON (WV)",
+    "airport": "HUNTINGTON (WV)",
+    "iata": "HTS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HUNTSVILLE (AL)",
+    "airport": "HUNTSVILLE (AL)",
+    "iata": "HSV",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HURGHADA INTERNATIONAL",
+    "airport": "HURGHADA INTERNATIONAL",
+    "iata": "HRG",
+    "country": "EGYPT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HURON (SD)",
+    "airport": "HURON (SD)",
+    "iata": "HON",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HWANGE NATIONAL PARK",
+    "airport": "HWANGE NATIONAL PARK",
+    "iata": "HWN",
+    "country": "ZIMBABWE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HYANNIS (MA)",
+    "airport": "HYANNIS (MA)",
+    "iata": "HYA",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HYDABURG (AK)",
+    "airport": "HYDABURG (AK)",
+    "iata": "HYG",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HYDERABAD",
+    "airport": "HYDERABAD",
+    "iata": "HDD",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "HYDERABAD",
+    "airport": "HYDERABAD - RAJIV GANDHI INTERNATIONAL AIRPORT",
+    "iata": "HYD",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "IBIZA",
+    "airport": "IBIZA",
+    "iata": "IBZ",
+    "country": "IBIZA/SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "IDAHO FALLS (ID)",
+    "airport": "IDAHO FALLS (ID)",
+    "iata": "IDA",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "IGUAZU",
+    "airport": "IGUAZU, CATARATAS",
+    "iata": "IGR",
+    "country": "ARGENTINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ILE DES PINS NEW",
+    "airport": "ILE DES PINS NEW",
+    "iata": "ILP",
+    "country": "CALEDONIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ILE OUEN NEW",
+    "airport": "ILE OUEN NEW",
+    "iata": "IOU",
+    "country": "CALEDONIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ILIAMNA (AK)",
+    "airport": "ILIAMNA (AK)",
+    "iata": "ILI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "IMPERIAL (CA)",
+    "airport": "IMPERIAL (CA)",
+    "iata": "IPL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "INCERCARGILL",
+    "airport": "INCERCARGILL",
+    "iata": "IVC",
+    "country": "NEW ZEALAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "INCHEON",
+    "airport": "INCHEON, INCHEON INTERNATIONAL AIRPORT KOREA",
+    "iata": "ICN",
+    "country": "SOUTH",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "INDIANAPOLIS (IN) INTERNATIONAL",
+    "airport": "INDIANAPOLIS (IN) INTERNATIONAL",
+    "iata": "IND",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "INGHAM",
+    "airport": "INGHAM",
+    "iata": "IGH",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "INNISFAIL",
+    "airport": "INNISFAIL",
+    "iata": "IFL",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "INNSBRUCK",
+    "airport": "INNSBRUCK - KRANEBITTEN",
+    "iata": "INN",
+    "country": "AUSTRIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "INTERNATIONAL FALLS (MN)",
+    "airport": "INTERNATIONAL FALLS (MN)",
+    "iata": "INL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "INUVIK",
+    "airport": "INUVIK",
+    "iata": "YEV",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "INVERCARGILL",
+    "airport": "INVERCARGILL",
+    "iata": "IVC",
+    "country": "NEW ZEALAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "INVERNESS",
+    "airport": "INVERNESS",
+    "iata": "INV",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "INYKERN (CA)",
+    "airport": "INYKERN (CA)",
+    "iata": "IYK",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "IQALUIT (FROBISHER BAY)",
+    "airport": "IQALUIT (FROBISHER BAY)",
+    "iata": "YFB",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "IQUITOS",
+    "airport": "IQUITOS",
+    "iata": "IQT",
+    "country": "PERU",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "IRKUTSK",
+    "airport": "IRKUTSK",
+    "iata": "IKT",
+    "country": "RUSSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ISHIGAKI",
+    "airport": "ISHIGAKI - NEW ISHIGAKI AIRPORT",
+    "iata": "ISG",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ISLAMABAD",
+    "airport": "ISLAMABAD - BENAZIR BHUTTO INTERNATIONAL AIRPORT",
+    "iata": "ISB",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ISLAY",
+    "airport": "ISLAY",
+    "iata": "ILY",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ISLE OF",
+    "airport": "ISLE OF",
+    "iata": "IOM",
+    "country": "MAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ISTANBUL",
+    "airport": "ISTANBUL - ISTANBUL ATATÜRK AIRPORT",
+    "iata": "IST",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ISTANBUL",
+    "airport": "ISTANBUL - SABIHA GOKCEN",
+    "iata": "SAW",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ITHACA/CORTLAND (NY)",
+    "airport": "ITHACA/CORTLAND (NY)",
+    "iata": "ITH",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "IVALO",
+    "airport": "IVALO",
+    "iata": "IVL",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "IXTAPA/ZIHUATENEJO",
+    "airport": "IXTAPA/ZIHUATENEJO",
+    "iata": "ZIH",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "IZMIR",
+    "airport": "IZMIR",
+    "iata": "IZM",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "IZMIR",
+    "airport": "IZMIR - ADNAN MENDERES AIRPORT",
+    "iata": "ADB",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSON (MI)",
+    "airport": "JACKSON (MI) - REYNOLDS MUNICIPAL",
+    "iata": "JXN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSON (TN)",
+    "airport": "JACKSON (TN) - MCKELLAR",
+    "iata": "MKL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSON HOLE (WY)",
+    "airport": "JACKSON HOLE (WY)",
+    "iata": "JAC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSON HOLE (WY)",
+    "airport": "JACKSON HOLE (WY)",
+    "iata": "JAC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSON (MS)",
+    "airport": "JACKSON (MS) - HAWKINS FIELD",
+    "iata": "HKS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSON (MS)",
+    "airport": "JACKSON (MS) - JACKSON INTERNATIONALL",
+    "iata": "JAN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSON",
+    "airport": "JACKSON, MN",
+    "iata": "MJQ",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSONVILLE (AR) LITTLE ROCK AFB",
+    "airport": "JACKSONVILLE (AR) LITTLE ROCK AFB",
+    "iata": "LRF",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSONVILLE (IL)",
+    "airport": "JACKSONVILLE (IL) - MUNICIPAL AIRPORT",
+    "iata": "IJX",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSONVILLE (NC)",
+    "airport": "JACKSONVILLE (NC)",
+    "iata": "OAJ",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSONVILLE (TX)",
+    "airport": "JACKSONVILLE (TX)",
+    "iata": "JKV",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSONVILLE (FL)",
+    "airport": "JACKSONVILLE (FL) - CECIL FIELD NAS",
+    "iata": "NZC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSONVILLE (FL)",
+    "airport": "JACKSONVILLE (FL) - CRAIG MUNICIPAL",
+    "iata": "CRG",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSONVILLE (FL)",
+    "airport": "JACKSONVILLE (FL) - INTERNATIONAL",
+    "iata": "JAX",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACKSONVILLE (FL) JACKSONVILLE NAS",
+    "airport": "JACKSONVILLE (FL) JACKSONVILLE NAS",
+    "iata": "NIP",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACMEL",
+    "airport": "JACMEL",
+    "iata": "JAK",
+    "country": "HAITI",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACOBABAD",
+    "airport": "JACOBABAD",
+    "iata": "JAG",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACOBINA",
+    "airport": "JACOBINA",
+    "iata": "JCM",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JACQUINOT BAY",
+    "airport": "JACQUINOT BAY",
+    "iata": "JAQ",
+    "country": "PAPUA NEW GUINEA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAFFNA",
+    "airport": "JAFFNA - KANKESANTURAI",
+    "iata": "JAF",
+    "country": "SRI LANKA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAGDALPUR",
+    "airport": "JAGDALPUR",
+    "iata": "JGB",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAIPUR",
+    "airport": "JAIPUR - SANGANEER",
+    "iata": "JAI",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAISALMER",
+    "airport": "JAISALMER",
+    "iata": "JSA",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAKARTA",
+    "airport": "JAKARTA - HALIM PERDANA KUSUMA",
+    "iata": "HLP",
+    "country": "INDONESIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAKARTA",
+    "airport": "JAKARTA - METROPOLITAN AREA",
+    "iata": "JKT",
+    "country": "INDONESIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAKARTA",
+    "airport": "JAKARTA - SOEKARNO-HATTA INTERNATIONAL",
+    "iata": "CGK",
+    "country": "INDONESIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JALALABAD",
+    "airport": "JALALABAD",
+    "iata": "JAA",
+    "country": "AFGHANISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JALANDHAR",
+    "airport": "JALANDHAR",
+    "iata": "JLR",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JALAPA",
+    "airport": "JALAPA",
+    "iata": "JAL",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JALES",
+    "airport": "JALES",
+    "iata": "JLS",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JALUIT ISLAND",
+    "airport": "JALUIT ISLAND",
+    "iata": "UIT",
+    "country": "MARSHALL ISLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAMBA",
+    "airport": "JAMBA",
+    "iata": "JMB",
+    "country": "ANGOLA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAMBI",
+    "airport": "JAMBI - SULTAN TAHA SYARIFUDN",
+    "iata": "DJB",
+    "country": "INDONESIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAMBOL",
+    "airport": "JAMBOL",
+    "iata": "JAM",
+    "country": "BULGARIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAMESTOWN (ND)",
+    "airport": "JAMESTOWN (ND)",
+    "iata": "JMS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAMESTOWN (NY)",
+    "airport": "JAMESTOWN (NY)",
+    "iata": "JHW",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAMMU",
+    "airport": "JAMMU - SATWARI",
+    "iata": "IXJ",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAMNAGAR",
+    "airport": "JAMNAGAR - GOVARDHANPUR",
+    "iata": "JGA",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAMSHEDPUR",
+    "airport": "JAMSHEDPUR - SONARI AIRPORT",
+    "iata": "IXW",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JANAKPUR",
+    "airport": "JANAKPUR",
+    "iata": "JKR",
+    "country": "NEPAL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JANDAKOT",
+    "airport": "JANDAKOT",
+    "iata": "JAD",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JANESVILLE (WI)",
+    "airport": "JANESVILLE (WI) - ROCK COUNTY",
+    "iata": "JVL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JANUARIA",
+    "airport": "JANUARIA",
+    "iata": "JNA",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAQUE",
+    "airport": "JAQUE",
+    "iata": "JQE",
+    "country": "PANAMA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAUJA",
+    "airport": "JAUJA",
+    "iata": "JAU",
+    "country": "PERU",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JAYAPURA",
+    "airport": "JAYAPURA - SENTANI",
+    "iata": "DJJ",
+    "country": "INDONESIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JEDDAH",
+    "airport": "JEDDAH - KING ABDULAZIZ INTERNATIONAL",
+    "iata": "JED",
+    "country": "SAUDI ARABIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JEFFERSON CITY (MO)",
+    "airport": "JEFFERSON CITY (MO) - JEFFERSON MEMORIAL",
+    "iata": "JEF",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JEREMIE",
+    "airport": "JEREMIE - JEREMIE AIRPORT",
+    "iata": "JEE",
+    "country": "HAITI",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JEREZ DE LA FRONTERA/CADIZ",
+    "airport": "JEREZ DE LA FRONTERA/CADIZ - LA PARRA",
+    "iata": "XRY",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JERSEY",
+    "airport": "JERSEY",
+    "iata": "JER",
+    "country": "CHANNEL ISLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JERUSALEM",
+    "airport": "JERUSALEM - ATAROT AIRPORT (CLOSED)",
+    "iata": "JRS",
+    "country": "ISRAEL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JESSORE",
+    "airport": "JESSORE - JESSORE AIRPORT",
+    "iata": "JSR",
+    "country": "BANGLADESH",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JEYPORE",
+    "airport": "JEYPORE - JEYPORE AIRPORT",
+    "iata": "PYB",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JIAMUSI",
+    "airport": "JIAMUSI - JIAMUSI AIRPORT PR",
+    "iata": "JMU",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JI'AN JIANGXI",
+    "airport": "JI'AN JIANGXI,",
+    "iata": "JGS",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JIAYUGUAN",
+    "airport": "JIAYUGUAN - JIAYUGUAN AIRPORT PR",
+    "iata": "JGN",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JIJEL",
+    "airport": "JIJEL",
+    "iata": "GJL",
+    "country": "ALGERIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JIJIGA",
+    "airport": "JIJIGA",
+    "iata": "JIJ",
+    "country": "ETHIOPIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JILIN PR",
+    "airport": "JILIN PR",
+    "iata": "JIL",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JIMMA",
+    "airport": "JIMMA",
+    "iata": "JIM",
+    "country": "ETHIOPIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JINAN SHANDONG",
+    "airport": "JINAN SHANDONG, PR",
+    "iata": "TNA",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JINGHONG",
+    "airport": "JINGHONG - GASA AIRPORT PR",
+    "iata": "JHG",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JINING PR",
+    "airport": "JINING PR",
+    "iata": "JNG",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JINJA",
+    "airport": "JINJA",
+    "iata": "JIN",
+    "country": "UGANDA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JINJIANG PR",
+    "airport": "JINJIANG PR",
+    "iata": "JJN",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JINKA",
+    "airport": "JINKA - BACO/JINKA AIRPORT",
+    "iata": "BCO",
+    "country": "ETHIOPIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JINZHOU",
+    "airport": "JINZHOU - JINZHOU AIRPORT PR",
+    "iata": "JNZ",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JIPIJAPA",
+    "airport": "JIPIJAPA",
+    "iata": "JIP",
+    "country": "ECUADOR",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JIRI",
+    "airport": "JIRI",
+    "iata": "JIR",
+    "country": "NEPAL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JIUJIANG",
+    "airport": "JIUJIANG - JIUJIANG LUSHAN AIRPORT PR",
+    "iata": "JIU",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JIWANI",
+    "airport": "JIWANI",
+    "iata": "JIW",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOACABA",
+    "airport": "JOACABA",
+    "iata": "JCB",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOAO PESSOA",
+    "airport": "JOAO PESSOA - CASTRO PINTO AIRPORT",
+    "iata": "JPA",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JODHPUR",
+    "airport": "JODHPUR",
+    "iata": "JDH",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOENSUU",
+    "airport": "JOENSUU",
+    "iata": "JOE",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOHANNESBURG",
+    "airport": "JOHANNESBURG - OR TAMBO INTERNATIONAL AIRPORT",
+    "iata": "JNB",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOHNSON CITY (NY)",
+    "airport": "JOHNSON CITY (NY) - BINGHAMTON/ENDICOTT/JOHNSON",
+    "iata": "BGM",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOHNSTON ISLAND",
+    "airport": "JOHNSTON ISLAND",
+    "iata": "JON",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOHNSTOWN (PA)",
+    "airport": "JOHNSTOWN (PA)",
+    "iata": "JST",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOHOR BAHRU",
+    "airport": "JOHOR BAHRU - SULTAN ISMAIL INTERNATIONAL",
+    "iata": "JHB",
+    "country": "MALAYSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOINVILLE",
+    "airport": "JOINVILLE - CUBATAO AIRPORT",
+    "iata": "JOI",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOLO",
+    "airport": "JOLO",
+    "iata": "JOL",
+    "country": "PHILIPPINES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOMSOM",
+    "airport": "JOMSOM",
+    "iata": "JMO",
+    "country": "NEPAL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JONESBORO (AR) JONESBORO AIRPORT",
+    "airport": "JONESBORO (AR) JONESBORO AIRPORT",
+    "iata": "JBR",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JÖNKÖPING (JONKOPING)",
+    "airport": "JÖNKÖPING (JONKOPING) - AXAMO AIRPORT",
+    "iata": "JKG",
+    "country": "SWEDEN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOPLIN (MO)",
+    "airport": "JOPLIN (MO)",
+    "iata": "JLN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOS",
+    "airport": "JOS",
+    "iata": "JOS",
+    "country": "NIGERIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOSE DE SAN MARTIN",
+    "airport": "JOSE DE SAN MARTIN",
+    "iata": "JSM",
+    "country": "ARGENTINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JOUF",
+    "airport": "JOUF",
+    "iata": "AJF",
+    "country": "SAUDI ARABIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JUANJUI",
+    "airport": "JUANJUI",
+    "iata": "JJI",
+    "country": "PERU",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JUBA SOUTH",
+    "airport": "JUBA SOUTH",
+    "iata": "JUB",
+    "country": "SUDAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JUIST (ISLAND)",
+    "airport": "JUIST (ISLAND)",
+    "iata": "JUI",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JUIZ DE FORA",
+    "airport": "JUIZ DE FORA - FRANCISCO DE ASSIS AIRPORT",
+    "iata": "JDF",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JULIA CREEK",
+    "airport": "JULIA CREEK",
+    "iata": "JCK",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JULIACA",
+    "airport": "JULIACA",
+    "iata": "JUL",
+    "country": "PERU",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JUMLA",
+    "airport": "JUMLA",
+    "iata": "JUM",
+    "country": "NEPAL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JUNDAH",
+    "airport": "JUNDAH",
+    "iata": "JUN",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JUNEAU (AK)",
+    "airport": "JUNEAU (AK) - JUNEAU INTERNATIONAL AIRPORT",
+    "iata": "JNU",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JUNIN",
+    "airport": "JUNIN",
+    "iata": "JNI",
+    "country": "ARGENTINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JUTICALPA",
+    "airport": "JUTICALPA",
+    "iata": "JUT",
+    "country": "HONDURAS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JWANENG",
+    "airport": "JWANENG",
+    "iata": "JWA",
+    "country": "BOTSWANA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JYVÄSKYLÄ (JYVASKYLA)",
+    "airport": "JYVÄSKYLÄ (JYVASKYLA)",
+    "iata": "JYV",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KABUL",
+    "airport": "KABUL - KHWAJA RAWASH AIRPORT",
+    "iata": "KBL",
+    "country": "AFGHANISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KAGOSHIMA",
+    "airport": "KAGOSHIMA",
+    "iata": "KOJ",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KAHRAMANMARAS",
+    "airport": "KAHRAMANMARAS",
+    "iata": "KCM",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KAHULUI (HI)",
+    "airport": "KAHULUI (HI)",
+    "iata": "OGG",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KAJAANI",
+    "airport": "KAJAANI",
+    "iata": "KAJ",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KALAMATA",
+    "airport": "KALAMATA",
+    "iata": "KLX",
+    "country": "GREECE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KALAMAZOO/BATTLE CREEK (MI)",
+    "airport": "KALAMAZOO/BATTLE CREEK (MI)",
+    "iata": "AZO",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KALGOORLIE",
+    "airport": "KALGOORLIE",
+    "iata": "KGI",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KALININGRAD",
+    "airport": "KALININGRAD",
+    "iata": "KGD",
+    "country": "RUSSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KALISPELL (MT)",
+    "airport": "KALISPELL (MT)",
+    "iata": "FCA",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KALMAR",
+    "airport": "KALMAR",
+    "iata": "KLR",
+    "country": "SWEDEN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KAMLOOPS",
+    "airport": "KAMLOOPS, BC",
+    "iata": "YKA",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KAMUELA (HI)",
+    "airport": "KAMUELA (HI)",
+    "iata": "MUE",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KANO",
+    "airport": "KANO",
+    "iata": "KAN",
+    "country": "NIGERIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KANSAS CITY (MO)",
+    "airport": "KANSAS CITY (MO) - KANSAS CITY INTERNATIONAL AIRPORT",
+    "iata": "MCI",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KAOHSIUNG INTERNATIONAL",
+    "airport": "KAOHSIUNG INTERNATIONAL",
+    "iata": "KHH",
+    "country": "TAIWAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KAPALUA WEST (HI)",
+    "airport": "KAPALUA WEST (HI)",
+    "iata": "JHM",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KARACHI",
+    "airport": "KARACHI - JINNAH INTERNATIONAL AIRPORT",
+    "iata": "KHI",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KARLSRUHE-BADEN",
+    "airport": "KARLSRUHE-BADEN - SOELLINGEN",
+    "iata": "FKB",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KARLSTAD",
+    "airport": "KARLSTAD",
+    "iata": "KSD",
+    "country": "SWEDEN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KARPATHOS",
+    "airport": "KARPATHOS",
+    "iata": "AOK",
+    "country": "GREECE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KARRATHA",
+    "airport": "KARRATHA",
+    "iata": "KTA",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KARS",
+    "airport": "KARS",
+    "iata": "KYS",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KARUMBA",
+    "airport": "KARUMBA",
+    "iata": "KRB",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KARUP",
+    "airport": "KARUP",
+    "iata": "KRP",
+    "country": "DENMARK",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KASCHECHAWAN",
+    "airport": "KASCHECHAWAN, PQ",
+    "iata": "ZKE",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KASSALA",
+    "airport": "KASSALA",
+    "iata": "KSL",
+    "country": "SUDAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KATHERINE",
+    "airport": "KATHERINE",
+    "iata": "KTR",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KATHMANDU",
+    "airport": "KATHMANDU - TRIBHUVAN INTERNATIONAL AIRPORT",
+    "iata": "KTM",
+    "country": "NEPAL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KATIMA MULILO/MPACHA",
+    "airport": "KATIMA MULILO/MPACHA",
+    "iata": "MPA",
+    "country": "NAMIBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KAUHAJOKI",
+    "airport": "KAUHAJOKI",
+    "iata": "KHJ",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KAUNAKAKAI (HI)",
+    "airport": "KAUNAKAKAI (HI)",
+    "iata": "MKK",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KAVALLA",
+    "airport": "KAVALLA",
+    "iata": "KVA",
+    "country": "GREECE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KAYSERI",
+    "airport": "KAYSERI",
+    "iata": "ASR",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KAZAN",
+    "airport": "KAZAN - KAZAN INTERNATIONAL AIRPORT",
+    "iata": "KZN",
+    "country": "RUSSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KEETMANSHOOP",
+    "airport": "KEETMANSHOOP",
+    "iata": "KMP",
+    "country": "NAMIBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KELOWNA",
+    "airport": "KELOWNA, BC",
+    "iata": "YLW",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KEMI/TORNIO",
+    "airport": "KEMI/TORNIO",
+    "iata": "KEM",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KENAI (AK)",
+    "airport": "KENAI (AK)",
+    "iata": "ENA",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KENT (MANSTON) KENT INTERNATIONAL",
+    "airport": "KENT (MANSTON) KENT INTERNATIONAL",
+    "iata": "MSE",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KERRY COUNTY",
+    "airport": "KERRY COUNTY",
+    "iata": "KIR",
+    "country": "IRELAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KETCHIKAN (AK)",
+    "airport": "KETCHIKAN (AK)",
+    "iata": "KTN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KEY WEST (FL)",
+    "airport": "KEY WEST (FL)",
+    "iata": "EYW",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KHAMIS MUSHAYAT",
+    "airport": "KHAMIS MUSHAYAT",
+    "iata": "AHB",
+    "country": "SAUDI ARABIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KHARGA",
+    "airport": "KHARGA - NEW VALLEY",
+    "iata": "UVL",
+    "country": "EGYPT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KHARKOV",
+    "airport": "KHARKOV",
+    "iata": "HRK",
+    "country": "UKRAINE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KHARTOUM",
+    "airport": "KHARTOUM - KHARTOUM INTERNATIONAL AIRPORT",
+    "iata": "KRT",
+    "country": "SUDAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KIEL",
+    "airport": "KIEL - HOLTENAU",
+    "iata": "KEL",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KIEV",
+    "airport": "KIEV - BORISPOL",
+    "iata": "KBP",
+    "country": "UKRAINE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KIEV",
+    "airport": "KIEV - ZHULHANY",
+    "iata": "IEV",
+    "country": "UKRAINE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KIGALI",
+    "airport": "KIGALI - GREGOIRE KAYIBANDA",
+    "iata": "KGL",
+    "country": "RWANDA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KILIMADJARO",
+    "airport": "KILIMADJARO",
+    "iata": "JRO",
+    "country": "TANZANIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KILLEEM (TX)",
+    "airport": "KILLEEM (TX)",
+    "iata": "ILE",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KIMBERLEY",
+    "airport": "KIMBERLEY",
+    "iata": "KIM",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KING ISLAND KING ISLAND",
+    "airport": "KING ISLAND KING ISLAND",
+    "iata": "KNS",
+    "country": "(AUSTRALIA)",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KING SALOMON (AK)",
+    "airport": "KING SALOMON (AK)",
+    "iata": "AKN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KINGSCOTE",
+    "airport": "KINGSCOTE",
+    "iata": "KGC",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KINGSTON (NC)",
+    "airport": "KINGSTON (NC)",
+    "iata": "ISO",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KINGSTON",
+    "airport": "KINGSTON - NORMAN MANLEY",
+    "iata": "KIN",
+    "country": "JAMAICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KINGSTOWN",
+    "airport": "KINGSTOWN - E. T. JOSHUA AIRPORT",
+    "iata": "SVD",
+    "country": "SAINT VINCENT AND THE GRENADINES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KINSHASA",
+    "airport": "KINSHASA - N'DJILI CONGO",
+    "iata": "FIH",
+    "country": "(DRC)",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KIRITIMATI (ISLAND)",
+    "airport": "KIRITIMATI (ISLAND) - CASSIDY INTERNATIONAL AIRPORT",
+    "iata": "CXI",
+    "country": "KIRIBATI",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KIRKENES",
+    "airport": "KIRKENES",
+    "iata": "KKN",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KIRKUK",
+    "airport": "KIRKUK",
+    "iata": "KIK",
+    "country": "IRAQ",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KIRKWALL (ORKNEY)",
+    "airport": "KIRKWALL (ORKNEY)",
+    "iata": "KOI",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KIRUNA",
+    "airport": "KIRUNA",
+    "iata": "KRN",
+    "country": "SWEDEN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KISANGANI CONGO",
+    "airport": "KISANGANI CONGO",
+    "iata": "FKI",
+    "country": "(DRC)",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KITTILÄ",
+    "airport": "KITTILÄ",
+    "iata": "KTT",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KITWE",
+    "airport": "KITWE",
+    "iata": "KIW",
+    "country": "ZAMBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KLAGENFURT",
+    "airport": "KLAGENFURT",
+    "iata": "KLU",
+    "country": "AUSTRIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KLAMATH FALL (OR)",
+    "airport": "KLAMATH FALL (OR)",
+    "iata": "LMT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KLAWOCK (AK)",
+    "airport": "KLAWOCK (AK)",
+    "iata": "KLW",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KLEINSEE",
+    "airport": "KLEINSEE",
+    "iata": "KLZ",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KNOCK",
+    "airport": "KNOCK",
+    "iata": "NOC",
+    "country": "IRELAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KNOXVILLE (TN)",
+    "airport": "KNOXVILLE (TN)",
+    "iata": "TYS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KOBE",
+    "airport": "KOBE",
+    "iata": "UKB",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KOCHI",
+    "airport": "KOCHI",
+    "iata": "KCZ",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KODIAK (AK)",
+    "airport": "KODIAK (AK)",
+    "iata": "ADQ",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KOHAT",
+    "airport": "KOHAT",
+    "iata": "OHT",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KOKKOLA/PIETARSAARI",
+    "airport": "KOKKOLA/PIETARSAARI",
+    "iata": "KOK",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KOLKATA (CALCUTTA)",
+    "airport": "KOLKATA (CALCUTTA) - NETAJI SUBHAS CHANDRA",
+    "iata": "CCU",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KÖLN",
+    "airport": "KÖLN, KÖLN/BONN",
+    "iata": "CGN",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KOMATSU",
+    "airport": "KOMATSU",
+    "iata": "KMQ",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KONA (HI)",
+    "airport": "KONA (HI)",
+    "iata": "KOA",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KONYA",
+    "airport": "KONYA",
+    "iata": "KYA",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KORHOGO",
+    "airport": "KORHOGO",
+    "iata": "HGO",
+    "country": "COTE D'IVOIRE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KOS",
+    "airport": "KOS",
+    "iata": "KGS",
+    "country": "GREECE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KOTA KINABALU",
+    "airport": "KOTA KINABALU",
+    "iata": "BKI",
+    "country": "MALAYSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KOTZBUE (AK)",
+    "airport": "KOTZBUE (AK)",
+    "iata": "OTZ",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KOWANYAMA",
+    "airport": "KOWANYAMA",
+    "iata": "KWM",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KRAKOW (CRACOW)",
+    "airport": "KRAKOW (CRACOW) - JOHN PAUL II INTERNATIONAL AIRPORT",
+    "iata": "KRK",
+    "country": "POLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KRISTIANSAND",
+    "airport": "KRISTIANSAND",
+    "iata": "KRS",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KRISTIANSTAD",
+    "airport": "KRISTIANSTAD",
+    "iata": "KID",
+    "country": "SWEDEN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KRISTIANSUND",
+    "airport": "KRISTIANSUND",
+    "iata": "KSU",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KUALA LUMPUR",
+    "airport": "KUALA LUMPUR - INTERNATIONAL AIRPORT",
+    "iata": "KUL",
+    "country": "MALAYSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KUALA LUMPUR",
+    "airport": "KUALA LUMPUR - SULTAN ABDUL AZIZ SHAH",
+    "iata": "SZB",
+    "country": "MALAYSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KUANTAN",
+    "airport": "KUANTAN",
+    "iata": "KUA",
+    "country": "MALAYSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KUMAMOTO",
+    "airport": "KUMAMOTO",
+    "iata": "KMJ",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KUNUNURRA",
+    "airport": "KUNUNURRA",
+    "iata": "KNX",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KUOPIO",
+    "airport": "KUOPIO",
+    "iata": "KUO",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KUUJJUAQ (FORTCHIMO)",
+    "airport": "KUUJJUAQ (FORTCHIMO)",
+    "iata": "YVP",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KUUJJUARAPIK",
+    "airport": "KUUJJUARAPIK",
+    "iata": "YGW",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KUUSAMO",
+    "airport": "KUUSAMO",
+    "iata": "KAO",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "KUWAIT",
+    "airport": "KUWAIT - KUWAIT INTERNATIONAL",
+    "iata": "KWI",
+    "country": "KUWAIT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LA CORUNA",
+    "airport": "LA CORUNA",
+    "iata": "LCG",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LA CROSSE (WI)",
+    "airport": "LA CROSSE (WI)",
+    "iata": "LSE",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LA GRANDE",
+    "airport": "LA GRANDE",
+    "iata": "YGL",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LA PAZ",
+    "airport": "LA PAZ - LEON",
+    "iata": "LAP",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LA ROCHELLE",
+    "airport": "LA ROCHELLE",
+    "iata": "LRH",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LABE",
+    "airport": "LABE",
+    "iata": "LEK",
+    "country": "GUINEA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LABOUCHERE BAY (AK)",
+    "airport": "LABOUCHERE BAY (AK)",
+    "iata": "WLB",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LABUAN",
+    "airport": "LABUAN",
+    "iata": "LBU",
+    "country": "MALAYSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAC BROCHET",
+    "airport": "LAC BROCHET, MB",
+    "iata": "XLB",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAE",
+    "airport": "LAE - LAE NADZAB AIRPORT",
+    "iata": "LAE",
+    "country": "PAPUA NEW GUINEA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAFAYETTE (IN)",
+    "airport": "LAFAYETTE (IN)",
+    "iata": "LAF",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAFAYETTE",
+    "airport": "LAFAYETTE, LA",
+    "iata": "LFT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAHORE",
+    "airport": "LAHORE",
+    "iata": "LHE",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAKE CHARLES (LA)",
+    "airport": "LAKE CHARLES (LA)",
+    "iata": "LCH",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAKE HAVASU CITY (AZ)",
+    "airport": "LAKE HAVASU CITY (AZ)",
+    "iata": "HII",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAKE TAHOE (CA)",
+    "airport": "LAKE TAHOE (CA)",
+    "iata": "TVL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAKSELV",
+    "airport": "LAKSELV",
+    "iata": "LKL",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAMBARENE",
+    "airport": "LAMBARENE",
+    "iata": "LBQ",
+    "country": "GABON",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAMEZIA TERME",
+    "airport": "LAMEZIA TERME",
+    "iata": "SUF",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAMPEDUSA",
+    "airport": "LAMPEDUSA",
+    "iata": "LMP",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LANAI CITY (HI)",
+    "airport": "LANAI CITY (HI)",
+    "iata": "LNY",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LANCASTER (PA)",
+    "airport": "LANCASTER (PA)",
+    "iata": "LNS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAND'S END",
+    "airport": "LAND'S END",
+    "iata": "LEQ",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LANGKAWI (ISLANDS)",
+    "airport": "LANGKAWI (ISLANDS)",
+    "iata": "LGK",
+    "country": "MALAYSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LANNION",
+    "airport": "LANNION",
+    "iata": "LAI",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LANSERIA",
+    "airport": "LANSERIA",
+    "iata": "HLA",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LANSING (MI)",
+    "airport": "LANSING (MI)",
+    "iata": "LAN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAPPEENRANTA",
+    "airport": "LAPPEENRANTA",
+    "iata": "LPP",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LARAMIE (WY)",
+    "airport": "LARAMIE (WY)",
+    "iata": "LAR",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAREDO (TX)",
+    "airport": "LAREDO (TX)",
+    "iata": "LRD",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LARNACA",
+    "airport": "LARNACA",
+    "iata": "LCA",
+    "country": "CYPRUS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAS PALMAS",
+    "airport": "LAS PALMAS",
+    "iata": "LPA",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAS VEGAS (NV)",
+    "airport": "LAS VEGAS (NV)",
+    "iata": "LAS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LATROBE (PA)",
+    "airport": "LATROBE (PA)",
+    "iata": "LBE",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAUNCESTON",
+    "airport": "LAUNCESTON",
+    "iata": "LST",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAUREL/HATTISBURG (MS)",
+    "airport": "LAUREL/HATTISBURG (MS)",
+    "iata": "PIB",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAVERTON",
+    "airport": "LAVERTON",
+    "iata": "LVO",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LAZARO CARDENAS",
+    "airport": "LAZARO CARDENAS",
+    "iata": "LZC",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LEAF RAPIDS",
+    "airport": "LEAF RAPIDS",
+    "iata": "YLR",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LEARMOUTH (EXMOUTH)",
+    "airport": "LEARMOUTH (EXMOUTH)",
+    "iata": "LEA",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LEBANON (NH)",
+    "airport": "LEBANON (NH)",
+    "iata": "LEB",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LEINSTER",
+    "airport": "LEINSTER",
+    "iata": "LER",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LEIPZIG",
+    "airport": "LEIPZIG",
+    "iata": "LEJ",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LELYSTAD",
+    "airport": "LELYSTAD",
+    "iata": "LEY",
+    "country": "NETHERLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LEON",
+    "airport": "LEON",
+    "iata": "BJX",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LEONORA",
+    "airport": "LEONORA",
+    "iata": "LNO",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LERWICK/TINGWALL (SHETLAND ISLANDS)",
+    "airport": "LERWICK/TINGWALL (SHETLAND ISLANDS)",
+    "iata": "LWK",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LEWISTON (ID)",
+    "airport": "LEWISTON (ID)",
+    "iata": "LWS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LEXINGTON (KY)",
+    "airport": "LEXINGTON (KY)",
+    "iata": "LEX",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LIBREVILLE",
+    "airport": "LIBREVILLE",
+    "iata": "LBV",
+    "country": "GABON",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LIEGE",
+    "airport": "LIEGE",
+    "iata": "LGG",
+    "country": "BELGIUM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LIFOU LOYAUTE",
+    "airport": "LIFOU LOYAUTE,",
+    "iata": "LIF",
+    "country": "PAZIFIK",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LIHUE (HI)",
+    "airport": "LIHUE (HI)",
+    "iata": "LIH",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LILLE",
+    "airport": "LILLE - LILLE AIRPORT",
+    "iata": "LIL",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LILONGWE",
+    "airport": "LILONGWE - LILONGWE INTERNATIONAL",
+    "iata": "LLW",
+    "country": "MALAWI",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LIMASSOL",
+    "airport": "LIMASSOL",
+    "iata": "QLI",
+    "country": "CYPRUS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LIMOGES",
+    "airport": "LIMOGES",
+    "iata": "LIG",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LINDEMAN ISLAND",
+    "airport": "LINDEMAN ISLAND",
+    "iata": "LDC",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LINZ",
+    "airport": "LINZ - HOERSCHING",
+    "iata": "LNZ",
+    "country": "AUSTRIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LISBON",
+    "airport": "LISBON - LISBOA",
+    "iata": "LIS",
+    "country": "PORTUGAL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LITTLE ROCK (AR)",
+    "airport": "LITTLE ROCK (AR)",
+    "iata": "LIT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LIVERPOOL",
+    "airport": "LIVERPOOL",
+    "iata": "LPL",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LIZARD ISLAND",
+    "airport": "LIZARD ISLAND",
+    "iata": "LZR",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LJUBLJANA",
+    "airport": "LJUBLJANA - BRNIK",
+    "iata": "LJU",
+    "country": "SLOVENIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LONDON",
+    "airport": "LONDON",
+    "iata": "YXU",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LONDON",
+    "airport": "LONDON - CITY AIRPORT",
+    "iata": "LCY",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LONDON",
+    "airport": "LONDON - GATWICK",
+    "iata": "LGW",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LONDON",
+    "airport": "LONDON - HEATHROW",
+    "iata": "LHR",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LONDON",
+    "airport": "LONDON - LUTON",
+    "iata": "LTN",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LONDON",
+    "airport": "LONDON - STANSTED",
+    "iata": "STN",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LONDON METROPOLITAN AREA",
+    "airport": "LONDON METROPOLITAN AREA",
+    "iata": "LON",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LONDONDERRY",
+    "airport": "LONDONDERRY - EGLINTON",
+    "iata": "LDY",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LONG ISLAND (AK)",
+    "airport": "LONG ISLAND (AK)",
+    "iata": "LIJ",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LONG ISLAND",
+    "airport": "LONG ISLAND, ISLIP (NY) - MAC ARTHUR",
+    "iata": "ISP",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LONGREACH",
+    "airport": "LONGREACH",
+    "iata": "LRE",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LONGVIEW/KILGORE (TX)",
+    "airport": "LONGVIEW/KILGORE (TX)",
+    "iata": "GGG",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LONGYEARBYEN",
+    "airport": "LONGYEARBYEN - SVALBARD",
+    "iata": "LYR",
+    "country": "SVALBARD/NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LORETO",
+    "airport": "LORETO",
+    "iata": "LTO",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LOS ANGELES (CA)",
+    "airport": "LOS ANGELES (CA) - INTERNATIONAL",
+    "iata": "LAX",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LOS CABOS",
+    "airport": "LOS CABOS",
+    "iata": "SJD",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LOS MOCHIS",
+    "airport": "LOS MOCHIS",
+    "iata": "LMM",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LOS RODEOS",
+    "airport": "LOS RODEOS",
+    "iata": "TFN",
+    "country": "TENERIFFA/SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LOUISVILLE (KY)",
+    "airport": "LOUISVILLE (KY)",
+    "iata": "SDF",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LOURDES/TARBES",
+    "airport": "LOURDES/TARBES",
+    "iata": "LDE",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LUCKNOW",
+    "airport": "LUCKNOW",
+    "iata": "LKO",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LUEDERITZ",
+    "airport": "LUEDERITZ",
+    "iata": "LUD",
+    "country": "NAMIBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LUGA",
+    "airport": "LUGA",
+    "iata": "MLA",
+    "country": "MALTA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LUSAKA",
+    "airport": "LUSAKA - LUSAKA INTERNATIONAL AIRPORT",
+    "iata": "LUN",
+    "country": "ZAMBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "LUXEMBOURG",
+    "airport": "LUXEMBOURG",
+    "iata": "LUX",
+    "country": "LUXEMBOURG",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MAASTRICHT/AACHEN",
+    "airport": "MAASTRICHT/AACHEN",
+    "iata": "MST",
+    "country": "NETHERLANDS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MACAPA",
+    "airport": "MACAPA - ALBERTO ALCOLUMBRE INTERNATIONAL AIRPORT",
+    "iata": "MCP",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MACAU",
+    "airport": "MACAU - MACAU INTERNATIONAL AIRPORT MACAU, CHINA",
+    "iata": "MFM",
+    "country": "SAR",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MACKAY",
+    "airport": "MACKAY",
+    "iata": "MKY",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MACON (GA)",
+    "airport": "MACON (GA)",
+    "iata": "MCN",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MACTAN ISLAND",
+    "airport": "MACTAN ISLAND - NAB",
+    "iata": "NOP",
+    "country": "PHILIPPINES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MADINAH (MEDINA)",
+    "airport": "MADINAH (MEDINA) - MOHAMMAD BIN ABDULAZIZ",
+    "iata": "MED",
+    "country": "SAUDI ARABIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MADRAS (CHENNAI)",
+    "airport": "MADRAS (CHENNAI) - CHENNAI INTERNATIONAL AIRPORT",
+    "iata": "MAA",
+    "country": "INDIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MADRID",
+    "airport": "MADRID - BARAJAS AIRPORT",
+    "iata": "MAD",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MAHON",
+    "airport": "MAHON",
+    "iata": "MAH",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MAITLAND",
+    "airport": "MAITLAND",
+    "iata": "MTL",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MALABO",
+    "airport": "MALABO - MALABO INTERNATIONAL AIRPORT",
+    "iata": "SSG",
+    "country": "EQUATORIAL GUINEA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MALAGA",
+    "airport": "MALAGA",
+    "iata": "AGP",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MALATYA",
+    "airport": "MALATYA",
+    "iata": "MLX",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MALE",
+    "airport": "MALE - VELANA INTERNATIONAL AIRPORT",
+    "iata": "MLE",
+    "country": "MALEDIVES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MALINDI",
+    "airport": "MALINDI",
+    "iata": "MYD",
+    "country": "KENYA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MALMO (MALMOE)",
+    "airport": "MALMO (MALMOE)",
+    "iata": "MMA",
+    "country": "SWEDEN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MAN",
+    "airport": "MAN",
+    "iata": "MJC",
+    "country": "COTE D'IVOIRE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MANAGUA",
+    "airport": "MANAGUA - AUGUSTO C SANDINO",
+    "iata": "MGA",
+    "country": "NICARAGUA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MANAUS",
+    "airport": "MANAUS - EDUARDO GOMES INTERNATIONAL AIRPORT",
+    "iata": "MAO",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MANCHESTER",
+    "airport": "MANCHESTER",
+    "iata": "MAN",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MANCHESTER (NH)",
+    "airport": "MANCHESTER (NH)",
+    "iata": "MHT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MANGUNA",
+    "airport": "MANGUNA",
+    "iata": "MFO",
+    "country": "PAPUA NEW GUINEA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MANIHI FRENCH",
+    "airport": "MANIHI FRENCH",
+    "iata": "XMH",
+    "country": "POLYNESIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MANILA",
+    "airport": "MANILA - NINOY AQUINO INTERNATIONAL",
+    "iata": "MNL",
+    "country": "PHILIPPINES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MANZANILLO",
+    "airport": "MANZANILLO",
+    "iata": "ZLO",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MAPUTO",
+    "airport": "MAPUTO - MAPUTO INTERNATIONAL",
+    "iata": "MPM",
+    "country": "MOZAMBIQUE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MAR DEL PLATA",
+    "airport": "MAR DEL PLATA",
+    "iata": "MDQ",
+    "country": "ARGENTINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MARACAIBO",
+    "airport": "MARACAIBO - LA CHINITA INTERNATIONAL",
+    "iata": "MAR",
+    "country": "VENEZUELA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MARADI",
+    "airport": "MARADI",
+    "iata": "MFQ",
+    "country": "NIGER",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MARAS",
+    "airport": "MARAS",
+    "iata": "KCM",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MARDIN",
+    "airport": "MARDIN",
+    "iata": "MQM",
+    "country": "TURKEY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MARE NEW",
+    "airport": "MARE NEW",
+    "iata": "MEE",
+    "country": "CALEDONIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MARIBOR",
+    "airport": "MARIBOR",
+    "iata": "MBX",
+    "country": "SLOVENIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MARIEHAMN (MAARIANHAMINA)",
+    "airport": "MARIEHAMN (MAARIANHAMINA)",
+    "iata": "MHQ",
+    "country": "FINLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MAROUA",
+    "airport": "MAROUA",
+    "iata": "MVR",
+    "country": "CAMEROON",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MARRAKESH",
+    "airport": "MARRAKESH - MENARA AIRPORT",
+    "iata": "RAK",
+    "country": "MOROCCO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MARSA ALAM",
+    "airport": "MARSA ALAM",
+    "iata": "RMF",
+    "country": "EGYPT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MARSA MATRAH (MARSA MATRUH)",
+    "airport": "MARSA MATRAH (MARSA MATRUH)",
+    "iata": "MUH",
+    "country": "EGYPT",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MARSH HARBOUR",
+    "airport": "MARSH HARBOUR",
+    "iata": "MHH",
+    "country": "BAHAMAS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MARTHA'S VINEYARD (MA)",
+    "airport": "MARTHA'S VINEYARD (MA)",
+    "iata": "MVY",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MARYBOROUGH",
+    "airport": "MARYBOROUGH",
+    "iata": "MBH",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MASON CITY IA",
+    "airport": "MASON CITY IA",
+    "iata": "MCW",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MATTOON (IL)",
+    "airport": "MATTOON (IL)",
+    "iata": "MTO",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MAUN",
+    "airport": "MAUN",
+    "iata": "MUB",
+    "country": "BOTSWANA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MAURITIUS",
+    "airport": "MAURITIUS - S.SEEWOOSAGUR RAM INTERNATIONAL",
+    "iata": "MRU",
+    "country": "MAURITIUS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MAYAGUEZ",
+    "airport": "MAYAGUEZ",
+    "iata": "MAZ",
+    "country": "PUERTO RICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MCALLEN (TX)",
+    "airport": "MCALLEN (TX)",
+    "iata": "MFE",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MEDAN",
+    "airport": "MEDAN - POLANIA INT'L (NOW SOEWONDO AFB)",
+    "iata": "MES",
+    "country": "INDONESIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MEDELLIN",
+    "airport": "MEDELLIN - JOSÉ MARÍA CÓRDOVA INTERNATIONAL",
+    "iata": "MDE",
+    "country": "COLOMBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MEDINA",
+    "airport": "MEDINA",
+    "iata": "MED",
+    "country": "SAUDI ARABIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MELBOURNE",
+    "airport": "MELBOURNE - MELBOURNE AIRPORT (TULLAMARINE)",
+    "iata": "MEL",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "METZ/NANCY METZ-NANCY-LORRAINE",
+    "airport": "METZ/NANCY METZ-NANCY-LORRAINE",
+    "iata": "ETZ",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MEXICO CITY",
+    "airport": "MEXICO CITY - MEXICO CITY INTERNATIONAL AIRPORT",
+    "iata": "MEX",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MEXICO CITY",
+    "airport": "MEXICO CITY - SANTA LUCIA",
+    "iata": "NLU",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MINNEAPOLIS",
+    "airport": "MINNEAPOLIS - ST. PAUL INTERNATIONAL AIRPORT (MN)",
+    "iata": "MSP",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MINSK",
+    "airport": "MINSK, INTERNATIONAL",
+    "iata": "MSQ",
+    "country": "BELARUS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MIRPUR",
+    "airport": "MIRPUR",
+    "iata": "QML",
+    "country": "PAKISTAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MITCHELL (SD)",
+    "airport": "MITCHELL (SD)",
+    "iata": "MHE",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MOBILE (AL)",
+    "airport": "MOBILE (AL) - PASCAGOULA (MS)",
+    "iata": "MOB",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MOMBASA",
+    "airport": "MOMBASA - MOI INTERNATIONAL",
+    "iata": "MBA",
+    "country": "KENYA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MONROVIA",
+    "airport": "MONROVIA - METROPOLITAN AREA",
+    "iata": "MLW",
+    "country": "LIBERIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MONTEREY (CA)",
+    "airport": "MONTEREY (CA)",
+    "iata": "MRY",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MONTGOMERY (AL)",
+    "airport": "MONTGOMERY (AL) - MONTGOMERY REGIONAL AIRPORT",
+    "iata": "MGM",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MONTPELLIER",
+    "airport": "MONTPELLIER - MONTPELLIER–MÉDITERRANÉE AIRPORT",
+    "iata": "MPL",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MONTREAL",
+    "airport": "MONTREAL",
+    "iata": "YMQ",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MONTREAL",
+    "airport": "MONTREAL - DORVAL (MONTRÉAL-TRUDEAU)",
+    "iata": "YUL",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MONTREAL",
+    "airport": "MONTREAL - MIRABEL",
+    "iata": "YMX",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MORANBAH",
+    "airport": "MORANBAH",
+    "iata": "MOV",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MORONI",
+    "airport": "MORONI - PRINCE SAID IBRAHIM COMOROS",
+    "iata": "HAH",
+    "country": "(COMORES)",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MT. ISA",
+    "airport": "MT. ISA",
+    "iata": "ISA",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MUENCHEN (MUNICH)",
+    "airport": "MUENCHEN (MUNICH) - FRANZ JOSEF STRAUSS",
+    "iata": "MUC",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MUENSTER/OSNABRUECK",
+    "airport": "MUENSTER/OSNABRUECK",
+    "iata": "FMO",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MULHOUSE",
+    "airport": "MULHOUSE",
+    "iata": "MLH",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MURCIA",
+    "airport": "MURCIA",
+    "iata": "MJV",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MUSCAT",
+    "airport": "MUSCAT - SEEB",
+    "iata": "MCT",
+    "country": "OMAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "MYRTLE BEACH (SC)",
+    "airport": "MYRTLE BEACH (SC) - GRAND STRAND AIRPORT",
+    "iata": "CRE",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NANISIVIK",
+    "airport": "NANISIVIK",
+    "iata": "YSR",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NANTES",
+    "airport": "NANTES - NANTES ATLANTIQUE AIRPORT",
+    "iata": "NTE",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NARSARSUAQ",
+    "airport": "NARSARSUAQ",
+    "iata": "UAK",
+    "country": "GREENLAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NATAL",
+    "airport": "NATAL - AUGUSTO SEVERO INTERNATIONAL AIRPORT",
+    "iata": "NAT",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NAUSORI",
+    "airport": "NAUSORI",
+    "iata": "SUV",
+    "country": "FIJI/SUVA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NELSPRUIT",
+    "airport": "NELSPRUIT - KRUGER MPUMALANGA INTERNATIONAL AIRPORT",
+    "iata": "MQP",
+    "country": "SOUTH AFRICA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NEVIS ST. KITTS AND",
+    "airport": "NEVIS ST. KITTS AND",
+    "iata": "NEV",
+    "country": "NEVIS",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NEW YORK",
+    "airport": "NEW YORK - JOHN F. KENNEDY (NY)",
+    "iata": "JFK",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NEW YORK (NY)",
+    "airport": "NEW YORK (NY)",
+    "iata": "NYC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NICE",
+    "airport": "NICE - COTE D'AZUR AIRPORT",
+    "iata": "NCE",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NIZHNY NOVGOROD",
+    "airport": "NIZHNY NOVGOROD - STRIGINO INTERNATIONAL AIRPORT",
+    "iata": "GOJ",
+    "country": "RUSSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NOME (AK)",
+    "airport": "NOME (AK)",
+    "iata": "OME",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NOTTINGHAM",
+    "airport": "NOTTINGHAM - EAST MIDLANDS",
+    "iata": "EMA",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NOVOSIBIRSK",
+    "airport": "NOVOSIBIRSK - TOLMACHEVO AIRPORT",
+    "iata": "OVB",
+    "country": "RUSSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NUKU'ALOFA",
+    "airport": "NUKU'ALOFA - FUA'AMOTU INTERNATIONAL",
+    "iata": "TBU",
+    "country": "TONGA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "NÜRNBERG (NUREMBERG)",
+    "airport": "NÜRNBERG (NUREMBERG)",
+    "iata": "NUE",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "OKINAWA",
+    "airport": "OKINAWA, RYUKYO ISLAND - NAHA",
+    "iata": "OKA",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "OKLAHOMA CITY (OK)",
+    "airport": "OKLAHOMA CITY (OK) - WILL ROGERS WORLD",
+    "iata": "OKC",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ORANGE COUNTY (SANTA ANA) (CA)",
+    "airport": "ORANGE COUNTY (SANTA ANA) (CA)",
+    "iata": "SNA",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ORANJESTAD",
+    "airport": "ORANJESTAD - REINA BEATRIX INTERNATIONAL",
+    "iata": "AUA",
+    "country": "ARUBA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ORKNEY",
+    "airport": "ORKNEY - KIRKWALL",
+    "iata": "KOI",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ORLANDO",
+    "airport": "ORLANDO - INTERNATIONAL AIRPORT (FL)",
+    "iata": "MCO",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "ORLANDO METROPOLITAN AREA (FL)",
+    "airport": "ORLANDO METROPOLITAN AREA (FL)",
+    "iata": "ORL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "OSAKA",
+    "airport": "OSAKA - KANSAI INTERNATIONAL AIRPORT",
+    "iata": "KIX",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "OSAKA",
+    "airport": "OSAKA, METROPOLITAN AREA",
+    "iata": "OSA",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "OSLO",
+    "airport": "OSLO - FORNEBU",
+    "iata": "FBU",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "OSLO",
+    "airport": "OSLO - OSLO AIRPORT, GARDERMOEN",
+    "iata": "OSL",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "OSLO",
+    "airport": "OSLO - SANDEFJORD",
+    "iata": "TRF",
+    "country": "NORWAY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "OTTAWA",
+    "airport": "OTTAWA - HULL",
+    "iata": "YOW",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "OYEM",
+    "airport": "OYEM",
+    "iata": "UVE",
+    "country": "GABON/LOYAUTTE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PADERBORN/LIPPSTADT",
+    "airport": "PADERBORN/LIPPSTADT",
+    "iata": "PAD",
+    "country": "GERMANY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PAGE/LAKE POWELL (AZ)",
+    "airport": "PAGE/LAKE POWELL (AZ)",
+    "iata": "PGA",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PAKERSBURG (WV) /MARIETTA (OH)",
+    "airport": "PAKERSBURG (WV) /MARIETTA (OH)",
+    "iata": "PKB",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PALERMO",
+    "airport": "PALERMO - PUNTA RAISI",
+    "iata": "PMO",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PALMA DE MALLORCA",
+    "airport": "PALMA DE MALLORCA",
+    "iata": "PMI",
+    "country": "SPAIN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PANAMA CITY",
+    "airport": "PANAMA CITY - TOCUMEN INTERNATIONAL",
+    "iata": "PTY",
+    "country": "PANAMA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PAPEETE",
+    "airport": "PAPEETE - FAAA FRENCH POLYNESIA",
+    "iata": "PPT",
+    "country": "(TAHITI)",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PARAMARIBO",
+    "airport": "PARAMARIBO - ZANDERIJ INTERNATIONAL",
+    "iata": "PBM",
+    "country": "SURINAME",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PARIS",
+    "airport": "PARIS",
+    "iata": "PAR",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PARIS",
+    "airport": "PARIS - CHARLES DE GAULLE",
+    "iata": "CDG",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PARIS",
+    "airport": "PARIS - LE BOURGET",
+    "iata": "LBG",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PARIS",
+    "airport": "PARIS - ORLY",
+    "iata": "ORY",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PENANG INTERNATIONAL",
+    "airport": "PENANG INTERNATIONAL",
+    "iata": "PEN",
+    "country": "MALAYSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PEORIA/BLOOMINGTON (IL)",
+    "airport": "PEORIA/BLOOMINGTON (IL)",
+    "iata": "PIA",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PERTH INTERNATIONAL",
+    "airport": "PERTH INTERNATIONAL",
+    "iata": "PER",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PETERSBURG (AK)",
+    "airport": "PETERSBURG (AK)",
+    "iata": "PSG",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PHILADELPHIA (PA)",
+    "airport": "PHILADELPHIA (PA) - INTERNATIONAL",
+    "iata": "PHL",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PHNOM PENH",
+    "airport": "PHNOM PENH - POCHENTONG",
+    "iata": "PNH",
+    "country": "CAMBODIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PISA",
+    "airport": "PISA - GALILEO GALILEI",
+    "iata": "PSA",
+    "country": "ITALY",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PITTSBURGH INTERNATIONAL AIRPORT (PA)",
+    "airport": "PITTSBURGH INTERNATIONAL AIRPORT (PA)",
+    "iata": "PIT",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "POITIERS",
+    "airport": "POITIERS - BIARD",
+    "iata": "PIS",
+    "country": "FRANCE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PU SAN (BUSAN)",
+    "airport": "PU SAN (BUSAN) - GIMHAE INTERNATIONAL AIRPORT",
+    "iata": "PUS",
+    "country": "SOUTH KOREA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "",
+    "airport": "",
+    "iata": "POP",
+    "country": "DOMINICAN REPUBLIC",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PUERTO VALLARTA",
+    "airport": "PUERTO VALLARTA",
+    "iata": "PVR",
+    "country": "MEXICO",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PUNE INDIA",
+    "airport": "PUNE INDIA,",
+    "iata": "PNQ",
+    "country": "MAHARASHTRA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PYONGYANG",
+    "airport": "PYONGYANG - SUNAN INTERNATIONAL AIRPORT",
+    "iata": "FNJ",
+    "country": "NORTH KOREA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "",
+    "airport": "",
+    "iata": "RKT",
+    "country": "UNITED ARAB EMIRATES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "REYKJAVIK",
+    "airport": "REYKJAVIK - KEFLAVIK INTERNATIONAL",
+    "iata": "KEF",
+    "country": "ICELAND",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SALVADOR",
+    "airport": "SALVADOR - SALVADOR INTERNATIONAL AIRPORT",
+    "iata": "SSA",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SALZBURG",
+    "airport": "SALZBURG - W.A. MOZART",
+    "iata": "SZG",
+    "country": "AUSTRIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SAMANA",
+    "airport": "SAMANA - SAMANÁ EL CATEY INTERNATIONAL AIRPORT",
+    "iata": "AZS",
+    "country": "DOMINICAN REPUBLIC",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SAMARA",
+    "airport": "SAMARA - KURUMOCH INTERNATIONAL AIRPORT",
+    "iata": "KUF",
+    "country": "RUSSIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SANTA ROSA",
+    "airport": "SANTA ROSA",
+    "iata": "SRB",
+    "country": "BOLIVIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SANTA ROSA (CA)",
+    "airport": "SANTA ROSA (CA)",
+    "iata": "STS",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SANTA ROSALIA",
+    "airport": "SANTA ROSALIA",
+    "iata": "SSL",
+    "country": "COLOMBIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SAO PAULO",
+    "airport": "SAO PAULO - GUARULHOS INTERNATIONAL",
+    "iata": "GRU",
+    "country": "BRAZIL",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SAO TOME SAO TOME &",
+    "airport": "SAO TOME SAO TOME &",
+    "iata": "TMS",
+    "country": "PRINCIPE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SAPPORO",
+    "airport": "SAPPORO - NEW CHITOSE AIRPORT",
+    "iata": "CTS",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SAPPORO",
+    "airport": "SAPPORO - NEW CHITOSE AIRPORT",
+    "iata": "CTS",
+    "country": "JAPAN",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SEHBA",
+    "airport": "SEHBA",
+    "iata": "SEB",
+    "country": "LIBYA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "",
+    "airport": "",
+    "iata": "SHJ",
+    "country": "UNITED ARAB EMIRATES",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PR",
+    "airport": "PR",
+    "iata": "SHE",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SINGAPORE",
+    "airport": "SINGAPORE - CHANGI",
+    "iata": "SIN",
+    "country": "SINGAPORE",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SUVA",
+    "airport": "SUVA - NAUSORI AIRPORT (LUVULUVU)",
+    "iata": "SUV",
+    "country": "FIJI",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SYDNEY",
+    "airport": "SYDNEY - SYDNEY AIRPORT",
+    "iata": "SYD",
+    "country": "AUSTRALIA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "PR",
+    "airport": "PR",
+    "iata": "TYN",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "TAMPA",
+    "airport": "TAMPA - INTERNATIONAL (FL)",
+    "iata": "TPA",
+    "country": "USA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "DURHAM TEES VALLEY",
+    "airport": "DURHAM TEES VALLEY",
+    "iata": "MME",
+    "country": "UNITED KINGDOM",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "TERRACE",
+    "airport": "TERRACE",
+    "iata": "YXT",
+    "country": "CANADA",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "URUMQI XINJIANG",
+    "airport": "URUMQI XINJIANG, PR",
+    "iata": "URC",
+    "country": "CHINA",
+    "type": "AIRPORT"
+  }
+]

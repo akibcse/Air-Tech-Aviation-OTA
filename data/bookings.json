@@ -1,0 +1,382 @@
+[
+  {
+    "pnr": "1ELKEH",
+    "flight": {
+      "id": "av-0",
+      "source": "AVIATIONSTACK",
+      "instantTicketingRequired": false,
+      "nonHomogeneous": false,
+      "oneWay": true,
+      "lastTicketingDate": "2026-12-31",
+      "numberOfBookableSeats": 9,
+      "itineraries": [
+        {
+          "duration": "PT3H25M",
+          "segments": [
+            {
+              "departure": {
+                "iataCode": "DAC",
+                "at": "2026-01-23T01:00:00+00:00"
+              },
+              "arrival": {
+                "iataCode": "DXB",
+                "at": "2026-01-23T04:25:00+00:00"
+              },
+              "carrierCode": "EK",
+              "number": "585",
+              "aircraft": {
+                "code": "BUS"
+              },
+              "duration": "PT3H25M",
+              "id": "1",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            }
+          ]
+        }
+      ],
+      "price": {
+        "currency": "USD",
+        "total": "385.00",
+        "base": "308.00",
+        "fees": [],
+        "grandTotal": "385.00"
+      },
+      "pricingOptions": {
+        "fareType": [
+          "PUBLISHED"
+        ],
+        "includedCheckedBagsOnly": true
+      },
+      "validatingAirlineCodes": [
+        "EK"
+      ],
+      "travelerPricings": []
+    },
+    "passengers": [
+      {
+        "id": "1",
+        "type": "ADULT",
+        "title": "Mr",
+        "firstName": "Akib",
+        "lastName": "Hasan",
+        "dateOfBirth": "2026-01-22",
+        "email": "roadyakib@gmail.com",
+        "phone": "01521438546",
+        "nationality": "bd",
+        "passportNumber": "usjsis"
+      }
+    ],
+    "selectedSeats": {
+      "1": "4F"
+    },
+    "amount": "410.00",
+    "currency": "USD",
+    "status": "CONFIRMED",
+    "createdAt": "2026-01-22T18:27:39.661Z"
+  },
+  {
+    "pnr": "Q0MFDZ",
+    "flight": {
+      "id": "av-10",
+      "source": "AVIATIONSTACK",
+      "instantTicketingRequired": false,
+      "nonHomogeneous": false,
+      "oneWay": true,
+      "lastTicketingDate": "2026-12-31",
+      "numberOfBookableSeats": 9,
+      "itineraries": [
+        {
+          "duration": "PT3H50M",
+          "segments": [
+            {
+              "departure": {
+                "iataCode": "DAC",
+                "at": "2026-01-22T08:05:00+00:00"
+              },
+              "arrival": {
+                "iataCode": "DXB",
+                "at": "2026-01-22T11:55:00+00:00"
+              },
+              "carrierCode": "FZ",
+              "number": "502",
+              "aircraft": {
+                "code": "BUS"
+              },
+              "duration": "PT3H50M",
+              "id": "1",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            }
+          ]
+        }
+      ],
+      "price": {
+        "currency": "BDT",
+        "total": "36391",
+        "base": "30932",
+        "fees": [],
+        "grandTotal": "36391"
+      },
+      "pricingOptions": {
+        "fareType": [
+          "PUBLISHED"
+        ],
+        "includedCheckedBagsOnly": true
+      },
+      "validatingAirlineCodes": [
+        "FZ"
+      ],
+      "travelerPricings": []
+    },
+    "passengers": [
+      {
+        "id": "1",
+        "type": "ADULT",
+        "title": "Mr",
+        "firstName": "Md.",
+        "lastName": "Hasan",
+        "dateOfBirth": "2026-01-31",
+        "email": "roadyakib@gmail.com",
+        "phone": "01521438546",
+        "nationality": "hshs",
+        "passportNumber": "hsusu"
+      }
+    ],
+    "selectedSeats": {
+      "1": "4F"
+    },
+    "amount": "36416.00",
+    "currency": "BDT",
+    "status": "CONFIRMED",
+    "createdAt": "2026-01-22T18:42:21.656Z"
+  },
+  {
+    "pnr": "ENPY55",
+    "flight": {
+      "id": "av-0",
+      "source": "AVIATIONSTACK",
+      "instantTicketingRequired": false,
+      "nonHomogeneous": false,
+      "oneWay": true,
+      "lastTicketingDate": "2026-12-31",
+      "numberOfBookableSeats": 9,
+      "itineraries": [
+        {
+          "duration": "PT3H25M",
+          "segments": [
+            {
+              "departure": {
+                "iataCode": "DAC",
+                "at": "2026-01-24T01:00:00+00:00"
+              },
+              "arrival": {
+                "iataCode": "DXB",
+                "at": "2026-01-24T04:25:00+00:00"
+              },
+              "carrierCode": "EK",
+              "number": "585",
+              "aircraft": {
+                "code": "BUS"
+              },
+              "duration": "PT3H25M",
+              "id": "1",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            }
+          ]
+        }
+      ],
+      "price": {
+        "currency": "BDT",
+        "total": "46393",
+        "base": "39434",
+        "fees": [],
+        "grandTotal": "46393"
+      },
+      "pricingOptions": {
+        "fareType": [
+          "PUBLISHED"
+        ],
+        "includedCheckedBagsOnly": true
+      },
+      "validatingAirlineCodes": [
+        "EK"
+      ],
+      "travelerPricings": []
+    },
+    "passengers": [
+      {
+        "id": "1",
+        "type": "ADULT",
+        "title": "Mr",
+        "firstName": "Md Akib",
+        "lastName": "Hasan",
+        "dateOfBirth": "234234-04-23",
+        "email": "roadyakib@gmail.com",
+        "phone": "01521438546",
+        "nationality": "23423432",
+        "passportNumber": "23423423"
+      }
+    ],
+    "selectedSeats": {
+      "1": "3D"
+    },
+    "amount": "46418.00",
+    "currency": "BDT",
+    "status": "CONFIRMED",
+    "createdAt": "2026-01-23T12:49:25.800Z"
+  },
+  {
+    "pnr": "D8CXK5",
+    "flight": {
+      "id": "av-7",
+      "source": "AVIATIONSTACK",
+      "instantTicketingRequired": false,
+      "nonHomogeneous": false,
+      "oneWay": true,
+      "lastTicketingDate": "2026-12-31",
+      "numberOfBookableSeats": 9,
+      "itineraries": [
+        {
+          "duration": "PT3H50M",
+          "segments": [
+            {
+              "departure": {
+                "iataCode": "DAC",
+                "at": "2026-01-23T08:05:00+00:00"
+              },
+              "arrival": {
+                "iataCode": "DXB",
+                "at": "2026-01-23T11:55:00+00:00"
+              },
+              "carrierCode": "FZ",
+              "number": "502",
+              "aircraft": {
+                "code": "BUS"
+              },
+              "duration": "PT3H50M",
+              "id": "1",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            }
+          ]
+        }
+      ],
+      "price": {
+        "currency": "BDT",
+        "total": "36391",
+        "base": "30932",
+        "fees": [],
+        "grandTotal": "36391"
+      },
+      "pricingOptions": {
+        "fareType": [
+          "PUBLISHED"
+        ],
+        "includedCheckedBagsOnly": true
+      },
+      "validatingAirlineCodes": [
+        "FZ"
+      ],
+      "travelerPricings": []
+    },
+    "passengers": [
+      {
+        "id": "1",
+        "type": "ADULT",
+        "title": "Mr",
+        "firstName": "Md Akib",
+        "lastName": "Hasan",
+        "dateOfBirth": "2026-01-08",
+        "email": "roadyakib@gmail.com",
+        "phone": "01521438546",
+        "nationality": "rwerew",
+        "passportNumber": "werwerwr"
+      }
+    ],
+    "selectedSeats": {
+      "1": "3D"
+    },
+    "amount": "36416.00",
+    "currency": "BDT",
+    "status": "CONFIRMED",
+    "createdAt": "2026-01-23T15:17:52.606Z"
+  },
+  {
+    "pnr": "ARE72Z",
+    "flight": {
+      "id": "av-11",
+      "source": "AVIATIONSTACK",
+      "instantTicketingRequired": false,
+      "nonHomogeneous": false,
+      "oneWay": true,
+      "lastTicketingDate": "2026-12-31",
+      "numberOfBookableSeats": 9,
+      "itineraries": [
+        {
+          "duration": "PT3H50M",
+          "segments": [
+            {
+              "departure": {
+                "iataCode": "DAC",
+                "at": "2026-01-23T08:05:00+00:00"
+              },
+              "arrival": {
+                "iataCode": "DXB",
+                "at": "2026-01-23T11:55:00+00:00"
+              },
+              "carrierCode": "FZ",
+              "number": "502",
+              "aircraft": {
+                "code": "BUS"
+              },
+              "duration": "PT3H50M",
+              "id": "1",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            }
+          ]
+        }
+      ],
+      "price": {
+        "currency": "BDT",
+        "total": "36391",
+        "base": "30932",
+        "fees": [],
+        "grandTotal": "36391"
+      },
+      "pricingOptions": {
+        "fareType": [
+          "PUBLISHED"
+        ],
+        "includedCheckedBagsOnly": true
+      },
+      "validatingAirlineCodes": [
+        "FZ"
+      ],
+      "travelerPricings": []
+    },
+    "passengers": [
+      {
+        "id": "1",
+        "type": "ADULT",
+        "title": "Mr",
+        "firstName": "Md Akib",
+        "lastName": "Hasan",
+        "dateOfBirth": "2026-01-10",
+        "email": "roadyakib@gmail.com",
+        "phone": "01521438546",
+        "nationality": "wqeqwe",
+        "passportNumber": "qewqweqwe"
+      }
+    ],
+    "selectedSeats": {
+      "1": "3D"
+    },
+    "amount": "36416.00",
+    "currency": "BDT",
+    "status": "CONFIRMED",
+    "createdAt": "2026-01-23T15:19:55.418Z"
+  }
+]

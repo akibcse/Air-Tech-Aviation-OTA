@@ -1,0 +1,57 @@
+{
+  "name": "airtech-angular",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "packageManager": "npm@10.9.2",
+  "dependencies": {
+    "@angular/animations": "^19.2.18",
+    "@angular/common": "^19.1.0",
+    "@angular/compiler": "^19.1.0",
+    "@angular/core": "^19.1.0",
+    "@angular/fire": "^19.0.0",
+    "@angular/forms": "^19.1.0",
+    "@angular/platform-browser": "^19.1.0",
+    "@angular/router": "^19.1.0",
+    "amadeus": "^11.0.0",
+    "chart.js": "^4.4.0",
+    "date-fns": "^4.1.0",
+    "firebase": "^11.0.0",
+    "jspdf": "^4.1.0",
+    "jspdf-autotable": "^5.0.7",
+    "lucide-angular": "^0.474.0",
+    "ng2-charts": "^7.0.0",
+    "rxjs": "~7.8.0",
+    "stripe": "^20.3.1",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^19.1.0",
+    "@angular/cli": "^19.1.0",
+    "@angular/compiler-cli": "^19.1.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^4.0.0",
+    "typescript": "~5.7.0"
+  }
+}

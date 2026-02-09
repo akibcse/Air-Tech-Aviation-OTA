@@ -1,0 +1,19 @@
+{
+  "name": "airtech-aviation-backend",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "amadeus": "^11.0.0",
+    "axios": "^1.13.4",
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "firebase-admin": "^13.6.1",
+    "stripe": "^20.3.1"
+  },
+  "scripts": {
+    "dev": "concurrently \"node api/index.js\" \"cd airtech-angular && npm start\"",
+    "build": "cd airtech-angular && npm install && npm run build"
+  }
+}
