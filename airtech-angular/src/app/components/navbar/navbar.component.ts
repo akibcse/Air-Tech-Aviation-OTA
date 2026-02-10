@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { LucideAngularModule, User, LogIn, Menu, X, LogOut } from 'lucide-angular';
+import { LucideAngularModule, User, LogIn, Menu, X, LogOut, Search, Ticket, Shield } from 'lucide-angular';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive, LucideAngularModule],
   template: `
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
+    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
           <!-- Logo -->
@@ -21,18 +21,16 @@ import { AuthService } from '../../services/auth.service';
 
           <!-- Desktop Navigation -->
           <div class="hidden md:flex items-center gap-6">
-            <a routerLink="/" routerLinkActive="text-blue-600" [routerLinkActiveOptions]="{exact: true}" 
-               class="text-gray-900 hover:text-blue-600 font-medium transition-colors">
+             <a routerLink="/" routerLinkActive="text-blue-600" [routerLinkActiveOptions]="{exact: true}"
+                class="text-gray-900 hover:text-blue-600 font-medium transition-colors">
               Flights
-            </a>
-            <a routerLink="/hotels" routerLinkActive="text-blue-600"
-               class="text-gray-600 hover:text-blue-600 font-medium transition-colors">
-              Hotels
-            </a>
-            <a routerLink="/car-hire" routerLinkActive="text-blue-600"
-               class="text-gray-600 hover:text-blue-600 font-medium transition-colors">
-              Car Hire
-            </a>
+             </a>
+             <a routerLink="/" fragment="hotels" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+               Hotels
+             </a>
+             <a routerLink="/" fragment="cars" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+               Car Hire
+             </a>
 
             @if (auth.isLoading()) {
               <div class="flex items-center gap-4 ml-4 animate-pulse">
@@ -79,7 +77,7 @@ import { AuthService } from '../../services/auth.service';
           </div>
 
           <!-- Mobile Menu Button -->
-          <button class="md:hidden p-2 text-gray-600" (click)="isMenuOpen.set(!isMenuOpen())">
+          <button class="md:hidden p-2 text-gray-600" (click)="isMenuOpen.set(!isMenuOpen())" aria-label="Toggle menu">
             <lucide-icon [name]="isMenuOpen() ? xIcon : menuIcon"></lucide-icon>
           </button>
         </div>
@@ -89,7 +87,7 @@ import { AuthService } from '../../services/auth.service';
       @if (isMenuOpen()) {
         <div class="md:hidden bg-white border-t border-gray-100 p-4 space-y-4">
           <a routerLink="/" (click)="isMenuOpen.set(false)" class="block text-gray-600 font-medium">Home</a>
-          <a routerLink="/about" (click)="isMenuOpen.set(false)" class="block text-gray-600 font-medium">About</a>
+          <a routerLink="/search" (click)="isMenuOpen.set(false)" class="block text-gray-600 font-medium">Search Flights</a>
           
           @if (!auth.isLoading()) {
             <div class="pt-4 border-t border-gray-100 space-y-3">
@@ -115,6 +113,69 @@ import { AuthService } from '../../services/auth.service';
           }
         </div>
       }
+
+      <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-gray-200 z-50 px-2 py-2">
+        <div class="grid grid-cols-4 gap-1 max-w-md mx-auto">
+          <a
+            routerLink="/"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="text-blue-600 bg-blue-50"
+            class="flex flex-col items-center justify-center gap-1 rounded-xl py-2 text-gray-500"
+          >
+            <lucide-icon [name]="searchIcon" class="w-4 h-4"></lucide-icon>
+            <span class="text-[10px] font-semibold">Explore</span>
+          </a>
+
+          <a
+            routerLink="/search"
+            routerLinkActive="text-blue-600 bg-blue-50"
+            class="flex flex-col items-center justify-center gap-1 rounded-xl py-2 text-gray-500"
+          >
+            <lucide-icon [name]="searchIcon" class="w-4 h-4"></lucide-icon>
+            <span class="text-[10px] font-semibold">Search</span>
+          </a>
+
+          @if (auth.currentUser()) {
+            <a
+              routerLink="/my-bookings"
+              routerLinkActive="text-blue-600 bg-blue-50"
+              class="flex flex-col items-center justify-center gap-1 rounded-xl py-2 text-gray-500"
+            >
+              <lucide-icon [name]="ticketIcon" class="w-4 h-4"></lucide-icon>
+              <span class="text-[10px] font-semibold">Trips</span>
+            </a>
+          } @else {
+            <a
+              routerLink="/auth/login"
+              routerLinkActive="text-blue-600 bg-blue-50"
+              class="flex flex-col items-center justify-center gap-1 rounded-xl py-2 text-gray-500"
+            >
+              <lucide-icon [name]="logInIcon" class="w-4 h-4"></lucide-icon>
+              <span class="text-[10px] font-semibold">Login</span>
+            </a>
+          }
+
+          @if (auth.isAdmin()) {
+            <a
+              routerLink="/admin"
+              routerLinkActive="text-blue-600 bg-blue-50"
+              class="flex flex-col items-center justify-center gap-1 rounded-xl py-2 text-gray-500"
+            >
+              <lucide-icon [name]="shieldIcon" class="w-4 h-4"></lucide-icon>
+              <span class="text-[10px] font-semibold">Admin</span>
+            </a>
+          } @else {
+            <a
+              routerLink="/dashboard"
+              routerLinkActive="text-blue-600 bg-blue-50"
+              class="flex flex-col items-center justify-center gap-1 rounded-xl py-2 text-gray-500"
+            >
+              <lucide-icon [name]="userIcon" class="w-4 h-4"></lucide-icon>
+              <span class="text-[10px] font-semibold">Account</span>
+            </a>
+          }
+        </div>
+      </div>
     </nav>
   `,
   styles: [`
@@ -131,4 +192,7 @@ export class NavbarComponent {
   logOutIcon = LogOut;
   menuIcon = Menu;
   xIcon = X;
+  searchIcon = Search;
+  ticketIcon = Ticket;
+  shieldIcon = Shield;
 }

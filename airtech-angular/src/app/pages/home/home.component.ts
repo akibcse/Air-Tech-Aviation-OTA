@@ -90,12 +90,27 @@ import { PublicService } from '../../services/public.service';
         </div>
       }
 
-      <!-- Main Content Area Placeholder -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        <div class="bg-white p-12 rounded-xl text-center shadow-sm">
+        <div class="bg-white p-8 md:p-12 rounded-xl text-center shadow-sm border border-gray-100">
           <h2 class="text-2xl font-bold text-gray-900 mb-2">Ready to fly?</h2>
           <p class="text-gray-600">Start your search above to find the best deals on flights worldwide.</p>
         </div>
+
+        <section id="hotels" class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <h3 class="text-lg font-bold text-gray-900">Hotels</h3>
+            <span class="text-xs font-semibold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-1 rounded-full">Coming Soon</span>
+          </div>
+          <p class="text-sm text-gray-600">Plan complete trips with stays near airports and city centers. Hotel search will be available shortly.</p>
+        </section>
+
+        <section id="cars" class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div class="flex items-center justify-between gap-4 mb-3">
+            <h3 class="text-lg font-bold text-gray-900">Car Hire</h3>
+            <span class="text-xs font-semibold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-1 rounded-full">Coming Soon</span>
+          </div>
+          <p class="text-sm text-gray-600">Pick up and drop off rentals from major airports. Car hire integration is in progress.</p>
+        </section>
       </div>
     </main>
   `

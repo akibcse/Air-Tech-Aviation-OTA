@@ -1,289 +1,171 @@
-import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LucideAngularModule, Plane, ArrowRight, Loader2, Clock, MapPin } from 'lucide-angular';
-import { BookingService } from '../../services/booking.service';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { ArrowRight, CheckCircle, Clock3, LucideAngularModule, Plane, Star } from 'lucide-angular';
+import { BookingService } from '../../services/booking.service';
 
 @Component({
   selector: 'app-flight-results',
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
   template: `
-    <div class="space-y-4">
+    <div class="space-y-2.5">
       @if (loading) {
-        <div class="flex flex-col items-center justify-center p-12 bg-white rounded-2xl border border-gray-100 shadow-sm min-h-[400px]">
-          <div class="w-full max-w-md space-y-6 text-center">
-             <!-- Animated Illustration -->
-             <div class="relative w-32 h-32 mx-auto mb-8">
-                <div class="absolute inset-0 border-4 border-blue-100 rounded-full animate-[spin_3s_linear_infinite]"></div>
-                <div class="absolute inset-0 border-4 border-blue-500 rounded-full border-t-transparent animate-[spin_1.5s_linear_infinite]"></div>
-                <lucide-icon [name]="planeIcon" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 text-blue-600 animate-pulse"></lucide-icon>
-             </div>
-
-             <!-- Progress Bar -->
-             <div class="space-y-2">
-                <div class="flex justify-between text-sm font-bold text-gray-500 uppercase tracking-widest">
-                  <span>Searching Flights</span>
-                  <span>{{ progress }}%</span>
-                </div>
-                <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
-                   <div 
-                     class="h-full bg-blue-600 rounded-full transition-all duration-300 ease-out"
-                     [style.width.%]="progress"
-                   ></div>
-                </div>
-             </div>
-
-             <!-- Status Text -->
-             <p class="text-gray-400 text-sm font-medium animate-pulse">{{ loadingStatus }}</p>
-
-             <!-- Tips Carousel -->
-             <div class="mt-8 pt-6 border-t border-dashed border-gray-100">
-                <p class="text-xs text-gray-400">Did you know? <span class="text-gray-600 font-medium">We search over 400 airlines instantly.</span></p>
-             </div>
-          </div>
-        </div>
-      } @else if (error) {
-        <div class="p-12 text-center bg-red-50 rounded-2xl border border-red-100 shadow-sm">
-           <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span class="text-2xl text-red-600 font-bold">!</span>
-           </div>
-           <h3 class="text-xl font-bold text-red-900 mb-2">Search Interrupted</h3>
-           <p class="text-red-600 max-w-sm mx-auto mb-6">{{ error }}</p>
-           <button (click)="window.location.reload()" class="px-6 py-2 bg-red-600 text-white rounded-lg font-bold hover:bg-red-700 transition-all">Try Again</button>
-        </div>
-      } @else if (flights.length === 0) {
-        <div class="p-16 text-center bg-white rounded-2xl border border-gray-100 shadow-sm">
-          <lucide-icon [name]="mapPinIcon" class="w-16 h-16 text-gray-200 mx-auto mb-4"></lucide-icon>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">No Flights Found</h3>
-          <p class="text-gray-500">We couldn't find any flights for these criteria. Try adjusting your dates or locations.</p>
-        </div>
-      } @else {
-        <div class="flex justify-between items-center mb-6">
-          <h3 class="text-xl font-black text-gray-900">
-            {{ flights.length }} <span class="text-gray-400 font-medium">results found</span>
-          </h3>
-          <div class="flex gap-2">
-            <span class="text-xs font-bold px-2 py-1 bg-green-100 text-green-700 rounded-full uppercase tracking-widest">Cheapest first</span>
-          </div>
+        <div class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs text-slate-600">
+          Searching flights... {{ progress }}%
         </div>
 
-        <div class="space-y-4">
-          @for (flight of flights; track flight.id) {
-            <div
-              (click)="toggleDetails(flight.id)"
-              class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:border-blue-200 transition-all cursor-pointer group overflow-hidden"
-            >
-              <div class="flex flex-col lg:flex-row">
-                <!-- Itineraries Section -->
-                <div class="flex-1 p-6 space-y-6">
-                  @for (itinerary of flight.itineraries; track $index) {
-                    @let firstSegment = itinerary.segments[0];
-                    @let lastSegment = itinerary.segments[itinerary.segments.length - 1];
-                    @let airlineCode = firstSegment.carrierCode;
-                    @let stops = itinerary.segments.length - 1;
-
-                    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                      <!-- Airline Info -->
-                      <div class="flex items-center gap-4 w-full md:w-48">
-                        <div class="w-10 h-10 relative flex-shrink-0 bg-gray-50 rounded-full flex items-center justify-center overflow-hidden border border-gray-100 grayscale group-hover:grayscale-0 transition-all">
-                          <img
-                            [src]="'https://content.airhex.com/content/logos/airlines_' + airlineCode + '_200_200_s.png'"
-                            [alt]="airlineCode"
-                            class="w-full h-full object-contain p-1.5"
-                            (error)="handleImageError($event, airlineCode)"
-                          />
-                        </div>
-                        <div>
-                          <p class="font-black text-gray-900 leading-tight uppercase tracking-tighter">{{ airlineCode }}</p>
-                          <p class="text-[10px] text-gray-400 font-bold uppercase">{{ firstSegment.carrierCode }}{{ firstSegment.number }} • {{ firstSegment.aircraft?.code || 'Jet' }}</p>
-                        </div>
-                      </div>
-
-                      <!-- Route Info -->
-                      <div class="flex-1 flex items-center justify-center gap-4 sm:gap-8 w-full">
-                        <div class="text-right">
-                          <p class="text-xl font-black text-gray-900 uppercase leading-none">
-                            {{ firstSegment.departure.at | date:'HH:mm' }}
-                          </p>
-                          <p class="text-xs text-gray-400 font-black mt-1 uppercase">{{ firstSegment.departure.iataCode }}</p>
-                        </div>
-
-                        <div class="flex flex-col items-center flex-1 max-w-[200px] relative group/tooltip">
-                          <p class="text-[10px] text-gray-400 mb-1 font-bold uppercase tracking-widest">{{ formatDuration(itinerary.duration) }}</p>
-                          <div class="w-full flex items-center gap-2">
-                             <div class="h-[2px] bg-gray-100 flex-1 relative rounded-full">
-                                <div class="absolute top-1/2 left-0 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-gray-300"></div>
-                             </div>
-                             <lucide-icon [name]="planeIcon" class="w-3.5 h-3.5 text-blue-500 rotate-90 opacity-40 group-hover:opacity-100 transition-opacity"></lucide-icon>
-                             <div class="h-[2px] bg-gray-100 flex-1 relative rounded-full">
-                                <div class="absolute top-1/2 right-0 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-blue-500"></div>
-                             </div>
-                          </div>
-                          <p class="text-[10px] font-black mt-1 tracking-widest uppercase cursor-help" 
-                             [class.text-green-600]="stops === 0" [class.text-amber-600]="stops > 0">
-                            {{ stops === 0 ? 'Direct' : stops + ' Stop' + (stops > 1 ? 's' : '') }}
-                          </p>
-                          
-                          <!-- Hover Tooltip for Stops -->
-                          @if (stops > 0) {
-                            <div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 w-48 bg-gray-900 text-white text-xs rounded-lg p-3 opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none z-10 shadow-xl">
-                                <div class="font-bold mb-1 border-b border-gray-700 pb-1">Layover Details</div>
-                                @for (seg of itinerary.segments; track $index) {
-                                  @if ($index < itinerary.segments.length - 1) {
-                                    <div class="flex justify-between py-1">
-                                      <span>{{ seg.arrival.iataCode }}</span>
-                                      <span class="text-gray-400">Change Planes</span>
-                                    </div>
-                                  }
-                                }
-                                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
-                            </div>
-                          }
-                        </div>
-
-                        <div class="text-left">
-                          <p class="text-xl font-black text-gray-900 uppercase leading-none">
-                            {{ lastSegment.arrival.at | date:'HH:mm' }}
-                          </p>
-                          <p class="text-xs text-gray-400 font-black mt-1 uppercase">{{ lastSegment.arrival.iataCode }}</p>
-                        </div>
-                      </div>
-                    </div>
-                    @if ($index < flight.itineraries.length - 1) {
-                      <div class="border-t border-dashed border-gray-100 my-4 relative">
-                        <span class="absolute left-1/2 -translate-x-1/2 -top-2.5 bg-white px-2 text-[10px] uppercase font-bold text-gray-400 tracking-widest">Next Flight</span>
-                      </div>
-                    }
-                  }
-                </div>
-
-                <!-- Price & Booking Section -->
-                <div class="w-full lg:w-64 bg-gray-50/50 p-6 flex flex-col justify-center items-end border-l border-gray-100 group-hover:bg-blue-50/50 transition-colors">
-                  <div class="text-right mb-4">
-                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total Inc. Taxes</p>
-                    <div class="flex items-baseline justify-end gap-1">
-                      <span class="text-sm font-bold text-blue-600">{{ flight.price.currency }}</span>
-                      <span class="text-3xl font-black text-blue-600 tracking-tighter">{{ flight.price.total | number }}</span>
-                    </div>
-                  </div>
-                  <button
-                    (click)="toggleDetails(flight.id); $event.stopPropagation()"
-                    class="w-full py-3 mb-2 bg-white text-blue-600 border border-blue-200 rounded-xl font-black uppercase tracking-widest text-xs hover:bg-blue-50 transition-all flex items-center justify-center gap-2"
-                  >
-                     {{ expandedFlightId === flight.id ? 'Hide Details' : 'View Details' }}
-                  </button>
-                  <button
-                    (click)="handleSelect(flight); $event.stopPropagation()"
-                    class="w-full py-3 bg-blue-600 text-white rounded-xl font-black uppercase tracking-widest text-xs hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-200 transition-all flex items-center justify-center gap-2 active:scale-95"
-                  >
-                    Select Flight <lucide-icon [name]="arrowRightIcon" class="w-4 h-4"></lucide-icon>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Expanded Details Section -->
-              @if (expandedFlightId === flight.id) {
-                <div class="border-t border-gray-100 bg-gray-50/50 p-6 animate-in slide-in-from-top-2 duration-200">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <h4 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                <lucide-icon [name]="planeIcon" class="w-4 h-4"></lucide-icon> Flight Details
-                            </h4>
-                            <div class="space-y-6">
-                                @for (itinerary of flight.itineraries; track $index) {
-                                    <div class="relative pl-4 border-l-2 border-gray-200 space-y-6">
-                                        @for (seg of itinerary.segments; track seg.id) {
-                                            <div class="relative">
-                                                <div class="absolute -left-[21px] top-1 w-3 h-3 rounded-full bg-blue-500 border-2 border-white"></div>
-                                                <div class="flex justify-between items-start mb-2">
-                                                    <div>
-                                                        <p class="font-bold text-gray-900">{{ seg.departure.iataCode }} <span class="text-gray-400 mx-2">→</span> {{ seg.arrival.iataCode }}</p>
-                                                        <p class="text-xs text-gray-500">{{ seg.departure.at | date:'medium' }}</p>
-                                                    </div>
-                                                    <div class="text-right">
-                                                        <p class="font-bold text-gray-900">{{ seg.carrierCode }} {{ seg.number }}</p>
-                                                        <p class="text-xs text-gray-500">{{ seg.aircraft?.code || 'Boeing 737' }}</p>
-                                                    </div>
-                                                </div>
-                                                <p class="text-xs text-gray-500 bg-white p-2 rounded border border-gray-100 inline-block">
-                                                    Duration: {{ formatDuration(seg.duration) }}
-                                                </p>
-                                            </div>
-                                        }
-                                    </div>
-                                    @if ($index < flight.itineraries.length - 1) { <div class="border-t border-gray-200 my-4"></div> }
-                                }
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900 mb-4">Baggage & Fare Rules</h4>
-                            <div class="bg-white p-4 rounded-xl border border-gray-100 space-y-3">
-                                <div class="flex justify-between items-center text-sm">
-                                    <span class="text-gray-500">Cabin Baggage</span>
-                                    <span class="font-bold text-gray-900">7kg</span>
-                                </div>
-                                <div class="flex justify-between items-center text-sm border-t border-gray-50 pt-3">
-                                    <span class="text-gray-500">Checked Baggage</span>
-                                    <span class="font-bold text-gray-900">20kg</span>
-                                </div>
-                                <div class="flex justify-between items-center text-sm border-t border-gray-50 pt-3">
-                                    <span class="text-gray-500">Fare Class</span>
-                                    <span class="font-bold text-blue-600 px-2 py-0.5 bg-blue-50 rounded">Economy Standard</span>
-                                </div>
-                                <div class="flex justify-between items-center text-sm border-t border-gray-50 pt-3">
-                                    <span class="text-gray-500">Refundable</span>
-                                    <span class="font-bold text-green-600">Partial</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              }
+        <div class="space-y-2.5">
+          @for (_ of [1,2,3,4]; track $index) {
+            <div class="rounded-xl border border-slate-200 bg-white p-3 shadow-sm animate-pulse">
+              <div class="h-4 w-2/3 bg-slate-100 rounded mb-2"></div>
+              <div class="h-3 w-full bg-slate-100 rounded mb-1.5"></div>
+              <div class="h-3 w-5/6 bg-slate-100 rounded mb-3"></div>
+              <div class="h-9 w-28 bg-slate-100 rounded-full ml-auto"></div>
             </div>
           }
         </div>
+      } @else if (error) {
+        <div class="rounded-xl border border-red-200 bg-red-50 p-6 text-center">
+          <p class="text-sm font-semibold text-red-700 mb-2">Search interrupted</p>
+          <p class="text-sm text-red-600">{{ error }}</p>
+        </div>
+      } @else if (flights.length === 0) {
+        <div class="rounded-xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+          <h3 class="text-lg font-black text-slate-900 mb-2">No flights found</h3>
+          <p class="text-sm text-slate-500">Try adjusting your filters to see more options.</p>
+        </div>
+      } @else {
+        @for (flight of flights; track flight.id; let i = $index) {
+          <article class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+            <div class="p-3.5">
+              <div class="flex items-center gap-1.5 flex-wrap mb-3">
+                <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 text-emerald-700 px-2 py-0.5 text-[10px] font-bold">
+                  <lucide-icon [name]="checkIcon" class="w-3 h-3"></lucide-icon>
+                  Partially Refundable
+                </span>
+                <span class="inline-flex items-center gap-1 rounded-full bg-blue-50 text-blue-700 px-2 py-0.5 text-[10px] font-bold">
+                  <lucide-icon [name]="starIcon" class="w-3 h-3"></lucide-icon>
+                  {{ i % 2 === 0 ? 'BEST' : 'PREFERRED' }}
+                </span>
+                <span class="inline-flex items-center gap-1 rounded-full bg-amber-50 text-amber-700 px-2 py-0.5 text-[10px] font-bold">
+                  <lucide-icon [name]="clockIcon" class="w-3 h-3"></lucide-icon>
+                  Pay Later
+                </span>
+              </div>
+
+              <div class="grid grid-cols-[1fr,90px,1fr] gap-2 items-center mb-3">
+                <div>
+                  <p class="text-xl font-black text-slate-900 leading-none">{{ departureTime(flight) }}</p>
+                  <p class="text-sm font-bold text-slate-700 mt-1">{{ departureAirport(flight) }}</p>
+                  <p class="text-[11px] text-slate-500">{{ departureDate(flight) }}</p>
+                </div>
+
+                <div class="text-center" (touchstart)="startLongPress(flight.id)" (touchend)="endLongPress()" (touchcancel)="endLongPress()">
+                  <p class="text-[11px] font-semibold text-slate-600">{{ durationLabel(flight) }}</p>
+                  <div class="relative flex items-center justify-center py-1.5">
+                    <span class="absolute left-2 right-2 h-[2px] bg-slate-300"></span>
+                    <lucide-icon [name]="planeIcon" class="w-4 h-4 text-blue-600 bg-white relative"></lucide-icon>
+                  </div>
+                  <p class="text-[11px] font-semibold text-slate-700">{{ stopText(flight) }}</p>
+
+                  @if ((getStops(flight) > 0) && (longPressTooltipId === flight.id)) {
+                    <div class="absolute z-20 mt-1 left-1/2 -translate-x-1/2 rounded-lg bg-slate-900 text-white text-[11px] px-2 py-1.5 shadow-lg">
+                      @for (layover of layoverAirports(flight); track layover) {
+                        <div>{{ layover }} transit</div>
+                      }
+                    </div>
+                  }
+                </div>
+
+                <div class="text-right">
+                  <p class="text-xl font-black text-slate-900 leading-none">{{ arrivalTime(flight) }}</p>
+                  <p class="text-sm font-bold text-slate-700 mt-1">{{ arrivalAirport(flight) }}</p>
+                  <p class="text-[11px] text-slate-500">{{ arrivalDate(flight) }}</p>
+                </div>
+              </div>
+
+              <div class="flex items-end justify-between gap-3 mb-2">
+                <div>
+                  <p class="text-[10px] uppercase tracking-wider text-slate-500">Starting from</p>
+                  <p class="text-2xl font-black text-slate-900">BDT {{ priceValue(flight) | number }}</p>
+                  @if (discountAmount(flight) > 0) {
+                    <p class="text-xs text-slate-400 line-through">BDT {{ oldPrice(flight) | number }}</p>
+                  }
+                </div>
+
+                <button
+                  type="button"
+                  (click)="handleSelect(flight)"
+                  class="h-11 min-w-[94px] rounded-full bg-orange-500 text-white px-4 inline-flex items-center justify-center gap-1.5 font-bold text-sm hover:bg-orange-600"
+                >
+                  Select
+                  <lucide-icon [name]="arrowRightIcon" class="w-4 h-4"></lucide-icon>
+                </button>
+              </div>
+
+              <div class="flex items-center justify-between text-[11px] text-slate-500 border-t border-slate-100 pt-2.5">
+                <p>
+                  <span class="font-semibold text-slate-600">{{ fareCode(flight) }}</span>
+                  •
+                  <lucide-icon [name]="starIcon" class="w-3.5 h-3.5 inline-block -mt-0.5"></lucide-icon>
+                  {{ points(flight) }}
+                </p>
+                <button type="button" (click)="toggleDetails(flight.id)" class="font-semibold text-blue-700 underline underline-offset-2">
+                  {{ expandedFlightId === flight.id ? 'Hide Details' : 'View Details' }}
+                </button>
+              </div>
+            </div>
+
+            @if (expandedFlightId === flight.id) {
+              <div class="border-t border-slate-200 bg-slate-50 px-3.5 py-3">
+                <div class="space-y-3">
+                  <div>
+                    <h4 class="text-sm font-black text-slate-900 mb-2">Itinerary</h4>
+                    <div class="space-y-2">
+                      @for (segment of segments(flight); track segment.id) {
+                        <div class="rounded-lg border border-slate-200 bg-white p-2.5">
+                          <p class="text-sm font-semibold text-slate-900">{{ segment.departure.iataCode }} -> {{ segment.arrival.iataCode }}</p>
+                          <p class="text-[11px] text-slate-500">{{ segment.departure.at | date:'medium' }} • {{ segment.arrival.at | date:'medium' }}</p>
+                          <p class="text-[11px] text-slate-600">{{ segment.carrierCode }}{{ segment.number }} • Aircraft {{ segment.aircraft?.code || 'N/A' }}</p>
+                        </div>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="rounded-lg border border-slate-200 bg-white p-2.5 text-[12px] space-y-1.5">
+                    <div class="flex justify-between"><span class="text-slate-500">Baggage</span><span class="font-semibold text-slate-900">7kg cabin, 20kg check-in</span></div>
+                    <div class="flex justify-between"><span class="text-slate-500">Refund</span><span class="font-semibold text-emerald-700">Partial refund applies</span></div>
+                    <div class="flex justify-between"><span class="text-slate-500">Fare Type</span><span class="font-semibold text-slate-900">Economy Saver</span></div>
+                  </div>
+                </div>
+              </div>
+            }
+          </article>
+        }
       }
     </div>
   `
 })
 export class FlightResultsComponent {
-  @Input() set loading(val: boolean) {
-    this._loading = val;
-    if (val) this.startProgress();
-    else this.resetProgress();
-  }
-  get loading() { return this._loading; }
-  private _loading = false;
-
+  @Input() loading = false;
   @Input() flights: any[] = [];
   @Input() error: string | null = null;
+  @Input() progress = 0;
   @Output() onSelect = new EventEmitter<any>();
-
-  progress = 0;
-  loadingStatus = 'Initializing Search...';
-  private progressInterval: any;
 
   private bookingService = inject(BookingService);
   private router = inject(Router);
 
   expandedFlightId: string | null = null;
+  longPressTooltipId: string | null = null;
+  private pressTimeout: ReturnType<typeof setTimeout> | null = null;
 
-  // Icons
-  planeIcon = Plane;
   arrowRightIcon = ArrowRight;
-  loaderIcon = Loader2;
-  mapPinIcon = MapPin;
-  window = window;
-
-  formatDuration(duration: string) {
-    if (!duration) return '';
-    return duration.replace('PT', '').replace('H', 'h ').replace('M', 'm').toLowerCase();
-  }
-
-  handleImageError(event: any, code: string) {
-    event.target.src = `https://ui-avatars.com/api/?name=${code}&background=random`;
-  }
+  clockIcon = Clock3;
+  planeIcon = Plane;
+  checkIcon = CheckCircle;
+  starIcon = Star;
 
   toggleDetails(id: string) {
     this.expandedFlightId = this.expandedFlightId === id ? null : id;
@@ -291,31 +173,127 @@ export class FlightResultsComponent {
 
   handleSelect(flight: any) {
     this.bookingService.setSelectedFlight(flight);
+    this.onSelect.emit(flight);
     this.router.navigate(['/book/details']);
   }
 
-  private startProgress() {
-    this.progress = 0;
-    this.loadingStatus = 'Connecting to Amadeus GDS...';
-
-    clearInterval(this.progressInterval);
-    this.progressInterval = setInterval(() => {
-      if (this.progress < 90) {
-        this.progress += Math.floor(Math.random() * 5) + 1;
-
-        if (this.progress > 20 && this.progress < 50) this.loadingStatus = 'Searching Major Airlines...';
-        else if (this.progress > 50 && this.progress < 80) this.loadingStatus = 'Finding Best Connections...';
-        else if (this.progress > 80) this.loadingStatus = 'Finalizing Prices & Taxes...';
-      }
-    }, 200);
+  startLongPress(id: string) {
+    this.endLongPress();
+    this.pressTimeout = setTimeout(() => {
+      this.longPressTooltipId = id;
+    }, 500);
   }
 
-  private resetProgress() {
-    this.progress = 100;
-    this.loadingStatus = 'Complete';
-    setTimeout(() => {
-      clearInterval(this.progressInterval);
-      this.progress = 0;
-    }, 500);
+  endLongPress() {
+    if (this.pressTimeout) {
+      clearTimeout(this.pressTimeout);
+      this.pressTimeout = null;
+    }
+    this.longPressTooltipId = null;
+  }
+
+  segments(flight: any): any[] {
+    return flight?.itineraries?.[0]?.segments || [];
+  }
+
+  getStops(flight: any): number {
+    return Math.max(0, this.segments(flight).length - 1);
+  }
+
+  stopText(flight: any): string {
+    const stops = this.getStops(flight);
+    if (stops === 0) {
+      return 'Non-Stop';
+    }
+    return `${stops} Stop${stops > 1 ? 's' : ''}`;
+  }
+
+  layoverAirports(flight: any): string[] {
+    const segs = this.segments(flight);
+    if (segs.length <= 1) {
+      return [];
+    }
+    return segs.slice(0, -1).map((segment: any) => segment.arrival?.iataCode).filter(Boolean);
+  }
+
+  departureAirport(flight: any): string {
+    return this.segments(flight)?.[0]?.departure?.iataCode || '---';
+  }
+
+  arrivalAirport(flight: any): string {
+    const segs = this.segments(flight);
+    return segs.length ? segs[segs.length - 1]?.arrival?.iataCode || '---' : '---';
+  }
+
+  departureTime(flight: any): string {
+    const first = this.segments(flight)?.[0]?.departure?.at;
+    return first ? this.formatTime(first) : '--:--';
+  }
+
+  arrivalTime(flight: any): string {
+    const segs = this.segments(flight);
+    const last = segs.length ? segs[segs.length - 1]?.arrival?.at : null;
+    return last ? this.formatTime(last) : '--:--';
+  }
+
+  departureDate(flight: any): string {
+    const first = this.segments(flight)?.[0]?.departure?.at;
+    return first ? this.formatDate(first) : '-';
+  }
+
+  arrivalDate(flight: any): string {
+    const segs = this.segments(flight);
+    const last = segs.length ? segs[segs.length - 1]?.arrival?.at : null;
+    return last ? this.formatDate(last) : '-';
+  }
+
+  durationLabel(flight: any): string {
+    return this.formatDuration(flight?.itineraries?.[0]?.duration || '');
+  }
+
+  priceValue(flight: any): number {
+    return Number(flight?.price?.total || 0);
+  }
+
+  oldPrice(flight: any): number {
+    const base = Number(flight?.price?.base || 0);
+    const total = Number(flight?.price?.total || 0);
+    return base > total ? base : total;
+  }
+
+  discountAmount(flight: any): number {
+    const base = Number(flight?.price?.base || 0);
+    const total = Number(flight?.price?.total || 0);
+    return base > total ? base - total : 0;
+  }
+
+  fareCode(flight: any): string {
+    const ref = flight?.id || flight?.lastTicketingDate || 'STLRS';
+    return String(ref).slice(0, 8).toUpperCase();
+  }
+
+  points(flight: any): number {
+    return Math.max(1, Math.floor(this.priceValue(flight) / 1000));
+  }
+
+  private formatTime(dateString: string): string {
+    const date = new Date(dateString);
+    const hour = date.getHours();
+    const minute = String(date.getMinutes()).padStart(2, '0');
+    const suffix = hour >= 12 ? 'PM' : 'AM';
+    const h12 = hour % 12 || 12;
+    return `${h12}:${minute} ${suffix}`;
+  }
+
+  private formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', weekday: 'short' });
+  }
+
+  private formatDuration(duration: string): string {
+    if (!duration) {
+      return '-';
+    }
+    return duration.replace('PT', '').replace('H', 'hr ').replace('M', 'min').toLowerCase();
   }
 }
