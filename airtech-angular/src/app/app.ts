@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet, ActivatedRoute } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { routeAnimation } from './animations/route.animations';
 
@@ -12,7 +12,13 @@ import { routeAnimation } from './animations/route.animations';
   animations: [routeAnimation]
 })
 export class AppComponent {
+  private router = inject(Router);
+
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
+
+  showSupportBar(): boolean {
+    return !this.router.url.startsWith('/admin');
   }
 }

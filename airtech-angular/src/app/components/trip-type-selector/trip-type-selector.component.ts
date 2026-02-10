@@ -25,8 +25,8 @@ export class TripTypeSelectorComponent {
     @Output() onChange = new EventEmitter<any>();
 
     types = [
-        { id: 'return', label: 'Return' },
+        { id: 'return', label: 'Round trip' },
         { id: 'one-way', label: 'One way' },
-        { id: 'multi-city', label: 'Multi-city' }
+        { id: 'multi-city', label: 'Multi city' }
     ] as const;
 }

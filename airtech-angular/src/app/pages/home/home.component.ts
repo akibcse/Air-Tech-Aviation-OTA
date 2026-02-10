@@ -1,13 +1,15 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Inject, OnDestroy, OnInit, inject, signal } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { HeroComponent } from '../../components/hero/hero.component';
 import { LucideAngularModule, Globe, Hotel, Car, ChevronLeft, ChevronRight } from 'lucide-angular';
 import { PublicService } from '../../services/public.service';
+import { RouterLink } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HeroComponent, LucideAngularModule],
+  imports: [CommonModule, HeroComponent, LucideAngularModule, RouterLink],
   template: `
     <main class="min-h-screen bg-gray-100">
       <!-- Hero -->
@@ -16,18 +18,18 @@ import { PublicService } from '../../services/public.service';
       <!-- Secondary Navigation / Quick Links -->
       <div class="bg-white border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 py-4 flex gap-4 overflow-x-auto scrollbar-hide">
-          <button class="flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg text-sm font-semibold text-gray-700 whitespace-nowrap transition-colors border border-gray-200">
+          <a routerLink="/search" class="flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg text-sm font-semibold text-gray-700 whitespace-nowrap transition-colors border border-gray-200">
             <lucide-icon [name]="hotelIcon" class="w-4 h-4 text-blue-600"></lucide-icon>
-            Hotels
-          </button>
-          <button class="flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg text-sm font-semibold text-gray-700 whitespace-nowrap transition-colors border border-gray-200">
+            Flight Search
+          </a>
+          <a routerLink="/" fragment="popular-routes" class="flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg text-sm font-semibold text-gray-700 whitespace-nowrap transition-colors border border-gray-200">
             <lucide-icon [name]="carIcon" class="w-4 h-4 text-blue-600"></lucide-icon>
-            Car Hire
-          </button>
-          <button class="flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg text-sm font-semibold text-gray-700 whitespace-nowrap transition-colors border border-gray-200">
+            Popular Routes
+          </a>
+          <a routerLink="/support" class="flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg text-sm font-semibold text-gray-700 whitespace-nowrap transition-colors border border-gray-200">
             <lucide-icon [name]="globeIcon" class="w-4 h-4 text-blue-600"></lucide-icon>
-            Explore everywhere
-          </button>
+            Support Team
+          </a>
         </div>
       </div>
 
@@ -41,7 +43,9 @@ import { PublicService } from '../../services/public.service';
                   <div class="absolute inset-0 transition-opacity duration-500">
                     <img 
                       [src]="banner.imageUrl" 
-                      [alt]="banner.title || 'Banner'"
+                      [alt]="banner.title || 'Cheap flight offers from Bangladesh with AirTech Aviation'"
+                      loading="lazy"
+                      decoding="async"
                       class="w-full h-full object-cover"
                     />
                     @if (banner.title || banner.subtitle) {
@@ -91,10 +95,88 @@ import { PublicService } from '../../services/public.service';
       }
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        <div class="bg-white p-8 md:p-12 rounded-xl text-center shadow-sm border border-gray-100">
-          <h2 class="text-2xl font-bold text-gray-900 mb-2">Ready to fly?</h2>
-          <p class="text-gray-600">Start your search above to find the best deals on flights worldwide.</p>
-        </div>
+        <section class="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-gray-100">
+          <h2 class="text-2xl md:text-3xl font-black text-gray-900 mb-3">Online Air Ticket Booking in Bangladesh</h2>
+          <p class="text-gray-700 leading-relaxed">
+            AirTech Aviation is an airline ticket booking website in Bangladesh built for fast fare comparison, secure checkout, and responsive support. Travelers in Dhaka and nationwide can book cheap air tickets for business, family, or holiday trips through one reliable platform.
+          </p>
+        </section>
+
+        <section class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100">
+          <h2 class="text-xl md:text-2xl font-black text-gray-900 mb-4">Why Book with AirTech Aviation</h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="rounded-lg border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800">Secure online payment flow</div>
+            <div class="rounded-lg border border-blue-100 bg-blue-50 px-4 py-3 text-sm font-semibold text-blue-800">Instant booking confirmation</div>
+            <div class="rounded-lg border border-amber-100 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">Dedicated refund assistance</div>
+            <div class="rounded-lg border border-slate-100 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-800">Bangladesh-focused traveler support</div>
+          </div>
+        </section>
+
+        <section id="popular-routes" class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100">
+          <h2 class="text-xl md:text-2xl font-black text-gray-900 mb-2">Cheap Flights from Bangladesh</h2>
+          <p class="text-sm text-gray-600 mb-5">Popular flight booking searches from Dhaka and major Bangladesh departure points.</p>
+          <div class="grid md:grid-cols-2 gap-3">
+            <a routerLink="/search" [queryParams]="{ tripType: 'one-way', origin: 'DAC', destination: 'DXB', adults: 1, children: 0, cabin: 'ECONOMY' }" class="rounded-lg border border-gray-200 px-4 py-3 hover:border-blue-300 hover:bg-blue-50 transition-colors">
+              <h3 class="font-bold text-gray-900">Air ticket Dhaka to Dubai</h3>
+              <p class="text-sm text-gray-600">Compare international fares and departure times quickly.</p>
+            </a>
+            <a routerLink="/search" [queryParams]="{ tripType: 'one-way', origin: 'DAC', destination: 'KUL', adults: 1, children: 0, cabin: 'ECONOMY' }" class="rounded-lg border border-gray-200 px-4 py-3 hover:border-blue-300 hover:bg-blue-50 transition-colors">
+              <h3 class="font-bold text-gray-900">Dhaka to Kuala Lumpur flights</h3>
+              <p class="text-sm text-gray-600">Find affordable tickets for work and family trips.</p>
+            </a>
+            <a routerLink="/search" [queryParams]="{ tripType: 'one-way', origin: 'DAC', destination: 'CGP', adults: 1, children: 0, cabin: 'ECONOMY' }" class="rounded-lg border border-gray-200 px-4 py-3 hover:border-blue-300 hover:bg-blue-50 transition-colors">
+              <h3 class="font-bold text-gray-900">Domestic flights in Bangladesh</h3>
+              <p class="text-sm text-gray-600">Search domestic routes with transparent pricing.</p>
+            </a>
+            <a routerLink="/search" [queryParams]="{ tripType: 'one-way', origin: 'DAC', destination: 'JED', adults: 1, children: 0, cabin: 'ECONOMY' }" class="rounded-lg border border-gray-200 px-4 py-3 hover:border-blue-300 hover:bg-blue-50 transition-colors">
+              <h3 class="font-bold text-gray-900">Dhaka to Jeddah international booking</h3>
+              <p class="text-sm text-gray-600">Book international flight tickets from Bangladesh online.</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100">
+          <h2 class="text-xl md:text-2xl font-black text-gray-900 mb-2">International & Domestic Airlines</h2>
+          <p class="text-sm text-gray-600 mb-4">AirTech Aviation works with leading carriers for international and domestic travel options.</p>
+          <div class="flex flex-wrap gap-2">
+            @for (airline of partnerAirlines; track airline) {
+              <span class="text-xs font-bold uppercase tracking-wide text-gray-700 bg-gray-100 border border-gray-200 rounded-full px-3 py-1.5">{{ airline }}</span>
+            }
+          </div>
+        </section>
+
+        <section class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100">
+          <h2 class="text-xl md:text-2xl font-black text-gray-900 mb-3">Secure Online Flight Booking</h2>
+          <p class="text-gray-700 mb-4">From search to payment, our booking flow is designed for speed, security, and confidence.</p>
+          <ul class="grid md:grid-cols-2 gap-2 text-sm text-gray-700">
+            <li class="rounded-lg border border-gray-200 px-3 py-2">Encrypted checkout and verified payment steps</li>
+            <li class="rounded-lg border border-gray-200 px-3 py-2">Clear fare details before payment confirmation</li>
+            <li class="rounded-lg border border-gray-200 px-3 py-2">Post-booking support for schedule changes</li>
+            <li class="rounded-lg border border-gray-200 px-3 py-2">Assistance for cancellation and refund requests</li>
+          </ul>
+        </section>
+
+        <section class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100">
+          <h2 class="text-xl md:text-2xl font-black text-gray-900 mb-3">Start Your Booking</h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
+            <a routerLink="/search" class="rounded-lg border border-gray-200 px-4 py-3 hover:bg-blue-50 hover:border-blue-300 transition-colors">
+              <h3 class="font-bold text-gray-900">Flight Search Page</h3>
+              <p class="text-gray-600 mt-1">Find the cheapest flight tickets instantly.</p>
+            </a>
+            <a routerLink="/" fragment="popular-routes" class="rounded-lg border border-gray-200 px-4 py-3 hover:bg-blue-50 hover:border-blue-300 transition-colors">
+              <h3 class="font-bold text-gray-900">Popular Routes</h3>
+              <p class="text-gray-600 mt-1">Explore high-demand routes from Bangladesh.</p>
+            </a>
+            <a routerLink="/my-bookings" class="rounded-lg border border-gray-200 px-4 py-3 hover:bg-blue-50 hover:border-blue-300 transition-colors">
+              <h3 class="font-bold text-gray-900">Booking History</h3>
+              <p class="text-gray-600 mt-1">Review your previous and active bookings.</p>
+            </a>
+            <a routerLink="/support" class="rounded-lg border border-gray-200 px-4 py-3 hover:bg-blue-50 hover:border-blue-300 transition-colors">
+              <h3 class="font-bold text-gray-900">Support Page</h3>
+              <p class="text-gray-600 mt-1">Get help from our customer care team.</p>
+            </a>
+          </div>
+        </section>
 
         <section id="hotels" class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
           <div class="flex items-center justify-between gap-4 mb-3">
@@ -111,12 +193,23 @@ import { PublicService } from '../../services/public.service';
           </div>
           <p class="text-sm text-gray-600">Pick up and drop off rentals from major airports. Car hire integration is in progress.</p>
         </section>
+
+        <section class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100">
+          <h2 class="text-xl md:text-2xl font-black text-gray-900 mb-2">AirTech Aviation Bangladesh Contact</h2>
+          <p class="text-sm text-gray-600">Serving travelers in Dhaka and across Bangladesh for fast and secure online airline ticket booking support.</p>
+          <div class="mt-3 flex flex-wrap gap-3 text-sm text-gray-700">
+            <a href="mailto:roadyakib@gmail.com" class="font-semibold text-blue-700 hover:text-blue-900">roadyakib&#64;gmail.com</a>
+            <a href="tel:01521438546" class="font-semibold text-blue-700 hover:text-blue-900">01521438546</a>
+          </div>
+        </section>
       </div>
     </main>
   `
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   private publicService = inject(PublicService);
+  private title = inject(Title);
+  private meta = inject(Meta);
 
   hotelIcon = Hotel;
   carIcon = Car;
@@ -128,15 +221,21 @@ export class HomeComponent implements OnInit {
   currentBannerIndex = signal(0);
   private bannerInterval: any;
 
+  partnerAirlines = ['Biman Bangladesh', 'US-Bangla', 'Emirates', 'Qatar Airways', 'Saudia', 'Turkish Airlines'];
+
+  constructor(@Inject(DOCUMENT) private document: Document) {}
+
   ngOnInit() {
+    this.applyHomepageSeo();
+
     this.publicService.getBanners().subscribe({
-      next: (data) => {
+      next: (data: any[]) => {
         this.banners.set(data);
         if (data.length > 1) {
           this.startAutoRotate();
         }
       },
-      error: (err) => console.error('Failed to load banners', err)
+      error: (err: unknown) => console.error('Failed to load banners', err)
     });
   }
 
@@ -160,5 +259,33 @@ export class HomeComponent implements OnInit {
   previousBanner() {
     const prev = (this.currentBannerIndex() - 1 + this.banners().length) % this.banners().length;
     this.currentBannerIndex.set(prev);
+  }
+
+  private applyHomepageSeo() {
+    const title = 'Cheap Air Tickets Bangladesh | Secure Booking | AirTech';
+    const description = 'Book cheap air tickets in Bangladesh with AirTech Aviation. Secure, instant online flight booking from Dhaka for domestic and international routes.';
+    const canonicalUrl = 'https://airtechaviation.click/';
+
+    this.title.setTitle(title);
+    this.meta.updateTag({ name: 'description', content: description });
+    this.meta.updateTag({ name: 'keywords', content: 'cheap air tickets bangladesh, flight booking bangladesh, online air ticket booking, cheapest flight tickets, international flight booking from bangladesh, air ticket dhaka, airline ticket booking website bangladesh' });
+    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:title', content: title });
+    this.meta.updateTag({ property: 'og:description', content: description });
+    this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
+    this.meta.updateTag({ property: 'og:site_name', content: 'AirTech Aviation' });
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.meta.updateTag({ name: 'twitter:title', content: title });
+    this.meta.updateTag({ name: 'twitter:description', content: description });
+
+    let canonical = this.document.querySelector("link[rel='canonical']") as HTMLLinkElement | null;
+    if (!canonical) {
+      canonical = this.document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      this.document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
+
   }
 }

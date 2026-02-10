@@ -1,4 +1,19 @@
 <app-navbar></app-navbar>
+@if (showSupportBar()) {
+  <div class="fixed bottom-14 md:bottom-0 left-0 right-0 z-40 border-t border-blue-100 bg-blue-50/95 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-xs sm:text-sm font-semibold text-blue-900">Need help booking flights? Call or email our support team.</p>
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm">
+          <a href="tel:01521438546" class="inline-flex items-center rounded-md bg-blue-600 px-3 py-1.5 font-bold text-white hover:bg-blue-700 transition-colors">Call Now</a>
+          <a href="tel:01521438546" class="font-semibold text-blue-800 hover:text-blue-900">01521438546</a>
+          <span class="text-blue-300 hidden sm:inline">|</span>
+          <a href="mailto:roadyakib@gmail.com" class="font-semibold text-blue-800 hover:text-blue-900">roadyakib&#64;gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+}
 <div class="app-shell" [@routeAnimation]="o.isActivated && o.activatedRoute.routeConfig?.path">
     <router-outlet #o="outlet"></router-outlet>
 </div>

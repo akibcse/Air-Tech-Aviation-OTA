@@ -16,6 +16,7 @@ import { AdminBookingsComponent } from './pages/admin/bookings/admin-bookings.co
 import { AdminSystemSettingsComponent } from './pages/admin/settings/admin-system-settings.component';
 import { AdminApiHealthComponent } from './pages/admin/api-health/admin-api-health.component';
 import { UserBookingsComponent } from './pages/user-bookings/user-bookings.component';
+import { SupportComponent } from './pages/support/support.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -24,6 +25,7 @@ export const routes: Routes = [
     { path: 'auth/register', component: RegisterComponent },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'my-bookings', component: UserBookingsComponent },
+    { path: 'support', component: SupportComponent },
     { path: 'book/details', component: BookingFlightDetailsComponent },
     { path: 'book/passenger-info', component: PassengerInfoComponent },
     { path: 'book/seats', component: SeatSelectionComponent },

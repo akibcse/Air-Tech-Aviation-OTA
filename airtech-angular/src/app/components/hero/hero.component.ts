@@ -20,12 +20,16 @@ import { PublicService } from '../../services/public.service';
       <div class="relative z-10 max-w-[1248px] mx-auto">
         <!-- Headline -->
         <h1 class="text-4xl md:text-5xl lg:text-[64px] font-black tracking-tight mb-8 leading-[1.1] max-w-4xl">
-          Millions of cheap flights. <br class="hidden sm:block" />
-          One simple search.
+          Cheap Air Tickets in Bangladesh, <br class="hidden sm:block" />
+          Booked Securely in Minutes.
         </h1>
 
+        <p class="max-w-3xl text-base md:text-lg text-white/90 mb-8 font-medium">
+          AirTech Aviation helps travelers in Dhaka and across Bangladesh compare fares and complete online air ticket booking for domestic and international flights.
+        </p>
+
         <!-- Search Container -->
-        <div class="bg-white/10 backdrop-blur-md p-2 rounded-t-xl inline-block">
+        <div id="flight-search-section" class="bg-white/10 backdrop-blur-md p-2 rounded-t-xl inline-block">
           <app-search-tabs [activeTab]="activeTab()" (onChange)="activeTab.set($event)"></app-search-tabs>
         </div>
 
@@ -40,6 +44,7 @@ import { PublicService } from '../../services/public.service';
             <div class="text-gray-800 p-8 text-center font-medium">Car Hire search coming soon!</div>
           }
         </div>
+
       </div>
     </div>
   `

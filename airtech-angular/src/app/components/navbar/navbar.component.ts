@@ -31,6 +31,9 @@ import { AuthService } from '../../services/auth.service';
              <a routerLink="/" fragment="cars" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">
                Car Hire
              </a>
+             <a routerLink="/support" routerLinkActive="text-blue-600" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+               Support
+             </a>
 
             @if (auth.isLoading()) {
               <div class="flex items-center gap-4 ml-4 animate-pulse">
@@ -88,6 +91,7 @@ import { AuthService } from '../../services/auth.service';
         <div class="md:hidden bg-white border-t border-gray-100 p-4 space-y-4">
           <a routerLink="/" (click)="isMenuOpen.set(false)" class="block text-gray-600 font-medium">Home</a>
           <a routerLink="/search" (click)="isMenuOpen.set(false)" class="block text-gray-600 font-medium">Search Flights</a>
+          <a routerLink="/support" (click)="isMenuOpen.set(false)" class="block text-gray-600 font-medium">Support</a>
           
           @if (!auth.isLoading()) {
             <div class="pt-4 border-t border-gray-100 space-y-3">

@@ -276,6 +276,17 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
   private flightService = inject(FlightService);
 
   private readonly searchParamKeys = ['tripType', 'origin', 'destination', 'date', 'adults', 'children', 'cabin', 'direct', 'returnDate', 'segments'];
+  private readonly airportCityByCode: Record<string, string> = {
+    DAC: 'Dhaka',
+    CGP: 'Chattogram',
+    CXB: "Cox's Bazar",
+    ZYL: 'Sylhet',
+    DXB: 'Dubai',
+    KUL: 'Kuala Lumpur',
+    JED: 'Jeddah',
+    DOH: 'Doha',
+    SIN: 'Singapore'
+  };
   private lastSearchSignature = '';
   private hasBudgetInUrl = false;
   private countdownTimer: ReturnType<typeof setInterval> | null = null;
@@ -444,6 +455,15 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
       this.hydrateState(params);
       this.hydrateUiState(params);
 
+      if (!this.hasCompleteSearchState()) {
+        this.lastSearchSignature = '';
+        this.results.set([]);
+        this.loading.set(false);
+        this.stopLoadingProgress();
+        this.showSearchPanel.set(true);
+        return;
+      }
+
       const searchParams = this.extractSearchParams(params);
       const searchSignature = JSON.stringify(searchParams);
       if (searchSignature !== this.lastSearchSignature) {
@@ -595,7 +615,7 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
     }
 
     const newState: any = {
-      tripType: params.tripType || 'return',
+      tripType: params.tripType || (params.returnDate ? 'return' : 'one-way'),
       travellers: {
         adults: Number(params.adults) || 1,
         childrenCount: Number(params.children) || 0,
@@ -609,8 +629,8 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
       try {
         const parsed = JSON.parse(params.segments);
         newState.segments = parsed.map((s: any) => ({
-          origin: { iata: s.o, display: s.o },
-          destination: { iata: s.d, display: s.d },
+          origin: { iata: s.o, display: this.formatAirportDisplay(s.o) },
+          destination: { iata: s.d, display: this.formatAirportDisplay(s.d) },
           date: s.t
         }));
       } catch (error) {
@@ -618,8 +638,8 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
       }
     } else if (params.origin) {
       newState.segments = [{
-        origin: { iata: params.origin, display: params.origin },
-        destination: { iata: params.destination, display: params.destination },
+        origin: { iata: params.origin, display: this.formatAirportDisplay(params.origin) },
+        destination: { iata: params.destination, display: this.formatAirportDisplay(params.destination) },
         date: params.date
       }];
     }
@@ -716,6 +736,31 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
         this.finishLoadingError();
       }
     });
+  }
+
+  private hasCompleteSearchState(): boolean {
+    const state = this.searchState.state();
+
+    if (state.tripType === 'multi-city') {
+      return state.segments.length > 0 && state.segments.every(segment => !!segment.origin.iata && !!segment.destination.iata && !!segment.date);
+    }
+
+    const first = state.segments[0];
+    if (!first?.origin.iata || !first?.destination.iata || !first?.date) {
+      return false;
+    }
+
+    if (state.tripType === 'return') {
+      return !!state.returnDate;
+    }
+
+    return true;
+  }
+
+  private formatAirportDisplay(iataCode: string): string {
+    const code = String(iataCode || '').toUpperCase();
+    const city = this.airportCityByCode[code];
+    return city ? `${city} (${code})` : code;
   }
 
   private getAirlineCode(flight: any): string {

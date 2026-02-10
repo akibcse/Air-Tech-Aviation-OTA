@@ -13,6 +13,7 @@ export interface SearchState {
     directOnly: boolean;
     returnDate: string;
     addHotel: boolean;
+    fareType: 'regular' | 'bg-umrah';
 }
 
 @Injectable({
@@ -27,7 +28,8 @@ export class SearchStateService {
         travellers: { adults: 1, childrenCount: 0, cabin: 'Economy' },
         directOnly: false,
         returnDate: '',
-        addHotel: false
+        addHotel: false,
+        fareType: 'regular'
     });
 
     updateState(partial: Partial<SearchState>) {
