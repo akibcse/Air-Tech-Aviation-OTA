@@ -9,19 +9,25 @@ import { BookingService } from '../../services/booking.service';
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
   template: `
-    <div class="space-y-2.5">
+    <div class="space-y-3">
       @if (loading) {
-        <div class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs text-slate-600">
-          Searching flights... {{ progress }}%
+        <div class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-xs text-slate-600 transition-opacity duration-200">
+          <div class="flex items-center justify-between mb-2">
+            <p class="font-semibold">Searching flights...</p>
+            <p class="font-black text-blue-700">{{ progress }}%</p>
+          </div>
+          <div class="h-1.5 w-full rounded-full bg-slate-100 overflow-hidden">
+            <div class="h-full rounded-full bg-blue-600 transition-all duration-300 ease-out" [style.width.%]="progress"></div>
+          </div>
         </div>
 
-        <div class="space-y-2.5">
+        <div class="space-y-3">
           @for (_ of [1,2,3,4]; track $index) {
-            <div class="rounded-xl border border-slate-200 bg-white p-3 shadow-sm animate-pulse">
-              <div class="h-4 w-2/3 bg-slate-100 rounded mb-2"></div>
-              <div class="h-3 w-full bg-slate-100 rounded mb-1.5"></div>
-              <div class="h-3 w-5/6 bg-slate-100 rounded mb-3"></div>
-              <div class="h-9 w-28 bg-slate-100 rounded-full ml-auto"></div>
+            <div class="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm animate-pulse">
+              <div class="h-4 w-2/3 bg-gray-100 rounded mb-3"></div>
+              <div class="h-3 w-full bg-gray-100 rounded mb-2"></div>
+              <div class="h-3 w-5/6 bg-gray-100 rounded mb-4"></div>
+              <div class="h-10 w-32 bg-gray-100 rounded-xl ml-auto"></div>
             </div>
           }
         </div>
@@ -36,107 +42,170 @@ import { BookingService } from '../../services/booking.service';
           <p class="text-sm text-slate-500">Try adjusting your filters to see more options.</p>
         </div>
       } @else {
-        @for (flight of flights; track flight.id; let i = $index) {
-          <article class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden">
-            <div class="p-3.5">
-              <div class="flex items-center gap-1.5 flex-wrap mb-3">
-                <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 text-emerald-700 px-2 py-0.5 text-[10px] font-bold">
-                  <lucide-icon [name]="checkIcon" class="w-3 h-3"></lucide-icon>
-                  Partially Refundable
-                </span>
-                <span class="inline-flex items-center gap-1 rounded-full bg-blue-50 text-blue-700 px-2 py-0.5 text-[10px] font-bold">
-                  <lucide-icon [name]="starIcon" class="w-3 h-3"></lucide-icon>
-                  {{ i % 2 === 0 ? 'BEST' : 'PREFERRED' }}
-                </span>
-                <span class="inline-flex items-center gap-1 rounded-full bg-amber-50 text-amber-700 px-2 py-0.5 text-[10px] font-bold">
-                  <lucide-icon [name]="clockIcon" class="w-3 h-3"></lucide-icon>
-                  Pay Later
-                </span>
-              </div>
+        @for (flight of flights; track flight.id || $index; let i = $index) {
+          <article class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:border-blue-200 transition-all group overflow-hidden">
+            <div class="flex flex-col lg:flex-row">
+              <div class="flex-1 p-4 md:p-6 space-y-6">
+                @for (itinerary of itineraries(flight); track $index; let itineraryIndex = $index) {
+                  <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="flex items-center gap-4 w-full md:w-48">
+                      <div class="w-10 h-10 relative flex-shrink-0 bg-gray-50 rounded-full flex items-center justify-center overflow-hidden border border-gray-100 transition-all">
+                        <img
+                          class="w-full h-full object-contain p-1.5"
+                          [src]="logoUrl(itinerary)"
+                          [alt]="itineraryAirlineCode(itinerary)"
+                          (error)="handleImageError($event, itineraryAirlineCode(itinerary))"
+                        />
+                      </div>
+                      <div>
+                        <p class="font-black text-gray-900 leading-tight uppercase tracking-tighter">{{ itineraryAirlineCode(itinerary) }}</p>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase">{{ itineraryFlightNumber(itinerary) }}</p>
+                      </div>
+                    </div>
 
-              <div class="grid grid-cols-[1fr,90px,1fr] gap-2 items-center mb-3">
-                <div>
-                  <p class="text-xl font-black text-slate-900 leading-none">{{ departureTime(flight) }}</p>
-                  <p class="text-sm font-bold text-slate-700 mt-1">{{ departureAirport(flight) }}</p>
-                  <p class="text-[11px] text-slate-500">{{ departureDate(flight) }}</p>
-                </div>
+                    <div class="flex-1 flex items-center justify-center gap-4 sm:gap-8 w-full">
+                    <div class="text-right">
+                      <p class="text-xl font-black text-gray-900 uppercase leading-none">{{ itineraryDepartureTime(itinerary) }}</p>
+                      <p class="text-xs text-gray-400 font-black mt-1" [title]="itineraryDepartureDisplay(itinerary)">{{ itineraryDepartureDisplay(itinerary) }}</p>
+                    </div>
 
-                <div class="text-center" (touchstart)="startLongPress(flight.id)" (touchend)="endLongPress()" (touchcancel)="endLongPress()">
-                  <p class="text-[11px] font-semibold text-slate-600">{{ durationLabel(flight) }}</p>
-                  <div class="relative flex items-center justify-center py-1.5">
-                    <span class="absolute left-2 right-2 h-[2px] bg-slate-300"></span>
-                    <lucide-icon [name]="planeIcon" class="w-4 h-4 text-blue-600 bg-white relative"></lucide-icon>
+                      <div
+                        class="flex flex-col items-center flex-1 max-w-[220px] relative group/tooltip"
+                        (touchstart)="startLongPress(longPressKey(flight, itineraryIndex))"
+                        (touchend)="endLongPress()"
+                        (touchcancel)="endLongPress()"
+                      >
+                        <p class="text-[10px] text-gray-400 mb-1 font-bold uppercase tracking-widest">{{ itineraryDurationLabel(itinerary) }}</p>
+                        <div class="w-full flex items-center gap-2">
+                          <div class="h-[2px] bg-gray-100 flex-1 relative rounded-full">
+                            <div class="absolute top-1/2 left-0 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-gray-300"></div>
+                          </div>
+                          <lucide-icon [name]="planeIcon" class="w-3.5 h-3.5 text-blue-500 rotate-90 opacity-70 group-hover:opacity-100 transition-opacity"></lucide-icon>
+                          <div class="h-[2px] bg-gray-100 flex-1 relative rounded-full">
+                            <div class="absolute top-1/2 right-0 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                          </div>
+                        </div>
+                        <p class="text-[10px] font-black mt-1 tracking-widest uppercase cursor-help" [class]="itineraryStops(itinerary) === 0 ? 'text-green-600' : 'text-amber-600'">
+                          {{ itineraryStops(itinerary) === 0 ? 'Direct' : itineraryStops(itinerary) + ' Stop' + (itineraryStops(itinerary) > 1 ? 's' : '') }}
+                        </p>
+
+                        @if (itineraryStops(itinerary) > 0) {
+                          <div class="hidden md:block absolute z-20 mt-2 top-full left-1/2 -translate-x-1/2 rounded-lg bg-slate-900 text-white text-[11px] px-2.5 py-2 shadow-lg min-w-56 text-left opacity-0 pointer-events-none group-hover/tooltip:opacity-100 transition-opacity">
+                            <p class="font-bold mb-1">Transit Details</p>
+                            @for (layover of itineraryLayovers(itinerary); track layover.code + layover.duration) {
+                              <div class="mb-1 last:mb-0">
+                                <div>{{ layover.airport }}</div>
+                                <div class="text-slate-300 text-[10px]">Layover: {{ layover.duration }}</div>
+                              </div>
+                            }
+                          </div>
+                        }
+
+                        @if (itineraryStops(itinerary) > 0 && longPressTooltipId === longPressKey(flight, itineraryIndex)) {
+                          <div class="absolute z-20 mt-2 top-full left-1/2 -translate-x-1/2 rounded-lg bg-slate-900 text-white text-[11px] px-2.5 py-2 shadow-lg min-w-56 text-left md:hidden">
+                            <p class="font-bold mb-1">Transit Details</p>
+                            @for (layover of itineraryLayovers(itinerary); track layover.code + layover.duration) {
+                              <div class="mb-1 last:mb-0">
+                                <div>{{ layover.airport }}</div>
+                                <div class="text-slate-300 text-[10px]">Layover: {{ layover.duration }}</div>
+                              </div>
+                            }
+                          </div>
+                        }
+                      </div>
+
+                      <div class="text-left">
+                        <p class="text-xl font-black text-gray-900 uppercase leading-none">{{ itineraryArrivalTime(itinerary) }}</p>
+                        <p class="text-xs text-gray-400 font-black mt-1" [title]="itineraryArrivalDisplay(itinerary)">{{ itineraryArrivalDisplay(itinerary) }}</p>
+                      </div>
+                    </div>
                   </div>
-                  <p class="text-[11px] font-semibold text-slate-700">{{ stopText(flight) }}</p>
 
-                  @if ((getStops(flight) > 0) && (longPressTooltipId === flight.id)) {
-                    <div class="absolute z-20 mt-1 left-1/2 -translate-x-1/2 rounded-lg bg-slate-900 text-white text-[11px] px-2 py-1.5 shadow-lg">
-                      @for (layover of layoverAirports(flight); track layover) {
-                        <div>{{ layover }} transit</div>
-                      }
+                  @if (itineraryIndex < itineraries(flight).length - 1) {
+                    <div class="border-t border-dashed border-gray-100 my-4 relative">
+                      <span class="absolute left-1/2 -translate-x-1/2 -top-2.5 bg-white px-2 text-[10px] uppercase font-bold text-gray-400 tracking-widest">Next Flight</span>
                     </div>
                   }
-                </div>
-
-                <div class="text-right">
-                  <p class="text-xl font-black text-slate-900 leading-none">{{ arrivalTime(flight) }}</p>
-                  <p class="text-sm font-bold text-slate-700 mt-1">{{ arrivalAirport(flight) }}</p>
-                  <p class="text-[11px] text-slate-500">{{ arrivalDate(flight) }}</p>
-                </div>
+                }
               </div>
 
-              <div class="flex items-end justify-between gap-3 mb-2">
-                <div>
-                  <p class="text-[10px] uppercase tracking-wider text-slate-500">Starting from</p>
-                  <p class="text-2xl font-black text-slate-900">BDT {{ priceValue(flight) | number }}</p>
+              <div class="w-full lg:w-64 bg-gray-50/50 p-4 md:p-6 flex flex-col justify-center items-end border-l border-gray-100 group-hover:bg-blue-50/50 transition-colors">
+                <div class="text-right mb-4">
+                  <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total Inc. Taxes</p>
+                  <div class="flex items-baseline justify-end gap-1">
+                    <span class="text-sm font-bold text-blue-600">BDT</span>
+                    <span class="text-3xl font-black text-blue-600 tracking-tighter">{{ priceValue(flight) | number }}</span>
+                  </div>
                   @if (discountAmount(flight) > 0) {
-                    <p class="text-xs text-slate-400 line-through">BDT {{ oldPrice(flight) | number }}</p>
+                    <p class="text-xs text-gray-400 line-through">BDT {{ oldPrice(flight) | number }}</p>
                   }
                 </div>
 
                 <button
                   type="button"
-                  (click)="handleSelect(flight)"
-                  class="h-11 min-w-[94px] rounded-full bg-orange-500 text-white px-4 inline-flex items-center justify-center gap-1.5 font-bold text-sm hover:bg-orange-600"
+                  (click)="toggleDetails(flight.id || i.toString())"
+                  class="w-full py-3 mb-2 bg-white text-blue-600 border border-blue-200 rounded-xl font-black uppercase tracking-widest text-xs hover:bg-blue-50 transition-all flex items-center justify-center gap-2"
                 >
-                  Select
-                  <lucide-icon [name]="arrowRightIcon" class="w-4 h-4"></lucide-icon>
+                  {{ expandedFlightId === (flight.id || i.toString()) ? 'Hide Details' : 'View Details' }}
                 </button>
-              </div>
 
-              <div class="flex items-center justify-between text-[11px] text-slate-500 border-t border-slate-100 pt-2.5">
-                <p>
-                  <span class="font-semibold text-slate-600">{{ fareCode(flight) }}</span>
-                  •
-                  <lucide-icon [name]="starIcon" class="w-3.5 h-3.5 inline-block -mt-0.5"></lucide-icon>
-                  {{ points(flight) }}
-                </p>
-                <button type="button" (click)="toggleDetails(flight.id)" class="font-semibold text-blue-700 underline underline-offset-2">
-                  {{ expandedFlightId === flight.id ? 'Hide Details' : 'View Details' }}
+                <button
+                  type="button"
+                  (click)="handleSelect(flight)"
+                  class="w-full py-3 bg-blue-600 text-white rounded-xl font-black uppercase tracking-widest text-xs hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-200 transition-all flex items-center justify-center gap-2 active:scale-95"
+                >
+                  Select Flight
+                  <lucide-icon [name]="arrowRightIcon" class="w-4 h-4"></lucide-icon>
                 </button>
               </div>
             </div>
 
-            @if (expandedFlightId === flight.id) {
-              <div class="border-t border-slate-200 bg-slate-50 px-3.5 py-3">
-                <div class="space-y-3">
+            @if (expandedFlightId === (flight.id || i.toString())) {
+              <div class="border-t border-gray-100 bg-gray-50/50 p-4 md:p-6 animate-in slide-in-from-top-2 duration-200">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <h4 class="text-sm font-black text-slate-900 mb-2">Itinerary</h4>
-                    <div class="space-y-2">
-                      @for (segment of segments(flight); track segment.id) {
-                        <div class="rounded-lg border border-slate-200 bg-white p-2.5">
-                          <p class="text-sm font-semibold text-slate-900">{{ segment.departure.iataCode }} -> {{ segment.arrival.iataCode }}</p>
-                          <p class="text-[11px] text-slate-500">{{ segment.departure.at | date:'medium' }} • {{ segment.arrival.at | date:'medium' }}</p>
-                          <p class="text-[11px] text-slate-600">{{ segment.carrierCode }}{{ segment.number }} • Aircraft {{ segment.aircraft?.code || 'N/A' }}</p>
+                    <h4 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                      <lucide-icon [name]="planeIcon" class="w-4 h-4"></lucide-icon>
+                      Flight Details
+                    </h4>
+
+                    <div class="space-y-6">
+                      @for (itinerary of itineraries(flight); track $index; let itineraryIndex = $index) {
+                        <div class="relative pl-4 border-l-2 border-gray-200 space-y-4">
+                          @for (segment of itinerarySegments(itinerary); track segment.id || $index) {
+                            <div class="relative">
+                              <div class="absolute -left-[21px] top-1 w-3 h-3 rounded-full bg-blue-500 border-2 border-white"></div>
+                              <div class="flex justify-between items-start mb-2 gap-3">
+                                <div>
+                                  <p class="font-bold text-gray-900">{{ airportDisplay(segment.departure) }} <span class="text-gray-400 mx-2">-></span> {{ airportDisplay(segment.arrival) }}</p>
+                                  <p class="text-xs text-gray-500">{{ segment.departure.at | date:'medium' }}</p>
+                                </div>
+                                <div class="text-right">
+                                  <p class="font-bold text-gray-900">{{ segment.carrierCode }} {{ segment.number }}</p>
+                                  <p class="text-xs text-gray-500">{{ segment.aircraft?.code || 'N/A' }}</p>
+                                </div>
+                              </div>
+                              <p class="text-xs text-gray-500 bg-white p-2 rounded border border-gray-100 inline-block">Duration: {{ formatDuration(segment.duration) }}</p>
+                            </div>
+                          }
                         </div>
+
+                        @if (itineraryIndex < itineraries(flight).length - 1) {
+                          <div class="border-t border-gray-200 my-4"></div>
+                        }
                       }
                     </div>
                   </div>
 
-                  <div class="rounded-lg border border-slate-200 bg-white p-2.5 text-[12px] space-y-1.5">
-                    <div class="flex justify-between"><span class="text-slate-500">Baggage</span><span class="font-semibold text-slate-900">7kg cabin, 20kg check-in</span></div>
-                    <div class="flex justify-between"><span class="text-slate-500">Refund</span><span class="font-semibold text-emerald-700">Partial refund applies</span></div>
-                    <div class="flex justify-between"><span class="text-slate-500">Fare Type</span><span class="font-semibold text-slate-900">Economy Saver</span></div>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Baggage & Fare Rules</h4>
+                    <div class="bg-white p-4 rounded-xl border border-gray-100 space-y-3">
+                      <div class="flex justify-between items-center text-sm"><span class="text-gray-500">Cabin Baggage</span><span class="font-bold text-gray-900">7kg</span></div>
+                      <div class="flex justify-between items-center text-sm border-t border-gray-50 pt-3"><span class="text-gray-500">Checked Baggage</span><span class="font-bold text-gray-900">20kg</span></div>
+                      <div class="flex justify-between items-center text-sm border-t border-gray-50 pt-3"><span class="text-gray-500">Fare Class</span><span class="font-bold text-blue-600 px-2 py-0.5 bg-blue-50 rounded">Economy Standard</span></div>
+                      <div class="flex justify-between items-center text-sm border-t border-gray-50 pt-3"><span class="text-gray-500">Refundable</span><span class="font-bold text-green-600">Partial</span></div>
+                      <div class="flex justify-between items-center text-sm border-t border-gray-50 pt-3"><span class="text-gray-500">Points</span><span class="font-bold text-gray-900">{{ points(flight) }}</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -167,6 +236,20 @@ export class FlightResultsComponent {
   checkIcon = CheckCircle;
   starIcon = Star;
 
+  private readonly airportNameByCode: Record<string, string> = {
+    DAC: 'Dhaka - Hazrat Shahjalal Intl',
+    CXB: "Cox's Bazar Airport",
+    DXB: 'Dubai International Airport',
+    DWC: 'Al Maktoum International Airport',
+    DOH: 'Doha Hamad International Airport',
+    CGP: 'Chattogram Shah Amanat Intl',
+    ZYL: 'Sylhet Osmani International',
+    JED: 'Jeddah King Abdulaziz Intl',
+    RUH: 'Riyadh King Khalid Intl',
+    KUL: 'Kuala Lumpur International',
+    SIN: 'Singapore Changi Airport'
+  };
+
   toggleDetails(id: string) {
     this.expandedFlightId = this.expandedFlightId === id ? null : id;
   }
@@ -177,10 +260,10 @@ export class FlightResultsComponent {
     this.router.navigate(['/book/details']);
   }
 
-  startLongPress(id: string) {
+  startLongPress(key: string) {
     this.endLongPress();
     this.pressTimeout = setTimeout(() => {
-      this.longPressTooltipId = id;
+      this.longPressTooltipId = key;
     }, 500);
   }
 
@@ -192,63 +275,115 @@ export class FlightResultsComponent {
     this.longPressTooltipId = null;
   }
 
-  segments(flight: any): any[] {
-    return flight?.itineraries?.[0]?.segments || [];
+  longPressKey(flight: any, itineraryIndex: number): string {
+    return `${flight?.id || 'flight'}-${itineraryIndex}`;
   }
 
-  getStops(flight: any): number {
-    return Math.max(0, this.segments(flight).length - 1);
+  itineraries(flight: any): any[] {
+    const list = flight?.itineraries;
+    return Array.isArray(list) && list.length ? list : [];
   }
 
-  stopText(flight: any): string {
-    const stops = this.getStops(flight);
-    if (stops === 0) {
-      return 'Non-Stop';
+  itinerarySegments(itinerary: any): any[] {
+    const list = itinerary?.segments;
+    return Array.isArray(list) ? list : [];
+  }
+
+  itineraryAirlineCode(itinerary: any): string {
+    return this.itinerarySegments(itinerary)?.[0]?.carrierCode || 'AIR';
+  }
+
+  itineraryFlightNumber(itinerary: any): string {
+    const first = this.itinerarySegments(itinerary)?.[0];
+    return first ? `${first.carrierCode}${first.number} • ${first.aircraft?.code || 'N/A'}` : 'N/A';
+  }
+
+  itineraryDepartureTime(itinerary: any): string {
+    const date = this.itinerarySegments(itinerary)?.[0]?.departure?.at;
+    return date ? this.formatTime(date) : '--:--';
+  }
+
+  itineraryArrivalTime(itinerary: any): string {
+    const segments = this.itinerarySegments(itinerary);
+    const date = segments.length ? segments[segments.length - 1]?.arrival?.at : null;
+    return date ? this.formatTime(date) : '--:--';
+  }
+
+  itineraryDepartureAirport(itinerary: any): string {
+    return this.itinerarySegments(itinerary)?.[0]?.departure?.iataCode || '---';
+  }
+
+  itineraryDepartureDisplay(itinerary: any): string {
+    const departure = this.itinerarySegments(itinerary)?.[0]?.departure;
+    return this.airportDisplay(departure);
+  }
+
+  itineraryArrivalAirport(itinerary: any): string {
+    const segments = this.itinerarySegments(itinerary);
+    return segments.length ? segments[segments.length - 1]?.arrival?.iataCode || '---' : '---';
+  }
+
+  itineraryArrivalDisplay(itinerary: any): string {
+    const segments = this.itinerarySegments(itinerary);
+    const arrival = segments.length ? segments[segments.length - 1]?.arrival : null;
+    return this.airportDisplay(arrival);
+  }
+
+  itineraryDurationLabel(itinerary: any): string {
+    if (itinerary?.duration) {
+      return this.formatDuration(itinerary.duration);
     }
-    return `${stops} Stop${stops > 1 ? 's' : ''}`;
+    const totalMinutes = this.itinerarySegments(itinerary)
+      .map((segment: any) => this.parseDurationToMinutes(segment?.duration || ''))
+      .reduce((sum: number, value: number) => sum + value, 0);
+
+    if (!totalMinutes) {
+      return '-';
+    }
+
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    return `${hours}h ${minutes}m`;
   }
 
-  layoverAirports(flight: any): string[] {
-    const segs = this.segments(flight);
-    if (segs.length <= 1) {
+  itineraryStops(itinerary: any): number {
+    return Math.max(0, this.itinerarySegments(itinerary).length - 1);
+  }
+
+  itineraryLayoverAirports(itinerary: any): string[] {
+    const segments = this.itinerarySegments(itinerary);
+    if (segments.length <= 1) {
       return [];
     }
-    return segs.slice(0, -1).map((segment: any) => segment.arrival?.iataCode).filter(Boolean);
+    return segments.slice(0, -1).map((segment: any) => segment.arrival?.iataCode).filter(Boolean);
   }
 
-  departureAirport(flight: any): string {
-    return this.segments(flight)?.[0]?.departure?.iataCode || '---';
+  itineraryLayovers(itinerary: any): { code: string; airport: string; duration: string }[] {
+    const segments = this.itinerarySegments(itinerary);
+    if (segments.length <= 1) {
+      return [];
+    }
+
+    const layovers: { code: string; airport: string; duration: string }[] = [];
+    for (let index = 0; index < segments.length - 1; index += 1) {
+      const current = segments[index];
+      const next = segments[index + 1];
+      const code = current?.arrival?.iataCode || '---';
+      const airport = this.airportDisplay(current?.arrival);
+      const duration = this.calculateLayoverDuration(current?.arrival?.at, next?.departure?.at);
+      layovers.push({ code, airport, duration });
+    }
+    return layovers;
   }
 
-  arrivalAirport(flight: any): string {
-    const segs = this.segments(flight);
-    return segs.length ? segs[segs.length - 1]?.arrival?.iataCode || '---' : '---';
+  airportDisplay(location: any): string {
+    const code = location?.iataCode || '---';
+    const fullName = location?.cityName || location?.airportName || this.airportNameByCode[code] || 'Unknown Airport';
+    return `${fullName} (${code})`;
   }
 
-  departureTime(flight: any): string {
-    const first = this.segments(flight)?.[0]?.departure?.at;
-    return first ? this.formatTime(first) : '--:--';
-  }
-
-  arrivalTime(flight: any): string {
-    const segs = this.segments(flight);
-    const last = segs.length ? segs[segs.length - 1]?.arrival?.at : null;
-    return last ? this.formatTime(last) : '--:--';
-  }
-
-  departureDate(flight: any): string {
-    const first = this.segments(flight)?.[0]?.departure?.at;
-    return first ? this.formatDate(first) : '-';
-  }
-
-  arrivalDate(flight: any): string {
-    const segs = this.segments(flight);
-    const last = segs.length ? segs[segs.length - 1]?.arrival?.at : null;
-    return last ? this.formatDate(last) : '-';
-  }
-
-  durationLabel(flight: any): string {
-    return this.formatDuration(flight?.itineraries?.[0]?.duration || '');
+  logoUrl(itinerary: any): string {
+    return `https://content.airhex.com/content/logos/airlines_${this.itineraryAirlineCode(itinerary)}_200_200_s.png`;
   }
 
   priceValue(flight: any): number {
@@ -267,33 +402,49 @@ export class FlightResultsComponent {
     return base > total ? base - total : 0;
   }
 
-  fareCode(flight: any): string {
-    const ref = flight?.id || flight?.lastTicketingDate || 'STLRS';
-    return String(ref).slice(0, 8).toUpperCase();
-  }
-
   points(flight: any): number {
     return Math.max(1, Math.floor(this.priceValue(flight) / 1000));
   }
 
-  private formatTime(dateString: string): string {
-    const date = new Date(dateString);
-    const hour = date.getHours();
-    const minute = String(date.getMinutes()).padStart(2, '0');
-    const suffix = hour >= 12 ? 'PM' : 'AM';
-    const h12 = hour % 12 || 12;
-    return `${h12}:${minute} ${suffix}`;
+  handleImageError(event: any, code: string) {
+    event.target.src = `https://ui-avatars.com/api/?name=${code}&background=f1f5f9&color=334155`;
   }
 
-  private formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', weekday: 'short' });
-  }
-
-  private formatDuration(duration: string): string {
+  formatDuration(duration: string): string {
     if (!duration) {
       return '-';
     }
-    return duration.replace('PT', '').replace('H', 'hr ').replace('M', 'min').toLowerCase();
+    return duration.replace('PT', '').replace('H', 'h ').replace('M', 'm').toLowerCase();
+  }
+
+  private parseDurationToMinutes(duration: string): number {
+    if (!duration || !duration.startsWith('PT')) {
+      return 0;
+    }
+    const hours = Number(duration.match(/(\d+)H/)?.[1] || 0);
+    const minutes = Number(duration.match(/(\d+)M/)?.[1] || 0);
+    return hours * 60 + minutes;
+  }
+
+  private calculateLayoverDuration(arrivalAt: string, departureAt: string): string {
+    if (!arrivalAt || !departureAt) {
+      return 'N/A';
+    }
+    const start = new Date(arrivalAt).getTime();
+    const end = new Date(departureAt).getTime();
+    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
+      return 'N/A';
+    }
+    const totalMinutes = Math.floor((end - start) / 60000);
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    return `${hours}h ${minutes}m`;
+  }
+
+  private formatTime(dateString: string): string {
+    const date = new Date(dateString);
+    const hour = String(date.getHours()).padStart(2, '0');
+    const minute = String(date.getMinutes()).padStart(2, '0');
+    return `${hour}:${minute}`;
   }
 }

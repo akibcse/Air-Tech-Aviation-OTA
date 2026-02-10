@@ -552,11 +552,18 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
     if (this.progressTimer) {
       clearInterval(this.progressTimer);
     }
-    this.loadingProgress.set(8);
+    this.loadingProgress.set(0);
+
+    setTimeout(() => {
+      if (this.loading()) {
+        this.loadingProgress.set(20);
+      }
+    }, 120);
+
     this.progressTimer = setInterval(() => {
       const current = this.loadingProgress();
-      if (current < 92) {
-        this.loadingProgress.set(current + Math.floor(Math.random() * 4) + 1);
+      if (current < 88) {
+        this.loadingProgress.set(Math.min(88, current + Math.floor(Math.random() * 3) + 1));
       }
     }, 350);
   }
@@ -566,7 +573,20 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
       clearInterval(this.progressTimer);
       this.progressTimer = null;
     }
+  }
+
+  private finishLoadingSuccess() {
+    this.stopLoadingProgress();
     this.loadingProgress.set(100);
+    setTimeout(() => {
+      this.loading.set(false);
+    }, 180);
+  }
+
+  private finishLoadingError() {
+    this.stopLoadingProgress();
+    this.loadingProgress.set(0);
+    this.loading.set(false);
   }
 
   private hydrateState(params: any) {
@@ -680,6 +700,7 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
 
     this.flightService.searchFlights(searchParams).subscribe({
       next: data => {
+        this.loadingProgress.set(Math.max(this.loadingProgress(), 60));
         this.results.set(Array.isArray(data) ? data : []);
         const maxPrice = this.priceMax();
         if (!this.hasBudgetInUrl) {
@@ -688,13 +709,11 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
           this.maxBudget.set(maxPrice);
           this.persistUiStateToUrl();
         }
-        this.stopLoadingProgress();
-        this.loading.set(false);
+        this.finishLoadingSuccess();
       },
       error: err => {
         console.error('Search failed:', err);
-        this.stopLoadingProgress();
-        this.loading.set(false);
+        this.finishLoadingError();
       }
     });
   }
