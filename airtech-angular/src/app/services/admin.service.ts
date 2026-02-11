@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, from, switchMap, take, map, throwError } from 'rxjs';
 import { Auth, user, getIdToken } from '@angular/fire/auth';
 
@@ -10,10 +10,6 @@ export class AdminService {
     private http = inject(HttpClient);
     private auth = inject(Auth);
     private apiUrl = '/api/admin';
-
-    private freshParams() {
-        return new HttpParams().set('_ts', Date.now().toString());
-    }
 
     private getAuthHeaders(): Observable<HttpHeaders> {
         return user(this.auth).pipe(
@@ -95,10 +91,7 @@ export class AdminService {
 
     getHomeSeo(): Observable<any> {
         return this.getAuthHeaders().pipe(
-            switchMap(headers => this.http.get<any>(`${this.apiUrl}/settings/home-seo`, {
-                headers,
-                params: this.freshParams()
-            }))
+            switchMap(headers => this.http.get<any>(`${this.apiUrl}/settings/home-seo`, { headers }))
         );
     }
 
@@ -122,10 +115,7 @@ export class AdminService {
 
     getMetaTags(): Observable<any[]> {
         return this.getAuthHeaders().pipe(
-            switchMap(headers => this.http.get<any[]>(`${this.apiUrl}/settings/meta-tags`, {
-                headers,
-                params: this.freshParams()
-            }))
+            switchMap(headers => this.http.get<any[]>(`${this.apiUrl}/settings/meta-tags`, { headers }))
         );
     }
 

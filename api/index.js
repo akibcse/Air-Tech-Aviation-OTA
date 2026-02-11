@@ -975,16 +975,8 @@ const appendSeoAuditLog = async (path, actor, changes, token = null) => {
     }
 };
 
-const setNoStoreHeaders = (res) => {
-    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.set('Pragma', 'no-cache');
-    res.set('Expires', '0');
-    res.set('Surrogate-Control', 'no-store');
-};
-
 // Get Home SEO (Public)
 app.get('/api/public/home-seo', async (req, res) => {
-    setNoStoreHeaders(res);
     try {
         let homeSeo = {};
         if (db) {
@@ -1001,7 +993,6 @@ app.get('/api/public/home-seo', async (req, res) => {
 
 // Get Home SEO (Admin)
 app.get('/api/admin/settings/home-seo', verifyAdmin, async (req, res) => {
-    setNoStoreHeaders(res);
     try {
         let homeSeo = {};
         if (db) {
@@ -1018,7 +1009,6 @@ app.get('/api/admin/settings/home-seo', verifyAdmin, async (req, res) => {
 
 // Get Meta Tags (Public)
 app.get('/api/public/meta-tags', async (req, res) => {
-    setNoStoreHeaders(res);
     try {
         let metaTags = [];
         if (db) {
@@ -1035,7 +1025,6 @@ app.get('/api/public/meta-tags', async (req, res) => {
 
 // Get Meta Tags (Admin)
 app.get('/api/admin/settings/meta-tags', verifyAdmin, async (req, res) => {
-    setNoStoreHeaders(res);
     try {
         let metaTags = [];
         if (db) {
