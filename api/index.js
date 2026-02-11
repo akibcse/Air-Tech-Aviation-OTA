@@ -707,6 +707,349 @@ app.get('/api/public/hero-background', async (req, res) => {
     }
 });
 
+const HOME_SEO_DEFAULTS = {
+    metaTitle: 'Cheap Air Tickets Bangladesh | Secure Booking | AirTech',
+    metaDescription: 'Book cheap air tickets in Bangladesh with AirTech Aviation. Secure, instant online flight booking from Dhaka for domestic and international routes.',
+    metaKeywords: 'cheap air tickets bangladesh, flight booking bangladesh, online air ticket booking, cheapest flight tickets, international flight booking from bangladesh, air ticket dhaka, airline ticket booking website bangladesh',
+    metaRobots: 'index,follow',
+    canonicalMode: 'auto',
+    canonicalPath: '/',
+    canonicalUrl: '',
+    primaryDomain: 'https://www.airtechaviation.click',
+    alternateDomains: [
+        'https://www.airtechaviation.click',
+        'https://airtech-aviation-ota.vercel.app',
+        'https://airtech-angular.vercel.app'
+    ],
+    ogTitle: '',
+    ogDescription: '',
+    ogImageUrl: '',
+    ogType: 'website',
+    twitterTitle: '',
+    twitterDescription: '',
+    twitterImage: '',
+    twitterCardType: 'summary_large_image'
+};
+
+const GOOGLE_SITE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION
+    || '8WbeVkSHzkcfWfMiESJhjf4sBnXl28DRN8lNz2sYzl0';
+
+const DEFAULT_META_TAGS = [
+    {
+        id: 'google-site-verification',
+        keyType: 'name',
+        key: 'google-site-verification',
+        content: GOOGLE_SITE_VERIFICATION,
+        pages: ['/'],
+        active: true,
+        attributes: {}
+    }
+];
+
+const sanitizeSeoText = (value, maxLength) => {
+    const text = String(value ?? '')
+        .replace(/<[^>]*>/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    return text.slice(0, maxLength);
+};
+
+const sanitizeCanonicalPath = (value) => {
+    const text = sanitizeSeoText(value, 200);
+    if (!text) return '/';
+    if (text.startsWith('http://') || text.startsWith('https://')) {
+        try {
+            const parsed = new URL(text);
+            return parsed.pathname || '/';
+        } catch {
+            return '/';
+        }
+    }
+    return text.startsWith('/') ? text : `/${text}`;
+};
+
+const sanitizeAbsoluteUrl = (value, maxLength = 500) => {
+    const text = sanitizeSeoText(value, maxLength);
+    if (!text) return '';
+    try {
+        const parsed = new URL(text);
+        if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') return '';
+        return parsed.toString();
+    } catch {
+        return '';
+    }
+};
+
+const sanitizeDomainUrl = (value) => {
+    const safe = sanitizeAbsoluteUrl(value, 200);
+    if (!safe) return '';
+    try {
+        const parsed = new URL(safe);
+        return `${parsed.protocol}//${parsed.host}`;
+    } catch {
+        return '';
+    }
+};
+
+const sanitizeRobots = (value) => {
+    const text = sanitizeSeoText(value, 50).toLowerCase();
+    const tokens = text.split(',').map(t => t.trim()).filter(Boolean);
+    const indexToken = tokens.includes('noindex') ? 'noindex' : 'index';
+    const followToken = tokens.includes('nofollow') ? 'nofollow' : 'follow';
+    return `${indexToken},${followToken}`;
+};
+
+const sanitizeHomeSeoPayload = (payload = {}, options = { forStorage: false }) => {
+    const canonicalMode = payload.canonicalMode === 'manual' ? 'manual' : 'auto';
+    const primaryDomain = sanitizeDomainUrl(payload.primaryDomain) || HOME_SEO_DEFAULTS.primaryDomain;
+    const canonicalPath = sanitizeCanonicalPath(payload.canonicalPath || '/');
+    const canonicalUrlInput = sanitizeAbsoluteUrl(payload.canonicalUrl);
+
+    const alternateDomainsInput = Array.isArray(payload.alternateDomains) ? payload.alternateDomains : [];
+    const alternateDomainsSanitized = alternateDomainsInput
+        .map(sanitizeDomainUrl)
+        .filter(Boolean);
+    const uniqueDomains = Array.from(new Set([primaryDomain, ...alternateDomainsSanitized]));
+
+    const sanitized = {
+        metaTitle: sanitizeSeoText(payload.metaTitle, 70) || HOME_SEO_DEFAULTS.metaTitle,
+        metaDescription: sanitizeSeoText(payload.metaDescription, 160) || HOME_SEO_DEFAULTS.metaDescription,
+        metaKeywords: sanitizeSeoText(payload.metaKeywords, 400) || HOME_SEO_DEFAULTS.metaKeywords,
+        metaRobots: sanitizeRobots(payload.metaRobots || HOME_SEO_DEFAULTS.metaRobots),
+        canonicalMode,
+        canonicalPath,
+        canonicalUrl: canonicalMode === 'manual' ? canonicalUrlInput : '',
+        primaryDomain,
+        alternateDomains: uniqueDomains,
+        ogTitle: sanitizeSeoText(payload.ogTitle, 95),
+        ogDescription: sanitizeSeoText(payload.ogDescription, 220),
+        ogImageUrl: sanitizeAbsoluteUrl(payload.ogImageUrl),
+        ogType: sanitizeSeoText(payload.ogType, 30) || 'website',
+        twitterTitle: sanitizeSeoText(payload.twitterTitle, 70),
+        twitterDescription: sanitizeSeoText(payload.twitterDescription, 200),
+        twitterImage: sanitizeAbsoluteUrl(payload.twitterImage),
+        twitterCardType: ['summary', 'summary_large_image'].includes(payload.twitterCardType)
+            ? payload.twitterCardType
+            : HOME_SEO_DEFAULTS.twitterCardType
+    };
+
+    if (options.forStorage) {
+        sanitized.updatedAt = new Date().toISOString();
+    } else if (payload.updatedAt) {
+        sanitized.updatedAt = sanitizeSeoText(payload.updatedAt, 50);
+    }
+
+    return sanitized;
+};
+
+const sanitizeMetaTagAttributes = (attributes) => {
+    if (!attributes || typeof attributes !== 'object' || Array.isArray(attributes)) return {};
+    const blocked = new Set(['onload', 'onclick', 'onerror', 'style', 'src']);
+    const safe = {};
+    Object.entries(attributes).forEach(([rawKey, rawValue]) => {
+        const key = sanitizeSeoText(rawKey, 50).toLowerCase();
+        if (!key || blocked.has(key)) return;
+        if (!/^[a-z0-9:-]+$/.test(key)) return;
+        const value = sanitizeSeoText(rawValue, 500);
+        if (!value) return;
+        safe[key] = value;
+    });
+    return safe;
+};
+
+const sanitizeMetaTagEntry = (entry = {}) => {
+    const keyTypeRaw = sanitizeSeoText(entry.keyType, 20).toLowerCase();
+    const keyType = ['name', 'property', 'http-equiv', 'charset', 'custom'].includes(keyTypeRaw)
+        ? keyTypeRaw
+        : 'name';
+
+    const key = sanitizeSeoText(entry.key, 120).toLowerCase();
+    const content = sanitizeSeoText(entry.content, 1000);
+    const pagesInput = Array.isArray(entry.pages) ? entry.pages : ['/'];
+    const pages = Array.from(new Set(
+        pagesInput
+            .map((p) => sanitizeSeoText(p, 200))
+            .map((p) => {
+                if (!p) return '';
+                if (p === '*' || p === 'all') return '*';
+                if (p.startsWith('/')) return p;
+                return `/${p}`;
+            })
+            .filter(Boolean)
+    ));
+
+    const attributes = sanitizeMetaTagAttributes(entry.attributes);
+
+    if (keyType === 'charset') {
+        const charset = sanitizeSeoText(entry.charset || entry.content || key || 'utf-8', 30).toLowerCase();
+        if (!/^[a-z0-9_-]+$/i.test(charset)) return null;
+        return {
+            id: sanitizeSeoText(entry.id, 80) || `charset-${Date.now()}`,
+            keyType,
+            key: 'charset',
+            content: charset,
+            pages: pages.length ? pages : ['/'],
+            active: entry.active !== false,
+            attributes
+        };
+    }
+
+    if (!key) return null;
+    if (keyType !== 'custom' && !content) return null;
+
+    return {
+        id: sanitizeSeoText(entry.id, 80) || `${keyType}-${key}`,
+        keyType,
+        key,
+        content,
+        pages: pages.length ? pages : ['/'],
+        active: entry.active !== false,
+        attributes
+    };
+};
+
+const ensureVerificationMetaTag = (metaTags = []) => {
+    const cloned = Array.isArray(metaTags) ? [...metaTags] : [];
+    const existingIndex = cloned.findIndex(
+        (item) => item?.keyType === 'name' && item?.key === 'google-site-verification'
+    );
+
+    if (existingIndex >= 0) {
+        cloned[existingIndex] = {
+            ...cloned[existingIndex],
+            content: cloned[existingIndex].content || GOOGLE_SITE_VERIFICATION,
+            pages: Array.isArray(cloned[existingIndex].pages) && cloned[existingIndex].pages.length
+                ? cloned[existingIndex].pages
+                : ['/'],
+            active: cloned[existingIndex].active !== false
+        };
+        return cloned;
+    }
+
+    return [...cloned, ...DEFAULT_META_TAGS];
+};
+
+const sanitizeMetaTagsPayload = (payload = [], options = { forStorage: false }) => {
+    const input = Array.isArray(payload) ? payload : [];
+    const sanitized = input
+        .map((entry) => sanitizeMetaTagEntry(entry))
+        .filter(Boolean);
+
+    const deduped = [];
+    const seen = new Set();
+    sanitized.forEach((item) => {
+        const signature = `${item.keyType}|${item.key}|${(item.pages || []).join(',')}`;
+        if (seen.has(signature)) return;
+        seen.add(signature);
+        deduped.push(item);
+    });
+
+    const withVerification = ensureVerificationMetaTag(deduped);
+
+    if (!options.forStorage) return withVerification;
+
+    const updatedAt = new Date().toISOString();
+    return withVerification.map((item) => ({
+        ...item,
+        updatedAt
+    }));
+};
+
+const appendSeoAuditLog = async (path, actor, changes, token = null) => {
+    try {
+        const payload = {
+            actorEmail: actor?.email || 'unknown',
+            actorUid: actor?.uid || 'unknown',
+            action: path,
+            changes,
+            timestamp: new Date().toISOString()
+        };
+
+        if (db) {
+            await db.ref('admin/seo_audit').push(payload);
+        } else {
+            await firebaseRest.post('admin/seo_audit', payload, token);
+        }
+    } catch (error) {
+        console.warn('SEO audit log failed:', error.message);
+    }
+};
+
+const setNoStoreHeaders = (res) => {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.set('Pragma', 'no-cache');
+    res.set('Expires', '0');
+    res.set('Surrogate-Control', 'no-store');
+};
+
+// Get Home SEO (Public)
+app.get('/api/public/home-seo', async (req, res) => {
+    setNoStoreHeaders(res);
+    try {
+        let homeSeo = {};
+        if (db) {
+            const snap = await db.ref('settings/homeSeo').once('value');
+            homeSeo = snap.val() || {};
+        } else {
+            homeSeo = await firebaseRest.get('settings/homeSeo') || {};
+        }
+        res.json(sanitizeHomeSeoPayload(homeSeo || {}));
+    } catch (e) {
+        res.json({ ...HOME_SEO_DEFAULTS });
+    }
+});
+
+// Get Home SEO (Admin)
+app.get('/api/admin/settings/home-seo', verifyAdmin, async (req, res) => {
+    setNoStoreHeaders(res);
+    try {
+        let homeSeo = {};
+        if (db) {
+            const snap = await db.ref('settings/homeSeo').once('value');
+            homeSeo = snap.val() || {};
+        } else {
+            homeSeo = await firebaseRest.get('settings/homeSeo', req.token) || {};
+        }
+        res.json(sanitizeHomeSeoPayload(homeSeo || {}));
+    } catch (e) {
+        res.status(500).json({ error: 'Error fetching home SEO', details: e.message });
+    }
+});
+
+// Get Meta Tags (Public)
+app.get('/api/public/meta-tags', async (req, res) => {
+    setNoStoreHeaders(res);
+    try {
+        let metaTags = [];
+        if (db) {
+            const snap = await db.ref('settings/metaTags').once('value');
+            metaTags = snap.val() || [];
+        } else {
+            metaTags = await firebaseRest.get('settings/metaTags') || [];
+        }
+        res.json(sanitizeMetaTagsPayload(metaTags || []));
+    } catch (e) {
+        res.json(sanitizeMetaTagsPayload(DEFAULT_META_TAGS));
+    }
+});
+
+// Get Meta Tags (Admin)
+app.get('/api/admin/settings/meta-tags', verifyAdmin, async (req, res) => {
+    setNoStoreHeaders(res);
+    try {
+        let metaTags = [];
+        if (db) {
+            const snap = await db.ref('settings/metaTags').once('value');
+            metaTags = snap.val() || [];
+        } else {
+            metaTags = await firebaseRest.get('settings/metaTags', req.token) || [];
+        }
+        res.json(sanitizeMetaTagsPayload(metaTags || []));
+    } catch (e) {
+        res.status(500).json({ error: 'Error fetching meta tags', details: e.message });
+    }
+});
+
 // Update Hero Background (Admin)
 app.post('/api/admin/settings/hero-background', verifyAdmin, async (req, res) => {
     try {
@@ -724,6 +1067,46 @@ app.post('/api/admin/settings/hero-background', verifyAdmin, async (req, res) =>
     } catch (e) {
         console.error('❌ Hero background update error:', e.message, e.stack);
         res.status(500).json({ error: "Error updating hero background", details: e.message });
+    }
+});
+
+// Update Home SEO (Admin)
+app.post('/api/admin/settings/home-seo', verifyAdmin, async (req, res) => {
+    try {
+        const sanitizedPayload = sanitizeHomeSeoPayload(req.body || {}, { forStorage: true });
+        console.log('🏷️ Updating home SEO settings');
+        if (db) {
+            await db.ref('settings/homeSeo').set(sanitizedPayload);
+            console.log('✅ Home SEO updated successfully via Admin SDK');
+        } else {
+            await firebaseRest.put('settings/homeSeo', sanitizedPayload, req.token);
+            console.log('✅ Home SEO updated successfully via REST');
+        }
+        await appendSeoAuditLog('home-seo:update', req.user, { updatedKeys: Object.keys(sanitizedPayload) }, req.token);
+        res.json({ success: true });
+    } catch (e) {
+        console.error('❌ Home SEO update error:', e.message, e.stack);
+        res.status(500).json({ error: 'Error updating home SEO', details: e.message });
+    }
+});
+
+// Update Meta Tags (Admin)
+app.post('/api/admin/settings/meta-tags', verifyAdmin, async (req, res) => {
+    try {
+        const sanitizedPayload = sanitizeMetaTagsPayload(req.body || [], { forStorage: true });
+        console.log('🏷️ Updating custom meta tags');
+        if (db) {
+            await db.ref('settings/metaTags').set(sanitizedPayload);
+            console.log('✅ Meta tags updated successfully via Admin SDK');
+        } else {
+            await firebaseRest.put('settings/metaTags', sanitizedPayload, req.token);
+            console.log('✅ Meta tags updated successfully via REST');
+        }
+        await appendSeoAuditLog('meta-tags:update', req.user, { tagCount: sanitizedPayload.length }, req.token);
+        res.json({ success: true });
+    } catch (e) {
+        console.error('❌ Meta tags update error:', e.message, e.stack);
+        res.status(500).json({ error: 'Error updating meta tags', details: e.message });
     }
 });
 

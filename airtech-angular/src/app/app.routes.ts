@@ -15,6 +15,8 @@ import { AdminUsersComponent } from './pages/admin/users/admin-users.component';
 import { AdminBookingsComponent } from './pages/admin/bookings/admin-bookings.component';
 import { AdminSystemSettingsComponent } from './pages/admin/settings/admin-system-settings.component';
 import { AdminApiHealthComponent } from './pages/admin/api-health/admin-api-health.component';
+import { AdminHomepageSeoComponent } from './pages/admin/digital-marketing/homepage-seo.component';
+import { AdminMetaTagsComponent } from './pages/admin/digital-marketing/meta-tags.component';
 import { UserBookingsComponent } from './pages/user-bookings/user-bookings.component';
 import { SupportComponent } from './pages/support/support.component';
 
@@ -40,6 +42,8 @@ export const routes: Routes = [
             { path: 'bookings', component: AdminBookingsComponent },
             { path: 'api-health', component: AdminApiHealthComponent },
             { path: 'settings', component: AdminSystemSettingsComponent },
+            { path: 'digital-marketing/homepage-seo', component: AdminHomepageSeoComponent },
+            { path: 'digital-marketing/meta-tags', component: AdminMetaTagsComponent },
         ]
     },
     { path: '**', redirectTo: '' }

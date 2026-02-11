@@ -1,5 +1,40 @@
 {
     "version": 2,
+    "redirects": [
+        {
+            "source": "/(.*)",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "airtechaviation.click"
+                }
+            ],
+            "destination": "https://www.airtechaviation.click/$1",
+            "permanent": true
+        },
+        {
+            "source": "/(.*)",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "airtech-aviation-ota.vercel.app"
+                }
+            ],
+            "destination": "https://www.airtechaviation.click/$1",
+            "permanent": true
+        },
+        {
+            "source": "/(.*)",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "airtech-angular.vercel.app"
+                }
+            ],
+            "destination": "https://www.airtechaviation.click/$1",
+            "permanent": true
+        }
+    ],
     "builds": [
         {
             "src": "package.json",

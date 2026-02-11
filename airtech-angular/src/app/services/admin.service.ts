@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, from, switchMap, take, map, throwError } from 'rxjs';
 import { Auth, user, getIdToken } from '@angular/fire/auth';
 
@@ -10,6 +10,10 @@ export class AdminService {
     private http = inject(HttpClient);
     private auth = inject(Auth);
     private apiUrl = '/api/admin';
+
+    private freshParams() {
+        return new HttpParams().set('_ts', Date.now().toString());
+    }
 
     private getAuthHeaders(): Observable<HttpHeaders> {
         return user(this.auth).pipe(
@@ -89,6 +93,15 @@ export class AdminService {
         );
     }
 
+    getHomeSeo(): Observable<any> {
+        return this.getAuthHeaders().pipe(
+            switchMap(headers => this.http.get<any>(`${this.apiUrl}/settings/home-seo`, {
+                headers,
+                params: this.freshParams()
+            }))
+        );
+    }
+
     updateBanners(banners: any[]): Observable<any> {
         return this.getAuthHeaders().pipe(
             switchMap(headers => this.http.post<any>(`${this.apiUrl}/settings/banners`, banners, { headers }))
@@ -98,6 +111,27 @@ export class AdminService {
     updateHeroBackground(backgroundUrl: string): Observable<any> {
         return this.getAuthHeaders().pipe(
             switchMap(headers => this.http.post<any>(`${this.apiUrl}/settings/hero-background`, { backgroundUrl }, { headers }))
+        );
+    }
+
+    updateHomeSeo(homeSeo: any): Observable<any> {
+        return this.getAuthHeaders().pipe(
+            switchMap(headers => this.http.post<any>(`${this.apiUrl}/settings/home-seo`, homeSeo, { headers }))
+        );
+    }
+
+    getMetaTags(): Observable<any[]> {
+        return this.getAuthHeaders().pipe(
+            switchMap(headers => this.http.get<any[]>(`${this.apiUrl}/settings/meta-tags`, {
+                headers,
+                params: this.freshParams()
+            }))
+        );
+    }
+
+    updateMetaTags(metaTags: any[]): Observable<any> {
+        return this.getAuthHeaders().pipe(
+            switchMap(headers => this.http.post<any>(`${this.apiUrl}/settings/meta-tags`, metaTags, { headers }))
         );
     }
 }

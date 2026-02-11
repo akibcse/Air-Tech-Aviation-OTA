@@ -228,6 +228,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.applyHomepageSeo();
 
+    this.publicService.getHomeSeo().subscribe({
+      next: (homeSeo: any) => this.applyHomepageSeo(homeSeo),
+      error: (err: unknown) => console.error('Failed to load home SEO settings', err)
+    });
+
     this.publicService.getBanners().subscribe({
       next: (data: any[]) => {
         this.banners.set(data);
@@ -261,23 +266,74 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.currentBannerIndex.set(prev);
   }
 
-  private applyHomepageSeo() {
-    const title = 'Cheap Air Tickets Bangladesh | Secure Booking | AirTech';
-    const description = 'Book cheap air tickets in Bangladesh with AirTech Aviation. Secure, instant online flight booking from Dhaka for domestic and international routes.';
-    const canonicalUrl = 'https://airtechaviation.click/';
+  private applyHomepageSeo(homeSeo: any = {}) {
+    const defaults = {
+      metaTitle: 'Cheap Air Tickets Bangladesh | Secure Booking | AirTech',
+      metaDescription: 'Book cheap air tickets in Bangladesh with AirTech Aviation. Secure, instant online flight booking from Dhaka for domestic and international routes.',
+      metaKeywords: 'cheap air tickets bangladesh, flight booking bangladesh, online air ticket booking, cheapest flight tickets, international flight booking from bangladesh, air ticket dhaka, airline ticket booking website bangladesh',
+      metaRobots: 'index,follow',
+      canonicalMode: 'auto',
+      canonicalPath: '/',
+      canonicalUrl: '',
+      primaryDomain: 'https://www.airtechaviation.click',
+      alternateDomains: ['https://www.airtechaviation.click', 'https://airtech-aviation-ota.vercel.app', 'https://airtech-angular.vercel.app'],
+      ogTitle: '',
+      ogDescription: '',
+      ogImageUrl: '',
+      ogType: 'website',
+      twitterTitle: '',
+      twitterDescription: '',
+      twitterImage: '',
+      twitterCardType: 'summary_large_image'
+    };
+
+    const seo = {
+      ...defaults,
+      ...homeSeo,
+      metaTitle: homeSeo?.metaTitle || homeSeo?.title || defaults.metaTitle,
+      metaDescription: homeSeo?.metaDescription || homeSeo?.description || defaults.metaDescription,
+      metaKeywords: homeSeo?.metaKeywords || homeSeo?.keywords || defaults.metaKeywords,
+      metaRobots: homeSeo?.metaRobots || homeSeo?.robots || defaults.metaRobots
+    };
+
+    const title = seo.metaTitle;
+    const description = seo.metaDescription;
+    const keywords = seo.metaKeywords;
+    const robots = seo.metaRobots;
+    const canonicalPath = this.normalizeCanonicalPath(seo.canonicalPath || '/');
+    const canonicalUrl = this.resolveCanonicalUrl(seo, canonicalPath);
+    const currentOrigin = this.document.location?.origin || defaults.primaryDomain;
+    const ogTitle = seo.ogTitle || title;
+    const ogDescription = seo.ogDescription || description;
+    const twitterTitle = seo.twitterTitle || title;
+    const twitterDescription = seo.twitterDescription || description;
 
     this.title.setTitle(title);
     this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'keywords', content: 'cheap air tickets bangladesh, flight booking bangladesh, online air ticket booking, cheapest flight tickets, international flight booking from bangladesh, air ticket dhaka, airline ticket booking website bangladesh' });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:title', content: title });
-    this.meta.updateTag({ property: 'og:description', content: description });
+    this.meta.updateTag({ name: 'keywords', content: keywords });
+    this.meta.updateTag({ name: 'robots', content: robots });
+    this.meta.updateTag({ property: 'og:type', content: seo.ogType || 'website' });
+    this.meta.updateTag({ property: 'og:title', content: ogTitle });
+    this.meta.updateTag({ property: 'og:description', content: ogDescription });
     this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
     this.meta.updateTag({ property: 'og:site_name', content: 'AirTech Aviation' });
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: title });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
+    this.meta.updateTag({ name: 'twitter:card', content: seo.twitterCardType || 'summary_large_image' });
+    this.meta.updateTag({ name: 'twitter:title', content: twitterTitle });
+    this.meta.updateTag({ name: 'twitter:description', content: twitterDescription });
+
+    const ogImage = seo?.ogImageUrl?.trim() || seo?.ogImage?.trim();
+    if (ogImage) {
+      this.meta.updateTag({ property: 'og:image', content: ogImage });
+      this.meta.updateTag({ name: 'twitter:image', content: ogImage });
+    } else {
+      this.meta.removeTag("property='og:image'");
+      this.meta.removeTag("name='twitter:image'");
+    }
+
+    const twitterImage = seo?.twitterImage?.trim();
+    if (twitterImage) {
+      this.meta.updateTag({ name: 'twitter:image', content: twitterImage });
+    }
 
     let canonical = this.document.querySelector("link[rel='canonical']") as HTMLLinkElement | null;
     if (!canonical) {
@@ -287,5 +343,62 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
     canonical.href = canonicalUrl;
 
+    this.updateAlternateLink(currentOrigin, canonicalPath, seo.alternateDomains || defaults.alternateDomains);
+
+  }
+
+  private resolveCanonicalUrl(seo: any, canonicalPath: string) {
+    if (seo?.canonicalMode === 'manual' && seo?.canonicalUrl) {
+      try {
+        const parsed = new URL(seo.canonicalUrl);
+        return parsed.toString();
+      } catch {
+      }
+    }
+    const primaryDomain = this.normalizeDomainOrigin(seo?.primaryDomain) || 'https://www.airtechaviation.click';
+    return `${primaryDomain}${canonicalPath}`;
+  }
+
+  private normalizeDomainOrigin(value: string) {
+    if (!value) return '';
+    try {
+      const parsed = new URL(value);
+      return `${parsed.protocol}//${parsed.host}`;
+    } catch {
+      return '';
+    }
+  }
+
+  private updateAlternateLink(currentOrigin: string, canonicalPath: string, domains: string[]) {
+    this.document.querySelectorAll("link[data-seo-alternate='true']").forEach((node) => node.remove());
+
+    const normalizedDomains = Array.from(new Set((Array.isArray(domains) ? domains : [])
+      .map((domain) => this.normalizeDomainOrigin(domain))
+      .filter((domain) => !!domain)));
+
+    if (normalizedDomains.length === 0) {
+      normalizedDomains.push(currentOrigin);
+    }
+
+    normalizedDomains.forEach((domain) => {
+      const alternate = this.document.createElement('link');
+      alternate.setAttribute('rel', 'alternate');
+      alternate.setAttribute('href', `${domain}${canonicalPath}`);
+      alternate.setAttribute('data-seo-alternate', 'true');
+      this.document.head.appendChild(alternate);
+    });
+  }
+
+  private normalizeCanonicalPath(path: string) {
+    if (!path) return '/';
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      try {
+        const parsed = new URL(path);
+        return parsed.pathname || '/';
+      } catch {
+        return '/';
+      }
+    }
+    return path.startsWith('/') ? path : `/${path}`;
   }
 }

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://airtechaviation.click/sitemap.xml
+Sitemap: https://www.airtechaviation.click/sitemap.xml
