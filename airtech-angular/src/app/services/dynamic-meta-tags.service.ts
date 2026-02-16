@@ -14,9 +14,25 @@ export class DynamicMetaTagsService {
   private lastFetchedAt = 0;
   private readonly cacheTtlMs = 15000;
 
+  private readonly PRIMARY_DOMAIN = 'https://airtech-aviation-ota.vercel.app';
+
   applyForUrl(url: string) {
     const path = this.normalizePath(url);
-    this.loadTags().then((tags) => this.injectTags(tags, path));
+    this.loadTags().then((tags) => {
+      this.injectTags(tags, path);
+      this.updateCanonical(path);
+    });
+  }
+
+  private updateCanonical(path: string) {
+    let link = this.document.querySelector("link[rel='canonical']") as HTMLLinkElement;
+    if (!link) {
+      link = this.document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      this.document.head.appendChild(link);
+    }
+    const cleanPath = path === '/' ? '' : path;
+    link.setAttribute('href', `${this.PRIMARY_DOMAIN}${cleanPath}`);
   }
 
   private async loadTags(): Promise<any[]> {
@@ -50,6 +66,21 @@ export class DynamicMetaTagsService {
     });
 
     deduped.forEach((tag) => this.upsertTag(tag));
+
+    // Force canonical meta tags (og:url) if they exist
+    this.updateAbsoluteMetaTags(path);
+  }
+
+  private updateAbsoluteMetaTags(path: string) {
+    const absoluteUrl = `${this.PRIMARY_DOMAIN}${path === '/' ? '' : path}`;
+
+    // Update og:url
+    let ogUrl = this.document.querySelector("meta[property='og:url']") as HTMLMetaElement;
+    if (ogUrl) ogUrl.setAttribute('content', absoluteUrl);
+
+    // Update twitter:url if exists
+    let twitterUrl = this.document.querySelector("meta[name='twitter:url']") as HTMLMetaElement;
+    if (twitterUrl) twitterUrl.setAttribute('content', absoluteUrl);
   }
 
   private upsertTag(tag: any) {
@@ -91,7 +122,13 @@ export class DynamicMetaTagsService {
     }
 
     if (tag?.content) {
-      element.setAttribute('content', String(tag.content));
+      // Force primary domain for known absolute URL tags if content is a URL
+      let content = String(tag.content);
+      if (key === 'og:url' || key === 'twitter:url' || (keyType === 'link' && key === 'canonical')) {
+        const path = this.normalizePath(this.document.location.pathname);
+        content = `${this.PRIMARY_DOMAIN}${path === '/' ? '' : path}`;
+      }
+      element.setAttribute('content', content);
     } else {
       element.removeAttribute('content');
     }

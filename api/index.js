@@ -715,10 +715,10 @@ const HOME_SEO_DEFAULTS = {
     canonicalMode: 'auto',
     canonicalPath: '/',
     canonicalUrl: '',
-    primaryDomain: 'https://www.airtechaviation.click',
+    primaryDomain: 'https://airtech-aviation-ota.vercel.app',
     alternateDomains: [
-        'https://www.airtechaviation.click',
         'https://airtech-aviation-ota.vercel.app',
+        'https://www.airtechaviation.click',
         'https://airtech-angular.vercel.app'
     ],
     ogTitle: '',

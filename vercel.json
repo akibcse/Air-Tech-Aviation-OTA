@@ -9,18 +9,7 @@
                     "value": "airtechaviation.click"
                 }
             ],
-            "destination": "https://www.airtechaviation.click/$1",
-            "permanent": true
-        },
-        {
-            "source": "/(.*)",
-            "has": [
-                {
-                    "type": "host",
-                    "value": "airtech-aviation-ota.vercel.app"
-                }
-            ],
-            "destination": "https://www.airtechaviation.click/$1",
+            "destination": "https://airtech-aviation-ota.vercel.app/$1",
             "permanent": true
         },
         {
@@ -31,7 +20,18 @@
                     "value": "airtech-angular.vercel.app"
                 }
             ],
-            "destination": "https://www.airtechaviation.click/$1",
+            "destination": "https://airtech-aviation-ota.vercel.app/$1",
+            "permanent": true
+        },
+        {
+            "source": "/(.*)",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "www.airtechaviation.click"
+                }
+            ],
+            "destination": "https://airtech-aviation-ota.vercel.app/$1",
             "permanent": true
         }
     ],

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.airtechaviation.click/sitemap.xml
+Sitemap: https://airtech-aviation-ota.vercel.app/sitemap.xml
