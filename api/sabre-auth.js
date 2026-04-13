@@ -40,7 +40,7 @@ let cachedToken = null;   // { accessToken, expiresAt }
  * Returns the Sabre base URL based on the configured environment.
  */
 function getBaseUrl() {
-    const env = (process.env.SABRE_ENVIRONMENT || 'cert').toLowerCase();
+    const env = (process.env.SABRE_ENVIRONMENT || 'cert').trim().toLowerCase();
     return SABRE_HOSTS[env] || SABRE_HOSTS.cert;
 }
 
@@ -50,8 +50,8 @@ function getBaseUrl() {
  *  – V1 (fallback): base64( clientId + ':' + clientSecret )
  */
 function buildBasicAuthHeader(version = 'V2') {
-    const clientId = process.env.SABRE_CLIENT_ID;
-    const clientSecret = process.env.SABRE_CLIENT_SECRET;
+    const clientId = (process.env.SABRE_CLIENT_ID || '').trim();
+    const clientSecret = (process.env.SABRE_CLIENT_SECRET || '').trim();
 
     if (!clientId || !clientSecret) {
         throw new Error('Missing SABRE_CLIENT_ID or SABRE_CLIENT_SECRET environment variables');
@@ -88,8 +88,8 @@ async function getToken() {
         return cachedToken.accessToken;
     }
 
-    const staticToken = process.env.SABRE_TOKEN;
-    const hasOauthCreds = Boolean(process.env.SABRE_CLIENT_ID && process.env.SABRE_CLIENT_SECRET);
+    const staticToken = (process.env.SABRE_TOKEN || '').trim() || null;
+    const hasOauthCreds = Boolean((process.env.SABRE_CLIENT_ID || '').trim() && (process.env.SABRE_CLIENT_SECRET || '').trim());
 
     if (!hasOauthCreds && staticToken) {
         console.log('[SabreAuth] OAuth creds missing, using static SABRE_TOKEN from environment');
