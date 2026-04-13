@@ -100,6 +100,12 @@ type TimeBucket = 'early-morning' | 'morning' | 'afternoon' | 'evening';
           </div>
         </div>
 
+        @if (errorMessage()) {
+          <div class="mb-3 rounded-xl border border-red-200 bg-red-50 px-3 py-2.5 text-sm text-red-700">
+            {{ errorMessage() }}
+          </div>
+        }
+
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
           <aside class="hidden lg:block lg:col-span-3 self-start">
             <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm space-y-5 lg:sticky lg:top-32 max-h-[calc(100vh-9rem)] overflow-y-auto overscroll-contain">
@@ -126,7 +132,7 @@ type TimeBucket = 'early-morning' | 'morning' | 'afternoon' | 'evening';
                   @for (airline of availableAirlines(); track airline) {
                     <label class="flex items-center justify-between gap-2 rounded-lg border border-slate-200 px-2 py-2 text-sm">
                       <span class="inline-flex items-center gap-2 min-w-0">
-                        <img [src]="'https://content.airhex.com/content/logos/airlines_' + airline + '_90_90_s.png'" [alt]="airline" class="w-5 h-5 rounded object-contain bg-slate-50" (error)="handleLogoError($event, airline)" />
+                        <img [src]="'https://pics.avs.io/90/90/' + airline + '.png'" [alt]="airline" class="w-5 h-5 rounded object-contain bg-slate-50" (error)="handleLogoError($event, airline)" />
                         <span class="truncate">{{ airline }}</span>
                       </span>
                       <input type="checkbox" [checked]="selectedAirlines().has(airline)" (change)="toggleAirline(airline, $any($event.target).checked)" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
@@ -219,7 +225,7 @@ type TimeBucket = 'early-morning' | 'morning' | 'afternoon' | 'evening';
                 @for (airline of availableAirlines(); track airline) {
                   <label class="flex items-center justify-between rounded-lg border border-slate-200 px-3 py-2 text-sm">
                     <span class="inline-flex items-center gap-2">
-                      <img [src]="'https://content.airhex.com/content/logos/airlines_' + airline + '_90_90_s.png'" [alt]="airline" class="w-5 h-5 object-contain" (error)="handleLogoError($event, airline)" />
+                      <img [src]="'https://pics.avs.io/90/90/' + airline + '.png'" [alt]="airline" class="w-5 h-5 object-contain" (error)="handleLogoError($event, airline)" />
                       <span>{{ airline }}</span>
                     </span>
                     <input type="checkbox" [checked]="selectedAirlines().has(airline)" (change)="toggleAirline(airline, $any($event.target).checked)" class="rounded border-slate-300 text-blue-600" />
@@ -293,6 +299,7 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
   private progressTimer: ReturnType<typeof setInterval> | null = null;
 
   results = signal<any[]>([]);
+  errorMessage = signal('');
   loading = signal(false);
   loadingProgress = signal(0);
   countdownSeconds = signal(25 * 60 + 49);
@@ -557,7 +564,14 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
   }
 
   handleLogoError(event: any, code: string) {
-    event.target.src = `https://ui-avatars.com/api/?name=${code}&background=f1f5f9&color=334155`;
+    const img = event.target as HTMLImageElement;
+    const current = img.src || '';
+    const c = (code || 'AIR').toUpperCase();
+    if (current.includes('pics.avs.io')) {
+      img.src = `https://content.airhex.com/content/logos/airlines_${c}_90_90_s.png`;
+    } else {
+      img.src = `https://ui-avatars.com/api/?name=${c}&background=EEF2FF&color=4F46E5&bold=true&size=90`;
+    }
   }
 
   private startCountdown() {
@@ -716,9 +730,24 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
 
     this.loading.set(true);
     this.results.set([]);
+    this.errorMessage.set('');
     this.startLoadingProgress();
 
-    this.flightService.searchFlights(searchParams).subscribe({
+    // Build a FlightSearchQuery from the URL params
+    const query: any = {
+      origin: searchParams['origin'],
+      destination: searchParams['destination'],
+      date: searchParams['date'],
+      returnDate: searchParams['returnDate'],
+      adults: Number(searchParams['adults']) || 1,
+      children: Number(searchParams['children']) || 0,
+      cabin: searchParams['cabin'] || 'ECONOMY',
+      direct: searchParams['direct'] === 'true',
+      tripType: searchParams['tripType'],
+      segments: searchParams['segments'],
+    };
+
+    this.flightService.searchFlights(query).subscribe({
       next: data => {
         this.loadingProgress.set(Math.max(this.loadingProgress(), 60));
         this.results.set(Array.isArray(data) ? data : []);
@@ -733,6 +762,8 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
       },
       error: err => {
         console.error('Search failed:', err);
+        const details = err?.error?.details || err?.error?.error || err?.message || 'Flight search failed. Please try again.';
+        this.errorMessage.set(String(details));
         this.finishLoadingError();
       }
     });

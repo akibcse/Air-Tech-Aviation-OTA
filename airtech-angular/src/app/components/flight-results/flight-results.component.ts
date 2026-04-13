@@ -60,6 +60,9 @@ import { BookingService } from '../../services/booking.service';
                       <div>
                         <p class="font-black text-gray-900 leading-tight uppercase tracking-tighter">{{ itineraryAirlineCode(itinerary) }}</p>
                         <p class="text-[10px] text-gray-400 font-bold uppercase">{{ itineraryFlightNumber(itinerary) }}</p>
+                        @if (flightSource(flight)) {
+                          <span class="inline-block mt-0.5 px-1.5 py-0.5 text-[8px] font-black tracking-widest uppercase rounded-full" [class]="flightSource(flight) === 'SABRE' ? 'bg-indigo-100 text-indigo-700' : 'bg-amber-100 text-amber-700'">{{ flightSource(flight) }}</span>
+                        }
                       </div>
                     </div>
 
@@ -383,7 +386,9 @@ export class FlightResultsComponent {
   }
 
   logoUrl(itinerary: any): string {
-    return `https://content.airhex.com/content/logos/airlines_${this.itineraryAirlineCode(itinerary)}_200_200_s.png`;
+    const code = this.itineraryAirlineCode(itinerary).toUpperCase();
+    // pics.avs.io – free airline logo CDN, no API key required
+    return `https://pics.avs.io/200/200/${code}.png`;
   }
 
   priceValue(flight: any): number {
@@ -407,7 +412,24 @@ export class FlightResultsComponent {
   }
 
   handleImageError(event: any, code: string) {
-    event.target.src = `https://ui-avatars.com/api/?name=${code}&background=f1f5f9&color=334155`;
+    const img = event.target as HTMLImageElement;
+    const current = img.src || '';
+    const c = (code || 'AIR').toUpperCase();
+
+    if (current.includes('pics.avs.io')) {
+      // Fallback 1: AirHex
+      img.src = `https://content.airhex.com/content/logos/airlines_${c}_200_200_s.png`;
+    } else if (current.includes('airhex.com')) {
+      // Fallback 2: Duffel assets
+      img.src = `https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/${c}.svg`;
+    } else {
+      // Final fallback: colored initial avatar
+      img.src = `https://ui-avatars.com/api/?name=${c}&background=EEF2FF&color=4F46E5&bold=true&size=200`;
+    }
+  }
+
+  flightSource(flight: any): string {
+    return flight?.source || '';
   }
 
   formatDuration(duration: string): string {
