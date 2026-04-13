@@ -1,9 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const Amadeus = require('amadeus');
 const axios = require('axios');
 const admin = require('firebase-admin');
+
+// Sabre modules
+const sabreAuth = require('./sabre-auth');
+const sabreFlightSearch = require('./sabre-flight-search');
 
 const app = express();
 app.use(cors());
@@ -164,19 +167,7 @@ const verifyAdmin = async (req, res, next) => {
     }
 };
 
-// Initialize Amadeus
-let amadeus;
-try {
-    amadeus = new Amadeus({
-        clientId: process.env.AMADEUS_CLIENT_ID,
-        clientSecret: process.env.AMADEUS_CLIENT_SECRET,
-        hostname: 'test'
-    });
-} catch (error) {
-    console.warn("Amadeus initialization failed:", error.message);
-}
-
-// Amadeus API Tracker & Analytics
+// API Analytics
 const updateApiStats = async (apiPath, duration, error = null) => {
     const apiName = apiPath.replace(/\//g, '_').replace(/\./g, '_');
     const statsPath = `admin/api_stats/${apiName}`;
@@ -213,107 +204,56 @@ const updateApiStats = async (apiPath, duration, error = null) => {
     }
 };
 
-/**
- * Wrapper for Amadeus calls with automatic tracking
- * @param {Function} apiFunc - The Amadeus API function to call (e.g. amadeus.shopping.flightOffersSearch.get)
- * @param {Object} params - The parameters for the call
- * @param {String} apiPath - Descriptive name for logging (e.g. 'shopping.flightOffersSearch')
- */
-const amadeusCall = async (apiPath, params) => {
-    if (!amadeus) throw new Error("Amadeus not initialized");
-    const startTime = Date.now();
-    try {
-        // Resolve function reference from path (e.g. "shopping.flightOffersSearch")
-        const parts = apiPath.split('.');
-        let func = amadeus;
-        for (const part of parts) {
-            func = func[part];
-        }
-
-        const response = await func.get(params);
-        const duration = Date.now() - startTime;
-        updateApiStats(apiPath, duration);
-        return response;
-    } catch (error) {
-        const duration = Date.now() - startTime;
-        updateApiStats(apiPath, duration, error);
-        throw error;
-    }
-};
-
-// Currency Service (Simple fallback)
+// Currency Service
 const getExchangeRate = async () => {
     return 120; // Default BDT to USD
 };
 
-// Public Search Route
-app.get('/api/search', async (req, res) => {
-    const { origin, destination, date, returnDate, adults = 1, children = 0, infants = 0, travelClass = 'ECONOMY' } = req.query;
+// =====================================================================
+// SABRE FLIGHT SEARCH – Primary Route
+// =====================================================================
+
+/**
+ * POST /api/flights/search
+ *
+ * Accepts JSON body:
+ *   { origin, destination, departureDate, returnDate?, adults?, children?, cabin?, direct? }
+ *
+ * Returns transformed Sabre flight results in Amadeus-compatible shape.
+ */
+app.post('/api/flights/search', async (req, res) => {
+    const startTime = Date.now();
+    const {
+        origin,
+        destination,
+        departureDate,
+        returnDate,
+        adults = 1,
+        children = 0,
+        cabin = 'ECONOMY',
+        direct = false
+    } = req.body;
+
+    // --- Validation ---
+    const iataRegex = /^[A-Z]{3}$/;
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+    if (!origin || !iataRegex.test(origin.toUpperCase())) {
+        return res.status(400).json({ error: 'Invalid origin – must be a 3-letter IATA code' });
+    }
+    if (!destination || !iataRegex.test(destination.toUpperCase())) {
+        return res.status(400).json({ error: 'Invalid destination – must be a 3-letter IATA code' });
+    }
+    if (!departureDate || !dateRegex.test(departureDate)) {
+        return res.status(400).json({ error: 'Invalid departureDate – must be YYYY-MM-DD' });
+    }
+    if (returnDate && !dateRegex.test(returnDate)) {
+        return res.status(400).json({ error: 'Invalid returnDate – must be YYYY-MM-DD' });
+    }
 
     try {
-        const params = {
-            originLocationCode: origin,
-            destinationLocationCode: destination,
-            departureDate: date,
-            adults: parseInt(adults),
-            children: parseInt(children),
-            infants: parseInt(infants),
-            travelClass: travelClass,
-            currencyCode: 'USD',
-            max: 50
-        };
-
-        if (returnDate && returnDate !== '') {
-            params.returnDate = returnDate;
-        }
-
-        // Handle Multi-city
-        let response;
-        if (req.query.segments) {
-            const segments = JSON.parse(req.query.segments);
-            console.log("Multi-city search segments:", segments.length);
-
-            // Construct Travelers
-            const travelers = [];
-            let travelerId = 1;
-            for (let i = 0; i < parseInt(adults); i++) travelers.push({ id: (travelerId++).toString(), travelerType: 'ADULT' });
-            for (let i = 0; i < parseInt(children); i++) travelers.push({ id: (travelerId++).toString(), travelerType: 'CHILD' });
-            for (let i = 0; i < parseInt(infants); i++) travelers.push({ id: (travelerId++).toString(), travelerType: 'HELD_INFANT', associatedAdultId: '1' });
-
-            // For multi-city, we use the POST method for better control
-            const postParams = {
-                currencyCode: 'USD',
-                originDestinations: segments.map((s, idx) => ({
-                    id: (idx + 1).toString(),
-                    originLocationCode: s.o,
-                    destinationLocationCode: s.d,
-                    departureDateTimeRange: {
-                        date: s.t
-                    }
-                })),
-                travelers: travelers,
-                sources: ['GDS'],
-                searchCriteria: {
-                    maxFlightOffers: 50,
-                    flightFilters: {
-                        cabinRestrictions: [{
-                            cabin: travelClass,
-                            originDestinationIds: segments.map((_, i) => (i + 1).toString())
-                        }]
-                    }
-                }
-            };
-
-            const startTime = Date.now();
-            response = await amadeus.shopping.flightOffersSearch.post(postParams);
-            updateApiStats('shopping.flightOffersSearch.post', Date.now() - startTime);
-        } else {
-            response = await amadeusCall('shopping.flightOffersSearch', params);
-        }
-
-        const rate = await getExchangeRate();
+        // --- Get pricing markup ---
         let markup = { type: 'percentage', value: 0 };
-
         if (db) {
             const snap = await db.ref('settings/pricing').once('value');
             if (snap.exists()) markup = snap.val();
@@ -322,159 +262,137 @@ app.get('/api/search', async (req, res) => {
             if (data) markup = data;
         }
 
-        const flights = response.data.map(offer => {
-            const basePriceUSD = parseFloat(offer.price.grandTotal || offer.price.total);
-            let priceBDT = basePriceUSD * rate;
+        const exchangeRate = await getExchangeRate();
 
-            if (markup.type === 'percentage') {
-                priceBDT = priceBDT * (1 + (parseFloat(markup.value || 0) / 100));
-            } else {
-                priceBDT += parseFloat(markup.value || 0);
-            }
+        // --- Call Sabre ---
+        const flights = await sabreFlightSearch.searchFlights(
+            {
+                origin: origin.toUpperCase(),
+                destination: destination.toUpperCase(),
+                departureDate,
+                returnDate,
+                adults: parseInt(adults),
+                children: parseInt(children),
+                cabin,
+                nonStop: direct === true || direct === 'true',
+            },
+            exchangeRate,
+            markup
+        );
 
-            // Enhanced normalization for all trip types
-            return {
-                id: offer.id,
-                source: 'AMADEUS',
-                price: {
-                    currency: 'BDT',
-                    total: Math.round(priceBDT),
-                    base: Math.round(priceBDT * 0.85),
-                    originalTotal: basePriceUSD,
-                    originalCurrency: offer.price.currency
-                },
-                itineraries: offer.itineraries.map(it => ({
-                    ...it,
-                    segments: it.segments.map(seg => ({
-                        ...seg,
-                        // Add some helper fields if needed
-                    }))
-                })),
-                validatingAirlineCodes: offer.validatingAirlineCodes,
-                travelerPricings: offer.travelerPricings,
-                bookable: true
-            };
-        });
+        const duration = Date.now() - startTime;
+        updateApiStats('sabre.flightSearch', duration);
 
-        console.log(`Search returned ${flights.length} offers. First offer has ${flights[0]?.itineraries?.length} itineraries.`);
+        console.log(`[SabreSearch] Returned ${flights.length} offers in ${duration}ms`);
         res.json(flights);
     } catch (error) {
-        console.error("Search Error:", error.message);
-        res.status(500).json({ error: "Search failed" });
+        const duration = Date.now() - startTime;
+        updateApiStats('sabre.flightSearch', duration, error);
+        console.error('[SabreSearch] Error:', error.message);
+        res.status(500).json({
+            error: 'Flight search failed',
+            details: error.message,
+            provider: 'SABRE'
+        });
     }
 });
 
-// Flight Pricing
+// =====================================================================
+// LEGACY /api/search – removed (Amadeus). Return 410 Gone.
+// =====================================================================
+app.get('/api/search', (req, res) => {
+    res.status(410).json({ error: 'This endpoint has been removed. Use POST /api/flights/search instead.' });
+});
+
+
+// Flight Pricing (Sabre – placeholder for future Sabre re-shop/pricing integration)
 app.post('/api/flights/price', async (req, res) => {
-    try {
-        const { flightOffer } = req.body;
-        const response = await amadeusCall('shopping.flightOffers.pricing', {
-            data: {
-                type: 'flight-offers-pricing',
-                flightOffers: [flightOffer]
-            }
-        }, 'post');
-        res.json(response.data);
-    } catch (error) {
-        res.status(500).json({ error: "Pricing failed", details: error.message });
-    }
+    // The selected offer already has a confirmed price from BFM.
+    // Return the offer as-is; a full re-price via Sabre re-shop can be added later.
+    const { flightOffer } = req.body || {};
+    if (!flightOffer) return res.status(400).json({ error: 'flightOffer is required' });
+    res.json({ flightOffer, confirmed: true });
 });
 
-// Seatmap Display
-app.post('/api/flights/seat-map', async (req, res) => {
-    try {
-        const { flightOffer } = req.body;
-        const response = await amadeusCall('shopping.seatmaps', {
-            data: {
-                type: 'seatmap-display',
-                flightOffers: [flightOffer]
-            }
-        }, 'post');
-        res.json(response.data);
-    } catch (error) {
-        res.status(500).json({ error: "Seatmap fetch failed", details: error.message });
-    }
+// Seatmap (not yet available via Sabre BFM – returns empty)
+app.post('/api/flights/seat-map', (req, res) => {
+    res.json({ seatmap: [], message: 'Seat map not available via current Sabre integration' });
 });
 
-// Create Flight Order (Booking)
+// Create Flight Order / Booking
 app.post('/api/flights/book', async (req, res) => {
     try {
-        const { flightOffer, travelers } = req.body;
-        const response = await amadeusCall('booking.flightOrders', {
-            data: {
-                type: 'flight-order',
-                flightOffers: [flightOffer],
-                travelers: travelers
-            }
-        }, 'post');
-        res.json(response.data);
+        const { flightOffer, travelers, contactInfo } = req.body || {};
+        if (!flightOffer || !travelers) {
+            return res.status(400).json({ error: 'flightOffer and travelers are required' });
+        }
+
+        // Persist booking to Firebase
+        const bookingRecord = {
+            status: 'PENDING_TICKET',
+            provider: 'SABRE',
+            flightOffer,
+            travelers,
+            contactInfo: contactInfo || {},
+            amount: flightOffer?.price?.total || 0,
+            currency: flightOffer?.price?.currency || 'BDT',
+            createdAt: new Date().toISOString(),
+        };
+
+        let bookingId;
+        if (db) {
+            const ref = await db.ref('bookings').push(bookingRecord);
+            bookingId = ref.key;
+        } else {
+            const result = await firebaseRest.push('bookings', bookingRecord);
+            bookingId = result.key;
+        }
+
+        console.log(`[Booking] Created booking ${bookingId}`);
+        res.json({ bookingId, status: 'PENDING_TICKET', message: 'Booking received. Ticket will be issued within 24 hours.' });
     } catch (error) {
-        res.status(500).json({ error: "Booking failed", details: error.message });
+        console.error('[Booking] Error:', error.message);
+        res.status(500).json({ error: 'Booking failed', details: error.message });
     }
 });
 
-app.get('/api/airports', async (req, res) => {
+// Airport autocomplete – served entirely from local fallback JSON
+app.get('/api/airports', (req, res) => {
     const { query } = req.query;
-    if (!amadeus || !query) return res.json([]);
+    if (!query) return res.json([]);
 
     try {
         const queryUpper = query.toUpperCase();
-
-        // Search Amadeus first
-        let amadeusResults = [];
-        try {
-            const response = await amadeus.referenceData.locations.get({
-                keyword: queryUpper,
-                subType: "AIRPORT,CITY",
-                'page[limit]': 15
-            });
-            amadeusResults = response.data.map((loc) => ({
-                city: loc.address.cityName,
-                airport: loc.name,
-                iata: loc.iataCode,
-                country: loc.address.countryName,
-                type: 'AIRPORT',
-                score: loc.iataCode === queryUpper ? 100 : (loc.address.cityName.toUpperCase() === queryUpper ? 90 : 50)
-            })).sort((a, b) => b.score - a.score);
-        } catch (error) {
-            console.error("Amadeus airport search error:", error.message);
-        }
-
-        // Load fallbacks
         let fallbacks = [];
         try {
             fallbacks = require('./airports-fallback.json');
         } catch (e) {
-            // Silently ignore if missing
+            // file may not exist in all environments
         }
 
-        // Logic: If Amadeus results are empty OR don't contain the exact IATA match 
-        // for a 3-letter query, check the fallback.
-        const matchedFallbacks = fallbacks.filter(f =>
-            f.iata === queryUpper ||
-            f.city.includes(queryUpper) ||
-            f.airport.includes(queryUpper)
-        );
+        const scored = fallbacks
+            .filter(f =>
+                f.iata?.toUpperCase().includes(queryUpper) ||
+                f.city?.toUpperCase().includes(queryUpper) ||
+                f.airport?.toUpperCase().includes(queryUpper) ||
+                f.country?.toUpperCase().includes(queryUpper)
+            )
+            .map(f => ({
+                ...f,
+                _score:
+                    f.iata?.toUpperCase() === queryUpper ? 100 :
+                    f.city?.toUpperCase() === queryUpper ? 90 :
+                    f.iata?.toUpperCase().startsWith(queryUpper) ? 80 :
+                    f.city?.toUpperCase().startsWith(queryUpper) ? 70 : 50,
+            }))
+            .sort((a, b) => b._score - a._score)
+            .map(({ _score, ...rest }) => rest) // strip internal score
+            .slice(0, 15);
 
-        // Merge: Add fallback results that are NOT in Amadeus results
-        const finalResults = [...amadeusResults];
-
-        matchedFallbacks.forEach(f => {
-            const alreadyExists = finalResults.some(a => a.iata === f.iata);
-            if (!alreadyExists) {
-                // If it's an exact IATA match, put it at the top
-                if (f.iata === queryUpper) {
-                    finalResults.unshift(f);
-                } else {
-                    finalResults.push(f);
-                }
-            }
-        });
-
-        res.json(finalResults.slice(0, 15));
+        res.json(scored);
     } catch (error) {
-        console.error("Airport search failed:", error.message);
-        res.status(500).json({ error: "Airport search failed" });
+        console.error('Airport search failed:', error.message);
+        res.status(500).json({ error: 'Airport search failed' });
     }
 });
 
