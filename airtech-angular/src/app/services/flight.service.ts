@@ -23,9 +23,18 @@ export class FlightService {
     private apiUrl = '/api';
 
     searchFlights(query: FlightSearchQuery): Observable<any[]> {
-        return this.http.get<any[]>(`${this.apiUrl}/search`, {
-            params: { ...query }
-        });
+        const body = {
+            origin: query.origin,
+            destination: query.destination,
+            departureDate: query.date, // Map date to departureDate for Sabre
+            returnDate: query.returnDate,
+            adults: query.adults || 1,
+            children: query.children || 0,
+            cabin: query.cabin || 'ECONOMY',
+            direct: query.direct || false
+        };
+
+        return this.http.post<any[]>(`${this.apiUrl}/flights/search`, body);
     }
 
     searchAirports(query: string): Observable<any[]> {
