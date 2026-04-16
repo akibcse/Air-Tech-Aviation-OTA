@@ -1,0 +1,33 @@
+name: Deploy and Alias
+
+on:
+  push:
+    branches:
+      - main-branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Pull Vercel Environment Info
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Alias to custom domain
+        run: |
+          DEPLOYMENT_URL=$(vercel ls --prod --token=${{ secrets.VERCEL_TOKEN }} | grep -A1 "Production" | tail -1 | awk '{print $2}')
+          vercel alias set $DEPLOYMENT_URL airtech-aviation-ota.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
