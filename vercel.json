@@ -1,5 +1,9 @@
 {
     "version": 2,
+    "github": {
+        "silent": true,
+        "autoJobCancel": false
+    },
     "redirects": [
         {
             "source": "/(.*)",
