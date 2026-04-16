@@ -231,7 +231,9 @@ app.post('/api/flights/search', async (req, res) => {
         adults = 1,
         children = 0,
         cabin = 'ECONOMY',
-        direct = false
+        direct = false,
+        tripType,
+        segments
     } = req.body;
 
     // --- Validation ---
@@ -275,6 +277,8 @@ app.post('/api/flights/search', async (req, res) => {
                 children: parseInt(children),
                 cabin,
                 nonStop: direct === true || direct === 'true',
+                tripType,
+                segments
             },
             exchangeRate,
             markup
@@ -356,44 +360,121 @@ app.post('/api/flights/book', async (req, res) => {
     }
 });
 
-// Airport autocomplete – served entirely from local fallback JSON
+// Airport dataset cache (load once)
+let cachedAirports = [];
+try {
+    const rawData = require('./airports-fallback.json');
+    cachedAirports = rawData.map(f => ({
+        ...f,
+        code_lc: (f.iata || '').toLowerCase(),
+        city_lc: (f.city || '').toLowerCase(),
+        name_lc: (f.airport || '').toLowerCase()
+    }));
+    console.log(`[Init] Loaded ${cachedAirports.length} airports into memory cache.`);
+} catch (e) {
+    console.warn('[Init] Could not load airports-fallback.json');
+}
+
+/**
+ * High-performance airport ranking algorithm.
+ * Follows exact OTA scoring criteria in a single loop.
+ */
+function rankAirports(query, airports) {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+
+    const scored = [];
+    for (let i = 0; i < airports.length; i++) {
+        const apt = airports[i];
+        let score = 0;
+
+        // 1. Exact IATA match (+100)
+        if (apt.code_lc === q) {
+            score = 100;
+        } 
+        // 2. Starts with IATA (+80)
+        else if (apt.code_lc.startsWith(q)) {
+            score = 80;
+        } 
+        // 3. City starts with query (+60)
+        else if (apt.city_lc.startsWith(q)) {
+            score = 60;
+        } 
+        // 4. Name starts with query (+50)
+        else if (apt.name_lc.startsWith(q)) {
+            score = 50;
+        } 
+        // 5. Contains match (+30)
+        else if (apt.name_lc.includes(q) || apt.city_lc.includes(q)) {
+            score = 30;
+        }
+
+        if (score > 0) {
+            // Priority boost simulation based on type if present (assumed to be available)
+            if (apt.type === 'AIRPORT' || apt.type === 'large_airport') score += 20;
+            if (apt.type === 'medium_airport') score += 10;
+            
+            // Remove the internal lowercase fields before sending to client
+            const { code_lc, city_lc, name_lc, ...resultObj } = apt;
+            scored.push({ item: resultObj, score });
+        }
+    }
+
+    return scored
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 20)
+        .map(obj => obj.item);
+}
+
+// Airport autocomplete – optimized
 app.get('/api/airports', (req, res) => {
     const { query } = req.query;
     if (!query) return res.json([]);
 
     try {
-        const queryUpper = query.toUpperCase();
-        let fallbacks = [];
-        try {
-            fallbacks = require('./airports-fallback.json');
-        } catch (e) {
-            // file may not exist in all environments
-        }
-
-        const scored = fallbacks
-            .filter(f =>
-                f.iata?.toUpperCase().includes(queryUpper) ||
-                f.city?.toUpperCase().includes(queryUpper) ||
-                f.airport?.toUpperCase().includes(queryUpper) ||
-                f.country?.toUpperCase().includes(queryUpper)
-            )
-            .map(f => ({
-                ...f,
-                _score:
-                    f.iata?.toUpperCase() === queryUpper ? 100 :
-                    f.city?.toUpperCase() === queryUpper ? 90 :
-                    f.iata?.toUpperCase().startsWith(queryUpper) ? 80 :
-                    f.city?.toUpperCase().startsWith(queryUpper) ? 70 : 50,
-            }))
-            .sort((a, b) => b._score - a._score)
-            .map(({ _score, ...rest }) => rest) // strip internal score
-            .slice(0, 15);
-
-        res.json(scored);
+        const results = rankAirports(query, cachedAirports);
+        res.json(results);
     } catch (error) {
         console.error('Airport search failed:', error.message);
         res.status(500).json({ error: 'Airport search failed' });
     }
+});
+
+// Airport specific lookup endpoint (strict)
+app.get('/api/airports/:code', (req, res) => {
+    const code = (req.params.code || '').toUpperCase();
+    if (!code) return res.status(400).json({ error: 'Missing code' });
+    const found = cachedAirports.find(a => a.iata && a.iata.toUpperCase() === code);
+    if (!found) {
+        return res.json({ code });
+    }
+    const { code_lc, city_lc, name_lc, _score, ...clean } = found;
+    return res.json(clean);
+});
+
+// Airline dataset cache
+let cachedAirlines = [];
+fetch('https://raw.githubusercontent.com/npow/airline-codes/master/airlines.json')
+    .then(r => r.ok ? r.json() : [])
+    .then(data => {
+        cachedAirlines = data;
+        console.log(`[Init] Loaded ${cachedAirlines.length} airlines into memory cache.`);
+    })
+    .catch(e => console.warn('[Init] Could not fetch airlines dataset:', e.message));
+
+// Airline specific lookup endpoint (strict)
+app.get('/api/airlines/:code', (req, res) => {
+    const code = (req.params.code || '').toUpperCase();
+    if (!code) return res.status(400).json({ error: 'Missing code' });
+    const found = cachedAirlines.find(a => a.iata && a.iata.toUpperCase() === code);
+    if (!found) {
+        return res.json({ code, name: code, logo: null });
+    }
+    return res.json({
+        code: found.iata,
+        name: found.alias || found.name,
+        logo: `https://pics.avs.io/90/90/${found.iata}.png`
+    });
 });
 
 // Admin Routes

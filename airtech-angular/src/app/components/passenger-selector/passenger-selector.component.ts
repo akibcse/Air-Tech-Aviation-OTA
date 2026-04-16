@@ -7,14 +7,16 @@ import { LucideAngularModule, ChevronDown, User, Minus, Plus } from 'lucide-angu
     standalone: true,
     imports: [CommonModule, LucideAngularModule],
     template: `
-    <div class="relative">
+    <div class="relative w-full">
       <button
         type="button"
         (click)="toggleOpen($event)"
-        class="w-full h-12 px-3 border border-slate-300 rounded-xl bg-white inline-flex items-center justify-between gap-2 text-sm font-medium text-slate-700 hover:border-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        [ngClass]="customTriggerClass ? customTriggerClass : 'w-full h-12 px-3 border border-slate-300 rounded-xl bg-white inline-flex items-center justify-between gap-2 text-sm font-medium text-slate-700 hover:border-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500'"
       >
         <span class="inline-flex items-center gap-2 min-w-0">
-          <lucide-icon [name]="userIcon" class="w-4 h-4 text-slate-400"></lucide-icon>
+           @if (!customTriggerClass) {
+              <lucide-icon [name]="userIcon" class="w-4 h-4 text-slate-400"></lucide-icon>
+           }
           <span class="truncate" [title]="summaryText">{{ summaryText }}</span>
         </span>
         <lucide-icon [name]="chevronDownIcon" [class]="'w-4 h-4 transition-transform ' + (isOpen() ? 'rotate-180' : '')"></lucide-icon>
@@ -22,28 +24,28 @@ import { LucideAngularModule, ChevronDown, User, Minus, Plus } from 'lucide-angu
 
       @if (isOpen()) {
         <div
-          class="fixed text-left bg-white rounded-xl shadow-2xl border border-slate-200 p-5 z-[2200]"
+          class="fixed text-left bg-white rounded-xl shadow-2xl border border-gray-200 p-5 z-[2200]"
           [style.top.px]="dropdownTop"
           [style.left.px]="dropdownLeft"
           [style.width.px]="dropdownWidth"
         >
           <div class="mb-6">
-            <label class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Cabin Class</label>
+            <label class="text-xs font-bold text-gray-600 uppercase tracking-wider mb-2 block text-gray-700">Cabin Class</label>
             <select
               [value]="cabin"
               (change)="onCabinChange($event)"
-               class="w-full p-2 border border-slate-300 rounded-lg text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+               class="w-full p-2.5 border border-gray-300 rounded-lg text-sm text-gray-800 bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             >
-              <option value="Economy">Economy</option>
-              <option value="Premium Economy">Premium Economy</option>
-              <option value="Business">Business Class</option>
-              <option value="First">First Class</option>
+              <option value="Economy" class="text-gray-800">Economy</option>
+              <option value="Premium Economy" class="text-gray-800">Premium Economy</option>
+              <option value="Business" class="text-gray-800">Business Class</option>
+              <option value="First" class="text-gray-800">First Class</option>
             </select>
           </div>
 
           <div class="flex justify-between items-center mb-4">
             <div>
-              <p class="font-semibold text-gray-900">Adults</p>
+              <p class="font-semibold text-gray-800">Adults</p>
               <p class="text-xs text-gray-500">Age 16+</p>
             </div>
             <div class="flex items-center gap-3">
@@ -55,7 +57,7 @@ import { LucideAngularModule, ChevronDown, User, Minus, Plus } from 'lucide-angu
               >
                 <lucide-icon [name]="minusIcon" class="w-4 h-4"></lucide-icon>
               </button>
-              <span class="w-4 text-center font-semibold">{{ adults }}</span>
+              <span class="w-4 text-center font-semibold text-gray-800">{{ adults }}</span>
               <button
                 type="button"
                 (click)="updateCount('adults', 1)"
@@ -68,7 +70,7 @@ import { LucideAngularModule, ChevronDown, User, Minus, Plus } from 'lucide-angu
 
           <div class="flex justify-between items-center">
             <div>
-              <p class="font-semibold text-gray-900">Children</p>
+              <p class="font-semibold text-gray-800">Children</p>
               <p class="text-xs text-gray-500">Age 0-15</p>
             </div>
             <div class="flex items-center gap-3">
@@ -80,7 +82,7 @@ import { LucideAngularModule, ChevronDown, User, Minus, Plus } from 'lucide-angu
               >
                 <lucide-icon [name]="minusIcon" class="w-4 h-4"></lucide-icon>
               </button>
-              <span class="w-4 text-center font-semibold">{{ childrenCount }}</span>
+              <span class="w-4 text-center font-semibold text-gray-800">{{ childrenCount }}</span>
               <button
                 type="button"
                 (click)="updateCount('children', 1)"
@@ -108,6 +110,8 @@ export class PassengerSelectorComponent {
     @Input() adults = 1;
     @Input() childrenCount = 0;
     @Input() cabin = 'Economy';
+    @Input() showCabin = true;
+    @Input() customTriggerClass = '';
     @Output() onChange = new EventEmitter<any>();
 
     isOpen = signal(false);

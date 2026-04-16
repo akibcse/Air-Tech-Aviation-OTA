@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LucideAngularModule, ArrowRight, ArrowLeftRight, Loader2, Plus, Minus, Search, CalendarDays, Users } from 'lucide-angular';
+import { LucideAngularModule, ArrowRight, ArrowLeftRight, Loader2, Plus, Minus, Search, CalendarDays, Users, Globe2, MapPin } from 'lucide-angular';
 import { PassengerSelectorComponent } from '../passenger-selector/passenger-selector.component';
 import { AirportAutocompleteComponent } from '../airport-autocomplete/airport-autocomplete.component';
 import { SearchStateService } from '../../services/search-state.service';
@@ -18,280 +18,235 @@ import { SearchStateService } from '../../services/search-state.service';
     AirportAutocompleteComponent
   ],
   template: `
-    <div class="space-y-4 text-gray-900 transition-all duration-300 ease-in-out" [class.opacity-50]="isCollapsed && !isHovered" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
-      <!-- Collapsed View Summary -->
+    <div class="transition-all duration-300 ease-in-out font-sans">
       @if (isCollapsed) {
-        <div (click)="toggleCollapse()" class="bg-white p-4 rounded-xl shadow-sm border border-blue-100 cursor-pointer hover:shadow-md flex justify-between items-center group">
+        <div (click)="toggleCollapse()" class="bg-white p-4 rounded-xl shadow-md border border-slate-200 cursor-pointer hover:shadow-lg flex justify-between items-center group transition-shadow">
           <div class="flex items-center gap-4">
-             <div class="bg-blue-50 p-2 rounded-lg group-hover:bg-blue-100 transition-colors">
-                <lucide-icon [name]="searchIcon" class="w-5 h-5 text-blue-600"></lucide-icon>
+             <div class="bg-white border border-slate-200 p-2.5 rounded-full shadow-sm">
+                <lucide-icon [name]="searchIcon" class="w-5 h-5 text-slate-700"></lucide-icon>
              </div>
              <div>
-                <p class="font-bold text-gray-900 text-sm">
-                   {{ state().segments[0].origin.display.split('(')[0] }} 
-                   <span class="text-gray-400 mx-1">→</span> 
-                   {{ state().segments[0].destination.display.split('(')[0] }}
-                   @if (state().tripType === 'multi-city') { <span class="text-xs text-gray-500 font-medium ml-1">(+{{ state().segments.length - 1 }} legs)</span> }
+                <p class="font-bold text-slate-800 text-sm">
+                   {{ state().segments[0].origin.display.split('(')[0] || 'Origin' }} 
+                   <span class="text-slate-400 mx-1">→</span> 
+                   {{ state().segments[0].destination.display.split('(')[0] || 'Destination' }}
+                   @if (state().tripType === 'multi-city') { <span class="text-xs text-slate-500 font-medium ml-1">(+{{ state().segments.length - 1 }} legs)</span> }
                 </p>
-                <p class="text-xs text-gray-500">
-                   {{ state().segments[0].date | date:'mediumDate' }} • 
+                <p class="text-xs text-slate-500 mt-0.5">
+                   {{ state().segments[0].date | date:'MMM d' }}
+                   @if (state().tripType === 'return' && state().returnDate) { - {{ state().returnDate | date:'MMM d' }} } • 
                    {{ state().travellers.adults + state().travellers.childrenCount }} Passenger(s) • 
                    {{ state().travellers.cabin }}
                 </p>
              </div>
           </div>
-          <button class="text-blue-600 text-xs font-bold uppercase tracking-wider hover:underline">Modify Search</button>
+          <button class="bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-xs font-bold hover:bg-blue-100 transition-colors">Edit</button>
         </div>
       } @else {
-      <div class="rounded-2xl border border-slate-200 bg-slate-50/60 p-3 md:p-4 shadow-sm overflow-visible">
-        <div role="tablist" aria-label="Trip type" class="mb-4 inline-flex w-full sm:w-auto rounded-xl border border-slate-200 bg-white p-1 gap-1 overflow-x-auto">
-          @for (tab of tripTabs; track tab.id) {
-            <button
-              type="button"
-              role="tab"
-              [attr.aria-selected]="state().tripType === tab.id"
-              [attr.tabindex]="state().tripType === tab.id ? 0 : -1"
-              (click)="updateTripType(tab.id)"
-              [class]="'min-h-11 px-4 rounded-lg text-sm font-semibold whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ' + (state().tripType === tab.id ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-700 hover:bg-slate-100')"
+      <div class="relative bg-white rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.1)] border border-slate-200 p-4 pt-5 pb-10 max-w-5xl mx-auto">
+        
+        <!-- Top Selectors Row -->
+        <div class="flex flex-wrap items-center gap-4 mb-4 overflow-visible">
+          <!-- Trip Type Selector -->
+          <div class="relative group dropdown-container">
+            <select
+              [ngModel]="state().tripType"
+              (ngModelChange)="updateTripType($event)"
+              class="appearance-none bg-transparent hover:bg-slate-50 pl-3 pr-8 py-2 rounded-md text-sm font-medium text-slate-700 border-none focus:ring-0 cursor-pointer transition-colors"
             >
-              {{ tab.label }}
-            </button>
-          }
+              @for (tab of tripTabs; track tab.id) {
+                <option [value]="tab.id">{{ tab.label }}</option>
+              }
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-2 flex items-center text-slate-500">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+          </div>
+
+          <!-- Passenger Selector -->
+          <div class="relative z-[2100]">
+            <app-passenger-selector
+              [adults]="state().travellers.adults"
+              [childrenCount]="state().travellers.childrenCount"
+              [cabin]="state().travellers.cabin"
+              (onChange)="updateTravellers($event)"
+              [showCabin]="true"
+            ></app-passenger-selector>
+          </div>
         </div>
 
-        <div class="space-y-4 overflow-visible">
+        <!-- Input Row -->
+        <div class="space-y-4">
           @if (state().tripType !== 'multi-city') {
-            <div class="space-y-3">
-              <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_44px_minmax(0,1fr)_minmax(0,1fr)] gap-4 items-end rounded-xl border border-slate-200 bg-white p-3 overflow-visible">
-                <div class="min-w-0">
-                  <app-airport-autocomplete
-                    label="From"
-                    [value]="state().segments[0].origin.display"
-                    (selected)="onLocationSelected(0, 'origin', $event)"
-                    [required]="true"
-                  ></app-airport-autocomplete>
+            <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto] gap-2 items-center relative">
+              
+<!-- Location Inputs Wrapper (Rounded border for group) -->
+              <div class="flex flex-col md:flex-row items-center border border-slate-300 rounded-xl relative group focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 bg-white shadow-sm hover:shadow transition-shadow p-3 pt-4 relative">
+                <!-- Swap button - repositioned to not overlap inputs -->
+                <button
+                  type="button"
+                  (click)="swapLocations(0)"
+                  class="absolute left-1/2 -translate-x-1/2 top-3 md:top-4 z-20 w-8 h-8 rounded-full border border-slate-200 bg-white shadow-md text-slate-500 hover:text-blue-600 hover:bg-slate-50 inline-flex items-center justify-center transition-all hover:scale-105"
+                  aria-label="Swap origin and destination"
+                >
+                  <lucide-icon [name]="swapIcon" class="w-4 h-4"></lucide-icon>
+                </button>
+                
+                <div class="w-full md:w-1/2 pr-2 md:pr-8">
+                   <app-airport-autocomplete
+                      label=""
+                      placeholder="Where from?"
+                      [value]="state().segments[0].origin.display"
+                      (selected)="onLocationSelected(0, 'origin', $event)"
+                      [required]="true"
+                      class="block w-full"
+                    ></app-airport-autocomplete>
                 </div>
 
-                <div class="flex items-center justify-center">
-                  <button
-                    type="button"
-                    (click)="swapLocations(0)"
-                    class="w-11 h-11 rounded-full border border-slate-300 bg-white text-slate-600 hover:text-blue-600 hover:border-blue-300 inline-flex items-center justify-center"
-                    aria-label="Swap origin and destination"
-                  >
-                    <lucide-icon [name]="swapIcon" class="w-4 h-4"></lucide-icon>
-                  </button>
-                </div>
-
-                <div class="min-w-0">
+                <div class="w-full md:w-1/2 pl-2 md:pl-8 pt-2 md:pt-0">
                   <app-airport-autocomplete
-                    label="To"
+                    label=""
+                    placeholder="Where to?"
                     [value]="state().segments[0].destination.display"
                     (selected)="onLocationSelected(0, 'destination', $event)"
                     [required]="true"
+                    class="block w-full"
                   ></app-airport-autocomplete>
                 </div>
+              </div>
 
-                <div class="min-w-0 space-y-2">
-                  <label class="text-xs font-semibold text-slate-600 inline-flex items-center gap-1">
-                    <lucide-icon [name]="calendarIcon" class="w-3.5 h-3.5"></lucide-icon>
-                    Journey Date
-                  </label>
-                  <div [class]="state().tripType === 'return' ? 'grid grid-cols-1 sm:grid-cols-2 gap-2' : 'grid grid-cols-1'">
-                    <div class="relative">
-                      <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-                        <lucide-icon [name]="calendarIcon" class="w-4 h-4"></lucide-icon>
-                      </span>
-                      <input
-                        type="date"
-                        [(ngModel)]="state().segments[0].date"
-                        (change)="syncState()"
-                        required
-                        class="w-full h-12 pl-10 pr-4 bg-white border border-slate-300 rounded-xl font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-                      />
-                    </div>
+              <div class="hidden lg:block w-0.5"></div>
 
-                    @if (state().tripType === 'return') {
-                      <div class="relative">
-                        <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-                          <lucide-icon [name]="calendarIcon" class="w-4 h-4"></lucide-icon>
-                        </span>
-                        <input
-                          type="date"
-                          [ngModel]="state().returnDate"
-                          (ngModelChange)="searchState.updateState({ returnDate: $event })"
-                          class="w-full h-12 pl-10 pr-4 bg-white border border-slate-300 rounded-xl font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-                        />
-                      </div>
-                    }
+              <!-- Date Picker Group -->
+              <div class="flex flex-col md:flex-row items-center border border-slate-300 rounded-xl relative group focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 bg-white shadow-sm hover:shadow transition-shadow">
+                <div class="w-full relative px-4 py-2 cursor-pointer hover:bg-slate-50 transition-colors rounded-l-xl">
+                  <label class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Departure</label>
+                  <input
+                    type="date"
+                    [(ngModel)]="state().segments[0].date"
+                    (change)="syncState()"
+                    required
+                    class="w-full bg-transparent text-slate-900 border-none p-0 focus:ring-0 font-medium cursor-pointer"
+                  />
+                </div>
+                
+                @if (state().tripType === 'return') {
+                  <div class="w-full relative px-4 py-2 border-t border-slate-200 md:border-t-0 md:border-l cursor-pointer hover:bg-slate-50 transition-colors rounded-r-xl group-focus-within:border-l-blue-500">
+                    <label class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Return</label>
+                    <input
+                      type="date"
+                      [ngModel]="state().returnDate"
+                      (ngModelChange)="searchState.updateState({ returnDate: $event })"
+                      class="w-full bg-transparent text-slate-900 border-none p-0 focus:ring-0 font-medium cursor-pointer"
+                    />
                   </div>
-
-                  @if (state().segments[0].date) {
-                    <p class="text-[11px] text-slate-500">
-                      <span class="hidden sm:inline">{{ state().segments[0].date | date:'EEEE, d MMM y' }}</span>
-                      <span class="sm:hidden">{{ state().segments[0].date | date:'EEE, d MMM' }}</span>
-                    </p>
-                  }
-                </div>
+                }
               </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-4 items-end">
-                <div class="min-w-0 space-y-2">
-                  <label class="text-xs font-semibold text-slate-600 inline-flex items-center gap-1">
-                    <lucide-icon [name]="usersIcon" class="w-3.5 h-3.5"></lucide-icon>
-                    Cabin + Travelers
-                  </label>
-                  <app-passenger-selector
-                    [adults]="state().travellers.adults"
-                    [childrenCount]="state().travellers.childrenCount"
-                    [cabin]="state().travellers.cabin"
-                    (onChange)="updateTravellers($event)"
-                  ></app-passenger-selector>
-                </div>
-
-                <button
-                  (click)="handleSearch()"
-                  [disabled]="loading || !state().segments[0].origin.iata || !state().segments[0].destination.iata || !state().segments[0].date"
-                  class="h-12 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold shadow-sm transition-all inline-flex items-center justify-center gap-2 w-full md:w-auto disabled:opacity-70"
-                >
-                  @if (loading) {
-                    <lucide-icon [name]="loaderIcon" class="w-5 h-5 animate-spin"></lucide-icon>
-                  } @else {
-                    Search <lucide-icon [name]="arrowRightIcon" class="w-4 h-4"></lucide-icon>
-                  }
-                </button>
-              </div>
             </div>
           } @else {
-            <div class="space-y-3">
+            <div class="space-y-4">
               @for (segment of state().segments; track $index; let i = $index) {
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_auto] gap-4 items-end rounded-xl border border-slate-200 bg-white p-3 overflow-visible">
-                  <div class="min-w-0">
-                    <app-airport-autocomplete
-                      label="From"
-                      [value]="segment.origin.display"
-                      (selected)="onLocationSelected(i, 'origin', $event)"
-                      [required]="true"
-                    ></app-airport-autocomplete>
+                <div class="flex flex-col md:flex-row gap-2 relative">
+                  <div class="flex-1 flex flex-col md:flex-row border border-slate-300 rounded-xl bg-white shadow-sm hover:shadow focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all relative">
+                    <div class="w-full relative">
+                      <app-airport-autocomplete
+                        label=""
+                        placeholder="Where from?"
+                        [value]="segment.origin.display"
+                        (selected)="onLocationSelected(i, 'origin', $event)"
+                        [required]="true"
+                        class="block w-full"
+                      ></app-airport-autocomplete>
+                    </div>
+                    <div class="w-full relative border-t border-slate-200 md:border-t-0 md:border-l md:pl-0 pt-2 md:pt-0">
+                      <app-airport-autocomplete
+                        label=""
+                        placeholder="Where to?"
+                        [value]="segment.destination.display"
+                        (selected)="onLocationSelected(i, 'destination', $event)"
+                        [required]="true"
+                        class="block w-full"
+                      ></app-airport-autocomplete>
+                    </div>
                   </div>
-
-                  <div class="min-w-0">
-                    <app-airport-autocomplete
-                      label="To"
-                      [value]="segment.destination.display"
-                      (selected)="onLocationSelected(i, 'destination', $event)"
-                      [required]="true"
-                    ></app-airport-autocomplete>
-                  </div>
-
-                  <div class="min-w-0 space-y-1.5">
-                    <label class="text-xs font-semibold text-slate-600 inline-flex items-center gap-1">
-                      <lucide-icon [name]="calendarIcon" class="w-3.5 h-3.5"></lucide-icon>
-                      Journey Date
-                    </label>
-                    <div class="relative">
-                      <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-                        <lucide-icon [name]="calendarIcon" class="w-4 h-4"></lucide-icon>
-                      </span>
-                      <input
+                  
+                  <div class="flex-1 md:flex-none md:w-56 border border-slate-300 rounded-xl bg-white shadow-sm hover:shadow focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 px-4 py-2 transition-all">
+                     <label class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Departure</label>
+                     <input
                         type="date"
                         [(ngModel)]="segment.date"
                         (change)="syncState()"
                         required
-                        class="w-full h-12 pl-10 pr-4 bg-white border border-slate-300 rounded-xl font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                        class="w-full bg-transparent text-slate-900 border-none p-0 focus:ring-0 font-medium h-6 cursor-pointer"
                       />
-                    </div>
                   </div>
-
-                  <div class="h-12 flex items-center gap-2 justify-start xl:justify-end">
-                    <button
-                      type="button"
-                      (click)="removeSegment(i)"
-                      [disabled]="state().segments.length <= 1"
-                      class="w-11 h-11 rounded-full border border-slate-300 text-slate-600 hover:text-red-600 hover:border-red-200 disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center justify-center"
-                      aria-label="Remove city"
-                    >
-                      <lucide-icon [name]="minusIcon" class="w-4 h-4"></lucide-icon>
-                    </button>
-                    <button
-                      type="button"
-                      (click)="addSegment()"
-                      [disabled]="state().segments.length >= 5"
-                      class="w-11 h-11 rounded-full border border-slate-300 text-slate-600 hover:text-blue-600 hover:border-blue-200 disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center justify-center"
-                      aria-label="Add city"
-                    >
-                      <lucide-icon [name]="plusIcon" class="w-4 h-4"></lucide-icon>
-                    </button>
+                  
+                  <div class="flex items-center gap-1 justify-end">
+                    <button type="button" (click)="removeSegment(i)" [disabled]="state().segments.length <= 1" class="p-2 text-slate-400 hover:text-red-500 disabled:opacity-30"><lucide-icon [name]="xIcon" class="w-5 h-5"></lucide-icon></button>
                   </div>
                 </div>
               }
-
-              <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-4 items-end">
-                <div class="min-w-0 space-y-2">
-                  <label class="text-xs font-semibold text-slate-600 inline-flex items-center gap-1">
-                    <lucide-icon [name]="usersIcon" class="w-3.5 h-3.5"></lucide-icon>
-                    Cabin + Travelers
-                  </label>
-                  <app-passenger-selector
-                    [adults]="state().travellers.adults"
-                    [childrenCount]="state().travellers.childrenCount"
-                    [cabin]="state().travellers.cabin"
-                    (onChange)="updateTravellers($event)"
-                  ></app-passenger-selector>
-                </div>
-
-                <button
-                  (click)="handleSearch()"
-                  [disabled]="loading || hasIncompleteSegments()"
-                  class="h-12 px-8 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold shadow-sm transition-all inline-flex items-center justify-center gap-2 w-full md:w-auto disabled:opacity-70"
-                >
-                  @if (loading) {
-                    <lucide-icon [name]="loaderIcon" class="w-5 h-5 animate-spin"></lucide-icon>
-                  } @else {
-                    Search <lucide-icon [name]="arrowRightIcon" class="w-4 h-4"></lucide-icon>
-                  }
-                </button>
+              <div class="px-2">
+                 <button (click)="addSegment()" [disabled]="state().segments.length >= 5" class="text-blue-600 font-bold text-sm flex items-center gap-2 hover:bg-blue-50 px-4 py-2 rounded-full transition-colors">
+                    <lucide-icon [name]="plusIcon" class="w-4 h-4"></lucide-icon> Add flight
+                 </button>
               </div>
             </div>
           }
         </div>
-      </div>
 
-      <div class="rounded-xl border border-slate-200 bg-white p-3 md:p-4">
-        <div class="flex flex-wrap items-center gap-4">
-          <label class="text-sm font-medium text-slate-700 inline-flex items-center gap-2">
-            <input
-              type="radio"
-              [checked]="state().fareType === 'regular'"
-              (change)="updateFareType('regular')"
-              class="h-4 w-4 text-blue-600 border-slate-300 focus:ring-blue-500"
-            />
-            Regular Fare
-          </label>
-          <label class="text-sm font-medium text-slate-700 inline-flex items-center gap-2">
-            <input
-              type="radio"
-              [checked]="state().fareType === 'bg-umrah'"
-              (change)="updateFareType('bg-umrah')"
-              class="h-4 w-4 text-blue-600 border-slate-300 focus:ring-blue-500"
-            />
-            BG Umrah Fare
-            <span class="text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700">New</span>
-          </label>
+        <!-- Absolute Centered Search Button -->
+        <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 z-[2200]">
+          <button
+            (click)="handleSearch()"
+            [disabled]="loading || hasIncompleteSegments()"
+            class="h-12 px-8 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold shadow-lg shadow-blue-500/30 transition-all inline-flex items-center justify-center gap-2 disabled:opacity-70 disabled:shadow-none min-w-[140px]"
+          >
+            @if (loading) {
+              <lucide-icon [name]="loaderIcon" class="w-5 h-5 animate-spin"></lucide-icon>
+            } @else {
+              <lucide-icon [name]="searchIcon" class="w-4 h-4"></lucide-icon> Search
+            }
+          </button>
         </div>
       </div>
-
-      <!-- Footer Controls -->
-      <div class="flex flex-wrap items-center gap-6 pt-2 border-t border-gray-50 mt-4">
-        <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer hover:text-gray-900">
-          <input type="checkbox" [(ngModel)]="state().addHotel" (change)="syncState()" name="addHotel" class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
-          Add a hotel
-        </label>
-        <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer hover:text-gray-900">
-          <input type="checkbox" [(ngModel)]="state().directOnly" (change)="syncState()" name="directOnly" class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
-          Direct flights only
-        </label>
+      
+      <!-- Quick Suggestions & Extras -->
+      @if (!isCollapsed && !loading) {
+      <div class="mt-14 px-2 max-w-5xl mx-auto animate-fade-in relative z-0">
+        <h3 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+           <lucide-icon [name]="globeIcon" class="w-5 h-5 text-blue-500"></lucide-icon>
+           Popular Flights from Bangladesh
+        </h3>
+        <div class="flex flex-wrap gap-3">
+          @for (dest of popularDestinations; track dest.city) {
+            <button (click)="presetDestination(dest)" class="flex items-center truncate w-full sm:w-[calc(50%-0.5rem)] md:w-[calc(33%-0.5rem)] rounded-xl border border-slate-200 bg-white p-3 hover:border-blue-400 hover:shadow shadow-sm transition-all group overflow-hidden">
+               <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 shrink-0 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
+                     <lucide-icon [name]="pinIcon" class="w-5 h-5 text-slate-500 group-hover:text-blue-600"></lucide-icon>
+                  </div>
+                  <div class="text-left w-full truncate space-y-0.5">
+                     <p class="font-bold text-slate-800 text-sm group-hover:text-blue-700 transition-colors">{{ dest.city }}</p>
+                     <p class="text-xs font-semibold text-slate-500">{{ dest.iata }}</p>
+                  </div>
+               </div>
+            </button>
+          }
+        </div>
+        
+        <div class="mt-8 rounded-2xl overflow-hidden relative min-h-[140px] flex items-center bg-gradient-to-r from-blue-900 to-indigo-800 shadow-lg shadow-indigo-500/10 border border-indigo-200">
+           <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 hidden md:block"></div>
+           <div class="relative z-10 p-6 sm:p-8 flex items-center w-full justify-between">
+              <div>
+                 <h4 class="text-xl sm:text-2xl font-black text-white mb-2 tracking-tight">Explore destinations</h4>
+                 <p class="text-blue-100 text-sm max-w-md font-medium leading-relaxed">Find the perfect flight matching your schedule and budget without leaving the grid.</p>
+              </div>
+              <button class="hidden sm:block shrink-0 bg-white text-blue-900 px-6 py-3 rounded-full font-bold text-sm shadow-sm hover:bg-blue-50 transition-colors">See Deals</button>
+           </div>
+        </div>
       </div>
+      }
       }
     </div>
   `
@@ -303,12 +258,20 @@ export class FlightSearchFormComponent implements OnInit {
   state = this.searchState.state;
   loading = false;
   isCollapsed = false;
-  isHovered = false;
 
   tripTabs = [
-    { id: 'one-way' as const, label: 'One Way' },
-    { id: 'return' as const, label: 'Round Way' },
-    { id: 'multi-city' as const, label: 'Multi Way' }
+    { id: 'return' as const, label: 'Round trip' },
+    { id: 'one-way' as const, label: 'One way' },
+    { id: 'multi-city' as const, label: 'Multi-city' }
+  ];
+
+  popularDestinations = [
+    { iata: 'DXB', city: 'Dubai' },
+    { iata: 'CXB', city: "Cox's Bazar" },
+    { iata: 'KUL', city: 'Kuala Lumpur' },
+    { iata: 'JED', city: 'Jeddah' },
+    { iata: 'SIN', city: 'Singapore' },
+    { iata: 'DOH', city: 'Doha' }
   ];
 
   // Icons
@@ -320,9 +283,16 @@ export class FlightSearchFormComponent implements OnInit {
   searchIcon = Search;
   calendarIcon = CalendarDays;
   usersIcon = Users;
+  globeIcon = Globe2;
+  pinIcon = MapPin;
+  xIcon = Minus; 
 
-  ngOnInit() {
-    // Return date is now handled via state signal
+  ngOnInit() { }
+
+  presetDestination(dest: any) {
+    const segments = [...this.state().segments];
+    segments[0].destination = { iata: dest.iata, display: `${dest.city} (${dest.iata})` };
+    this.searchState.setSegments(segments);
   }
 
   syncState() {
@@ -336,7 +306,6 @@ export class FlightSearchFormComponent implements OnInit {
         currentSegments.push({ origin: { iata: '', display: '' }, destination: { iata: '', display: '' }, date: '' });
       }
     } else {
-      // Revert to single segment
       currentSegments.splice(1);
     }
     this.searchState.updateState({ tripType: type, segments: currentSegments });
@@ -344,10 +313,6 @@ export class FlightSearchFormComponent implements OnInit {
 
   updateTravellers(travellers: any) {
     this.searchState.updateState({ travellers });
-  }
-
-  updateFareType(fareType: 'regular' | 'bg-umrah') {
-    this.searchState.updateState({ fareType });
   }
 
   hasIncompleteSegments() {
@@ -420,13 +385,8 @@ export class FlightSearchFormComponent implements OnInit {
       })));
     }
 
-    console.log("✈️ Performing Search with Params:", params);
-
-    // Navigate to new results page
     this.router.navigate(['/search'], { queryParams: params }).then(() => {
       this.loading = false;
-      // Do not collapse here, let the results page handle UI state if needed,
-      // or keep it collapsed. The requirement says "Search opens new results page".
     });
   }
 }

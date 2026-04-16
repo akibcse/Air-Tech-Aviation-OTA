@@ -50,6 +50,8 @@ function buildBfmPayload(params) {
         cabin = 'ECONOMY',
         nonStop = false,
         maxResults = 100,
+        tripType,
+        segments
     } = params;
 
     // Map our cabin strings to Sabre cabin codes
@@ -72,22 +74,33 @@ function buildBfmPayload(params) {
     if (infantCount > 0) passengerList.push({ Code: 'INF', Quantity: infantCount });
 
     // Build O&D legs
-    const originDestinations = [
-        {
+    const originDestinations = [];
+
+    if (tripType === 'multi-city' && Array.isArray(segments) && segments.length > 0) {
+        segments.forEach((seg, index) => {
+            originDestinations.push({
+                RPH: String(index + 1),
+                DepartureDateTime: `${seg.t}T00:00:00`,
+                OriginLocation: { LocationCode: seg.o?.toUpperCase() },
+                DestinationLocation: { LocationCode: seg.d?.toUpperCase() },
+            });
+        });
+    } else {
+        originDestinations.push({
             RPH: '1',
             DepartureDateTime: `${departureDate}T00:00:00`,
             OriginLocation: { LocationCode: origin.toUpperCase() },
             DestinationLocation: { LocationCode: destination.toUpperCase() },
-        },
-    ];
-
-    if (returnDate) {
-        originDestinations.push({
-            RPH: '2',
-            DepartureDateTime: `${returnDate}T00:00:00`,
-            OriginLocation: { LocationCode: destination.toUpperCase() },
-            DestinationLocation: { LocationCode: origin.toUpperCase() },
         });
+
+        if (returnDate) {
+            originDestinations.push({
+                RPH: '2',
+                DepartureDateTime: `${returnDate}T00:00:00`,
+                OriginLocation: { LocationCode: destination.toUpperCase() },
+                DestinationLocation: { LocationCode: origin.toUpperCase() },
+            });
+        }
     }
 
     const payload = {

@@ -31,7 +31,9 @@ export class FlightService {
             adults: query.adults || 1,
             children: query.children || 0,
             cabin: query.cabin || 'ECONOMY',
-            direct: query.direct || false
+            direct: query.direct || false,
+            tripType: query.tripType,
+            segments: query.segments ? JSON.parse(query.segments) : undefined
         };
 
         return this.http.post<any[]>(`${this.apiUrl}/flights/search`, body);

@@ -106,84 +106,125 @@ type TimeBucket = 'early-morning' | 'morning' | 'afternoon' | 'evening';
           </div>
         }
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
-          <aside class="hidden lg:block lg:col-span-3 self-start">
-            <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm space-y-5 lg:sticky lg:top-32 max-h-[calc(100vh-9rem)] overflow-y-auto overscroll-contain">
-              <div class="flex items-center justify-between">
-                <h3 class="text-sm font-black text-slate-900 flex items-center gap-2">
-                  <lucide-icon [name]="filterIcon" class="w-4 h-4"></lucide-icon>
-                  Filters
-                </h3>
-                <button (click)="resetFilters()" class="text-xs font-semibold text-blue-700">Reset</button>
-              </div>
-
-              <section class="space-y-2">
-                <h4 class="text-xs uppercase tracking-wider text-slate-500 font-bold">Price Range</h4>
-                <input type="range" [min]="priceMin()" [max]="priceMax()" [value]="maxBudget()" (input)="setMaxBudget(+$any($event.target).value)" class="w-full" />
-                <div class="flex items-center justify-between text-xs text-slate-500">
-                  <span>BDT {{ priceMin() | number }}</span>
-                  <span class="font-semibold text-slate-700">BDT {{ maxBudget() | number }}</span>
+        <div class="flex flex-col gap-4 items-stretch overflow-visible">
+          <!-- Horizontal Filter Bar -->
+          <div class="relative z-40 hidden lg:flex flex-wrap items-center gap-2 pb-2 border-b border-slate-200">
+            <!-- Stops Filter -->
+            <div class="relative filter-dropdown">
+              <button (click)="toggleDesktopFilter('stops')" class="px-3 py-1.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors flex items-center gap-1">
+                Stops <lucide-icon [name]="chevronDownIcon" class="w-3 h-3"></lucide-icon>
+              </button>
+              @if (activeFilter === 'stops') {
+                <div class="absolute top-full left-0 mt-1 w-64 bg-white border border-slate-200 rounded-xl shadow-xl p-4">
+                  <h4 class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-2">Stops</h4>
+                  @for (stop of stopOptions; track stop.label) {
+                    <label class="flex items-center justify-between py-1.5 text-sm text-slate-700 hover:bg-slate-50 rounded px-1 cursor-pointer">
+                      <span>{{ stop.label }}</span>
+                      <input type="checkbox" [checked]="selectedStops().has(stop.value)" (change)="toggleStop(stop.value, $any($event.target).checked)" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+                    </label>
+                  }
                 </div>
-              </section>
+              }
+            </div>
 
-              <section class="space-y-2">
-                <h4 class="text-xs uppercase tracking-wider text-slate-500 font-bold">Airlines</h4>
-                <div class="max-h-44 overflow-auto space-y-2 pr-1">
+            <!-- Airlines Filter -->
+            <div class="relative filter-dropdown">
+              <button (click)="toggleDesktopFilter('airlines')" class="px-3 py-1.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors flex items-center gap-1">
+                Airlines <lucide-icon [name]="chevronDownIcon" class="w-3 h-3"></lucide-icon>
+              </button>
+              @if (activeFilter === 'airlines') {
+                <div class="absolute top-full left-0 mt-1 w-64 max-h-80 overflow-y-auto custom-scrollbar bg-white border border-slate-200 rounded-xl shadow-xl p-4">
+                  <h4 class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-2">Airlines</h4>
                   @for (airline of availableAirlines(); track airline) {
-                    <label class="flex items-center justify-between gap-2 rounded-lg border border-slate-200 px-2 py-2 text-sm">
+                    <label class="flex items-center justify-between py-1.5 text-sm text-slate-700 hover:bg-slate-50 rounded px-1 cursor-pointer">
                       <span class="inline-flex items-center gap-2 min-w-0">
-                        <img [src]="'https://pics.avs.io/90/90/' + airline + '.png'" [alt]="airline" class="w-5 h-5 rounded object-contain bg-slate-50" (error)="handleLogoError($event, airline)" />
+                        <img [src]="'https://pics.avs.io/90/90/' + airline + '.png'" [alt]="airline" class="w-4 h-4 rounded object-contain bg-slate-50" (error)="handleLogoError($event, airline)" />
                         <span class="truncate">{{ airline }}</span>
                       </span>
                       <input type="checkbox" [checked]="selectedAirlines().has(airline)" (change)="toggleAirline(airline, $any($event.target).checked)" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
                     </label>
                   }
                 </div>
-              </section>
-
-              <section class="space-y-2">
-                <h4 class="text-xs uppercase tracking-wider text-slate-500 font-bold">Stops</h4>
-                @for (stop of stopOptions; track stop.label) {
-                  <label class="flex items-center justify-between rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700">
-                    <span>{{ stop.label }}</span>
-                    <input type="checkbox" [checked]="selectedStops().has(stop.value)" (change)="toggleStop(stop.value, $any($event.target).checked)" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
-                  </label>
-                }
-              </section>
-
-              <section class="space-y-2">
-                <h4 class="text-xs uppercase tracking-wider text-slate-500 font-bold">Departure Time</h4>
-                @for (option of timeBucketOptions; track option.value) {
-                  <label class="flex items-center justify-between rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700">
-                    <span>{{ option.shortLabel }}</span>
-                    <input type="checkbox" [checked]="selectedDepartureBuckets().has(option.value)" (change)="toggleDepartureBucket(option.value, $any($event.target).checked)" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
-                  </label>
-                }
-              </section>
-
-              <section class="space-y-2">
-                <h4 class="text-xs uppercase tracking-wider text-slate-500 font-bold">Arrival Time</h4>
-                @for (option of timeBucketOptions; track option.value) {
-                  <label class="flex items-center justify-between rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700">
-                    <span>{{ option.shortLabel }}</span>
-                    <input type="checkbox" [checked]="selectedArrivalBuckets().has(option.value)" (change)="toggleArrivalBucket(option.value, $any($event.target).checked)" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
-                  </label>
-                }
-              </section>
+              }
             </div>
-          </aside>
 
-          <section class="space-y-3 min-w-0 overflow-x-hidden lg:col-span-9">
-            <div class="rounded-xl border border-slate-200 bg-white p-2 shadow-sm">
-              <div class="grid grid-cols-3 gap-1">
-                @for (tab of sortOptions; track tab.value) {
-                  <button
-                    (click)="setSort(tab.value)"
-                    [class]="'rounded-lg px-3 py-2 text-xs font-bold transition-colors ' + (sortBy() === tab.value ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700')"
-                  >
-                    {{ tab.label }}
-                  </button>
-                }
+            <!-- Price Filter -->
+            <div class="relative filter-dropdown">
+              <button (click)="toggleDesktopFilter('price')" class="px-3 py-1.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors flex items-center gap-1">
+                Price <lucide-icon [name]="chevronDownIcon" class="w-3 h-3"></lucide-icon>
+              </button>
+              @if (activeFilter === 'price') {
+                <div class="absolute top-full left-0 mt-1 w-64 bg-white border border-slate-200 rounded-xl shadow-xl p-4">
+                  <h4 class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-2">Maximum Price</h4>
+                  <input type="range" [min]="priceMin()" [max]="priceMax()" [value]="maxBudget()" (input)="setMaxBudget(+$any($event.target).value)" class="w-full" />
+                  <div class="flex items-center justify-between text-xs text-slate-500 mt-2">
+                    <span>BDT {{ priceMin() | number }}</span>
+                    <span class="font-bold text-slate-800">BDT {{ maxBudget() | number }}</span>
+                  </div>
+                </div>
+              }
+            </div>
+
+            <!-- Times Filter -->
+            <div class="relative filter-dropdown">
+              <button (click)="toggleDesktopFilter('times')" class="px-3 py-1.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors flex items-center gap-1">
+                Times <lucide-icon [name]="chevronDownIcon" class="w-3 h-3"></lucide-icon>
+              </button>
+              @if (activeFilter === 'times') {
+                <div class="absolute top-full left-0 mt-1 w-72 bg-white border border-slate-200 rounded-xl shadow-xl p-4">
+                  <h4 class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-2">Departure Time</h4>
+                  <div class="mb-4">
+                    @for (option of timeBucketOptions; track option.value) {
+                      <label class="flex items-center justify-between py-1.5 text-sm text-slate-700 hover:bg-slate-50 rounded px-1 cursor-pointer">
+                        <span>{{ option.shortLabel }}</span>
+                        <input type="checkbox" [checked]="selectedDepartureBuckets().has(option.value)" (change)="toggleDepartureBucket(option.value, $any($event.target).checked)" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+                      </label>
+                    }
+                  </div>
+                  <h4 class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-2">Arrival Time</h4>
+                  <div>
+                    @for (option of timeBucketOptions; track option.value) {
+                      <label class="flex items-center justify-between py-1.5 text-sm text-slate-700 hover:bg-slate-50 rounded px-1 cursor-pointer">
+                        <span>{{ option.shortLabel }}</span>
+                        <input type="checkbox" [checked]="selectedArrivalBuckets().has(option.value)" (change)="toggleArrivalBucket(option.value, $any($event.target).checked)" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+                      </label>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+
+            <div class="ml-auto">
+               <button (click)="resetFilters()" class="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">Reset all</button>
+            </div>
+          </div>
+
+          <!-- Main Results Area -->
+          <section class="min-w-0 overflow-visible relative z-0">
+            <!-- Tabs Row -->
+            <div class="border-b border-slate-200 mb-4 px-2">
+              <div class="flex gap-6 relative">
+                 <button 
+                   (click)="setSort('cheapest')" 
+                   [class]="'pb-3 text-sm font-medium transition-colors relative ' + (sortBy() === 'cheapest' ? 'text-blue-600' : 'text-slate-500 hover:text-slate-800')"
+                 >
+                    Cheapest
+                    @if (sortBy() === 'cheapest') { <span class="absolute bottom-0 left-0 w-full h-[3px] bg-blue-600 rounded-t-lg"></span> }
+                 </button>
+                 <button 
+                   (click)="setSort('earliest')" 
+                   [class]="'pb-3 text-sm font-medium transition-colors relative ' + (sortBy() === 'earliest' ? 'text-blue-600' : 'text-slate-500 hover:text-slate-800')"
+                 >
+                    Best
+                    @if (sortBy() === 'earliest') { <span class="absolute bottom-0 left-0 w-full h-[3px] bg-blue-600 rounded-t-lg"></span> }
+                 </button>
+                 <button 
+                   (click)="setSort('fastest')" 
+                   [class]="'pb-3 text-sm font-medium transition-colors relative ' + (sortBy() === 'fastest' ? 'text-blue-600' : 'text-slate-500 hover:text-slate-800')"
+                 >
+                    Fastest
+                    @if (sortBy() === 'fastest') { <span class="absolute bottom-0 left-0 w-full h-[3px] bg-blue-600 rounded-t-lg"></span> }
+                 </button>
               </div>
             </div>
 
@@ -282,17 +323,7 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
   private flightService = inject(FlightService);
 
   private readonly searchParamKeys = ['tripType', 'origin', 'destination', 'date', 'adults', 'children', 'cabin', 'direct', 'returnDate', 'segments'];
-  private readonly airportCityByCode: Record<string, string> = {
-    DAC: 'Dhaka',
-    CGP: 'Chattogram',
-    CXB: "Cox's Bazar",
-    ZYL: 'Sylhet',
-    DXB: 'Dubai',
-    KUL: 'Kuala Lumpur',
-    JED: 'Jeddah',
-    DOH: 'Doha',
-    SIN: 'Singapore'
-  };
+
   private lastSearchSignature = '';
   private hasBudgetInUrl = false;
   private countdownTimer: ReturnType<typeof setInterval> | null = null;
@@ -454,6 +485,16 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
   chevronUpIcon = ChevronUp;
   slidersIcon = SlidersHorizontal;
   xIcon = X;
+
+  activeFilter: string = 'none';
+
+  toggleDesktopFilter(filter: string) {
+    if (this.activeFilter === filter) {
+      this.activeFilter = 'none';
+    } else {
+      this.activeFilter = filter;
+    }
+  }
 
   ngOnInit() {
     this.startCountdown();
@@ -789,9 +830,7 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
   }
 
   private formatAirportDisplay(iataCode: string): string {
-    const code = String(iataCode || '').toUpperCase();
-    const city = this.airportCityByCode[code];
-    return city ? `${city} (${code})` : code;
+    return String(iataCode || '').toUpperCase();
   }
 
   private getAirlineCode(flight: any): string {

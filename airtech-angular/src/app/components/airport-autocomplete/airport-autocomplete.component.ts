@@ -15,7 +15,7 @@ import { Subject } from 'rxjs';
       <label class="absolute -top-2 left-3 bg-white px-1 text-xs font-semibold text-gray-500 group-focus-within:text-blue-600 transition-colors z-10">
         {{ label }}
       </label>
-      <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 z-10 pointer-events-none">
+      <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 z-10 pointer-events-none">
         <lucide-icon [name]="planeIcon" class="w-4 h-4"></lucide-icon>
       </span>
       <input
@@ -23,39 +23,49 @@ import { Subject } from 'rxjs';
         [(ngModel)]="query"
         (focus)="openDropdown($event)"
         (input)="onInput($event)"
+        (keydown.ArrowDown)="onArrowDown($event)"
+        (keydown.ArrowUp)="onArrowUp($event)"
+        (keydown.Enter)="onEnter($event)"
+        (keydown.Escape)="closeDropdown()"
         [title]="query"
         [placeholder]="placeholder"
         [required]="required"
-        class="w-full h-12 pl-10 pr-4 bg-white border border-slate-300 rounded-xl font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        class="w-full h-12 pl-10 pr-4 bg-white border border-gray-300 rounded-xl font-medium text-gray-800 placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
         autocomplete="off"
       />
 
       @if (showResults() && results().length > 0) {
         <div
-          class="fixed bg-white border border-slate-200 rounded-xl shadow-2xl z-[2200] max-h-80 overflow-y-auto overflow-x-hidden custom-scrollbar"
+          class="fixed bg-white border border-gray-200 rounded-xl shadow-2xl z-[2200] max-h-80 overflow-y-auto overflow-x-hidden custom-scrollbar"
           [style.top.px]="dropdownTop"
           [style.left.px]="dropdownLeft"
           [style.width.px]="dropdownWidth"
         >
-          @for (loc of results(); track loc.iata) {
+          @for (loc of results(); track loc.iata; let i = $index) {
             <button
               type="button"
               (click)="selectLocation(loc)"
+              (mouseenter)="activeIndex = i"
+              [class.bg-blue-50]="activeIndex === i"
               class="w-full px-4 py-3 hover:bg-blue-50 text-left border-b border-gray-50 last:border-0 transition-colors flex items-center justify-between group/item"
             >
               <div class="flex flex-col gap-0.5 min-w-0">
-                <span class="font-bold text-gray-900 truncate">{{ loc.city }}</span>
-                <span class="text-xs text-gray-500 truncate">{{ loc.airport }}</span>
+                <span class="font-bold text-gray-900 truncate" [innerHTML]="highlightMatch(loc.city)"></span>
+                <span class="text-xs text-gray-500 truncate" [innerHTML]="highlightMatch(loc.airport || loc.name)"></span>
               </div>
-              <span class="bg-gray-100 group-hover/item:bg-blue-100 text-gray-600 group-hover/item:text-blue-700 font-bold px-2 py-1 rounded text-sm transition-colors">
-                {{ loc.iata }}
+              <span 
+                class="bg-gray-100 group-hover/item:bg-blue-100 font-bold px-2 py-1 rounded text-sm transition-colors"
+                [class.text-blue-700]="activeIndex === i"
+                [class.bg-blue-100]="activeIndex === i"
+                [class.text-gray-600]="activeIndex !== i"
+                [innerHTML]="highlightMatch(loc.iata)"
+              >
               </span>
             </button>
           }
         </div>
       }
     </div>
-    
   `
 })
 export class AirportAutocompleteComponent {
@@ -72,26 +82,31 @@ export class AirportAutocompleteComponent {
   private flightService = inject(FlightService);
   private searchSubject = new Subject<string>();
   private activeInput: HTMLElement | null = null;
+  private currentRawQuery = '';
 
   query = '';
   results = signal<any[]>([]);
   showResults = signal(false);
+  activeIndex = -1;
 
   constructor() {
     this.searchSubject.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(q => q.length >= 1 ? this.flightService.searchAirports(q) : of([])),
+      switchMap(q => {
+        this.currentRawQuery = q.trim();
+        return q.trim().length >= 1 ? this.flightService.searchAirports(q.trim()) : of([]);
+      }),
       catchError(() => of([]))
     ).subscribe(res => {
       this.results.set(res);
+      this.activeIndex = -1;
     });
 
-    // Close results when clicking outside (simple realization)
     if (typeof window !== 'undefined') {
       window.addEventListener('click', (e: any) => {
         if (!e.target.closest('app-airport-autocomplete')) {
-          this.showResults.set(false);
+          this.closeDropdown();
         }
       });
     }
@@ -106,9 +121,38 @@ export class AirportAutocompleteComponent {
   }
 
   selectLocation(loc: any) {
-    this.query = `${loc.city} (${loc.iata})`;
+    this.currentRawQuery = '';
+    this.query = `${loc.city || loc.name || ''} (${loc.iata})`;
     this.valueChange.emit(this.query);
     this.selected.emit(loc);
+    this.closeDropdown();
+  }
+
+  onArrowDown(event: Event) {
+    if (!this.showResults() || this.results().length === 0) return;
+    event.preventDefault();
+    if (this.activeIndex < this.results().length - 1) {
+      this.activeIndex++;
+    }
+  }
+
+  onArrowUp(event: Event) {
+    if (!this.showResults() || this.results().length === 0) return;
+    event.preventDefault();
+    if (this.activeIndex > 0) {
+      this.activeIndex--;
+    }
+  }
+
+  onEnter(event: Event) {
+    if (this.showResults() && this.activeIndex >= 0 && this.activeIndex < this.results().length) {
+      event.preventDefault();
+      this.selectLocation(this.results()[this.activeIndex]);
+    }
+  }
+
+  closeDropdown() {
+    this.activeIndex = -1;
     this.showResults.set(false);
   }
 
@@ -120,6 +164,9 @@ export class AirportAutocompleteComponent {
     this.activeInput = event.target as HTMLElement;
     this.positionDropdown();
     this.showResults.set(true);
+    if (!this.query) {
+      this.searchSubject.next('');
+    }
   }
 
   @HostListener('window:scroll')
@@ -131,13 +178,22 @@ export class AirportAutocompleteComponent {
   }
 
   private positionDropdown() {
-    if (!this.activeInput) {
-      return;
-    }
-
+    if (!this.activeInput) return;
     const rect = this.activeInput.getBoundingClientRect();
     this.dropdownTop = rect.bottom + 6;
     this.dropdownLeft = rect.left;
     this.dropdownWidth = rect.width;
+  }
+
+  highlightMatch(text: string): string {
+    if (!text) return '';
+    if (!this.currentRawQuery) return text;
+    
+    // Escape regex characters
+    const escapedQuery = this.currentRawQuery.replace(/[.*+?^$\{\}\(\)\|\[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escapedQuery})`, 'gi');
+    // Important: DO NOT format the replacement directly with classes if you use innerHTML without sanitization protection 
+    // unless you know it's safe. We'll use a bold tag and generic color styling.
+    return text.toString().replace(regex, '<span class="text-blue-600 font-black bg-blue-50 px-0.5 rounded">$1</span>');
   }
 }
