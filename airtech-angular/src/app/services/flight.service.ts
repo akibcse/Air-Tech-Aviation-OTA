@@ -45,6 +45,14 @@ export class FlightService {
         });
     }
 
+    getRandomAirports(): Observable<any[]> {
+        return this.http.get<any[]>(`${this.apiUrl}/airports/random`);
+    }
+
+    getPopularAirports(): Observable<any[]> {
+        return this.http.get<any[]>(`${this.apiUrl}/airports/popular`);
+    }
+
     createBooking(data: any): Promise<any> {
         return lastValueFrom(this.http.post<any>(`${this.apiUrl}/bookings`, data));
     }

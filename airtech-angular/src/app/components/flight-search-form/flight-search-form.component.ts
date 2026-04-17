@@ -125,6 +125,7 @@ import { SearchStateService } from '../../services/search-state.service';
                   <input
                     type="date"
                     [(ngModel)]="state().segments[0].date"
+                    (mouseenter)="openDatePicker($event)"
                     (change)="syncState()"
                     required
                     class="w-full bg-transparent text-slate-900 border-none p-0 focus:ring-0 font-medium cursor-pointer"
@@ -137,6 +138,7 @@ import { SearchStateService } from '../../services/search-state.service';
                     <input
                       type="date"
                       [ngModel]="state().returnDate"
+                      (mouseenter)="openDatePicker($event)"
                       (ngModelChange)="searchState.updateState({ returnDate: $event })"
                       class="w-full bg-transparent text-slate-900 border-none p-0 focus:ring-0 font-medium cursor-pointer"
                     />
@@ -174,9 +176,10 @@ import { SearchStateService } from '../../services/search-state.service';
                   
                   <div class="flex-1 md:flex-none md:w-56 border border-slate-300 rounded-xl bg-white shadow-sm hover:shadow focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 px-4 py-2 transition-all">
                      <label class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Departure</label>
-                     <input
+                      <input
                         type="date"
                         [(ngModel)]="segment.date"
+                        (mouseenter)="openDatePicker($event)"
                         (change)="syncState()"
                         required
                         class="w-full bg-transparent text-slate-900 border-none p-0 focus:ring-0 font-medium h-6 cursor-pointer"
@@ -346,6 +349,20 @@ export class FlightSearchFormComponent implements OnInit {
     const segments = [...this.state().segments];
     segments.splice(index, 1);
     this.searchState.setSegments(segments);
+  }
+
+  openDatePicker(event: any) {
+    try {
+      const input = event.target as HTMLInputElement;
+      if (input.showPicker) {
+        input.showPicker();
+      } else {
+        input.focus();
+        input.click();
+      }
+    } catch (e) {
+      console.warn('showPicker not supported on hover', e);
+    }
   }
 
   toggleCollapse() {

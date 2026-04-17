@@ -17,13 +17,15 @@ import {
   X
 } from 'lucide-angular';
 
+import { AirportNameComponent } from '../../components/airport-name/airport-name.component';
+
 type SortType = 'cheapest' | 'earliest' | 'fastest';
 type TimeBucket = 'early-morning' | 'morning' | 'afternoon' | 'evening';
 
 @Component({
   selector: 'app-flight-results-page',
   standalone: true,
-  imports: [CommonModule, FlightSearchFormComponent, FlightResultsComponent, LucideAngularModule],
+  imports: [CommonModule, FlightSearchFormComponent, FlightResultsComponent, LucideAngularModule, AirportNameComponent],
   template: `
     <div class="min-h-screen bg-[#eef2f7]">
       <header class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
@@ -38,7 +40,11 @@ type TimeBucket = 'early-morning' | 'morning' | 'afternoon' | 'evening';
             </button>
 
             <div class="min-w-0 flex-1 text-center">
-              <p class="text-sm font-black text-slate-900 truncate">{{ routeSummary() }}</p>
+              <div class="flex items-center justify-center gap-1.5 text-sm font-black text-slate-900">
+                <app-airport-name [code]="searchCriteria().origin || ''"></app-airport-name>
+                <span class="text-slate-400">→</span>
+                <app-airport-name [code]="searchCriteria().destination || ''"></app-airport-name>
+              </div>
               <p class="text-[11px] text-slate-500 truncate">{{ dateSummary() }} • {{ passengerSummary() }}</p>
             </div>
 
@@ -53,7 +59,11 @@ type TimeBucket = 'early-morning' | 'morning' | 'afternoon' | 'evening';
 
           <div class="hidden md:flex items-center justify-between gap-3">
             <div class="min-w-0">
-              <p class="text-sm font-black text-slate-900 truncate">{{ routeSummary() }}</p>
+              <div class="flex items-center gap-1.5 text-sm font-black text-slate-900">
+                <app-airport-name [code]="searchCriteria().origin || ''"></app-airport-name>
+                <lucide-icon [name]="modifyIcon" class="w-3.5 h-3.5 text-slate-300 rotate-90"></lucide-icon>
+                <app-airport-name [code]="searchCriteria().destination || ''"></app-airport-name>
+              </div>
               <p class="text-xs text-slate-500 truncate">
                 {{ tripTypeLabel() }} • {{ dateSummary() }} • {{ passengerSummary() }} • {{ cabinSummary() }}
               </p>
@@ -439,6 +449,14 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
           return priceA - priceB;
       }
     });
+  });
+
+  searchCriteria = computed(() => {
+    const state = this.searchState.state();
+    return {
+      origin: state.segments[0]?.origin?.iata || '',
+      destination: state.segments[state.segments.length - 1]?.destination?.iata || '',
+    };
   });
 
   priceMin = computed(() => {

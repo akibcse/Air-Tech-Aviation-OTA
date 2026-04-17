@@ -22,6 +22,7 @@ import { Subject } from 'rxjs';
         type="text"
         [(ngModel)]="query"
         (focus)="openDropdown($event)"
+        (mouseenter)="openDropdown($event)"
         (input)="onInput($event)"
         (keydown.ArrowDown)="onArrowDown($event)"
         (keydown.ArrowUp)="onArrowUp($event)"
@@ -91,11 +92,14 @@ export class AirportAutocompleteComponent {
 
   constructor() {
     this.searchSubject.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
+      debounceTime(150),
       switchMap(q => {
-        this.currentRawQuery = q.trim();
-        return q.trim().length >= 1 ? this.flightService.searchAirports(q.trim()) : of([]);
+        const query = q.trim();
+        this.currentRawQuery = query;
+        if (query.length < 1) {
+          return of([]);
+        }
+        return this.flightService.searchAirports(query);
       }),
       catchError(() => of([]))
     ).subscribe(res => {
@@ -122,10 +126,19 @@ export class AirportAutocompleteComponent {
 
   selectLocation(loc: any) {
     this.currentRawQuery = '';
-    this.query = `${loc.city || loc.name || ''} (${loc.iata})`;
+    const name = loc.airport || loc.name || loc.city || '';
+    this.query = `${this.toTitleCase(name)} (${loc.iata})`;
     this.valueChange.emit(this.query);
     this.selected.emit(loc);
     this.closeDropdown();
+  }
+
+  toTitleCase(str: string): string {
+    if (!str) return '';
+    return str.toLowerCase().split(' ').map(word => {
+      if (word.startsWith('(') || word === '-') return word.toUpperCase();
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }).join(' ');
   }
 
   onArrowDown(event: Event) {
@@ -162,11 +175,11 @@ export class AirportAutocompleteComponent {
 
   openDropdown(event: Event) {
     this.activeInput = event.target as HTMLElement;
+    this.activeInput.focus();
     this.positionDropdown();
     this.showResults.set(true);
-    if (!this.query) {
-      this.searchSubject.next('');
-    }
+    // Keep results based on current query
+    this.searchSubject.next(this.query || '');
   }
 
   @HostListener('window:scroll')

@@ -8230,5 +8230,47 @@
     "iata": "URC",
     "country": "CHINA",
     "type": "AIRPORT"
+  },
+  {
+    "city": "COX'S BAZAR",
+    "airport": "COX'S BAZAR AIRPORT",
+    "iata": "CXB",
+    "country": "BANGLADESH",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SYLHET",
+    "airport": "OSMANI INTERNATIONAL AIRPORT",
+    "iata": "ZYL",
+    "country": "BANGLADESH",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "BARISHAL",
+    "airport": "BARISAL AIRPORT",
+    "iata": "BZL",
+    "country": "BANGLADESH",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "JASHORE",
+    "airport": "JASHORE AIRPORT",
+    "iata": "JSR",
+    "country": "BANGLADESH",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "RAJSHAHI",
+    "airport": "SHAH MAKHDUM AIRPORT",
+    "iata": "RJH",
+    "country": "BANGLADESH",
+    "type": "AIRPORT"
+  },
+  {
+    "city": "SAIDPUR",
+    "airport": "SAIDPUR AIRPORT",
+    "iata": "SPD",
+    "country": "BANGLADESH",
+    "type": "AIRPORT"
   }
 ]

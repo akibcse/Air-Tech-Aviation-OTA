@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from '../../../services/admin.service';
 import { AuthService } from '../../../services/auth.service';
+import { AirportNameComponent } from '../../../components/airport-name/airport-name.component';
 
 @Component({
   selector: 'app-admin-bookings',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, AirportNameComponent],
   template: `
     <div class="space-y-5 text-gray-900">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
@@ -67,7 +68,13 @@ import { AuthService } from '../../../services/auth.service';
               @for (booking of filteredBookings(); track booking.id) {
                 <tr class="hover:bg-gray-50">
                   <td class="p-4 font-mono font-bold text-blue-600">{{ booking.pnr }}</td>
-                  <td class="p-4 text-sm font-medium">{{ getRoute(booking) }}</td>
+                  <td class="p-4 text-sm font-medium">
+                    <div class="flex items-center gap-1.5">
+                      <app-airport-name [code]="booking.flight.itineraries[0].segments[0].departure.iataCode"></app-airport-name>
+                      <span class="text-gray-300">→</span>
+                      <app-airport-name [code]="booking.flight.itineraries[0].segments[booking.flight.itineraries[0].segments.length - 1].arrival.iataCode"></app-airport-name>
+                    </div>
+                  </td>
                   <td class="p-4 text-sm font-bold">{{ booking.currency }} {{ booking.amount }}</td>
                   <td class="p-4"><span [class]="statusBadge(booking.status)">{{ booking.status }}</span></td>
                   <td class="p-4 text-sm text-gray-500">{{ booking.createdAt | date:'shortDate' }}</td>
@@ -91,7 +98,11 @@ import { AuthService } from '../../../services/auth.service';
               <div class="flex items-start justify-between gap-2">
                 <div>
                   <p class="font-mono font-bold text-blue-600">{{ booking.pnr }}</p>
-                  <p class="text-sm font-semibold text-gray-900">{{ getRoute(booking) }}</p>
+                  <div class="flex items-center gap-1.5 text-sm font-semibold text-gray-900">
+                    <app-airport-name [code]="booking.flight.itineraries[0].segments[0].departure.iataCode"></app-airport-name>
+                    <span class="text-gray-300">→</span>
+                    <app-airport-name [code]="booking.flight.itineraries[0].segments[booking.flight.itineraries[0].segments.length - 1].arrival.iataCode"></app-airport-name>
+                  </div>
                   <p class="text-xs text-gray-500">{{ booking.createdAt | date:'mediumDate' }}</p>
                 </div>
                 <span [class]="statusBadge(booking.status)">{{ booking.status }}</span>

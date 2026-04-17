@@ -6,6 +6,8 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { FlightService } from '../../../services/flight.service';
 import { AuthService } from '../../../services/auth.service';
+import { DataEnrichmentService } from '../../../services/data-enrichment.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-confirmation',
@@ -61,6 +63,7 @@ export class ConfirmationComponent {
   private route = inject(ActivatedRoute);
   private flightService = inject(FlightService);
   private authService = inject(AuthService);
+  private enrichmentService = inject(DataEnrichmentService);
 
   booking: any = null;
 
@@ -87,8 +90,32 @@ export class ConfirmationComponent {
     });
   }
 
-  handleDownloadTicket() {
+  async handleDownloadTicket() {
     const doc = new jsPDF();
+
+    // Resolve Airport Names First
+    const airportNames = new Map<string, string>();
+    if (this.booking && this.booking.flight && this.booking.flight.itineraries) {
+      const codes = new Set<string>();
+      this.booking.flight.itineraries.forEach((it: any) => {
+        it.segments.forEach((seg: any) => {
+          codes.add(seg.departure.iataCode);
+          codes.add(seg.arrival.iataCode);
+        });
+      });
+
+      for (const code of codes) {
+        try {
+          const data = await firstValueFrom(this.enrichmentService.getAirport(code));
+          if (data) {
+            const fullName = data.airport || data.name || data.city || code;
+            airportNames.set(code, `${this.toTitleCase(fullName)} (${code})`);
+          }
+        } catch (e) {
+          airportNames.set(code, code);
+        }
+      }
+    }
 
     // Company Header
     doc.setFillColor(37, 99, 235); // Blue
@@ -129,7 +156,9 @@ export class ConfirmationComponent {
           yPos += 7;
 
           doc.setFont('helvetica', 'normal');
-          doc.text(`${segment.departure.iataCode || ''} -> ${segment.arrival.iataCode || ''}`, 14, yPos);
+          const dep = airportNames.get(segment.departure.iataCode) || segment.departure.iataCode;
+          const arr = airportNames.get(segment.arrival.iataCode) || segment.arrival.iataCode;
+          doc.text(`${dep} -> ${arr}`, 14, yPos);
           yPos += 7;
 
           doc.text(`${segment.carrierCode || ''} ${segment.number || ''} | ${segment.aircraft?.code || 'Aircraft'}`, 14, yPos);
@@ -179,5 +208,13 @@ export class ConfirmationComponent {
     doc.text("This is a computer generated document.", 14, yPos + 5);
 
     doc.save(`ticket-${this.pnr}.pdf`);
+  }
+
+  toTitleCase(str: string): string {
+    if (!str) return '';
+    return str.toLowerCase().split(' ').map(word => {
+      if (word.startsWith('(') || word === '-') return word.toUpperCase();
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }).join(' ');
   }
 }

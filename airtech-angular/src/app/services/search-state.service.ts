@@ -20,10 +20,20 @@ export interface SearchState {
     providedIn: 'root'
 })
 export class SearchStateService {
+    private getDefaultDate(): string {
+        const date = new Date();
+        date.setDate(date.getDate() + 5);
+        return date.toISOString().split('T')[0];
+    }
+
     state = signal<SearchState>({
-        tripType: 'return',
+        tripType: 'one-way',
         segments: [
-            { origin: { iata: '', display: '' }, destination: { iata: '', display: '' }, date: '' }
+            { 
+                origin: { iata: 'DAC', display: 'Dhaka (DAC)' }, 
+                destination: { iata: 'SIN', display: 'Singapore (SIN)' }, 
+                date: this.getDefaultDate() 
+            }
         ],
         travellers: { adults: 1, childrenCount: 0, cabin: 'Economy' },
         directOnly: false,

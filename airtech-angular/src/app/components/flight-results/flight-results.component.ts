@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { ArrowRight, CheckCircle, Clock3, LucideAngularModule, Plane, Star, ChevronDown, ChevronUp, Leaf } from 'lucide-angular';
 import { BookingService } from '../../services/booking.service';
 import { AirlineLogoComponent } from '../airline-logo/airline-logo.component';
+import { AirportNameComponent } from '../airport-name/airport-name.component';
 
 @Component({
   selector: 'app-flight-results',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, AirlineLogoComponent],
+  imports: [CommonModule, LucideAngularModule, AirlineLogoComponent, AirportNameComponent],
   template: `
     <div class="space-y-4">
       @if (loading) {
@@ -78,7 +79,11 @@ import { AirlineLogoComponent } from '../airline-logo/airline-logo.component';
                        <!-- Duration & Routing -->
                        <div class="flex flex-col text-right sm:text-center min-w-[70px]">
                           <span class="text-[15px] text-slate-900 font-medium">{{ itineraryDurationLabel(itinerary) }}</span>
-                          <span class="text-[11px] text-slate-500 font-bold uppercase">{{ itineraryDepartureAirport(itinerary) }}–{{ itineraryArrivalAirport(itinerary) }}</span>
+                          <span class="text-[9px] sm:text-[10px] text-slate-500 font-black uppercase flex items-center justify-end sm:justify-center gap-1">
+                             <app-airport-name [code]="itineraryDepartureAirport(itinerary)"></app-airport-name> 
+                             <span class="text-slate-300 mx-0.5">–</span> 
+                             <app-airport-name [code]="itineraryArrivalAirport(itinerary)"></app-airport-name>
+                          </span>
                        </div>
     
                        <!-- Stops -->
@@ -86,11 +91,13 @@ import { AirlineLogoComponent } from '../airline-logo/airline-logo.component';
                           <span class="text-[15px] font-bold text-slate-900">
                              {{ itineraryStops(itinerary) === 0 ? 'Nonstop' : itineraryStops(itinerary) + ' stop' + (itineraryStops(itinerary) > 1 ? 's' : '') }}
                           </span>
-                          <span class="text-[10px] text-slate-500 truncate max-w-[100px] font-medium">
-                             @if (itineraryStops(itinerary) > 0) {
-                                {{ briefLayovers(itinerary) }}
+                          <div class="flex flex-wrap justify-end gap-1 mt-0.5">
+                             @for (layover of itineraryLayovers(itinerary); track $index) {
+                                <span class="text-[9px] text-slate-500 font-medium bg-slate-50 px-1 rounded-sm border border-slate-100">
+                                   {{ layover.duration }} in <app-airport-name [code]="layover.at"></app-airport-name>
+                                </span>
                              }
-                          </span>
+                          </div>
                        </div>
                     </div>
 
@@ -137,7 +144,7 @@ import { AirlineLogoComponent } from '../airline-logo/airline-logo.component';
                                     <div class="absolute left-[5px] top-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 border border-white"></div>
                                     <div class="flex items-center gap-3">
                                        <span class="text-[15px] font-bold text-slate-900 w-12">{{ formatTime(segment.departure.at) }}</span>
-                                       <span class="text-[15px] text-slate-900">{{ airportDisplay(segment.departure) }}</span>
+                                       <span class="text-[15px] text-slate-900"><app-airport-name [code]="segment.departure.iataCode"></app-airport-name></span>
                                     </div>
                                  </div>
                                  
@@ -157,7 +164,7 @@ import { AirlineLogoComponent } from '../airline-logo/airline-logo.component';
                                     <div class="absolute left-[5px] top-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 border border-white"></div>
                                     <div class="flex items-center gap-3">
                                        <span class="text-[15px] font-bold text-slate-900 w-12">{{ formatTime(segment.arrival.at) }}</span>
-                                       <span class="text-[15px] text-slate-900">{{ airportDisplay(segment.arrival) }}</span>
+                                       <span class="text-[15px] text-slate-900"><app-airport-name [code]="segment.arrival.iataCode"></app-airport-name></span>
                                     </div>
                                  </div>
 
@@ -309,15 +316,18 @@ export class FlightResultsComponent {
     return Math.max(0, this.itinerarySegments(itinerary).length - 1);
   }
 
-  briefLayovers(itinerary: any): string {
+  itineraryLayovers(itinerary: any): any[] {
      const segments = this.itinerarySegments(itinerary);
-     if (segments.length <= 1) return '';
+     if (segments.length <= 1) return [];
      
-     const durations = [];
+     const layovers = [];
      for (let i = 0; i < segments.length - 1; i++) {
-        durations.push(`${this.calculateLayoverDuration(segments[i].arrival.at, segments[i+1].departure.at)} ${segments[i].arrival.iataCode}`);
+        layovers.push({
+           duration: this.calculateLayoverDuration(segments[i].arrival.at, segments[i+1].departure.at),
+           at: segments[i].arrival.iataCode
+        });
      }
-     return durations.join(', ');
+     return layovers;
   }
 
   airportDisplay(location: any): string {

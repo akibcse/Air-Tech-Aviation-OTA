@@ -380,53 +380,105 @@ try {
  * Follows exact OTA scoring criteria in a single loop.
  */
 function rankAirports(query, airports) {
-    const q = query.trim().toLowerCase();
+    if (!query) return [];
+    
+    // Normalize query: trim, lower, and remove diacritics
+    const q = query.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     if (!q) return [];
 
+    const popularBoost = ['DAC', 'DXB', 'JED', 'SIN', 'KUL', 'DOH', 'AUH', 'BKK', 'CCU', 'DEL', 'BOM', 'CGP', 'ZYL', 'CXB', 'JSR', 'RJH', 'SPD', 'BZL', 'IST', 'LHR', 'JFK'];
     const scored = [];
+
     for (let i = 0; i < airports.length; i++) {
         const apt = airports[i];
         let score = 0;
 
-        // 1. Exact IATA match (+100)
-        if (apt.code_lc === q) {
+        // Ensure we compare against normalized versions of the airport data
+        const code = apt.code_lc;
+        const city = apt.city_lc.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const name = apt.name_lc.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+        // 1. Exact IATA match (The ultimate priority)
+        if (code === q) {
+            score = 10000;
+        } 
+        // 2. Exact City match
+        else if (city === q) {
+            score = 5000;
+        }
+        // 3. Starts with IATA (only relevant for queries <= 3 chars)
+        else if (q.length <= 3 && code.startsWith(q)) {
+            score = 2000;
+        } 
+        // 4. City starts with query
+        else if (city.startsWith(q)) {
+            score = 1000;
+        } 
+        // 5. Name starts with query
+        else if (name.startsWith(q)) {
+            score = 500;
+        } 
+        // 6. Contains match
+        else if (name.includes(q) || city.includes(q) || code.includes(q)) {
             score = 100;
-        } 
-        // 2. Starts with IATA (+80)
-        else if (apt.code_lc.startsWith(q)) {
-            score = 80;
-        } 
-        // 3. City starts with query (+60)
-        else if (apt.city_lc.startsWith(q)) {
-            score = 60;
-        } 
-        // 4. Name starts with query (+50)
-        else if (apt.name_lc.startsWith(q)) {
-            score = 50;
-        } 
-        // 5. Contains match (+30)
-        else if (apt.name_lc.includes(q) || apt.city_lc.includes(q)) {
-            score = 30;
         }
 
         if (score > 0) {
-            // Priority boost simulation based on type if present (assumed to be available)
-            if (apt.type === 'AIRPORT' || apt.type === 'large_airport') score += 20;
-            if (apt.type === 'medium_airport') score += 10;
+            // Priority boost for regional/popular airports
+            if (popularBoost.includes(apt.iata)) {
+                score += 500;
+            }
+
+            // Priority boost for airport type
+            if (apt.type === 'AIRPORT' || apt.type === 'large_airport') score += 100;
+            if (apt.type === 'medium_airport') score += 50;
             
-            // Remove the internal lowercase fields before sending to client
             const { code_lc, city_lc, name_lc, ...resultObj } = apt;
             scored.push({ item: resultObj, score });
         }
     }
 
     return scored
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 20)
+        .sort((a, b) => {
+            if (b.score !== a.score) {
+                return b.score - a.score;
+            }
+            // Tie-breaker: prefer shorter names and then alphabetical
+            if (a.item.city.length !== b.item.city.length) {
+                return a.item.city.length - b.item.city.length;
+            }
+            return a.item.city.localeCompare(b.item.city);
+        })
+        .slice(0, 15) // Show top 15 for better focus
         .map(obj => obj.item);
 }
 
 // Airport autocomplete – optimized
+// Get popular airports for suggestions
+app.get('/api/airports/popular', (req, res) => {
+    try {
+        const popularCodes = [
+            'DAC', 'CGP', 'ZYL', 'DXB', 'JED', 'SIN', 'KUL', 'DOH', 'AUH', 'BKK', 
+            'CCU', 'DEL', 'BOM', 'COK', 'SHJ', 'KTM', 'MLE', 'RRY', 'MED', 'CAN'
+        ];
+        
+        const popular = popularCodes.map(code => {
+            const found = cachedAirports.find(a => a.iata === code);
+            if (found) {
+                const { code_lc, city_lc, name_lc, _score, ...clean } = found;
+                return clean;
+            }
+            return null;
+        }).filter(Boolean);
+
+        // Return a subset of these (e.g., 6)
+        const shuffled = popular.sort(() => 0.5 - Math.random());
+        res.json(shuffled.slice(0, 6));
+    } catch (e) {
+        res.status(500).json({ error: 'Failed to fetch popular airports' });
+    }
+});
+
 app.get('/api/airports', (req, res) => {
     const { query } = req.query;
     if (!query) return res.json([]);

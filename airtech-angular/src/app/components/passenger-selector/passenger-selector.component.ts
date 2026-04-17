@@ -11,6 +11,7 @@ import { LucideAngularModule, ChevronDown, User, Minus, Plus } from 'lucide-angu
       <button
         type="button"
         (click)="toggleOpen($event)"
+        (mouseenter)="openDropdown($event)"
         [ngClass]="customTriggerClass ? customTriggerClass : 'w-full h-12 px-3 border border-slate-300 rounded-xl bg-white inline-flex items-center justify-between gap-2 text-sm font-medium text-slate-700 hover:border-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500'"
       >
         <span class="inline-flex items-center gap-2 min-w-0">
@@ -138,6 +139,14 @@ export class PassengerSelectorComponent {
         this.triggerElement = event.currentTarget as HTMLElement;
         this.isOpen.set(!this.isOpen());
         if (this.isOpen()) {
+            this.positionDropdown();
+        }
+    }
+
+    openDropdown(event: Event) {
+        if (!this.isOpen()) {
+            this.triggerElement = event.currentTarget as HTMLElement;
+            this.isOpen.set(true);
             this.positionDropdown();
         }
     }

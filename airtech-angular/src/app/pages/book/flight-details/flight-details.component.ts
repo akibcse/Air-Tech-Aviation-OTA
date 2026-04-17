@@ -5,10 +5,12 @@ import { BookingService } from '../../../services/booking.service';
 import { LucideAngularModule, Plane, ArrowLeft, Clock, Info, Check, AlertCircle } from 'lucide-angular';
 import { format, parseISO } from 'date-fns';
 
+import { AirportNameComponent } from '../../../components/airport-name/airport-name.component';
+
 @Component({
     selector: 'app-booking-flight-details',
     standalone: true,
-    imports: [CommonModule, LucideAngularModule, RouterLink],
+    imports: [CommonModule, LucideAngularModule, RouterLink, AirportNameComponent],
     template: `
     <div class="min-h-screen bg-gray-50 py-12">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,8 +38,10 @@ import { format, parseISO } from 'date-fns';
                   <div class="bg-blue-100 p-2 rounded-lg">
                     <lucide-icon [name]="planeIcon" class="w-5 h-5 text-blue-600"></lucide-icon>
                   </div>
-                  <span class="font-semibold text-lg text-gray-900">
-                    {{ firstSegment.departure.iataCode }} to {{ lastSegment.arrival.iataCode }}
+                  <span class="font-semibold text-lg text-gray-900 flex items-center gap-2">
+                    <app-airport-name [code]="firstSegment.departure.iataCode"></app-airport-name> 
+                    <span class="text-gray-400">to</span> 
+                    <app-airport-name [code]="lastSegment.arrival.iataCode"></app-airport-name>
                   </span>
                 </div>
                 <span class="text-sm text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">
@@ -57,7 +61,7 @@ import { format, parseISO } from 'date-fns';
                           {{ segment.departure.at | date:'HH:mm' }} • {{ segment.departure.at | date:'EEE, d MMM' }}
                         </div>
                         <div class="text-gray-500">
-                          {{ segment.departure.iataCode }} (Terminal {{ segment.departure.terminal || '1' }})
+                           <app-airport-name [code]="segment.departure.iataCode"></app-airport-name> (Terminal {{ segment.departure.terminal || '1' }})
                         </div>
                         <div class="mt-2 text-sm text-gray-600 bg-gray-50 inline-block px-3 py-1 rounded-md">
                           <span class="font-medium">{{ segment.carrierCode }} {{ segment.number }}</span> • {{ segment.aircraft.code }}
@@ -72,7 +76,7 @@ import { format, parseISO } from 'date-fns';
                     @if (idx < itinerary.segments.length - 1) {
                       <div class="my-8 flex items-center gap-2 text-orange-600 text-sm font-medium bg-orange-50 p-3 rounded-lg border border-orange-100">
                         <lucide-icon [name]="clockIcon" class="w-4 h-4"></lucide-icon>
-                        <span>Layover in {{ segment.arrival.iataCode }}</span>
+                        <span>Layover in <app-airport-name [code]="segment.arrival.iataCode" class="font-bold"></app-airport-name></span>
                       </div>
                     }
                   </div>
@@ -86,7 +90,7 @@ import { format, parseISO } from 'date-fns';
                       {{ lastSegment.arrival.at | date:'HH:mm' }} • {{ lastSegment.arrival.at | date:'EEE, d MMM' }}
                     </div>
                     <div class="text-gray-500">
-                      {{ lastSegment.arrival.iataCode }} (Terminal {{ lastSegment.arrival.terminal || '1' }})
+                      <app-airport-name [code]="lastSegment.arrival.iataCode"></app-airport-name> (Terminal {{ lastSegment.arrival.terminal || '1' }})
                     </div>
                   </div>
                 </div>

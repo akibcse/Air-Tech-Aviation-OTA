@@ -4,11 +4,12 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FlightService } from '../../services/flight.service';
 import { LucideAngularModule, Loader2, LogOut, User, Shield, Ticket, Plane } from 'lucide-angular';
+import { AirportNameComponent } from '../../components/airport-name/airport-name.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, RouterLink, DatePipe],
+  imports: [CommonModule, LucideAngularModule, RouterLink, DatePipe, AirportNameComponent],
   template: `
     <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       @if (auth.isLoading()) {
@@ -97,7 +98,11 @@ import { LucideAngularModule, Loader2, LogOut, User, Shield, Ticket, Plane } fro
                           <lucide-icon [name]="planeIcon" class="w-5 h-5 text-white"></lucide-icon>
                         </div>
                         <div>
-                          <div class="text-lg font-black text-gray-900 tracking-tight">{{ getRoute(booking) }}</div>
+                          <div class="text-lg font-black text-gray-900 tracking-tight flex items-center gap-2">
+                             <app-airport-name [code]="booking.flight.itineraries[0].segments[0].departure.iataCode"></app-airport-name>
+                             <span class="text-gray-300">→</span>
+                             <app-airport-name [code]="booking.flight.itineraries[0].segments[booking.flight.itineraries[0].segments.length - 1].arrival.iataCode"></app-airport-name>
+                          </div>
                           <div class="flex items-center gap-3 mt-1">
                             <span class="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded font-black tracking-widest">{{ booking.pnr }}</span>
                             <span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{{ booking.createdAt | date:'mediumDate' }}</span>

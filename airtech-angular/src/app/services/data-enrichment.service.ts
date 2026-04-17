@@ -60,8 +60,10 @@ export class DataEnrichmentService {
 
     return this.http.get<AirportData>(`${this.apiUrl}/airports/${ucCode}`).pipe(
       tap(data => {
-        if (data && data.code) {
-          this.airportCache.set(ucCode, data);
+        if (data && (data.code || data.iata)) {
+          const code = (data.code || data.iata || ucCode).toUpperCase();
+          const normalized = { ...data, code };
+          this.airportCache.set(ucCode, normalized);
         }
       }),
       catchError(() => {
