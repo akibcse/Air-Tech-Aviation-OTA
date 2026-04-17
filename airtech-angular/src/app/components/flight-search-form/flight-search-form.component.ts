@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LucideAngularModule, ArrowRight, ArrowLeftRight, Loader2, Plus, Minus, Search, CalendarDays, Users, Globe2, MapPin } from 'lucide-angular';
+
 import { PassengerSelectorComponent } from '../passenger-selector/passenger-selector.component';
 import { AirportAutocompleteComponent } from '../airport-autocomplete/airport-autocomplete.component';
 import { SearchStateService } from '../../services/search-state.service';
@@ -197,7 +198,7 @@ import { SearchStateService } from '../../services/search-state.service';
         </div>
 
         <!-- Absolute Centered Search Button -->
-        <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 z-[2200]">
+        <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 z-[40]">
           <button
             (click)="handleSearch()"
             [disabled]="loading || hasIncompleteSegments()"

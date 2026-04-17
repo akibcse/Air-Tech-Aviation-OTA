@@ -50,59 +50,67 @@ import { AirlineLogoComponent } from '../airline-logo/airline-logo.component';
         @for (flight of flights; track flight.id || $index; let i = $index) {
           <article class="bg-white rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.05)] border border-slate-200 hover:shadow-md transition-shadow overflow-hidden group">
             
-            <!-- Summary Row Grid -->
+            <!-- Summary Row -->
             <div 
                (click)="toggleDetails(flight.id || i.toString())"
-               class="p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer hover:bg-slate-50 transition-colors"
+               class="p-4 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6 cursor-pointer hover:bg-slate-50 transition-colors"
             >
-              @for (itinerary of itineraries(flight); track $index; let itineraryIndex = $index) {
-                <div class="flex-1 flex flex-wrap md:flex-nowrap items-center justify-between md:justify-start gap-4 md:gap-8">
-                  
-                  <!-- Airline & Times -->
-                  <div class="flex items-start gap-4 min-w-[200px]">
-                     <app-airline-logo [code]="itineraryAirlineCode(itinerary)" [showName]="false" class="mt-1"></app-airline-logo>
-                     <div class="flex flex-col">
-                        <span class="text-[15px] font-medium text-slate-900">
-                           {{ itineraryDepartureTime(itinerary) }} <span class="text-slate-400 mx-1">–</span> {{ itineraryArrivalTime(itinerary) }}
-                           @if (hasDayChange(itinerary)) {<sup class="text-[9px] text-blue-600 font-bold ml-0.5">+1</sup>}
-                        </span>
-                        <span class="text-xs text-slate-500 truncate max-w-[120px]">{{ itineraryAirlineNameFallback(itinerary) }}</span>
-                     </div>
-                  </div>
+              <div class="flex-1 flex flex-col gap-6 lg:gap-4">
+                @for (itinerary of itineraries(flight); track $index; let itineraryIndex = $index) {
+                  <div class="flex flex-wrap md:flex-nowrap items-center justify-between gap-4 md:gap-8">
+                    
+                    <!-- Airline & Core Info -->
+                    <div class="flex items-center gap-4 min-w-[200px] flex-1 md:flex-none">
+                       <app-airline-logo [code]="itineraryAirlineCode(itinerary)" [showName]="true" size="lg"></app-airline-logo>
+                    </div>
 
-                  <!-- Duration & Routing -->
-                  <div class="flex flex-col text-left md:text-center min-w-[70px]">
-                     <span class="text-[15px] text-slate-900">{{ itineraryDurationLabel(itinerary) }}</span>
-                     <span class="text-xs text-slate-500">{{ itineraryDepartureAirport(itinerary) }}–{{ itineraryArrivalAirport(itinerary) }}</span>
-                  </div>
+                    <!-- Journey Details Grid -->
+                    <div class="flex flex-1 items-center justify-between gap-4 sm:gap-8">
+                       <!-- Times -->
+                       <div class="flex flex-col min-w-[100px]">
+                          <span class="text-[15px] sm:text-[17px] font-bold text-slate-900 leading-none mb-1">
+                             {{ itineraryDepartureTime(itinerary) }} <span class="text-slate-400 mx-0.5">–</span> {{ itineraryArrivalTime(itinerary) }}
+                             @if (hasDayChange(itinerary)) {<sup class="text-[10px] text-blue-600 font-black ml-0.5">+1</sup>}
+                          </span>
+                          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-tighter">{{ itineraryIndex === 0 ? 'Departure' : 'Return' }}</span>
+                       </div>
+    
+                       <!-- Duration & Routing -->
+                       <div class="flex flex-col text-right sm:text-center min-w-[70px]">
+                          <span class="text-[15px] text-slate-900 font-medium">{{ itineraryDurationLabel(itinerary) }}</span>
+                          <span class="text-[11px] text-slate-500 font-bold uppercase">{{ itineraryDepartureAirport(itinerary) }}–{{ itineraryArrivalAirport(itinerary) }}</span>
+                       </div>
+    
+                       <!-- Stops -->
+                       <div class="flex flex-col text-right min-w-[90px]">
+                          <span class="text-[15px] font-bold text-slate-900">
+                             {{ itineraryStops(itinerary) === 0 ? 'Nonstop' : itineraryStops(itinerary) + ' stop' + (itineraryStops(itinerary) > 1 ? 's' : '') }}
+                          </span>
+                          <span class="text-[10px] text-slate-500 truncate max-w-[100px] font-medium">
+                             @if (itineraryStops(itinerary) > 0) {
+                                {{ briefLayovers(itinerary) }}
+                             }
+                          </span>
+                       </div>
+                    </div>
 
-                  <!-- Stops -->
-                  <div class="flex flex-col text-left md:text-center min-w-[90px]">
-                     <span class="text-[15px] font-medium" [class]="itineraryStops(itinerary) === 0 ? 'text-slate-900' : 'text-slate-900'">
-                        {{ itineraryStops(itinerary) === 0 ? 'Nonstop' : itineraryStops(itinerary) + ' stop' + (itineraryStops(itinerary) > 1 ? 's' : '') }}
-                     </span>
-                     <span class="text-[11px] text-slate-500 truncate max-w-[100px]">
-                        @if (itineraryStops(itinerary) > 0) {
-                           {{ briefLayovers(itinerary) }}
-                        }
-                     </span>
+                    <!-- Emissions (Desktop Only) -->
+                    <div class="hidden xl:flex flex-col text-left min-w-[100px]">
+                       <span class="text-[15px] text-slate-900 font-medium">2{{ priceValue(flight).toString().slice(0, 2) }} kg CO2e</span>
+                       <span class="text-[10px] text-emerald-600 font-bold flex items-center gap-0.5"><lucide-icon [name]="leafIcon" class="w-3 h-3"></lucide-icon> -14% EMB</span>
+                    </div>
                   </div>
+                }
+              </div>
 
-                  <!-- Emissions (Static mock to match Google flights spec) -->
-                  <div class="hidden lg:flex flex-col text-left min-w-[100px]">
-                     <span class="text-[15px] text-slate-900">2{{ priceValue(flight).toString().slice(0, 2) }} kg CO2e</span>
-                     <span class="text-[11px] text-emerald-600 flex items-center gap-0.5"><lucide-icon [name]="leafIcon" class="w-3 h-3"></lucide-icon> -14% emissions</span>
-                  </div>
-                </div>
-              }
 
-              <!-- Pricing Row (Right Aligned) -->
-              <div class="flex items-center justify-between md:justify-end gap-6 md:w-auto md:min-w-[140px] pl-0 md:pl-4 md:border-l md:border-slate-200">
-                 <div class="flex flex-col md:items-end">
-                    <span class="text-lg font-bold text-slate-900 whitespace-nowrap">BDT {{ priceValue(flight) | number }}</span>
-                    <span class="text-[11px] text-slate-500">Round trip</span>
+              <!-- Pricing Row -->
+              <div class="flex items-center justify-between lg:justify-end gap-6 lg:w-auto lg:min-w-[180px] pl-0 lg:pl-8 lg:border-l lg:border-slate-200">
+                 <div class="flex flex-col lg:items-end">
+                    <span class="text-xl sm:text-2xl font-black text-blue-700 whitespace-nowrap leading-none mb-1">BDT {{ priceValue(flight) | number }}</span>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{{ itineraries(flight).length > 1 ? 'Round trip' : 'One way' }}</span>
                  </div>
-                 <button class="text-slate-400 group-hover:text-slate-700 transition-colors p-1 rounded-full hover:bg-slate-200">
+                 <button class="bg-slate-100 text-slate-500 p-2 rounded-full hover:bg-blue-600 hover:text-white transition-all shadow-sm">
                     <lucide-icon [name]="expandedFlightId === (flight.id || i.toString()) ? chevronUpIcon : chevronDownIcon" class="w-5 h-5"></lucide-icon>
                  </button>
               </div>
@@ -136,14 +144,10 @@ import { AirlineLogoComponent } from '../airline-logo/airline-logo.component';
                                  <!-- Flight Metdata Row -->
                                  <div class="relative z-10 pl-8 pb-4">
                                      <div class="flex items-start gap-4">
-                                       <app-airline-logo [code]="segment.carrierCode" [showName]="false" class="w-5 h-5 mt-0.5"></app-airline-logo>
+                                       <app-airline-logo [code]="segment.carrierCode" [showName]="true" size="md" class="mt-0.5"></app-airline-logo>
                                        <div class="text-[13px] text-slate-600 space-y-0.5">
-                                          <p>Travel time: {{ formatDuration(segment.duration) }}</p>
-                                          <p>{{ segment.carrierCode }} {{ segment.number }} • {{ segment.aircraft?.code || 'Aircraft' }} • Economy</p>
-                                          <div class="flex items-center gap-3 mt-1.5 text-slate-500">
-                                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg> Below average legroom (29 in)</span>
-                                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.906 14.142 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg> Wi-Fi (fee)</span>
-                                          </div>
+                                          <p class="font-medium text-slate-900">Travel time: {{ formatDuration(segment.duration) }}</p>
+                                          <p class="text-slate-500">{{ segment.carrierCode }} {{ segment.number }} • {{ segment.aircraft?.code || 'Aircraft' }} • {{ getSegmentClass(flight, segment.id || segIndex.toString()) }}</p>
                                        </div>
                                      </div>
                                  </div>
@@ -340,6 +344,29 @@ export class FlightResultsComponent {
     const hours = Number(duration.match(/(\d+)H/)?.[1] || 0);
     const minutes = Number(duration.match(/(\d+)M/)?.[1] || 0);
     return hours * 60 + minutes;
+  }
+
+  public getSegmentClass(flight: any, segmentId: string): string {
+     try {
+       const travelerPricing = flight?.travelerPricings?.[0];
+       if (travelerPricing?.fareDetailsBySegment) {
+          const fareDetail = travelerPricing.fareDetailsBySegment.find((f: any) => 
+               f.segmentId === segmentId || f.segmentId?.toString() === segmentId
+          );
+          if (fareDetail) {
+             const cabinRaw = fareDetail.cabin || fareDetail.cabinClass || 'Economy';
+             const cabin = cabinRaw.charAt(0).toUpperCase() + cabinRaw.slice(1).toLowerCase();
+             const rbd = fareDetail.class || fareDetail.bookingClass; // booking class
+             return rbd ? `${cabin} (${rbd})` : cabin;
+          }
+       }
+     } catch(e) {}
+     
+     // Fallback if segment specific is not found, but overall cabin exists
+     const defaultCabin = flight?.travelerPricings?.[0]?.fareDetailsBySegment?.[0]?.cabin 
+                         || flight?.travelerPricings?.[0]?.fareDetailsBySegment?.[0]?.cabinClass
+                         || 'Economy';
+     return defaultCabin.charAt(0).toUpperCase() + defaultCabin.slice(1).toLowerCase();
   }
 
   public calculateLayoverDuration(arrivalAt: string, departureAt: string): string {
