@@ -75,14 +75,7 @@ type TimeBucket = 'early-morning' | 'morning' | 'afternoon' | 'evening';
         </div>
       </header>
 
-      @if (countdownSeconds() > 0) {
-        <div class="sticky top-[61px] md:top-[57px] z-30 bg-orange-400 text-white">
-          <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 flex items-center gap-2">
-            <lucide-icon [name]="clockIcon" class="w-4 h-4"></lucide-icon>
-            <p class="text-sm font-semibold">Remaining {{ countdownLabel() }}</p>
-          </div>
-        </div>
-      }
+
 
       <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 md:py-6">
         <div class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 mb-3">
@@ -312,6 +305,34 @@ type TimeBucket = 'early-morning' | 'morning' | 'afternoon' | 'evening';
           </div>
         </div>
       }
+
+      <!-- Floating Countdown Notification -->
+      @if (countdownSeconds() > 0) {
+        <div class="fixed bottom-6 right-4 sm:right-8 z-[100] animate-in slide-in-from-right-full fade-in duration-700">
+           <div class="group relative bg-white/90 backdrop-blur-md border border-slate-100 p-4 sm:p-5 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] flex items-center gap-4 min-w-[200px] hover:shadow-[0_25px_60px_rgba(0,0,0,0.15)] transition-all">
+              <!-- Animated Background Glow -->
+              <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl opacity-0 group-hover:opacity-10 transition duration-500"></div>
+              
+              <div class="relative w-12 h-12 flex-shrink-0 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
+                 <lucide-icon 
+                   [name]="clockIcon" 
+                   [class]="'w-6 h-6 ' + (countdownSeconds() < 300 ? 'text-red-500 animate-pulse' : 'text-blue-600')"
+                 ></lucide-icon>
+                 @if (countdownSeconds() < 300) {
+                   <span class="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border-2 border-white animate-ping"></span>
+                 }
+              </div>
+
+              <div class="relative flex flex-col">
+                 <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Session expires</p>
+                 <span [class]="'text-2xl font-black tracking-tight leading-none ' + (countdownSeconds() < 300 ? 'text-red-600' : 'text-slate-900')">
+                    {{ countdownLabel() }}
+                 </span>
+              </div>
+           </div>
+        </div>
+      }
+
     </div>
   `
 })
