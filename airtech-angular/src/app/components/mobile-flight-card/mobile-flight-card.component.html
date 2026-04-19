@@ -1,0 +1,92 @@
+<div class="flight-card" [class.expanded]="isExpanded()" (click)="toggleExpand()">
+  <!-- Compact View -->
+  <div class="card-summary">
+    <div class="airline-info">
+      <img [src]="'https://pics.avs.io/90/90/' + flight.itineraries[0].segments[0].carrierCode + '.png'" 
+           class="airline-logo" [alt]="flight.itineraries[0].segments[0].carrierCode">
+      <span class="airline-name">{{ getAirlineName(flight.itineraries[0].segments[0]) }}</span>
+    </div>
+
+    <div class="flight-main">
+      <div class="times">
+        <span class="time">{{ flight.itineraries[0].segments[0].departure.at | date:'HH:mm' }}</span>
+        <span class="separator">→</span>
+        <span class="time">{{ flight.itineraries[0].segments[flight.itineraries[0].segments.length - 1].arrival.at | date:'HH:mm' }}</span>
+      </div>
+      <div class="route-details">
+        <span class="duration">{{ getDuration(flight.itineraries[0].duration) }}</span>
+        <span class="dot">•</span>
+        <span class="stops" [class.stop-alert]="flight.itineraries[0].segments.length > 1">
+          {{ getStopsLabel(flight.itineraries[0]) }}
+        </span>
+      </div>
+      <div class="codes">
+        {{ flight.itineraries[0].segments[0].departure.iata }} — {{ flight.itineraries[0].segments[flight.itineraries[0].segments.length - 1].arrival.iata }}
+      </div>
+    </div>
+
+    <div class="price-section">
+      <span class="currency">{{ flight.price.currency }}</span>
+      <span class="amount">{{ flight.price.total | number:'1.0-0' }}</span>
+      <lucide-icon [name]="chevronDownIcon" class="expand-icon" [class.rotated]="isExpanded()"></lucide-icon>
+    </div>
+  </div>
+
+  <!-- Expanded Details -->
+  <div class="card-details" [@expandCollapse]="isExpanded() ? 'expanded' : 'collapsed'">
+    <div class="itinerary-timeline">
+      <ng-container *ngFor="let it of flight.itineraries; let i = index">
+        <div class="itinerary-label" *ngIf="flight.itineraries.length > 1">
+          {{ i === 0 ? 'Outbound' : 'Return' }}
+        </div>
+        
+        <div class="segment-group" *ngFor="let seg of it.segments; let j = index">
+          <!-- Segment Item -->
+          <div class="timeline-item">
+            <div class="marker">
+              <div class="dot top"></div>
+              <div class="line"></div>
+              <div class="dot bottom"></div>
+            </div>
+            <div class="content">
+              <div class="node">
+                <span class="time">{{ seg.departure.at | date:'HH:mm' }}</span>
+                <span class="location"><b>{{ seg.departure.iata }}</b> • {{ seg.departure.at | date:'MMM d' }}</span>
+              </div>
+              
+              <div class="flight-info-box">
+                <div class="carrier">
+                  <lucide-icon [name]="planeIcon" class="icon-xs"></lucide-icon>
+                  <span>{{ getAirlineName(seg) }} • {{ seg.number }}</span>
+                </div>
+                <div class="amenities">
+                  <lucide-icon [name]="wifiIcon" class="icon-xs"></lucide-icon>
+                  <lucide-icon [name]="coffeeIcon" class="icon-xs"></lucide-icon>
+                  <lucide-icon [name]="monitorIcon" class="icon-xs"></lucide-icon>
+                </div>
+              </div>
+
+              <div class="node">
+                <span class="time">{{ seg.arrival.at | date:'HH:mm' }}</span>
+                <span class="location"><b>{{ seg.arrival.iata }}</b> • {{ seg.arrival.at | date:'MMM d' }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layover Item -->
+          <div class="layover-item" *ngIf="j < it.segments.length - 1">
+            <div class="marker"><div class="line dashed"></div></div>
+            <div class="layover-content">
+              <lucide-icon [name]="clockIcon" class="icon-xs"></lucide-icon>
+              <span>{{ getLayoverTime(seg, it.segments[j+1]) }} in {{ seg.arrival.iata }}</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="card-actions">
+      <button class="select-btn">Select Flight</button>
+    </div>
+  </div>
+</div>

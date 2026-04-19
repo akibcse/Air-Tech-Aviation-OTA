@@ -1,0 +1,179 @@
+.modal-container {
+  position: fixed;
+  inset: 0;
+  background: #f8f9fa;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+
+  .modal-header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e8eaed;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+
+    h3 { margin: 0; flex: 1; text-align: center; font-size: 16px; font-weight: 700; color: #202124; text-transform: capitalize; }
+    
+    .close-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5f6368;
+      &:active { background: #f1f3f4; }
+    }
+
+    .header-placeholder { width: 40px; }
+  }
+
+  .search-box-wrap {
+    padding: 16px;
+    background: white;
+    border-bottom: 1px solid #e8eaed;
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #f1f3f4;
+      border-radius: 12px;
+      padding: 0 16px;
+      height: 48px;
+
+      .search-icon { color: #5f6368; width: 20px; height: 20px; }
+      
+      .search-input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        padding: 0 12px;
+        font-size: 16px;
+        color: #202124;
+        font-weight: 500;
+        outline: none;
+        &::placeholder { color: #70757a; font-weight: 400; }
+      }
+
+      .clear-btn {
+        background: none;
+        border: none;
+        color: #5f6368;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        &:active { background: #e8eaed; }
+      }
+    }
+  }
+
+  .results-scroll {
+    flex: 1;
+    overflow-y: auto;
+    background: white;
+
+    .loading-state {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      color: #70757a;
+      
+      .spinner {
+        width: 24px;
+        height: 24px;
+        border: 2px solid #e8f0fe;
+        border-top-color: #1a73e8;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+    }
+
+    .results-list {
+      .result-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px;
+        border: none;
+        border-bottom: 1px solid #f1f3f4;
+        background: white;
+        text-align: left;
+
+        &:active { background: #f8f9fa; }
+
+        .icon-wrap {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: #e8f0fe;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #1a73e8;
+          
+          .loc-icon { width: 20px; height: 20px; }
+        }
+
+        .loc-details {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          min-width: 0;
+
+          .loc-city { font-size: 16px; font-weight: 700; color: #202124; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+          .loc-airport { font-size: 12px; color: #70757a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        }
+
+        .loc-iata {
+          font-size: 14px;
+          font-weight: 700;
+          color: #1a73e8;
+          background: #e8f0fe;
+          padding: 4px 8px;
+          border-radius: 6px;
+        }
+      }
+    }
+
+    .empty-state {
+      padding: 48px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      color: #70757a;
+
+      .empty-icon-wrap {
+        width: 64px;
+        height: 64px;
+        background: #f1f3f4;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .empty-icon { width: 32px; height: 32px; color: #dadce0; }
+      }
+
+      p { margin: 0; font-size: 15px; }
+    }
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

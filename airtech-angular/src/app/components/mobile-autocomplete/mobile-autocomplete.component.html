@@ -1,0 +1,58 @@
+<div class="modal-container" *ngIf="ui.autocompleteActive()" @modalSlide>
+  <header class="modal-header">
+    <button class="close-btn" (click)="close()">
+      <lucide-icon [name]="closeIcon" class="icon-md"></lucide-icon>
+    </button>
+    <h3>Select {{ ui.activeInputType() }}</h3>
+    <div class="header-placeholder"></div>
+  </header>
+
+  <div class="search-box-wrap">
+    <div class="search-box">
+      <lucide-icon [name]="searchIcon" class="search-icon"></lucide-icon>
+      <input 
+        #searchInput
+        type="text" 
+        [value]="query()" 
+        (input)="onInput($event)"
+        placeholder="Country, city or airport" 
+        class="search-input"
+        autocomplete="off"
+        autofocus
+      />
+      <button *ngIf="query()" class="clear-btn" (click)="query.set(''); results.set([])">
+        <lucide-icon [name]="closeIcon" class="icon-sm"></lucide-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="results-scroll">
+    <div *ngIf="loading()" class="loading-state">
+      <div class="spinner"></div>
+      <span>Searching destinations...</span>
+    </div>
+    
+    <div class="results-list" *ngIf="!loading() && results().length > 0">
+      <button 
+        class="result-item" 
+        *ngFor="let loc of results()" 
+        (click)="selectLocation(loc)"
+      >
+        <div class="icon-wrap">
+          <lucide-icon [name]="ui.activeInputType() === 'origin' ? takeoffIcon : landingIcon" class="loc-icon"></lucide-icon>
+        </div>
+        <div class="loc-details">
+          <span class="loc-city">{{ loc.city }}</span>
+          <span class="loc-airport">{{ loc.airport || loc.name }}</span>
+        </div>
+        <div class="loc-iata">{{ loc.iata }}</div>
+      </button>
+    </div>
+
+    <!-- Empty state -->
+    <div class="empty-state" *ngIf="!loading() && query() && results().length === 0">
+      <div class="empty-icon-wrap"><lucide-icon [name]="searchIcon" class="empty-icon"></lucide-icon></div>
+      <p>No airports found for "{{ query() }}"</p>
+    </div>
+  </div>
+</div>

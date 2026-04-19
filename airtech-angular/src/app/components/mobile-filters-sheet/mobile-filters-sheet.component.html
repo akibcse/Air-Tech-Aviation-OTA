@@ -1,0 +1,58 @@
+<div class="sheet-backdrop" *ngIf="ui.filtersSheetActive()" @backdropFade (click)="close()"></div>
+
+<div class="sheet-container" *ngIf="ui.filtersSheetActive()" @sheetSlide>
+  <div class="sheet-header">
+    <div class="handle"></div>
+    <div class="header-content">
+      <lucide-icon [name]="filterIcon" class="icon-sm"></lucide-icon>
+      <h3>Filters</h3>
+      <button class="close-btn" (click)="close()">
+        <lucide-icon [name]="closeIcon" class="icon-md"></lucide-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="sheet-body">
+    <!-- Stops Section -->
+    <section class="filter-section">
+      <h4>Stops</h4>
+      <div class="chip-group">
+        <button class="filter-chip" [class.active]="selectedStops.has(0)" (click)="toggleStop(0)">Non-stop</button>
+        <button class="filter-chip" [class.active]="selectedStops.has(1)" (click)="toggleStop(1)">1 stop</button>
+        <button class="filter-chip" [class.active]="selectedStops.has(2)" (click)="toggleStop(2)">2+ stops</button>
+      </div>
+    </section>
+
+    <!-- Price Section -->
+    <section class="filter-section">
+      <div class="section-header">
+        <h4>Max Price</h4>
+        <span class="price-value">BDT {{ maxPrice | number }}</span>
+      </div>
+      <input type="range" min="5000" max="200000" step="1000" [(ngModel)]="maxPrice" class="price-slider">
+      <div class="slider-labels">
+        <span>5k</span>
+        <span>200k</span>
+      </div>
+    </section>
+
+    <!-- Airlines Section -->
+    <section class="filter-section">
+      <h4>Airlines</h4>
+      <div class="airline-list">
+        <label class="airline-row" *ngFor="let code of availableAirlines">
+          <div class="airline-meta">
+            <img [src]="'https://pics.avs.io/90/90/' + code + '.png'" class="airline-logo" [alt]="code">
+            <span>{{ code }}</span>
+          </div>
+          <input type="checkbox" [checked]="selectedAirlines.has(code)" (change)="toggleAirline(code)">
+        </label>
+      </div>
+    </section>
+  </div>
+
+  <div class="sheet-footer">
+    <button class="btn-reset" (click)="reset()">Reset all</button>
+    <button class="btn-apply" (click)="apply()">Apply Filters</button>
+  </div>
+</div>

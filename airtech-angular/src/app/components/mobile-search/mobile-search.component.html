@@ -1,0 +1,198 @@
+<!-- ===== GOOGLE FLIGHTS MOBILE LAYOUT ===== -->
+<div class="flights-page" [class.is-modify]="isModifySearch">
+
+  <!-- ===== 1. HEADER: Centered title + inline controls ===== -->
+  <header class="flights-header">
+    <h1 class="flights-title" *ngIf="!isModifySearch">Flights</h1>
+    <div class="trip-controls">
+
+      <!-- Trip Type Dropdown -->
+      <div class="chip-wrapper">
+        <button class="control-chip" [class.active]="activeDropdown === 'tripType'"
+                (click)="toggleDropdown('tripType', $event)">
+          <lucide-icon [name]="repeatIcon" class="chip-icon"></lucide-icon>
+          <span>{{ state.tripType === 'one-way' ? 'One way' : state.tripType === 'return' ? 'Round trip' : 'Multi-city' }}</span>
+          <lucide-icon [name]="chevronDownIcon" class="chip-caret"></lucide-icon>
+        </button>
+        <div class="chip-dropdown" *ngIf="activeDropdown === 'tripType'" (click)="$event.stopPropagation()">
+          <button *ngFor="let t of tripTypes"
+                  class="dropdown-option"
+                  [class.selected]="state.tripType === t.value"
+                  (click)="setTripType(t.value)">
+            {{ t.label }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Passengers Dropdown -->
+      <div class="chip-wrapper">
+        <button class="control-chip" [class.active]="activeDropdown === 'passengers'"
+                (click)="toggleDropdown('passengers', $event)">
+          <lucide-icon [name]="usersIcon" class="chip-icon"></lucide-icon>
+          <span>{{ state.travellers.adults + state.travellers.childrenCount }}</span>
+          <lucide-icon [name]="chevronDownIcon" class="chip-caret"></lucide-icon>
+        </button>
+        <div class="chip-dropdown pax-dropdown" *ngIf="activeDropdown === 'passengers'" (click)="$event.stopPropagation()">
+          <div class="pax-row">
+            <div class="pax-label">
+              <span class="pax-title">Adults</span>
+              <span class="pax-sub">12+ years</span>
+            </div>
+            <div class="pax-stepper">
+              <button class="stepper-btn" [disabled]="state.travellers.adults <= 1" (click)="adjustAdults(-1)">−</button>
+              <span class="stepper-val">{{ state.travellers.adults }}</span>
+              <button class="stepper-btn" [disabled]="state.travellers.adults >= 9" (click)="adjustAdults(1)">+</button>
+            </div>
+          </div>
+          <div class="pax-row">
+            <div class="pax-label">
+              <span class="pax-title">Children</span>
+              <span class="pax-sub">2–11 years</span>
+            </div>
+            <div class="pax-stepper">
+              <button class="stepper-btn" [disabled]="state.travellers.childrenCount <= 0" (click)="adjustChildren(-1)">−</button>
+              <span class="stepper-val">{{ state.travellers.childrenCount }}</span>
+              <button class="stepper-btn" [disabled]="state.travellers.childrenCount >= 8" (click)="adjustChildren(1)">+</button>
+            </div>
+          </div>
+          <button class="dropdown-done" (click)="activeDropdown = null">Done</button>
+        </div>
+      </div>
+
+      <!-- Cabin Class Dropdown -->
+      <div class="chip-wrapper">
+        <button class="control-chip" [class.active]="activeDropdown === 'cabin'"
+                (click)="toggleDropdown('cabin', $event)">
+          <span>{{ state.travellers.cabin }}</span>
+          <lucide-icon [name]="chevronDownIcon" class="chip-caret"></lucide-icon>
+        </button>
+        <div class="chip-dropdown" *ngIf="activeDropdown === 'cabin'" (click)="$event.stopPropagation()">
+          <button *ngFor="let c of cabinClasses"
+                  class="dropdown-option"
+                  [class.selected]="state.travellers.cabin === c"
+                  (click)="setCabin(c)">
+            {{ c }}
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ===== 2. SEARCH FORM: Flat, floating inputs ===== -->
+  <section class="search-section">
+    <div class="location-inputs">
+      <div class="location-field" (click)="openAutocomplete('origin')">
+        <div class="field-dot origin-dot"></div>
+        <div class="field-text">
+          <span class="field-value" [class.placeholder]="!state.segments[0].origin.display">
+            {{ state.segments[0].origin.display || 'Where from?' }}
+          </span>
+        </div>
+      </div>
+
+      <button class="swap-fab" (click)="swapAirports(); $event.stopPropagation()">
+        <lucide-icon [name]="swapIcon" class="swap-icon"></lucide-icon>
+      </button>
+
+      <div class="field-divider"></div>
+
+      <div class="location-field" (click)="openAutocomplete('destination')">
+        <div class="field-dot dest-dot"></div>
+        <div class="field-text">
+          <span class="field-value" [class.placeholder]="!state.segments[0].destination.display">
+            {{ state.segments[0].destination.display || 'Where to?' }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="date-inputs">
+      <div class="date-field" (click)="openDatePicker('departure')">
+        <lucide-icon [name]="calendarIcon" class="date-icon"></lucide-icon>
+        <span class="date-value">{{ state.segments[0].date | date:'EEE, MMM d' }}</span>
+      </div>
+
+      <div class="date-divider"></div>
+
+      <div class="date-field" (click)="openDatePicker('return')" [class.disabled]="state.tripType === 'one-way'">
+        <lucide-icon [name]="calendarIcon" class="date-icon"></lucide-icon>
+        <span class="date-value">{{ state.tripType === 'one-way' ? 'Add return' : (state.returnDate | date:'EEE, MMM d') }}</span>
+      </div>
+    </div>
+
+    <!-- Floating Search Button -->
+    <button class="search-fab" (click)="onSearch()">
+      <lucide-icon [name]="searchIcon" class="fab-icon"></lucide-icon>
+      <span>Explore</span>
+    </button>
+  </section>
+
+  <ng-container *ngIf="!isModifySearch">
+    <!-- ===== 3. EXPLORE DEALS CARD ===== -->
+    <section class="explore-deals-section">
+    <div class="deals-card">
+      <div class="deals-content">
+        <lucide-icon [name]="sparklesIcon" class="deals-icon"></lucide-icon>
+        <div class="deals-text">
+          <span class="deals-headline">Flexible? Discover deals</span>
+          <span class="deals-sub">Find the best flight deals with AI-powered search</span>
+        </div>
+      </div>
+      <button class="deals-btn">Explore deals</button>
+    </div>
+  </section>
+
+  <!-- ===== 4. DESTINATION CARDS ===== -->
+  <section class="destinations-section">
+    <h2 class="section-title">Popular flights from Dhaka</h2>
+    <div class="dest-list">
+      <div class="dest-card" *ngFor="let dest of destinations" (click)="searchDestination(dest)">
+        <div class="dest-info">
+          <span class="dest-route">{{ dest.from }} → {{ dest.to }}</span>
+          <span class="dest-meta">{{ dest.date }} · {{ dest.stops }}</span>
+        </div>
+        <div class="dest-price">
+          <span class="price-amount">৳{{ dest.price | number }}</span>
+          <lucide-icon [name]="chevronRightIcon" class="price-arrow"></lucide-icon>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. MAP SECTION ===== -->
+  <section class="map-section">
+    <div class="map-card">
+      <div class="map-visual">
+        <lucide-icon [name]="mapIcon" class="map-placeholder-icon"></lucide-icon>
+        <span class="map-label">Explore destinations on the map</span>
+      </div>
+      <button class="map-cta">Explore destinations</button>
+    </div>
+  </section>
+
+  <!-- ===== 6. TOOLS ACCORDION ===== -->
+  <section class="tools-section">
+    <h2 class="section-title">Flight tools</h2>
+    <div class="tools-list">
+      <div class="tool-item" *ngFor="let tool of toolItems"
+           [class.expanded]="expandedTool === tool.id">
+        <button class="tool-header" (click)="toggleTool(tool.id)">
+          <lucide-icon [name]="getToolIcon(tool.icon)" class="tool-icon"></lucide-icon>
+          <span class="tool-label">{{ tool.label }}</span>
+          <lucide-icon [name]="chevronDownIcon"
+                       class="tool-caret"
+                       [class.rotated]="expandedTool === tool.id"></lucide-icon>
+        </button>
+        <div class="tool-body" *ngIf="expandedTool === tool.id">
+          <p>{{ tool.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  </ng-container>
+
+</div>
+
+<app-mobile-date-picker></app-mobile-date-picker>
+<app-mobile-autocomplete></app-mobile-autocomplete>

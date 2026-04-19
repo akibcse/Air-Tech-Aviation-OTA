@@ -45,6 +45,12 @@ export class FlightService {
         });
     }
 
+    getCalendarFares(origin: string, destination: string, departureDate: string): Observable<any[]> {
+        return this.http.get<any[]>(`${this.apiUrl}/flights/calendar`, {
+            params: { origin, destination, departureDate }
+        });
+    }
+
     getRandomAirports(): Observable<any[]> {
         return this.http.get<any[]>(`${this.apiUrl}/airports/random`);
     }

@@ -1,6 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { HeroComponent } from '../../components/hero/hero.component';
+import { MobileSearchComponent } from '../../components/mobile-search/mobile-search.component';
 import { LucideAngularModule, Globe, Hotel, Car, ChevronLeft, ChevronRight, Sparkles, Info, ChevronUp, ChevronDown, CalendarDays, TrendingUp, Bell } from 'lucide-angular';
 import { PublicService } from '../../services/public.service';
 import { RouterLink } from '@angular/router';
@@ -9,11 +10,17 @@ import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HeroComponent, LucideAngularModule, RouterLink],
+  imports: [CommonModule, HeroComponent, MobileSearchComponent, LucideAngularModule, RouterLink],
   template: `
     <main class="min-h-screen bg-white">
-      <!-- Hero -->
-      <app-hero></app-hero>
+      <!-- Mobile: Google Flights style search -->
+      <div class="block md:hidden">
+        <app-mobile-search></app-mobile-search>
+      </div>
+      <!-- Desktop: Hero -->
+      <div class="hidden md:block">
+        <app-hero></app-hero>
+      </div>
 
       <!-- Secondary Navigation / Quick Links -->
       <div class="bg-white border-b border-gray-200">

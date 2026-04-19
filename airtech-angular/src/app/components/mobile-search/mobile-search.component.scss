@@ -1,0 +1,658 @@
+/* ================================================
+   GOOGLE FLIGHTS MOBILE — CLEAN FLAT DESIGN
+   ================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+
+$blue: #1a73e8;
+$blue-light: #e8f0fe;
+$blue-dark: #1557b0;
+$surface: #ffffff;
+$bg: #f8f9fa;
+$text-primary: #202124;
+$text-secondary: #5f6368;
+$text-muted: #70757a;
+$border: #dadce0;
+$border-light: #e8eaed;
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+$radius-full: 100px;
+
+.flights-page {
+  background: $bg;
+  min-height: 100vh;
+  font-family: 'Google Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding-bottom: 40px;
+
+  &.is-modify {
+    min-height: auto;
+    padding-bottom: 8px;
+    background: transparent;
+
+    .flights-header {
+      background: transparent;
+      padding: 0 16px 12px;
+    }
+    
+    .search-section {
+      margin-top: 0;
+    }
+  }
+}
+
+/* ────────────────────────────────────────────
+   1. HEADER
+   ──────────────────────────────────────────── */
+.flights-header {
+  background: $surface;
+  padding: 20px 16px 16px;
+  text-align: center;
+
+  .flights-title {
+    font-size: 22px;
+    font-weight: 400;
+    color: $text-primary;
+    margin: 0 0 16px;
+    letter-spacing: -0.2px;
+  }
+
+  .trip-controls {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    .control-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border: 1px solid $border;
+      border-radius: $radius-full;
+      background: $surface;
+      font-size: 13px;
+      font-weight: 500;
+      color: $text-primary;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      white-space: nowrap;
+      line-height: 1;
+
+      &:hover { background: $bg; }
+      &:active { background: $border-light; }
+      &.active { border-color: $blue; background: $blue-light; }
+
+      // Force lucide-icon SVG alignment
+      lucide-icon, .chip-icon, .chip-caret {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        vertical-align: middle;
+      }
+
+      .chip-icon {
+        width: 14px;
+        height: 14px;
+        color: $text-secondary;
+
+        svg { width: 14px; height: 14px; }
+      }
+
+      .chip-caret {
+        width: 12px;
+        height: 12px;
+        color: $text-muted;
+        transition: transform 0.2s;
+
+        svg { width: 12px; height: 12px; }
+      }
+
+      span {
+        display: inline-flex;
+        align-items: center;
+      }
+    }
+
+    .chip-wrapper {
+      position: relative;
+    }
+
+    .chip-dropdown {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      min-width: 160px;
+      background: $surface;
+      border: 1px solid $border;
+      border-radius: $radius-md;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      z-index: 100;
+      padding: 4px 0;
+      animation: dropdownIn 0.15s ease;
+
+      .dropdown-option {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 10px 16px;
+        font-size: 14px;
+        font-weight: 400;
+        color: $text-primary;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        transition: background 0.1s;
+
+        &:hover { background: $bg; }
+        &.selected { color: $blue; font-weight: 500; background: $blue-light; }
+      }
+
+      // Passenger stepper dropdown
+      &.pax-dropdown {
+        min-width: 240px;
+        padding: 12px 16px;
+
+        .pax-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 10px 0;
+
+          &:not(:last-child) { border-bottom: 1px solid $border-light; }
+
+          .pax-label {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+
+            .pax-title { font-size: 14px; font-weight: 500; color: $text-primary; }
+            .pax-sub { font-size: 11px; color: $text-muted; }
+          }
+
+          .pax-stepper {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            .stepper-btn {
+              width: 32px;
+              height: 32px;
+              border-radius: 50%;
+              border: 1px solid $border;
+              background: $surface;
+              font-size: 18px;
+              color: $text-primary;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              transition: all 0.15s;
+              font-family: inherit;
+
+              &:hover:not(:disabled) { background: $bg; border-color: $text-secondary; }
+              &:disabled { opacity: 0.3; cursor: not-allowed; }
+            }
+
+            .stepper-val {
+              font-size: 16px;
+              font-weight: 500;
+              color: $text-primary;
+              min-width: 20px;
+              text-align: center;
+            }
+          }
+        }
+
+        .dropdown-done {
+          display: block;
+          width: 100%;
+          margin-top: 8px;
+          padding: 8px;
+          background: $blue;
+          color: white;
+          border: none;
+          border-radius: $radius-full;
+          font-size: 13px;
+          font-weight: 500;
+          font-family: inherit;
+          cursor: pointer;
+          transition: background 0.15s;
+
+          &:hover { background: $blue-dark; }
+        }
+      }
+    }
+  }
+}
+
+@keyframes dropdownIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ────────────────────────────────────────────
+   2. SEARCH FORM
+   ──────────────────────────────────────────── */
+.search-section {
+  padding: 0 16px;
+  margin-top: -4px;
+
+  .location-inputs {
+    background: $surface;
+    border-radius: $radius-lg;
+    border: 1px solid $border;
+    position: relative;
+    overflow: visible;
+
+    .location-field {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 56px 18px 16px;
+      cursor: pointer;
+      transition: background 0.15s;
+
+      &:active { background: rgba($blue, 0.03); }
+
+      .field-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        
+        &.origin-dot {
+          border: 2.5px solid $text-secondary;
+          background: transparent;
+        }
+
+        &.dest-dot {
+          background: $blue;
+        }
+      }
+
+      .field-text {
+        flex: 1;
+        min-width: 0;
+
+        .field-value {
+          font-size: 16px;
+          font-weight: 400;
+          color: $text-primary;
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          &.placeholder { color: $text-muted; }
+        }
+      }
+    }
+
+    .field-divider {
+      height: 1px;
+      background: $border-light;
+      margin: 0 16px 0 40px;
+    }
+
+    .swap-fab {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: $surface;
+      border: 1px solid $border;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover { box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
+      &:active { transform: translateY(-50%) rotate(180deg); background: $bg; }
+
+      .swap-icon { width: 18px; height: 18px; color: $text-secondary; }
+    }
+  }
+
+  .date-inputs {
+    display: flex;
+    background: $surface;
+    border-radius: $radius-lg;
+    border: 1px solid $border;
+    margin-top: 8px;
+    overflow: hidden;
+
+    .date-field {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px;
+      cursor: pointer;
+      transition: background 0.15s;
+
+      &:active { background: rgba($blue, 0.03); }
+
+      &.disabled {
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .date-icon { width: 18px; height: 18px; color: $text-secondary; }
+
+      .date-value {
+        font-size: 14px;
+        font-weight: 400;
+        color: $text-primary;
+      }
+    }
+
+    .date-divider {
+      width: 1px;
+      background: $border-light;
+      margin: 10px 0;
+    }
+  }
+
+  .search-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: auto;
+    margin: 20px auto 0;
+    padding: 12px 32px;
+    background: $blue;
+    color: white;
+    border: none;
+    border-radius: $radius-full;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 1px 3px 1px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+
+    &:hover { box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 8px 3px rgba(0,0,0,0.15); }
+    &:active { background: $blue-dark; transform: scale(0.97); }
+
+    .fab-icon { width: 18px; height: 18px; }
+  }
+}
+
+/* ────────────────────────────────────────────
+   3. EXPLORE DEALS
+   ──────────────────────────────────────────── */
+.explore-deals-section {
+  padding: 24px 16px 0;
+
+  .deals-card {
+    background: $surface;
+    border-radius: $radius-lg;
+    padding: 20px;
+    border: 1px solid $border-light;
+
+    .deals-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 16px;
+
+      .deals-icon {
+        width: 22px;
+        height: 22px;
+        color: $blue;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      .deals-text {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .deals-headline {
+          font-size: 15px;
+          font-weight: 500;
+          color: $text-primary;
+        }
+
+        .deals-sub {
+          font-size: 13px;
+          color: $text-secondary;
+          line-height: 1.4;
+        }
+      }
+    }
+
+    .deals-btn {
+      width: 100%;
+      padding: 10px;
+      background: $blue-light;
+      color: $blue;
+      border: none;
+      border-radius: $radius-full;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s;
+
+      &:hover { background: #d4e4fc; }
+      &:active { background: #c0d8fa; }
+    }
+  }
+}
+
+/* ────────────────────────────────────────────
+   4. DESTINATIONS
+   ──────────────────────────────────────────── */
+.section-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: $text-primary;
+  margin: 0 0 12px;
+}
+
+.destinations-section {
+  padding: 24px 16px 0;
+
+  .dest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: $surface;
+    border-radius: $radius-lg;
+    border: 1px solid $border-light;
+    overflow: hidden;
+
+    .dest-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border-bottom: 1px solid $border-light;
+
+      &:last-child { border-bottom: none; }
+      &:active { background: $bg; }
+
+      .dest-info {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        min-width: 0;
+
+        .dest-route {
+          font-size: 14px;
+          font-weight: 500;
+          color: $text-primary;
+        }
+
+        .dest-meta {
+          font-size: 12px;
+          color: $text-muted;
+        }
+      }
+
+      .dest-price {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-shrink: 0;
+
+        .price-amount {
+          font-size: 14px;
+          font-weight: 500;
+          color: $text-primary;
+        }
+
+        .price-arrow { width: 16px; height: 16px; color: $text-muted; }
+      }
+    }
+  }
+}
+
+/* ────────────────────────────────────────────
+   5. MAP
+   ──────────────────────────────────────────── */
+.map-section {
+  padding: 24px 16px 0;
+
+  .map-card {
+    background: $surface;
+    border-radius: $radius-lg;
+    border: 1px solid $border-light;
+    overflow: hidden;
+
+    .map-visual {
+      height: 160px;
+      background: linear-gradient(135deg, #e3f0ff 0%, #d1e8ff 40%, #c8e0fc 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      .map-placeholder-icon { width: 36px; height: 36px; color: $blue; opacity: 0.5; }
+      .map-label { font-size: 13px; color: $text-secondary; }
+    }
+
+    .map-cta {
+      width: 100%;
+      padding: 14px;
+      background: $surface;
+      border: none;
+      border-top: 1px solid $border-light;
+      font-size: 14px;
+      font-weight: 500;
+      color: $blue;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s;
+
+      &:hover { background: $bg; }
+    }
+  }
+}
+
+/* ────────────────────────────────────────────
+   6. TOOLS ACCORDION
+   ──────────────────────────────────────────── */
+.tools-section {
+  padding: 24px 16px 0;
+
+  .tools-list {
+    background: $surface;
+    border-radius: $radius-lg;
+    border: 1px solid $border-light;
+    overflow: hidden;
+
+    .tool-item {
+      border-bottom: 1px solid $border-light;
+
+      &:last-child { border-bottom: none; }
+
+      .tool-header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        transition: background 0.15s;
+
+        &:active { background: $bg; }
+
+        .tool-icon { width: 20px; height: 20px; color: $text-secondary; }
+
+        .tool-label {
+          flex: 1;
+          text-align: left;
+          font-size: 14px;
+          font-weight: 400;
+          color: $text-primary;
+        }
+
+        .tool-caret {
+          width: 18px;
+          height: 18px;
+          color: $text-muted;
+          transition: transform 0.25s ease;
+
+          &.rotated { transform: rotate(180deg); }
+        }
+      }
+
+      .tool-body {
+        padding: 0 16px 16px 50px;
+        animation: slideDown 0.25s ease forwards;
+
+        p {
+          margin: 0;
+          font-size: 13px;
+          line-height: 1.5;
+          color: $text-secondary;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ────────────────────────────────────────────
+   TABLET/DESKTOP OVERRIDES
+   ──────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .flights-page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding-top: 12px;
+  }
+
+  .flights-header {
+    border-radius: $radius-lg;
+    margin: 0 16px;
+  }
+
+  .search-section .date-inputs .date-field {
+    padding: 18px 20px;
+  }
+}

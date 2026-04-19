@@ -2,6 +2,7 @@ import { Component, computed, inject, OnDestroy, OnInit, signal } from '@angular
 import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FlightSearchFormComponent } from '../../components/flight-search-form/flight-search-form.component';
+import { MobileSearchComponent } from '../../components/mobile-search/mobile-search.component';
 import { FlightResultsComponent } from '../../components/flight-results/flight-results.component';
 import { SearchStateService } from '../../services/search-state.service';
 import { FlightService } from '../../services/flight.service';
@@ -25,7 +26,7 @@ type TimeBucket = 'early-morning' | 'morning' | 'afternoon' | 'evening';
 @Component({
   selector: 'app-flight-results-page',
   standalone: true,
-  imports: [CommonModule, FlightSearchFormComponent, FlightResultsComponent, LucideAngularModule, AirportNameComponent],
+  imports: [CommonModule, FlightSearchFormComponent, MobileSearchComponent, FlightResultsComponent, LucideAngularModule, AirportNameComponent],
   template: `
     <div class="min-h-screen bg-[#eef2f7]">
       <header class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
@@ -78,8 +79,13 @@ type TimeBucket = 'early-morning' | 'morning' | 'afternoon' | 'evening';
           </div>
 
           @if (showSearchPanel()) {
-            <div class="mt-3 border-t border-slate-100 pt-4">
-              <app-flight-search-form></app-flight-search-form>
+            <div class="mt-3 border-t border-slate-100 pt-4 pb-4">
+              <div class="hidden md:block">
+                <app-flight-search-form></app-flight-search-form>
+              </div>
+              <div class="block md:hidden -mx-3 sm:-mx-6">
+                <app-mobile-search [isModifySearch]="true"></app-mobile-search>
+              </div>
             </div>
           }
         </div>
@@ -556,6 +562,7 @@ export class FlightResultsPageComponent implements OnInit, OnDestroy {
       if (searchSignature !== this.lastSearchSignature) {
         this.lastSearchSignature = searchSignature;
         this.performSearch(searchParams);
+        this.showSearchPanel.set(false);
       }
     });
   }

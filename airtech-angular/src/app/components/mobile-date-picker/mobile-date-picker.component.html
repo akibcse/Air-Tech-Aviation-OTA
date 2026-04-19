@@ -1,0 +1,43 @@
+<div class="modal-container" [ngClass]="{'is-desktop-popover': isDesktop()}" [ngStyle]="isDesktop() ? popoverStyle() : {}" *ngIf="ui.datePickerActive()" [@modalSlide]="!isDesktop() ? 'true' : false">
+  <header class="modal-header">
+    <button class="close-btn" (click)="close()">
+      <lucide-icon [name]="closeIcon" class="icon-md"></lucide-icon>
+    </button>
+    <h3>Select {{ ui.activeDateType() === 'departure' ? 'departure' : 'return' }} date</h3>
+    <div class="header-placeholder"></div>
+  </header>
+
+  <div class="calendar-scroll">
+    <div class="month-section" *ngFor="let month of months">
+      <h4 class="month-title">{{ month.name }} {{ month.year }}</h4>
+      
+      <div class="weekday-header">
+        <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+      </div>
+
+      <div class="days-grid">
+        <div class="day-cell-empty" *ngFor="let slot of month.emptySlots"></div>
+        <div class="day-cell" *ngFor="let day of month.days">
+          <ng-container *ngIf="day">
+            <button 
+              [class.selected]="selectedDate() === day.dateStr"
+              (click)="selectDate(day.dateStr)"
+              class="day-btn"
+            >
+              <span class="day-num">{{ day.day }}</span>
+              <span class="day-price">৳{{ day.price / 1000 | number:'1.1-1' }}k</span>
+            </button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="modal-footer">
+    <div class="selection-summary">
+      <span class="label">Selected Date</span>
+      <span class="value">{{ selectedDate() ? (selectedDate() | date:'EEE, MMM d, y') : 'None' }}</span>
+    </div>
+    <button class="btn-done" [disabled]="!selectedDate()" (click)="confirm()">Done</button>
+  </footer>
+</div>

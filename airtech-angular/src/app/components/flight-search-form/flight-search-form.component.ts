@@ -7,6 +7,8 @@ import { LucideAngularModule, ArrowRight, ArrowLeftRight, Loader2, Plus, Minus, 
 import { PassengerSelectorComponent } from '../passenger-selector/passenger-selector.component';
 import { AirportAutocompleteComponent } from '../airport-autocomplete/airport-autocomplete.component';
 import { SearchStateService } from '../../services/search-state.service';
+import { UiService } from '../../services/ui.service';
+import { MobileDatePickerComponent } from '../mobile-date-picker/mobile-date-picker.component';
 
 @Component({
   selector: 'app-flight-search-form',
@@ -16,7 +18,8 @@ import { SearchStateService } from '../../services/search-state.service';
     FormsModule,
     LucideAngularModule,
     PassengerSelectorComponent,
-    AirportAutocompleteComponent
+    AirportAutocompleteComponent,
+    MobileDatePickerComponent
   ],
   template: `
     <div class="transition-all duration-300 ease-in-out font-sans">
@@ -120,28 +123,19 @@ import { SearchStateService } from '../../services/search-state.service';
 
               <!-- Date Picker Group -->
               <div class="flex flex-col md:flex-row items-center border border-slate-300 rounded-xl relative group focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 bg-white shadow-sm hover:shadow transition-shadow">
-                <div class="w-full relative px-4 py-2 cursor-pointer hover:bg-slate-50 transition-colors rounded-l-xl">
+                <div class="w-full relative px-4 py-2 cursor-pointer hover:bg-slate-50 transition-colors rounded-l-xl" (click)="openDatePicker($event, 'departure')">
                   <label class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Departure</label>
-                  <input
-                    type="date"
-                    [(ngModel)]="state().segments[0].date"
-                    (mouseenter)="openDatePicker($event)"
-                    (change)="syncState()"
-                    required
-                    class="w-full bg-transparent text-slate-900 border-none p-0 focus:ring-0 font-medium cursor-pointer"
-                  />
+                  <div class="w-full bg-transparent text-slate-900 border-none p-0 font-medium cursor-pointer">
+                    {{ state().segments[0].date ? (state().segments[0].date | date:'EEE, MMM d, yyyy') : 'Add date' }}
+                  </div>
                 </div>
                 
                 @if (state().tripType === 'return') {
-                  <div class="w-full relative px-4 py-2 border-t border-slate-200 md:border-t-0 md:border-l cursor-pointer hover:bg-slate-50 transition-colors rounded-r-xl group-focus-within:border-l-blue-500">
+                  <div class="w-full relative px-4 py-2 border-t border-slate-200 md:border-t-0 md:border-l cursor-pointer hover:bg-slate-50 transition-colors rounded-r-xl group-focus-within:border-l-blue-500" (click)="openDatePicker($event, 'return')">
                     <label class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Return</label>
-                    <input
-                      type="date"
-                      [ngModel]="state().returnDate"
-                      (mouseenter)="openDatePicker($event)"
-                      (ngModelChange)="searchState.updateState({ returnDate: $event })"
-                      class="w-full bg-transparent text-slate-900 border-none p-0 focus:ring-0 font-medium cursor-pointer"
-                    />
+                    <div class="w-full bg-transparent text-slate-900 border-none p-0 font-medium cursor-pointer" [class.text-slate-400]="!state().returnDate">
+                      {{ state().returnDate ? (state().returnDate | date:'EEE, MMM d, yyyy') : 'Add date' }}
+                    </div>
                   </div>
                 }
               </div>
@@ -174,16 +168,11 @@ import { SearchStateService } from '../../services/search-state.service';
                     </div>
                   </div>
                   
-                  <div class="flex-1 md:flex-none md:w-56 border border-slate-300 rounded-xl bg-white shadow-sm hover:shadow focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 px-4 py-2 transition-all">
+                  <div class="flex-1 md:flex-none md:w-56 border border-slate-300 rounded-xl bg-white shadow-sm hover:shadow focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 px-4 py-2 transition-all cursor-pointer" (click)="openDatePicker($event, 'departure')">
                      <label class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Departure</label>
-                      <input
-                        type="date"
-                        [(ngModel)]="segment.date"
-                        (mouseenter)="openDatePicker($event)"
-                        (change)="syncState()"
-                        required
-                        class="w-full bg-transparent text-slate-900 border-none p-0 focus:ring-0 font-medium h-6 cursor-pointer"
-                      />
+                      <div class="w-full bg-transparent text-slate-900 border-none p-0 font-medium h-6 cursor-pointer">
+                        {{ segment.date ? (segment.date | date:'EEE, MMM d, yyyy') : 'Add date' }}
+                      </div>
                   </div>
                   
                   <div class="flex items-center gap-1 justify-end">
@@ -253,11 +242,15 @@ import { SearchStateService } from '../../services/search-state.service';
       }
       }
     </div>
+    
+    <!-- Render the calendar popover / modal here -->
+    <app-mobile-date-picker></app-mobile-date-picker>
   `
 })
 export class FlightSearchFormComponent implements OnInit {
   private router = inject(Router);
   public searchState = inject(SearchStateService);
+  public ui = inject(UiService);
 
   state = this.searchState.state;
   loading = false;
@@ -351,18 +344,11 @@ export class FlightSearchFormComponent implements OnInit {
     this.searchState.setSegments(segments);
   }
 
-  openDatePicker(event: any) {
-    try {
-      const input = event.target as HTMLInputElement;
-      if (input.showPicker) {
-        input.showPicker();
-      } else {
-        input.focus();
-        input.click();
-      }
-    } catch (e) {
-      console.warn('showPicker not supported on hover', e);
-    }
+  openDatePicker(event: any, type: 'departure' | 'return') {
+    event.preventDefault();
+    const target = event.currentTarget as HTMLElement;
+    const rect = target.getBoundingClientRect();
+    this.ui.openDatePicker(type, rect);
   }
 
   toggleCollapse() {

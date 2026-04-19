@@ -302,6 +302,23 @@ app.post('/api/flights/search', async (req, res) => {
 });
 
 // =====================================================================
+// SABRE CALENDAR SEARCH
+// =====================================================================
+app.get('/api/flights/calendar', async (req, res) => {
+    const { origin, destination, departureDate } = req.query;
+    if (!origin || !destination || !departureDate) {
+        return res.status(400).json({ error: 'origin, destination, and departureDate required' });
+    }
+    
+    try {
+        const flights = await sabreFlightSearch.getCalendarFares(origin.toUpperCase(), destination.toUpperCase(), departureDate);
+        res.json(flights);
+    } catch (e) {
+        res.status(500).json({ error: 'Failed to fetch calendar fares', details: e.message });
+    }
+});
+
+// =====================================================================
 // LEGACY /api/search – removed (Amadeus). Return 410 Gone.
 // =====================================================================
 app.get('/api/search', (req, res) => {
