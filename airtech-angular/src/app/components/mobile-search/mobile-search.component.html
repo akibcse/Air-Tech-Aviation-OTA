@@ -109,7 +109,7 @@
 
     <!-- Multi-city segment list -->
     <div class="multi-city-segments" *ngIf="state.tripType === 'multi-city'">
-      <div class="segment-item" *ngFor="let segment of state.segments; let i = index">
+      <div class="segment-item" *ngFor="let segment of state.segments; let i = index; trackBy: trackBySegment">
         <div class="segment-header">
           <span class="segment-title">Flight {{ i + 1 }}</span>
           <button class="remove-segment" *ngIf="state.segments.length > 2" (click)="removeSegment(i)">

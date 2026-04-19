@@ -16,10 +16,13 @@ import {
   BarChart3,
   Bell,
   Sparkles,
-  Map
+  Map,
+  X,
+  Plus
 } from 'lucide-angular';
 import { SearchStateService } from '../../services/search-state.service';
 import { UiService } from '../../services/ui.service';
+import { DateUtils } from '../../utils/date-utils';
 import { Router } from '@angular/router';
 import { MobileDatePickerComponent } from '../mobile-date-picker/mobile-date-picker.component';
 import { MobileAutocompleteComponent } from '../mobile-autocomplete/mobile-autocomplete.component';
@@ -53,6 +56,8 @@ export class MobileSearchComponent {
   bellIcon = Bell;
   sparklesIcon = Sparkles;
   mapIcon = Map;
+  closeIcon = X;
+  plusIcon = Plus;
 
   tripTypes: { value: 'return' | 'one-way' | 'multi-city'; label: string }[] = [
     { value: 'return', label: 'Round trip' },
@@ -161,13 +166,12 @@ export class MobileSearchComponent {
     const segments = [...this.state.segments];
     if (segments.length < 5) {
       const last = segments[segments.length - 1];
-      const newDate = new Date(last.date);
-      newDate.setDate(newDate.getDate() + 2);
+      const newDateStr = DateUtils.addDays(last.date, 2);
       
       segments.push({
         origin: { ...last.destination },
         destination: { iata: '', display: 'Where to?' },
-        date: newDate.toISOString().split('T')[0]
+        date: newDateStr
       });
       this.searchState.setSegments(segments);
     }
@@ -191,21 +195,44 @@ export class MobileSearchComponent {
     return map[iconName] || this.sparklesIcon;
   }
 
+  trackBySegment(index: number, segment: any) {
+    return index;
+  }
+
   onSearch() {
     const s = this.state;
+    
+    // Validate segments
+    const isIncomplete = s.segments.some(seg => !seg.origin?.iata || !seg.destination?.iata || !seg.date);
+    if (isIncomplete) {
+      alert('Please fill in ALL origin, destination, and date fields for all segments.');
+      return;
+    }
+
     const queryParams: any = {
       tripType: s.tripType,
-      origin: s.segments[0].origin.iata,
-      destination: s.segments[0].destination.iata,
-      date: s.segments[0].date,
       adults: s.travellers.adults,
       children: s.travellers.childrenCount,
       cabin: s.travellers.cabin,
       direct: s.directOnly
     };
 
-    if (s.tripType === 'return') {
-      queryParams.returnDate = s.returnDate;
+    if (s.tripType === 'multi-city') {
+      // Format segments for multi-city
+      s.segments.forEach((seg, i) => {
+        queryParams[`origin${i}`] = seg.origin.iata;
+        queryParams[`destination${i}`] = seg.destination.iata;
+        queryParams[`date${i}`] = seg.date;
+      });
+      queryParams.count = s.segments.length;
+    } else {
+      queryParams.origin = s.segments[0].origin.iata;
+      queryParams.destination = s.segments[0].destination.iata;
+      queryParams.date = s.segments[0].date;
+      
+      if (s.tripType === 'return') {
+        queryParams.returnDate = s.returnDate;
+      }
     }
 
     this.router.navigate(['/search'], { queryParams });

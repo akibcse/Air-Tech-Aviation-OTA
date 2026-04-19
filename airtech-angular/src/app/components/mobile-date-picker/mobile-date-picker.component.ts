@@ -6,6 +6,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { FlightService } from '../../services/flight.service';
 
 import { SearchStateService } from '../../services/search-state.service';
+import { DateUtils } from '../../utils/date-utils';
 
 @Component({
   selector: 'app-mobile-date-picker',
@@ -150,7 +151,7 @@ export class MobileDatePickerComponent implements OnInit {
     const lastDay = new Date(year, month + 1, 0).getDate();
     for (let i = 1; i <= lastDay; i++) {
       const d = new Date(year, month, i);
-      const dateStr = d.toISOString().split('T')[0];
+      const dateStr = DateUtils.formatLocal(d);
       days.push({
         day: i,
         dateStr: dateStr,

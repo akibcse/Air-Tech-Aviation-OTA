@@ -1,30 +1,31 @@
 import { Injectable, signal } from '@angular/core';
+import { DateUtils } from '../utils/date-utils';
 
 export interface FlightSegment {
-    origin: { iata: string; display: string };
-    destination: { iata: string; display: string };
-    date: string;
+  origin: { iata: string; display: string };
+  destination: { iata: string; display: string };
+  date: string;
 }
 
 export interface SearchState {
-    tripType: 'return' | 'one-way' | 'multi-city';
-    segments: FlightSegment[];
-    travellers: { adults: number; childrenCount: number; cabin: string };
-    directOnly: boolean;
-    returnDate: string;
-    addHotel: boolean;
-    fareType: 'regular' | 'bg-umrah';
+  tripType: 'return' | 'one-way' | 'multi-city';
+  segments: FlightSegment[];
+  travellers: { adults: number; childrenCount: number; cabin: string };
+  directOnly: boolean;
+  returnDate: string;
+  addHotel: boolean;
+  fareType: 'regular' | 'bg-umrah';
 }
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class SearchStateService {
-    private getDefaultDate(): string {
-        const date = new Date();
-        date.setDate(date.getDate() + 5);
-        return date.toISOString().split('T')[0];
-    }
+  private getDefaultDate(): string {
+    const date = new Date();
+    date.setDate(date.getDate() + 5);
+    return DateUtils.formatLocal(date);
+  }
 
     state = signal<SearchState>({
         tripType: 'one-way',
