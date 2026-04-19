@@ -61,24 +61,24 @@ import { AirportNameComponent } from '../airport-name/airport-name.component';
                   <div class="flex flex-wrap md:flex-nowrap items-center justify-between gap-4 md:gap-8">
                     
                     <!-- Airline & Core Info -->
-                    <div class="flex items-center gap-4 min-w-[200px] flex-1 md:flex-none">
+                    <div class="flex items-center gap-3 min-w-[140px] flex-1 md:flex-none">
                        <app-airline-logo [code]="itineraryAirlineCode(itinerary)" [showName]="true" size="lg"></app-airline-logo>
                     </div>
 
                     <!-- Journey Details Grid -->
                     <div class="flex flex-1 items-center justify-between gap-4 sm:gap-8">
                        <!-- Times -->
-                       <div class="flex flex-col min-w-[100px]">
-                          <span class="text-[15px] sm:text-[17px] font-bold text-slate-900 leading-none mb-1">
+                       <div class="flex flex-col min-w-[85px]">
+                          <span class="text-[14px] sm:text-[17px] font-bold text-slate-900 leading-none mb-1 whitespace-nowrap">
                              {{ itineraryDepartureTime(itinerary) }} <span class="text-slate-400 mx-0.5">–</span> {{ itineraryArrivalTime(itinerary) }}
                              @if (hasDayChange(itinerary)) {<sup class="text-[10px] text-blue-600 font-black ml-0.5">+1</sup>}
                           </span>
-                          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-tighter">{{ itineraryIndex === 0 ? 'Departure' : 'Return' }}</span>
+                          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">{{ itineraryIndex === 0 ? 'Departure' : 'Return' }}</span>
                        </div>
     
                        <!-- Duration & Routing -->
-                       <div class="flex flex-col text-right sm:text-center min-w-[70px]">
-                          <span class="text-[15px] text-slate-900 font-medium">{{ itineraryDurationLabel(itinerary) }}</span>
+                       <div class="flex flex-col text-right sm:text-center min-w-[65px]">
+                          <span class="text-[14px] text-slate-900 font-medium">{{ itineraryDurationLabel(itinerary) }}</span>
                           <span class="text-[9px] sm:text-[10px] text-slate-500 font-black uppercase flex items-center justify-end sm:justify-center gap-1">
                              <app-airport-name [code]="itineraryDepartureAirport(itinerary)"></app-airport-name> 
                              <span class="text-slate-300 mx-0.5">–</span> 
@@ -87,14 +87,17 @@ import { AirportNameComponent } from '../airport-name/airport-name.component';
                        </div>
     
                        <!-- Stops -->
-                       <div class="flex flex-col text-right min-w-[90px]">
-                          <span class="text-[15px] font-bold text-slate-900">
+                       <div class="flex flex-col text-right min-w-[80px]">
+                          <span class="text-[13px] font-black whitespace-nowrap" 
+                                [class.text-emerald-700]="itineraryStops(itinerary) === 0"
+                                [class.text-amber-600]="itineraryStops(itinerary) === 1"
+                                [class.text-red-600]="itineraryStops(itinerary) > 1">
                              {{ itineraryStops(itinerary) === 0 ? 'Nonstop' : itineraryStops(itinerary) + ' stop' + (itineraryStops(itinerary) > 1 ? 's' : '') }}
                           </span>
-                          <div class="flex flex-wrap justify-end gap-1 mt-0.5">
+                          <div class="flex flex-wrap justify-end gap-1 mt-1">
                              @for (layover of itineraryLayovers(itinerary); track $index) {
-                                <span class="text-[9px] text-slate-500 font-medium bg-slate-50 px-1 rounded-sm border border-slate-100">
-                                   {{ layover.duration }} in <app-airport-name [code]="layover.at"></app-airport-name>
+                                <span class="text-[8px] text-slate-500 font-bold bg-slate-50 px-1 py-0.5 rounded-sm border border-slate-100 uppercase tracking-tighter">
+                                   {{ itinerarySegments(itinerary)[$index].arrival.iataCode }}
                                 </span>
                              }
                           </div>

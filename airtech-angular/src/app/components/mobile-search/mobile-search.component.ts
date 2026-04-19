@@ -142,19 +142,43 @@ export class MobileSearchComponent {
     }
   }
 
-  openDatePicker(type: 'departure' | 'return') {
+  openDatePicker(type: 'departure' | 'return', index: number = 0) {
     if (type === 'return' && this.state.tripType !== 'return') {
       this.searchState.updateState({ tripType: 'return' });
     }
-    this.ui.openDatePicker(type);
+    this.ui.openDatePicker(type, undefined, index);
   }
 
-  openAutocomplete(type: 'origin' | 'destination') {
-    this.ui.openAutocomplete(type);
+  openAutocomplete(type: 'origin' | 'destination', index: number = 0) {
+    this.ui.openAutocomplete(type, index);
   }
 
   toggleTool(id: string) {
     this.expandedTool = this.expandedTool === id ? null : id;
+  }
+
+  addSegment() {
+    const segments = [...this.state.segments];
+    if (segments.length < 5) {
+      const last = segments[segments.length - 1];
+      const newDate = new Date(last.date);
+      newDate.setDate(newDate.getDate() + 2);
+      
+      segments.push({
+        origin: { ...last.destination },
+        destination: { iata: '', display: 'Where to?' },
+        date: newDate.toISOString().split('T')[0]
+      });
+      this.searchState.setSegments(segments);
+    }
+  }
+
+  removeSegment(index: number) {
+    const segments = [...this.state.segments];
+    if (segments.length > 2) {
+      segments.splice(index, 1);
+      this.searchState.setSegments(segments);
+    }
   }
 
   getToolIcon(iconName: string) {

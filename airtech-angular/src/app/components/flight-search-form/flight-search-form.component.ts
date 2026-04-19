@@ -123,18 +123,19 @@ import { MobileDatePickerComponent } from '../mobile-date-picker/mobile-date-pic
 
               <!-- Date Picker Group -->
               <div class="flex flex-col md:flex-row items-center border border-slate-300 rounded-xl relative group focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 bg-white shadow-sm hover:shadow transition-shadow">
-                <div class="w-full relative px-4 py-2 cursor-pointer hover:bg-slate-50 transition-colors rounded-l-xl" (click)="openDatePicker($event, 'departure')">
+                <div class="w-full relative px-4 py-2 cursor-pointer hover:bg-slate-50 transition-colors rounded-l-xl" (click)="openDatePicker($event, 'departure', 0)">
                   <label class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Departure</label>
                   <div class="w-full bg-transparent text-slate-900 border-none p-0 font-medium cursor-pointer">
                     {{ state().segments[0].date ? (state().segments[0].date | date:'EEE, MMM d, yyyy') : 'Add date' }}
                   </div>
                 </div>
                 
-                @if (state().tripType === 'return') {
-                  <div class="w-full relative px-4 py-2 border-t border-slate-200 md:border-t-0 md:border-l cursor-pointer hover:bg-slate-50 transition-colors rounded-r-xl group-focus-within:border-l-blue-500" (click)="openDatePicker($event, 'return')">
+                @if (state().tripType !== 'multi-city') {
+                  <div class="w-full relative px-4 py-2 border-t border-slate-200 md:border-t-0 md:border-l cursor-pointer hover:bg-slate-50 transition-colors rounded-r-xl group-focus-within:border-l-blue-500" 
+                       (click)="state().tripType === 'one-way' ? updateTripType('return') : openDatePicker($event, 'return', 0)">
                     <label class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Return</label>
-                    <div class="w-full bg-transparent text-slate-900 border-none p-0 font-medium cursor-pointer" [class.text-slate-400]="!state().returnDate">
-                      {{ state().returnDate ? (state().returnDate | date:'EEE, MMM d, yyyy') : 'Add date' }}
+                    <div class="w-full bg-transparent text-slate-900 border-none p-0 font-medium cursor-pointer" [class.text-slate-400]="!state().returnDate || state().tripType === 'one-way'">
+                      {{ state().tripType === 'one-way' ? 'Add return' : (state().returnDate ? (state().returnDate | date:'EEE, MMM d, yyyy') : 'Add date') }}
                     </div>
                   </div>
                 }
@@ -168,7 +169,7 @@ import { MobileDatePickerComponent } from '../mobile-date-picker/mobile-date-pic
                     </div>
                   </div>
                   
-                  <div class="flex-1 md:flex-none md:w-56 border border-slate-300 rounded-xl bg-white shadow-sm hover:shadow focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 px-4 py-2 transition-all cursor-pointer" (click)="openDatePicker($event, 'departure')">
+                  <div class="flex-1 md:flex-none md:w-56 border border-slate-300 rounded-xl bg-white shadow-sm hover:shadow focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 px-4 py-2 transition-all cursor-pointer" (click)="openDatePicker($event, 'departure', i)">
                      <label class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Departure</label>
                       <div class="w-full bg-transparent text-slate-900 border-none p-0 font-medium h-6 cursor-pointer">
                         {{ segment.date ? (segment.date | date:'EEE, MMM d, yyyy') : 'Add date' }}
@@ -344,11 +345,11 @@ export class FlightSearchFormComponent implements OnInit {
     this.searchState.setSegments(segments);
   }
 
-  openDatePicker(event: any, type: 'departure' | 'return') {
+  openDatePicker(event: any, type: 'departure' | 'return', index: number = 0) {
     event.preventDefault();
     const target = event.currentTarget as HTMLElement;
     const rect = target.getBoundingClientRect();
-    this.ui.openDatePicker(type, rect);
+    this.ui.openDatePicker(type, rect, index);
   }
 
   toggleCollapse() {

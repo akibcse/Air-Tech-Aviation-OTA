@@ -107,7 +107,47 @@
       </div>
     </div>
 
-    <div class="date-inputs">
+    <!-- Multi-city segment list -->
+    <div class="multi-city-segments" *ngIf="state.tripType === 'multi-city'">
+      <div class="segment-item" *ngFor="let segment of state.segments; let i = index">
+        <div class="segment-header">
+          <span class="segment-title">Flight {{ i + 1 }}</span>
+          <button class="remove-segment" *ngIf="state.segments.length > 2" (click)="removeSegment(i)">
+            <lucide-icon [name]="closeIcon" class="icon-sm"></lucide-icon>
+          </button>
+        </div>
+        
+        <div class="segment-inputs">
+          <div class="location-row">
+            <div class="location-field" (click)="openAutocomplete('origin', i)">
+              <div class="field-dot origin-dot"></div>
+              <div class="field-text">
+                <span class="field-value">{{ segment.origin.display }}</span>
+              </div>
+            </div>
+            <div class="location-field" (click)="openAutocomplete('destination', i)">
+              <div class="field-dot dest-dot"></div>
+              <div class="field-text">
+                <span class="field-value">{{ segment.destination.display }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="date-field" (click)="openDatePicker('departure', i)">
+            <lucide-icon [name]="calendarIcon" class="date-icon"></lucide-icon>
+            <span class="date-value">{{ segment.date | date:'EEE, MMM d' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="add-segment-btn" *ngIf="state.segments.length < 5" (click)="addSegment()">
+        <lucide-icon [name]="plusIcon" class="icon-sm"></lucide-icon>
+        <span>Add flight</span>
+      </button>
+    </div>
+
+    <!-- 2. DATE & SEARCH SECTION (Hidden in Multi-city) -->
+    <div class="date-inputs" *ngIf="state.tripType !== 'multi-city'">
       <div class="date-field" (click)="openDatePicker('departure')">
         <lucide-icon [name]="calendarIcon" class="date-icon"></lucide-icon>
         <span class="date-value">{{ state.segments[0].date | date:'EEE, MMM d' }}</span>

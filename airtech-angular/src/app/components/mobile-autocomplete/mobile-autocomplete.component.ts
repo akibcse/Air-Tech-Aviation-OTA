@@ -70,10 +70,12 @@ export class MobileAutocompleteComponent implements OnInit {
     const name = loc.airport || loc.name || loc.city || '';
     const display = `${this.toTitleCase(name)} (${loc.iata})`;
     
-    // Always apply to the first segment since mobile UI only shows one origin/destination right now
     const segments = [...this.searchState.state().segments];
-    segments[0][type] = { iata: loc.iata, display };
-    this.searchState.setSegments(segments);
+    const index = this.ui.activeSegmentIndex();
+    if (segments[index]) {
+      segments[index][type] = { iata: loc.iata, display };
+      this.searchState.setSegments(segments);
+    }
 
     this.close();
   }

@@ -50,8 +50,10 @@ export class MobileDatePickerComponent implements OnInit {
       this.checkDesktop();
       this.updatePopoverPosition();
     });
+    const index = this.ui.activeSegmentIndex();
+    const segments = this.searchState.state().segments;
     this.selectedDate.set(this.ui.activeDateType() === 'departure' 
-      ? this.searchState.state().segments[0].date 
+      ? (segments[index]?.date || '') 
       : this.searchState.state().returnDate);
 
     // Initial silent generation without fares
@@ -167,8 +169,11 @@ export class MobileDatePickerComponent implements OnInit {
     if (date) {
       if (this.ui.activeDateType() === 'departure') {
         const segments = [...this.searchState.state().segments];
-        segments[0].date = date;
-        this.searchState.setSegments(segments);
+        const index = this.ui.activeSegmentIndex();
+        if (segments[index]) {
+          segments[index].date = date;
+          this.searchState.setSegments(segments);
+        }
       } else {
         this.searchState.updateState({ returnDate: date });
       }

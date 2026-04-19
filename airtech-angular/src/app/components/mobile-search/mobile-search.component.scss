@@ -390,8 +390,131 @@ $radius-full: 100px;
 }
 
 /* ────────────────────────────────────────────
-   3. EXPLORE DEALS
+   3. MULTI-CITY & EXPLORE DEALS
    ──────────────────────────────────────────── */
+.multi-city-segments {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 16px 12px;
+
+  .segment-item {
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: $radius-lg;
+    padding: 12px;
+    animation: slideIn 0.2s ease-out;
+
+    .segment-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid $border-light;
+
+      .segment-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: $text-secondary;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .remove-segment {
+        background: none;
+        border: none;
+        color: $text-muted;
+        cursor: pointer;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        &:active { background: $bg; }
+      }
+    }
+
+    .segment-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .location-row {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        background: $bg;
+        border-radius: $radius-md;
+        overflow: hidden;
+        border: 1px solid $border-light;
+
+        .location-field {
+          background: $surface;
+          padding: 12px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          &:active { background: $bg; }
+
+          .field-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            &.origin-dot { border: 2px solid $text-secondary; }
+            &.dest-dot { background: $blue; }
+          }
+
+          .field-text {
+            flex: 1;
+            .field-value {
+              font-size: 14px;
+              color: $text-primary;
+              &.placeholder { color: $text-muted; }
+            }
+          }
+        }
+      }
+
+      .date-field {
+        background: $surface;
+        border: 1px solid $border-light;
+        border-radius: $radius-md;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        &:active { background: $bg; }
+
+        .date-icon { width: 16px; height: 16px; color: $text-secondary; }
+        .date-value { font-size: 14px; color: $text-primary; }
+      }
+    }
+  }
+
+  .add-segment-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: $surface;
+    border: 1px dashed $blue;
+    border-radius: $radius-md;
+    color: $blue;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    &:active { background: $bg; }
+  }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .explore-deals-section {
   padding: 24px 16px 0;
 

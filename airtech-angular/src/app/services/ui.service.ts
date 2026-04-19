@@ -10,6 +10,7 @@ export class UiService {
   // Date Picker State
   datePickerActive = signal(false);
   activeDateType = signal<'departure' | 'return'>('departure');
+  activeSegmentIndex = signal(0);
   datePickerAnchor = signal<DOMRect | null>(null);
   
   // Autocomplete State
@@ -24,8 +25,9 @@ export class UiService {
     this.filtersSheetActive.set(false);
   }
 
-  openDatePicker(type: 'departure' | 'return' = 'departure', anchor?: DOMRect) {
+  openDatePicker(type: 'departure' | 'return' = 'departure', anchor?: DOMRect, index: number = 0) {
     this.activeDateType.set(type);
+    this.activeSegmentIndex.set(index);
     if (anchor) this.datePickerAnchor.set(anchor);
     else this.datePickerAnchor.set(null);
     this.datePickerActive.set(true);
@@ -35,8 +37,9 @@ export class UiService {
     this.datePickerActive.set(false);
   }
 
-  openAutocomplete(type: 'origin' | 'destination') {
+  openAutocomplete(type: 'origin' | 'destination', index: number = 0) {
     this.activeInputType.set(type);
+    this.activeSegmentIndex.set(index);
     this.autocompleteActive.set(true);
   }
 
