@@ -3,7 +3,7 @@
     <button class="close-btn" (click)="close()">
       <lucide-icon [name]="closeIcon" class="icon-md"></lucide-icon>
     </button>
-    <h3>Select {{ ui.activeInputType() }}</h3>
+    <h3>Select {{ ui.activeInputType() === 'origin' ? 'Origin' : 'Destination' }}</h3>
     <div class="header-placeholder"></div>
   </header>
 
@@ -15,7 +15,7 @@
         type="text" 
         [value]="query()" 
         (input)="onInput($event)"
-        placeholder="Country, city or airport" 
+        [placeholder]="ui.activeInputType() === 'origin' ? 'Origin' : 'Destination'" 
         class="search-input"
         autocomplete="off"
         autofocus
@@ -42,17 +42,17 @@
           <lucide-icon [name]="ui.activeInputType() === 'origin' ? takeoffIcon : landingIcon" class="loc-icon"></lucide-icon>
         </div>
         <div class="loc-details">
-          <span class="loc-city">{{ loc.city }}</span>
-          <span class="loc-airport">{{ loc.airport || loc.name }}</span>
+          <span class="loc-city" [innerHTML]="highlightMatch(loc.city)"></span>
+          <span class="loc-airport" [innerHTML]="highlightMatch(loc.airport || loc.name)"></span>
         </div>
-        <div class="loc-iata">{{ loc.iata }}</div>
+        <div class="loc-iata" [innerHTML]="highlightMatch(loc.iata)"></div>
       </button>
     </div>
 
     <!-- Empty state -->
     <div class="empty-state" *ngIf="!loading() && query() && results().length === 0">
       <div class="empty-icon-wrap"><lucide-icon [name]="searchIcon" class="empty-icon"></lucide-icon></div>
-      <p>No airports found for "{{ query() }}"</p>
+      <p>No results found for "{{ query() }}"</p>
     </div>
   </div>
 </div>

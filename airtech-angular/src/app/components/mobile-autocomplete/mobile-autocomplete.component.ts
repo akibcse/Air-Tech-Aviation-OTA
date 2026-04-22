@@ -51,7 +51,9 @@ export class MobileAutocompleteComponent implements OnInit {
       switchMap(q => {
         if (!q.trim()) return of([]);
         this.loading.set(true);
-        return this.flightService.searchAirports(q).pipe(catchError(() => of([])));
+        return this.flightService.searchAirports(q).pipe(
+          catchError(() => of([]))
+        );
       })
     ).subscribe(res => {
       this.results.set(res);
@@ -63,6 +65,16 @@ export class MobileAutocompleteComponent implements OnInit {
     const val = (event.target as HTMLInputElement).value;
     this.query.set(val);
     this.searchSubject.next(val);
+  }
+
+  highlightMatch(text: string): string {
+    if (!text) return '';
+    const q = this.query();
+    if (!q) return text;
+    
+    const escapedQuery = q.replace(/[.*+?^$\{\}\(\)\|\[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escapedQuery})`, 'gi');
+    return text.toString().replace(regex, '<span class="match-highlight">$1</span>');
   }
 
   selectLocation(loc: any) {

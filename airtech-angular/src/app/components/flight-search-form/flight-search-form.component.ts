@@ -98,22 +98,24 @@ import { MobileDatePickerComponent } from '../mobile-date-picker/mobile-date-pic
                 
                 <div class="w-full md:w-1/2 pr-2 md:pr-8">
                    <app-airport-autocomplete
-                      label=""
-                      placeholder="Where from?"
+                      label="Origin"
+                      placeholder="Origin"
                       [value]="state().segments[0].origin.display"
                       (selected)="onLocationSelected(0, 'origin', $event)"
                       [required]="true"
+                      variant="minimal"
                       class="block w-full"
                     ></app-airport-autocomplete>
                 </div>
 
                 <div class="w-full md:w-1/2 pl-2 md:pl-8 pt-2 md:pt-0">
                   <app-airport-autocomplete
-                    label=""
-                    placeholder="Where to?"
+                    label="Destination"
+                    placeholder="Destination"
                     [value]="state().segments[0].destination.display"
                     (selected)="onLocationSelected(0, 'destination', $event)"
                     [required]="true"
+                    variant="minimal"
                     class="block w-full"
                   ></app-airport-autocomplete>
                 </div>
@@ -149,21 +151,23 @@ import { MobileDatePickerComponent } from '../mobile-date-picker/mobile-date-pic
                   <div class="flex-1 flex flex-col md:flex-row border border-slate-300 rounded-xl bg-white shadow-sm hover:shadow focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all relative">
                     <div class="w-full relative">
                       <app-airport-autocomplete
-                        label=""
-                        placeholder="Where from?"
+                        label="Origin"
+                        placeholder="Origin"
                         [value]="segment.origin.display"
                         (selected)="onLocationSelected(i, 'origin', $event)"
                         [required]="true"
+                        variant="minimal"
                         class="block w-full"
                       ></app-airport-autocomplete>
                     </div>
                     <div class="w-full relative border-t border-slate-200 md:border-t-0 md:border-l md:pl-0 pt-2 md:pt-0">
                       <app-airport-autocomplete
-                        label=""
-                        placeholder="Where to?"
+                        label="Destination"
+                        placeholder="Destination"
                         [value]="segment.destination.display"
                         (selected)="onLocationSelected(i, 'destination', $event)"
                         [required]="true"
+                        variant="minimal"
                         class="block w-full"
                       ></app-airport-autocomplete>
                     </div>

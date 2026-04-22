@@ -58,6 +58,7 @@ export class MobileSearchComponent {
   mapIcon = Map;
   closeIcon = X;
   plusIcon = Plus;
+  xIcon = X;
 
   tripTypes: { value: 'return' | 'one-way' | 'multi-city'; label: string }[] = [
     { value: 'return', label: 'Round trip' },
@@ -105,7 +106,13 @@ export class MobileSearchComponent {
   setTripType(type: 'return' | 'one-way' | 'multi-city') {
     this.searchState.updateState({ tripType: type });
     this.activeDropdown = null;
+    this.ui.activeSegmentIndex.set(0);
     
+    // For Multi-city, ensure at least 2 segments
+    if (type === 'multi-city' && this.state.segments.length < 2) {
+      this.addSegment();
+    }
+
     // Automatically open return date picker when switching to Round trip
     if (type === 'return' && !this.state.returnDate) {
       setTimeout(() => this.openDatePicker('return'), 50);
@@ -137,25 +144,34 @@ export class MobileSearchComponent {
 
   swapAirports() {
     const segments = [...this.state.segments];
-    if (segments.length > 0) {
-      const first = { ...segments[0] };
-      const temp = first.origin;
-      first.origin = first.destination;
-      first.destination = temp;
-      segments[0] = first;
+    const index = this.ui.activeSegmentIndex();
+    if (segments[index]) {
+      const seg = { ...segments[index] };
+      const temp = seg.origin;
+      seg.origin = seg.destination;
+      seg.destination = temp;
+      segments[index] = seg;
       this.searchState.setSegments(segments);
     }
   }
 
-  openDatePicker(type: 'departure' | 'return', index: number = 0) {
-    if (type === 'return' && this.state.tripType !== 'return') {
-      this.searchState.updateState({ tripType: 'return' });
-    }
-    this.ui.openDatePicker(type, undefined, index);
+  setActiveSegment(index: number) {
+    this.ui.activeSegmentIndex.set(index);
   }
 
-  openAutocomplete(type: 'origin' | 'destination', index: number = 0) {
-    this.ui.openAutocomplete(type, index);
+  openDatePicker(type: 'departure' | 'return', index?: number) {
+    const targetIndex = index !== undefined ? index : this.ui.activeSegmentIndex();
+    
+    // Guard: Only switch to 'return' if we are NOT in multi-city mode
+    if (type === 'return' && this.state.tripType !== 'return' && this.state.tripType !== 'multi-city') {
+      this.searchState.updateState({ tripType: 'return' });
+    }
+    this.ui.openDatePicker(type, undefined, targetIndex);
+  }
+
+  openAutocomplete(type: 'origin' | 'destination', index?: number) {
+    const targetIndex = index !== undefined ? index : this.ui.activeSegmentIndex();
+    this.ui.openAutocomplete(type, targetIndex);
   }
 
   toggleTool(id: string) {
@@ -174,6 +190,11 @@ export class MobileSearchComponent {
         date: newDateStr
       });
       this.searchState.setSegments(segments);
+      
+      // Select the newly added segment
+      setTimeout(() => {
+        this.ui.activeSegmentIndex.set(segments.length - 1);
+      }, 0);
     }
   }
 
@@ -181,6 +202,16 @@ export class MobileSearchComponent {
     const segments = [...this.state.segments];
     if (segments.length > 2) {
       segments.splice(index, 1);
+      this.searchState.setSegments(segments);
+    }
+  }
+
+  swapSegmentLocations(index: number) {
+    const segments = [...this.state.segments];
+    if (segments[index]) {
+      const temp = { ...segments[index].origin };
+      segments[index].origin = { ...segments[index].destination };
+      segments[index].destination = temp;
       this.searchState.setSegments(segments);
     }
   }
@@ -209,30 +240,28 @@ export class MobileSearchComponent {
       return;
     }
 
+    const first = s.segments[0];
     const queryParams: any = {
       tripType: s.tripType,
+      origin: first.origin.iata,
+      destination: first.destination.iata,
+      date: first.date,
       adults: s.travellers.adults,
       children: s.travellers.childrenCount,
-      cabin: s.travellers.cabin,
-      direct: s.directOnly
+      cabin: s.travellers.cabin.toUpperCase(),
+      direct: s.directOnly ? 'true' : 'false'
     };
 
+    if (s.tripType === 'return' && s.returnDate) {
+      queryParams.returnDate = s.returnDate;
+    }
+
     if (s.tripType === 'multi-city') {
-      // Format segments for multi-city
-      s.segments.forEach((seg, i) => {
-        queryParams[`origin${i}`] = seg.origin.iata;
-        queryParams[`destination${i}`] = seg.destination.iata;
-        queryParams[`date${i}`] = seg.date;
-      });
-      queryParams.count = s.segments.length;
-    } else {
-      queryParams.origin = s.segments[0].origin.iata;
-      queryParams.destination = s.segments[0].destination.iata;
-      queryParams.date = s.segments[0].date;
-      
-      if (s.tripType === 'return') {
-        queryParams.returnDate = s.returnDate;
-      }
+      queryParams.segments = JSON.stringify(s.segments.map(seg => ({
+        o: seg.origin.iata,
+        d: seg.destination.iata,
+        t: seg.date
+      })));
     }
 
     this.router.navigate(['/search'], { queryParams });

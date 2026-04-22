@@ -31,13 +31,14 @@ import { Subject } from 'rxjs';
         [title]="query"
         [placeholder]="placeholder"
         [required]="required"
-        class="w-full h-12 pl-10 pr-4 bg-white border border-gray-300 rounded-xl font-medium text-gray-800 placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        [class]="inputClass()"
         autocomplete="off"
       />
 
+      <!-- Dropdown Results -->
       @if (showResults() && results().length > 0) {
         <div
-          class="fixed bg-white border border-gray-200 rounded-xl shadow-2xl z-[2200] max-h-80 overflow-y-auto overflow-x-hidden custom-scrollbar"
+          class="fixed bg-white border border-gray-100 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] z-[2200] max-h-80 overflow-y-auto overflow-x-hidden custom-scrollbar transition-all duration-200 ease-out animate-in fade-in slide-in-from-top-2"
           [style.top.px]="dropdownTop"
           [style.left.px]="dropdownLeft"
           [style.width.px]="dropdownWidth"
@@ -48,20 +49,27 @@ import { Subject } from 'rxjs';
               (click)="selectLocation(loc)"
               (mouseenter)="activeIndex = i"
               [class.bg-blue-50]="activeIndex === i"
-              class="w-full px-4 py-3 hover:bg-blue-50 text-left border-b border-gray-50 last:border-0 transition-colors flex items-center justify-between group/item"
+              class="w-full px-4 py-3.5 hover:bg-blue-50/80 text-left border-b border-gray-50 last:border-0 transition-colors flex items-center justify-between group/item"
             >
               <div class="flex flex-col gap-0.5 min-w-0">
-                <span class="font-bold text-gray-900 truncate" [innerHTML]="highlightMatch(loc.city)"></span>
-                <span class="text-xs text-gray-500 truncate" [innerHTML]="highlightMatch(loc.airport || loc.name)"></span>
+                <div class="flex items-center gap-2">
+                   <span class="font-bold text-gray-900 truncate" [innerHTML]="highlightMatch(loc.city)"></span>
+                   @if (loc.country) {
+                     <span class="text-[10px] uppercase text-gray-400 font-bold tracking-wider">{{ loc.country }}</span>
+                   }
+                </div>
+                <span class="text-xs text-gray-500 truncate font-medium" [innerHTML]="highlightMatch(loc.airport || loc.name)"></span>
               </div>
-              <span 
-                class="bg-gray-100 group-hover/item:bg-blue-100 font-bold px-2 py-1 rounded text-sm transition-colors"
-                [class.text-blue-700]="activeIndex === i"
-                [class.bg-blue-100]="activeIndex === i"
-                [class.text-gray-600]="activeIndex !== i"
-                [innerHTML]="highlightMatch(loc.iata)"
-              >
-              </span>
+              <div class="flex items-center gap-3 shrink-0">
+                <span 
+                  class="bg-gray-100 group-hover/item:bg-blue-100 font-black px-2 py-1 rounded-lg text-xs transition-colors tracking-tighter"
+                  [class.text-blue-700]="activeIndex === i"
+                  [class.bg-blue-100]="activeIndex === i"
+                  [class.text-gray-600]="activeIndex !== i"
+                  [innerHTML]="highlightMatch(loc.iata)"
+                >
+                </span>
+              </div>
             </button>
           }
         </div>
@@ -73,6 +81,7 @@ export class AirportAutocompleteComponent {
   @Input() label = '';
   @Input() placeholder = 'Country, city or airport';
   @Input() required = false;
+  @Input() variant: 'standard' | 'minimal' = 'standard';
   @Input() set value(v: string) { this.query = v; }
 
   @Output() valueChange = new EventEmitter<string>();
@@ -114,6 +123,14 @@ export class AirportAutocompleteComponent {
         }
       });
     }
+  }
+
+  inputClass() {
+    const base = 'w-full h-12 pl-10 pr-4 bg-white font-medium text-gray-800 placeholder:text-gray-400 focus-visible:outline-none';
+    if (this.variant === 'minimal') {
+      return `${base} border-none rounded-none focus-visible:ring-0`;
+    }
+    return `${base} border border-gray-300 rounded-xl focus-visible:ring-2 focus-visible:ring-blue-500`;
   }
 
   onInput(event?: Event) {
@@ -207,6 +224,6 @@ export class AirportAutocompleteComponent {
     const regex = new RegExp(`(${escapedQuery})`, 'gi');
     // Important: DO NOT format the replacement directly with classes if you use innerHTML without sanitization protection 
     // unless you know it's safe. We'll use a bold tag and generic color styling.
-    return text.toString().replace(regex, '<span class="text-blue-600 font-black bg-blue-50 px-0.5 rounded">$1</span>');
+    return text.toString().replace(regex, '<span class="text-blue-600 font-bold bg-blue-50/50 px-0.5 rounded-sm">$1</span>');
   }
 }
