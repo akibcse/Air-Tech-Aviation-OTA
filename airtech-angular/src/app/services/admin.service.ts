@@ -124,4 +124,10 @@ export class AdminService {
             switchMap(headers => this.http.post<any>(`${this.apiUrl}/settings/meta-tags`, metaTags, { headers }))
         );
     }
+
+    getVisitors(): Observable<any[]> {
+        return this.getAuthHeaders().pipe(
+            switchMap(headers => this.http.get<any[]>(`${this.apiUrl}/visitors`, { headers }))
+        );
+    }
 }

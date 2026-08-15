@@ -8,6 +8,11 @@ const admin = require('firebase-admin');
 const sabreAuth = require('./sabre-auth');
 const sabreFlightSearch = require('./sabre-flight-search');
 
+// AI Chat modules
+const aiService = require('./ai.service');
+const sessionService = require('./session.service');
+const profileService = require('./profile.service');
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -539,9 +544,15 @@ app.get('/api/airlines/:code', (req, res) => {
     if (!found) {
         return res.json({ code, name: code, logo: null });
     }
+
+    const cleanAlias = (found.alias && found.alias !== '\\N' && found.alias !== '\\N' && found.alias !== 'N/A' && found.alias.trim() !== '') ? found.alias.trim() : null;
+    const cleanName = (found.name && found.name !== '\\N' && found.name !== '\\N' && found.name !== 'N/A' && found.name.trim() !== '') ? found.name.trim() : null;
+    
+    const name = cleanAlias || cleanName || code;
+
     return res.json({
         code: found.iata,
-        name: found.alias || found.name,
+        name: name,
         logo: `https://pics.avs.io/90/90/${found.iata}.png`
     });
 });
@@ -606,6 +617,24 @@ app.get('/api/admin/users', verifyAdmin, async (req, res) => {
         res.json(users);
     } catch (e) {
         res.status(500).send("Error fetching users");
+    }
+});
+
+app.get('/api/admin/visitors', verifyAdmin, async (req, res) => {
+    try {
+        let data = {};
+        if (db) {
+            const snap = await db.ref('visitor_leads').once('value');
+            data = snap.val() || {};
+        } else {
+            data = await firebaseRest.get('visitor_leads', req.token) || {};
+        }
+        const visitors = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+        console.log(`Visitors fetched: ${visitors.length}`);
+        res.json(visitors.reverse());
+    } catch (e) {
+        console.error("Error fetching visitors:", e.message);
+        res.status(500).send("Error fetching visitors");
     }
 });
 
@@ -772,6 +801,41 @@ app.get('/api/public/hero-background', async (req, res) => {
         res.json({ backgroundUrl });
     } catch (e) {
         res.json({ backgroundUrl: '' });
+    }
+});
+
+// Silent Visitor Tracking Endpoint
+app.post('/api/public/track-visitor', async (req, res) => {
+    try {
+        const clientIp = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || req.ip || 'Unknown';
+        const { email, location, ip: bodyIp, userAgent, pageUrl, action } = req.body || {};
+        
+        const finalIp = (bodyIp && bodyIp !== 'Unknown') ? bodyIp : clientIp;
+        
+        const leadRecord = {
+            ip: finalIp,
+            location: location || {},
+            email: email || null,
+            userAgent: userAgent || req.headers['user-agent'] || '',
+            pageUrl: pageUrl || '/',
+            action: action || 'page_load',
+            timestamp: new Date().toISOString()
+        };
+
+        let resultKey;
+        if (db) {
+            const ref = await db.ref('visitor_leads').push(leadRecord);
+            resultKey = ref.key;
+        } else {
+            const result = await firebaseRest.push('visitor_leads', leadRecord);
+            resultKey = result.key;
+        }
+
+        console.log(`[VisitorTracker] Tracked visitor IP: ${finalIp}, Email: ${email || 'Anonymous'}, Location: ${JSON.stringify(location?.city || location?.country_name || 'N/A')}`);
+        res.json({ success: true, id: resultKey });
+    } catch (e) {
+        console.error('❌ Visitor tracking error:', e.message);
+        res.status(500).json({ error: 'Tracking failed', details: e.message });
     }
 });
 
@@ -1254,6 +1318,89 @@ app.post('/api/bookings/:id/request-cancel', async (req, res) => {
     } catch (error) {
         console.error("Cancel Request Error:", error.message);
         res.status(500).json({ error: "Failed to request cancellation" });
+    }
+});
+
+// =====================================================================
+// AI CHAT ENDPOINT
+// =====================================================================
+
+/**
+ * POST /api/chat
+ *
+ * Body: { message: string, sessionId: string }
+ *
+ * Returns:
+ *   { reply: string }                          — AI is still collecting info
+ *   { reply: string, action: "SEARCH", data }  — AI has all booking data
+ *   { reply: string, action: "RESET" }         — conversation was reset
+ */
+app.post('/api/chat', async (req, res) => {
+    const { message, sessionId } = req.body;
+
+    if (!message || !sessionId) {
+        return res.status(400).json({ error: 'message and sessionId are required' });
+    }
+
+    try {
+        const session = sessionService.get(sessionId);
+        const savedProfiles = profileService.getProfile(sessionId);
+
+        // Handle reset command
+        if (message.trim().toLowerCase() === '/reset') {
+            sessionService.reset(sessionId);
+            return res.json({ reply: "Conversation reset! Let's start fresh. Where would you like to fly?", action: 'RESET' });
+        }
+
+        // Get AI response
+        const aiMessage = await aiService.chat(message, session.history, savedProfiles);
+
+        // Append to history
+        session.history.push({ role: 'user', content: message });
+        session.history.push(aiMessage);
+
+        // Try to parse as a completion JSON
+        let parsed = null;
+        try {
+            const content = (aiMessage.content || '').trim();
+            // Only attempt parse if it looks like JSON
+            if (content.startsWith('{') && content.includes('"status"')) {
+                parsed = JSON.parse(content);
+            }
+        } catch {
+            // Not JSON — normal conversational reply
+        }
+
+        if (parsed?.status === 'complete' && parsed?.data) {
+            const bookingData = parsed.data;
+
+            // Save booking to session
+            sessionService.updateBooking(sessionId, bookingData);
+
+            // Save passenger profiles if present
+            if (bookingData.passengerProfiles?.length > 0) {
+                profileService.saveProfile(sessionId, bookingData.passengerProfiles);
+                sessionService.savePassengerProfiles(sessionId, bookingData.passengerProfiles);
+            }
+
+            console.log(`[AI Chat] Booking complete for session ${sessionId}:`, JSON.stringify(bookingData));
+
+            return res.json({
+                reply: `✈️ Great! Searching for ${bookingData.origin} → ${bookingData.destination} on ${bookingData.departureDate}...`,
+                action: 'SEARCH',
+                data: bookingData
+            });
+        }
+
+        // Regular conversational reply
+        res.json({ reply: aiMessage.content });
+
+    } catch (error) {
+        console.error('[AI Chat] Error:', error.message);
+        res.status(500).json({
+            reply: 'Sorry, I encountered an error. Please try again.',
+            error: error.message
+        });
     }
 });
 

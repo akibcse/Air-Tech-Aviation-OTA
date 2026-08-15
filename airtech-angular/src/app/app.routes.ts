@@ -12,6 +12,7 @@ import { ConfirmationComponent } from './pages/book/confirmation/confirmation.co
 import { AdminLayoutComponent } from './pages/admin/admin-layout.component';
 import { AdminDashboardComponent } from './pages/admin/dashboard/admin-dashboard.component';
 import { AdminUsersComponent } from './pages/admin/users/admin-users.component';
+import { AdminVisitorsComponent } from './pages/admin/visitors/admin-visitors.component';
 import { AdminBookingsComponent } from './pages/admin/bookings/admin-bookings.component';
 import { AdminSystemSettingsComponent } from './pages/admin/settings/admin-system-settings.component';
 import { AdminApiHealthComponent } from './pages/admin/api-health/admin-api-health.component';
@@ -19,6 +20,7 @@ import { AdminHomepageSeoComponent } from './pages/admin/digital-marketing/homep
 import { AdminMetaTagsComponent } from './pages/admin/digital-marketing/meta-tags.component';
 import { UserBookingsComponent } from './pages/user-bookings/user-bookings.component';
 import { SupportComponent } from './pages/support/support.component';
+import { ChatComponent } from './pages/chat/chat.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -28,6 +30,7 @@ export const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'my-bookings', component: UserBookingsComponent },
     { path: 'support', component: SupportComponent },
+    { path: 'chat', component: ChatComponent },
     { path: 'book/details', component: BookingFlightDetailsComponent },
     { path: 'book/passenger-info', component: PassengerInfoComponent },
     { path: 'book/seats', component: SeatSelectionComponent },
@@ -39,6 +42,7 @@ export const routes: Routes = [
         children: [
             { path: '', component: AdminDashboardComponent },
             { path: 'users', component: AdminUsersComponent },
+            { path: 'visitors', component: AdminVisitorsComponent },
             { path: 'bookings', component: AdminBookingsComponent },
             { path: 'api-health', component: AdminApiHealthComponent },
             { path: 'settings', component: AdminSystemSettingsComponent },

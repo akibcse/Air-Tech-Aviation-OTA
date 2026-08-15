@@ -1,5 +1,6 @@
 import { Component, signal, inject, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { SearchTabsComponent } from '../search-tabs/search-tabs.component';
 import { FlightSearchFormComponent } from '../flight-search-form/flight-search-form.component';
 import { PublicService } from '../../services/public.service';
@@ -20,13 +21,24 @@ import { PublicService } from '../../services/public.service';
       <div class="relative z-10 max-w-[1248px] mx-auto">
         @if (!introBelowSearch()) {
           <div class="transition-all duration-500 ease-out" [class.opacity-0]="!introVisible()" [class.-translate-y-2]="!introVisible()">
+            <!-- Branding Badge -->
+            <div class="inline-flex items-center gap-2 bg-blue-600/20 backdrop-blur-sm border border-blue-500/30 px-3 py-1.5 rounded-full mb-6">
+              <span class="flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-blue-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              </span>
+              <span class="text-xs md:text-sm font-bold text-blue-100 tracking-wide uppercase">
+                Bangladesh's First AI Flight Booking App
+              </span>
+            </div>
+
             <h1 class="text-4xl md:text-5xl lg:text-[64px] font-black tracking-tight mb-8 leading-[1.1] max-w-4xl">
               Cheap Air Tickets in Bangladesh, <br class="hidden sm:block" />
               Booked Securely in Minutes.
             </h1>
 
             <p class="max-w-3xl text-base md:text-lg text-white/90 mb-8 font-medium">
-              AirTech Aviation helps travelers in Dhaka and across Bangladesh compare fares and complete online air ticket booking for domestic and international flights.
+              AirTech Aviation brings you <strong>Bangladesh's First AI Flight Booking App</strong>, made by <strong>Md. Akib Hasan</strong>, an Aviation Trainer and GDS Expert. Compare fares and complete online air ticket booking for domestic and international flights in minutes.
             </p>
           </div>
         }
@@ -48,6 +60,27 @@ import { PublicService } from '../../services/public.service';
           }
         </div>
 
+        <!-- AI Assistant CTA (Hidden on mobile to keep original layout, users have bottom nav) -->
+        <div class="hidden md:flex mt-6 items-center justify-center gap-3">
+          <div class="h-px w-16 bg-white/20"></div>
+          <button
+            (click)="openAiChat()"
+            id="open-ai-chat-btn"
+            class="group inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/25 hover:border-white/50 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/20"
+          >
+            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-violet-500 shadow-sm text-white text-xs group-hover:scale-110 transition-transform">
+              ✦
+            </span>
+            Book with AI — just describe your trip
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+              class="opacity-60 group-hover:translate-x-0.5 transition-transform">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+          <div class="h-px w-16 bg-white/20"></div>
+        </div>
+
         @if (introBelowSearch()) {
           <div class="mt-8 transition-all duration-500 ease-out" [class.opacity-0]="!introVisible()" [class.translate-y-2]="!introVisible()">
             <h1 class="text-4xl md:text-5xl lg:text-[64px] font-black tracking-tight mb-8 leading-[1.1] max-w-4xl">
@@ -67,6 +100,7 @@ import { PublicService } from '../../services/public.service';
 })
 export class HeroComponent implements OnInit, OnDestroy {
   private publicService = inject(PublicService);
+  private router = inject(Router);
   private moveIntroTimerId: ReturnType<typeof setTimeout> | null = null;
   private placeIntroBelowTimerId: ReturnType<typeof setTimeout> | null = null;
   private showIntroTimerId: ReturnType<typeof setTimeout> | null = null;
@@ -112,5 +146,9 @@ export class HeroComponent implements OnInit, OnDestroy {
       clearTimeout(this.showIntroTimerId);
       this.showIntroTimerId = null;
     }
+  }
+
+  openAiChat() {
+    this.router.navigate(['/chat']);
   }
 }

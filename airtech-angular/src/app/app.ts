@@ -3,13 +3,15 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { GdsModalComponent } from './components/gds-modal/gds-modal.component';
 import { routeAnimation } from './animations/route.animations';
 import { DynamicMetaTagsService } from './services/dynamic-meta-tags.service';
+import { VisitorTrackerService } from './services/visitor-tracker.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent],
+  imports: [RouterOutlet, NavbarComponent, GdsModalComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
   animations: [routeAnimation]
@@ -17,6 +19,7 @@ import { DynamicMetaTagsService } from './services/dynamic-meta-tags.service';
 export class AppComponent implements OnDestroy {
   private router = inject(Router);
   private dynamicMetaTags = inject(DynamicMetaTagsService);
+  private visitorTracker = inject(VisitorTrackerService);
   private supportBarIntervalId: ReturnType<typeof setInterval> | null = null;
   private supportBarHideTimeoutId: ReturnType<typeof setTimeout> | null = null;
   private supportBarVisible = false;
@@ -24,6 +27,7 @@ export class AppComponent implements OnDestroy {
   constructor() {
     this.dynamicMetaTags.applyForUrl(this.router.url);
     this.updateSupportBarCycle(this.router.url);
+    this.visitorTracker.trackVisitor('page_load');
 
     this.router.events
       .pipe(

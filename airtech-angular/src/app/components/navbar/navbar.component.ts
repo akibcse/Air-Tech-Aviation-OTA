@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { LucideAngularModule, User, LogIn, Menu, X, LogOut, Search, Ticket, Shield } from 'lucide-angular';
+import { LucideAngularModule, User, LogIn, Menu, X, LogOut, Search, Ticket, Shield, Sparkles } from 'lucide-angular';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -33,6 +33,11 @@ import { AuthService } from '../../services/auth.service';
              </a>
              <a routerLink="/support" routerLinkActive="text-blue-600" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">
                Support
+             </a>
+             <a routerLink="/chat" routerLinkActive="text-blue-600"
+                class="inline-flex items-center gap-1.5 bg-gradient-to-r from-blue-600 to-violet-600 text-white text-sm font-bold px-4 py-1.5 rounded-full hover:opacity-90 transition-opacity shadow-sm hover:shadow-md"
+             >
+               <span class="text-xs">✦</span> Ask AI
              </a>
 
             @if (auth.isLoading()) {
@@ -92,6 +97,10 @@ import { AuthService } from '../../services/auth.service';
           <a routerLink="/" (click)="isMenuOpen.set(false)" class="block text-gray-600 font-medium">Home</a>
           <a routerLink="/search" (click)="isMenuOpen.set(false)" class="block text-gray-600 font-medium">Search Flights</a>
           <a routerLink="/support" (click)="isMenuOpen.set(false)" class="block text-gray-600 font-medium">Support</a>
+          <a routerLink="/chat" (click)="isMenuOpen.set(false)" class="flex items-center gap-2 text-blue-600 font-bold">
+            <lucide-icon [name]="sparklesIcon" class="w-4 h-4"></lucide-icon>
+            AI Assistant
+          </a>
           
           @if (!auth.isLoading()) {
             <div class="pt-4 border-t border-gray-100 space-y-3">
@@ -115,11 +124,17 @@ import { AuthService } from '../../services/auth.service';
               }
             </div>
           }
+
+          <div class="pt-6 border-t border-gray-100">
+            <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">Created By</p>
+            <p class="text-xs font-bold text-gray-700">Md. Akib Hasan</p>
+            <p class="text-[10px] text-blue-600 font-semibold">Aviation Trainer & GDS Expert</p>
+          </div>
         </div>
       }
 
-      <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-gray-200 z-50 px-2 py-2">
-        <div class="grid grid-cols-4 gap-1 max-w-md mx-auto">
+      <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-gray-200 z-50 px-2 py-2 pb-safe">
+        <div class="grid grid-cols-5 gap-1 max-w-md mx-auto">
           <a
             routerLink="/"
             [routerLinkActiveOptions]="{ exact: true }"
@@ -137,6 +152,15 @@ import { AuthService } from '../../services/auth.service';
           >
             <lucide-icon [name]="searchIcon" class="w-4 h-4"></lucide-icon>
             <span class="text-[10px] font-semibold">Search</span>
+          </a>
+
+          <a
+            routerLink="/chat"
+            routerLinkActive="text-blue-600 bg-blue-50"
+            class="flex flex-col items-center justify-center gap-1 rounded-xl py-2 text-gray-500"
+          >
+            <lucide-icon [name]="sparklesIcon" class="w-4 h-4"></lucide-icon>
+            <span class="text-[10px] font-semibold">AI Chat</span>
           </a>
 
           @if (auth.currentUser()) {
@@ -199,4 +223,5 @@ export class NavbarComponent {
   searchIcon = Search;
   ticketIcon = Ticket;
   shieldIcon = Shield;
+  sparklesIcon = Sparkles;
 }

@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { LucideAngularModule, LayoutDashboard, Users, Plane, Settings, ArrowLeft, Activity, Menu, X, Megaphone, Tags } from 'lucide-angular';
+import { LucideAngularModule, LayoutDashboard, Users, Plane, Settings, ArrowLeft, Activity, Menu, X, Megaphone, Tags, Eye } from 'lucide-angular';
 
 @Component({
   selector: 'app-admin-layout',
@@ -55,7 +55,7 @@ import { LucideAngularModule, LayoutDashboard, Users, Plane, Settings, ArrowLeft
         </main>
 
         <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 p-2">
-          <div class="grid grid-cols-7 gap-1 max-w-2xl mx-auto">
+          <div class="grid grid-cols-8 gap-1 max-w-2xl mx-auto">
             @for (item of menuItems; track item.path) {
               <a
                 [routerLink]="item.path"
@@ -112,12 +112,12 @@ export class AdminLayoutComponent {
     { label: 'Dashboard', shortLabel: 'Home', path: '/admin', icon: LayoutDashboard },
     { label: 'Bookings', shortLabel: 'Orders', path: '/admin/bookings', icon: Plane },
     { label: 'Users', shortLabel: 'Users', path: '/admin/users', icon: Users },
+    { label: 'Visitor Leads', shortLabel: 'Leads', path: '/admin/visitors', icon: Eye },
     { label: 'API Health', shortLabel: 'API', path: '/admin/api-health', icon: Activity },
     { label: 'Homepage SEO', shortLabel: 'SEO', path: '/admin/digital-marketing/homepage-seo', icon: Megaphone },
     { label: 'Meta Tags', shortLabel: 'Meta', path: '/admin/digital-marketing/meta-tags', icon: Tags },
     { label: 'Settings', shortLabel: 'Setup', path: '/admin/settings', icon: Settings }
   ];
-
   arrowLeftIcon = ArrowLeft;
   menuIcon = Menu;
   xIcon = X;

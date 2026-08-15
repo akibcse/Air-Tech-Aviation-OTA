@@ -1,0 +1,24 @@
+{
+  "rules": {
+    "users": {
+      ".read": "auth != null && (auth.token.email === 'roadyakib@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'ADMIN')",
+      ".write": "auth != null && (auth.token.email === 'roadyakib@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'ADMIN')",
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || auth.token.email === 'roadyakib@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'ADMIN')",
+        ".write": "auth != null && (auth.uid === $uid || auth.token.email === 'roadyakib@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'ADMIN')"
+      }
+    },
+    "visitor_leads": {
+      ".read": "auth != null && (auth.token.email === 'roadyakib@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'ADMIN')",
+      ".write": true
+    },
+    "bookings": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "settings": {
+      ".read": true,
+      ".write": "auth != null && (auth.token.email === 'roadyakib@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'ADMIN')"
+    }
+  }
+}

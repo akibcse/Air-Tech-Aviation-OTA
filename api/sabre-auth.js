@@ -31,6 +31,7 @@ const EXPIRY_BUFFER_MS = 60 * 1000;
 // ---------------------------------------------------------------------------
 
 let cachedToken = null;   // { accessToken, expiresAt }
+let lastFailure = null;   // { message, expiresAt }
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -59,12 +60,10 @@ function buildBasicAuthHeader(version = 'V2') {
 
     let combined;
     if (version === 'V2') {
-        // Sabre V2 auth: double-encode
         const encodedId = Buffer.from(clientId).toString('base64');
         const encodedSecret = Buffer.from(clientSecret).toString('base64');
         combined = Buffer.from(`${encodedId}:${encodedSecret}`).toString('base64');
     } else {
-        // V1 auth: single-encode
         combined = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
     }
 
@@ -77,8 +76,6 @@ function buildBasicAuthHeader(version = 'V2') {
 
 /**
  * Returns a valid Sabre access token.
- * Uses a cached token if it has not expired (with buffer); otherwise fetches a
- * fresh one from the Sabre auth endpoint.
  *
  * @returns {Promise<string>} Bearer access token
  */
@@ -88,16 +85,26 @@ async function getToken() {
         return cachedToken.accessToken;
     }
 
-    const staticToken = (process.env.SABRE_TOKEN || '').trim() || null;
-    const hasOauthCreds = Boolean((process.env.SABRE_CLIENT_ID || '').trim() && (process.env.SABRE_CLIENT_SECRET || '').trim());
+    // Fast reject if last auth attempt failed within 15 seconds to prevent log flooding
+    if (lastFailure && Date.now() < lastFailure.expiresAt) {
+        throw new Error(`Sabre authentication failed (cached): ${lastFailure.message}`);
+    }
 
-    if (!hasOauthCreds && staticToken) {
-        console.log('[SabreAuth] OAuth creds missing, using static SABRE_TOKEN from environment');
+    const clientId = (process.env.SABRE_CLIENT_ID || '').trim();
+    const clientSecret = (process.env.SABRE_CLIENT_SECRET || '').trim();
+    const staticToken = (process.env.SABRE_TOKEN || '').trim();
+
+    if (staticToken) {
+        console.log('[SabreAuth] Using static SABRE_TOKEN from environment');
         cachedToken = {
             accessToken: staticToken,
             expiresAt: Date.now() + (3600 * 1000) - EXPIRY_BUFFER_MS,
         };
         return cachedToken.accessToken;
+    }
+
+    if (!clientId || !clientSecret || clientId === 'placeholder') {
+        throw new Error('Sabre credentials not configured. Please add valid SABRE_CLIENT_ID and SABRE_CLIENT_SECRET to .env');
     }
 
     const baseUrl = getBaseUrl();
@@ -116,6 +123,7 @@ async function getToken() {
     for (const strategy of authStrategies) {
         try {
             console.log(`[SabreAuth] Trying ${strategy.name} encoding...`);
+            
             const response = await axios.post(url, 'grant_type=client_credentials', {
                 headers: {
                     'Authorization': strategy.header,
@@ -135,29 +143,27 @@ async function getToken() {
                 accessToken: access_token,
                 expiresAt: Date.now() + (expires_in * 1000) - EXPIRY_BUFFER_MS,
             };
+            lastFailure = null;
 
             console.log(`[SabreAuth] Token obtained via ${strategy.name} – expires in ${expires_in}s`);
             return cachedToken.accessToken;
         } catch (error) {
             const status = error.response?.status;
-            const message = error.response?.data?.error_description || error.message;
+            const data = error.response?.data;
+            const message = data?.error_description || data?.error || error.message;
             console.warn(`[SabreAuth] ${strategy.name} failed (HTTP ${status || 'N/A'}): ${message}`);
             lastError = error;
         }
     }
 
-    if (staticToken) {
-        console.warn('[SabreAuth] OAuth flow failed, falling back to static SABRE_TOKEN');
-        cachedToken = {
-            accessToken: staticToken,
-            expiresAt: Date.now() + (3600 * 1000) - EXPIRY_BUFFER_MS,
-        };
-        return cachedToken.accessToken;
-    }
-
-    // All strategies failed and no fallback token available
+    // All strategies failed - cache failure for 15 seconds to prevent continuous log spamming
     cachedToken = null;
-    const message = lastError?.response?.data?.error_description || lastError?.message;
+    const message = lastError?.response?.data?.error_description || lastError?.message || 'Authentication failed';
+    lastFailure = {
+        message,
+        expiresAt: Date.now() + 15000
+    };
+
     console.error(`[SabreAuth] All auth strategies failed: ${message}`);
     throw new Error(`Sabre authentication failed: ${message}`);
 }
@@ -167,6 +173,7 @@ async function getToken() {
  */
 function clearTokenCache() {
     cachedToken = null;
+    lastFailure = null;
 }
 
 module.exports = {

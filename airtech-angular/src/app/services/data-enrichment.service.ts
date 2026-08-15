@@ -39,6 +39,9 @@ export class DataEnrichmentService {
     return this.http.get<AirlineData>(`${this.apiUrl}/airlines/${ucCode}`).pipe(
       tap(data => {
         if (data && data.code) {
+          if (!data.name || data.name === '\\N' || data.name === '\\N' || data.name.trim() === '') {
+            data.name = ucCode;
+          }
           this.airlineCache.set(ucCode, data);
         }
       }),
