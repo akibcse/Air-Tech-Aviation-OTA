@@ -868,8 +868,9 @@ app.get(['/sitemap.xml', '/api/sitemap.xml'], async (req, res) => {
         const urlEntries = routes.map((path) => {
             const priority = path === '/' ? '1.0' : path === '/search' ? '0.9' : path === '/support' ? '0.8' : '0.6';
             const changefreq = path === '/' || path === '/search' ? 'daily' : path === '/support' ? 'weekly' : 'monthly';
+            const locUrl = path === '/' ? `${baseUrl}/` : `${baseUrl}${path}`;
             return `  <url>
-    <loc>${baseUrl}${path === '/' ? '' : path}</loc>
+    <loc>${locUrl}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
@@ -881,13 +882,15 @@ app.get(['/sitemap.xml', '/api/sitemap.xml'], async (req, res) => {
 ${urlEntries}
 </urlset>`;
 
-        res.header('Content-Type', 'application/xml');
-        res.header('Cache-Control', 'public, max-age=3600, s-maxage=86400');
-        res.send(xml);
+        res.set('Content-Type', 'text/xml; charset=utf-8');
+        res.set('X-Content-Type-Options', 'nosniff');
+        res.set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0');
+        res.status(200).send(xml);
     } catch (e) {
         res.status(500).send("Error generating sitemap");
     }
 });
+
 
 // Dynamic Robots.txt Endpoint (adapts to whatever domain is connected)
 app.get(['/robots.txt', '/api/robots.txt'], async (req, res) => {
@@ -898,13 +901,14 @@ Allow: /
 
 Sitemap: ${baseUrl}/sitemap.xml
 `;
-        res.header('Content-Type', 'text/plain');
-        res.header('Cache-Control', 'public, max-age=3600, s-maxage=86400');
+        res.header('Content-Type', 'text/plain; charset=utf-8');
+        res.header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0');
         res.send(content);
     } catch (e) {
         res.status(500).send("Error generating robots.txt");
     }
 });
+
 
 
 
