@@ -61,7 +61,7 @@ export class DynamicMetaTagsService {
 
     const deduped = new Map<string, any>();
     applicable.forEach((tag) => {
-      const signature = `${tag?.keyType || ''}|${tag?.key || ''}`;
+      const signature = `${tag?.id || tag?.keyType || ''}|${tag?.key || ''}|${tag?.content || ''}`;
       deduped.set(signature, tag);
     });
 
@@ -102,7 +102,9 @@ export class DynamicMetaTagsService {
       ? `meta[data-custom-meta-key='${this.escapeSelectorValue(String(tag?.id || key || 'custom'))}']`
       : keyType === 'http-equiv'
         ? `meta[http-equiv='${this.escapeSelectorValue(key)}']`
-        : `meta[${this.escapeSelectorValue(keyType)}='${this.escapeSelectorValue(key)}']`;
+        : tag?.content && key === 'google-site-verification'
+          ? `meta[${this.escapeSelectorValue(keyType)}='${this.escapeSelectorValue(key)}'][content='${this.escapeSelectorValue(String(tag.content))}']`
+          : `meta[${this.escapeSelectorValue(keyType)}='${this.escapeSelectorValue(key)}']`;
 
     const existing = this.document.querySelector(selector) as HTMLMetaElement | null;
     const element = existing || this.document.createElement('meta');

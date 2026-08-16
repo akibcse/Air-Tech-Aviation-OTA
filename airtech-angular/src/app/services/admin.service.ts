@@ -130,4 +130,17 @@ export class AdminService {
             switchMap(headers => this.http.get<any[]>(`${this.apiUrl}/visitors`, { headers }))
         );
     }
+
+    getCourseModalSettings(): Observable<any> {
+        return this.getAuthHeaders().pipe(
+            switchMap(headers => this.http.get<any>(`${this.apiUrl}/settings/course-modal`, { headers }))
+        );
+    }
+
+    updateCourseModalSettings(courseModal: any): Observable<any> {
+        return this.getAuthHeaders().pipe(
+            switchMap(headers => this.http.post<any>(`${this.apiUrl}/settings/course-modal`, courseModal, { headers }))
+        );
+    }
 }
+

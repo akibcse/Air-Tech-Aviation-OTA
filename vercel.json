@@ -4,41 +4,6 @@
         "silent": true,
         "autoJobCancel": false
     },
-    "redirects": [
-        {
-            "source": "/(.*)",
-            "has": [
-                {
-                    "type": "host",
-                    "value": "airtechaviation.click"
-                }
-            ],
-            "destination": "https://airtech-aviation-ota.vercel.app/$1",
-            "permanent": true
-        },
-        {
-            "source": "/(.*)",
-            "has": [
-                {
-                    "type": "host",
-                    "value": "airtech-angular.vercel.app"
-                }
-            ],
-            "destination": "https://airtech-aviation-ota.vercel.app/$1",
-            "permanent": true
-        },
-        {
-            "source": "/(.*)",
-            "has": [
-                {
-                    "type": "host",
-                    "value": "www.airtechaviation.click"
-                }
-            ],
-            "destination": "https://airtech-aviation-ota.vercel.app/$1",
-            "permanent": true
-        }
-    ],
     "builds": [
         {
             "src": "package.json",
@@ -53,6 +18,14 @@
         }
     ],
     "rewrites": [
+        {
+            "source": "/sitemap.xml",
+            "destination": "/api/index.js"
+        },
+        {
+            "source": "/robots.txt",
+            "destination": "/api/index.js"
+        },
         {
             "source": "/api/(.*)",
             "destination": "/api/index.js"

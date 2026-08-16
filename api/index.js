@@ -804,6 +804,110 @@ app.get('/api/public/hero-background', async (req, res) => {
     }
 });
 
+// Course Modal (Admin - Get)
+app.get('/api/admin/settings/course-modal', verifyAdmin, async (req, res) => {
+    try {
+        let courseModal = null;
+        if (db) {
+            const snap = await db.ref('settings/course_modal').once('value');
+            courseModal = snap.val();
+        } else {
+            courseModal = await firebaseRest.get('settings/course_modal', req.token);
+        }
+        res.json(courseModal || {});
+    } catch (e) {
+        res.status(500).json({ error: "Error fetching course modal settings", details: e.message });
+    }
+});
+
+// Course Modal (Admin - Save)
+app.post('/api/admin/settings/course-modal', verifyAdmin, async (req, res) => {
+    try {
+        if (db) {
+            await db.ref('settings/course_modal').set(req.body);
+        } else {
+            await firebaseRest.put('settings/course_modal', req.body, req.token);
+        }
+        res.json({ success: true });
+    } catch (e) {
+        res.status(500).json({ error: "Error updating course modal settings", details: e.message });
+    }
+});
+
+// Course Modal (Public - Get)
+app.get('/api/public/course-modal', async (req, res) => {
+    try {
+        let courseModal = null;
+        if (db) {
+            const snap = await db.ref('settings/course_modal').once('value');
+            courseModal = snap.val();
+        } else {
+            courseModal = await firebaseRest.get('settings/course_modal');
+        }
+        res.json(courseModal || {});
+    } catch (e) {
+        res.json({});
+    }
+});
+
+// Helper to extract actual requesting base URL dynamically from request headers
+const getRequestBaseUrl = (req) => {
+    const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
+    const rawHost = req.headers['x-forwarded-host'] || req.headers.host || 'ota.akibhasan.online';
+    const host = rawHost.split(',')[0].trim();
+    return `${proto}://${host}`;
+};
+
+// Dynamic Sitemap Endpoint (adapts to whatever domain is connected)
+app.get(['/sitemap.xml', '/api/sitemap.xml'], async (req, res) => {
+    try {
+        const baseUrl = getRequestBaseUrl(req);
+        const routes = ['/', '/search', '/support', '/auth/login', '/auth/register'];
+        const now = new Date().toISOString().split('T')[0];
+
+        const urlEntries = routes.map((path) => {
+            const priority = path === '/' ? '1.0' : path === '/search' ? '0.9' : path === '/support' ? '0.8' : '0.6';
+            const changefreq = path === '/' || path === '/search' ? 'daily' : path === '/support' ? 'weekly' : 'monthly';
+            return `  <url>
+    <loc>${baseUrl}${path === '/' ? '' : path}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+        }).join('\n');
+
+        const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urlEntries}
+</urlset>`;
+
+        res.header('Content-Type', 'application/xml');
+        res.header('Cache-Control', 'public, max-age=3600, s-maxage=86400');
+        res.send(xml);
+    } catch (e) {
+        res.status(500).send("Error generating sitemap");
+    }
+});
+
+// Dynamic Robots.txt Endpoint (adapts to whatever domain is connected)
+app.get(['/robots.txt', '/api/robots.txt'], async (req, res) => {
+    try {
+        const baseUrl = getRequestBaseUrl(req);
+        const content = `User-agent: *
+Allow: /
+
+Sitemap: ${baseUrl}/sitemap.xml
+`;
+        res.header('Content-Type', 'text/plain');
+        res.header('Cache-Control', 'public, max-age=3600, s-maxage=86400');
+        res.send(content);
+    } catch (e) {
+        res.status(500).send("Error generating robots.txt");
+    }
+});
+
+
+
 // Silent Visitor Tracking Endpoint
 app.post('/api/public/track-visitor', async (req, res) => {
     try {
@@ -868,10 +972,19 @@ const GOOGLE_SITE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION
 
 const DEFAULT_META_TAGS = [
     {
-        id: 'google-site-verification',
+        id: 'google-site-verification-1',
         keyType: 'name',
         key: 'google-site-verification',
         content: GOOGLE_SITE_VERIFICATION,
+        pages: ['/'],
+        active: true,
+        attributes: {}
+    },
+    {
+        id: 'google-site-verification-2',
+        keyType: 'name',
+        key: 'google-site-verification',
+        content: 'Em-Q-YZ-nURYzAmrkvmJ7hwUtaIwxW0tBRjiEeboP8Q',
         pages: ['/'],
         active: true,
         attributes: {}
@@ -1030,7 +1143,7 @@ const sanitizeMetaTagEntry = (entry = {}) => {
     if (keyType !== 'custom' && !content) return null;
 
     return {
-        id: sanitizeSeoText(entry.id, 80) || `${keyType}-${key}`,
+        id: sanitizeSeoText(entry.id, 80) || `${keyType}-${key}-${content.slice(0, 10)}`,
         keyType,
         key,
         content,
@@ -1042,23 +1155,27 @@ const sanitizeMetaTagEntry = (entry = {}) => {
 
 const ensureVerificationMetaTag = (metaTags = []) => {
     const cloned = Array.isArray(metaTags) ? [...metaTags] : [];
-    const existingIndex = cloned.findIndex(
-        (item) => item?.keyType === 'name' && item?.key === 'google-site-verification'
-    );
+    
+    DEFAULT_META_TAGS.forEach((defaultTag) => {
+        const existingIndex = cloned.findIndex(
+            (item) => item?.keyType === 'name' && item?.key === 'google-site-verification' && item?.content === defaultTag.content
+        );
 
-    if (existingIndex >= 0) {
-        cloned[existingIndex] = {
-            ...cloned[existingIndex],
-            content: cloned[existingIndex].content || GOOGLE_SITE_VERIFICATION,
-            pages: Array.isArray(cloned[existingIndex].pages) && cloned[existingIndex].pages.length
-                ? cloned[existingIndex].pages
-                : ['/'],
-            active: cloned[existingIndex].active !== false
-        };
-        return cloned;
-    }
+        if (existingIndex >= 0) {
+            cloned[existingIndex] = {
+                ...cloned[existingIndex],
+                content: cloned[existingIndex].content || defaultTag.content,
+                pages: Array.isArray(cloned[existingIndex].pages) && cloned[existingIndex].pages.length
+                    ? cloned[existingIndex].pages
+                    : ['/'],
+                active: cloned[existingIndex].active !== false
+            };
+        } else {
+            cloned.push(defaultTag);
+        }
+    });
 
-    return [...cloned, ...DEFAULT_META_TAGS];
+    return cloned;
 };
 
 const sanitizeMetaTagsPayload = (payload = [], options = { forStorage: false }) => {

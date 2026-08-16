@@ -26,4 +26,9 @@ export class PublicService {
     getMetaTags(): Observable<any[]> {
         return this.http.get<any[]>(`${this.apiUrl}/public/meta-tags`);
     }
+
+    getCourseModalSettings(): Observable<any> {
+        return this.http.get<any>(`${this.apiUrl}/public/course-modal`);
+    }
 }
+

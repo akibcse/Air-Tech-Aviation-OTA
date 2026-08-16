@@ -15,6 +15,7 @@ import { AdminUsersComponent } from './pages/admin/users/admin-users.component';
 import { AdminVisitorsComponent } from './pages/admin/visitors/admin-visitors.component';
 import { AdminBookingsComponent } from './pages/admin/bookings/admin-bookings.component';
 import { AdminSystemSettingsComponent } from './pages/admin/settings/admin-system-settings.component';
+import { AdminCourseSettingsComponent } from './pages/admin/settings/admin-course-settings.component';
 import { AdminApiHealthComponent } from './pages/admin/api-health/admin-api-health.component';
 import { AdminHomepageSeoComponent } from './pages/admin/digital-marketing/homepage-seo.component';
 import { AdminMetaTagsComponent } from './pages/admin/digital-marketing/meta-tags.component';
@@ -44,11 +45,13 @@ export const routes: Routes = [
             { path: 'users', component: AdminUsersComponent },
             { path: 'visitors', component: AdminVisitorsComponent },
             { path: 'bookings', component: AdminBookingsComponent },
+            { path: 'course-popup', component: AdminCourseSettingsComponent },
             { path: 'api-health', component: AdminApiHealthComponent },
             { path: 'settings', component: AdminSystemSettingsComponent },
             { path: 'digital-marketing/homepage-seo', component: AdminHomepageSeoComponent },
             { path: 'digital-marketing/meta-tags', component: AdminMetaTagsComponent },
         ]
     },
+
     { path: '**', redirectTo: '' }
 ];

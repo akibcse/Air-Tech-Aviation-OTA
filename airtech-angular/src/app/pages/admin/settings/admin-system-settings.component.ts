@@ -192,6 +192,229 @@ import { AdminService } from '../../../services/admin.service';
           </div>
         </div>
 
+        <!-- Course Pop-up & Details Management Section -->
+        <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mt-8">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="text-lg font-semibold">Course Pop-Up & Details</h3>
+              <p class="text-sm text-gray-500 font-medium">
+                Manage the modal popup banner and course details shown to visitors.
+              </p>
+            </div>
+            <label class="flex items-center gap-2 text-sm font-bold cursor-pointer bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg">
+              <input type="checkbox" [(ngModel)]="courseModal().enabled" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" />
+              <span>{{ courseModal().enabled ? 'Pop-up Active' : 'Pop-up Disabled' }}</span>
+            </label>
+          </div>
+
+          <div class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1">Badge Text</label>
+                <input 
+                  type="text" 
+                  [(ngModel)]="courseModal().badgeText" 
+                  placeholder="e.g. Aviation Career Opportunity"
+                  class="w-full p-2.5 border border-gray-300 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1">Display Delay (ms)</label>
+                <input 
+                  type="number" 
+                  [(ngModel)]="courseModal().delayMs" 
+                  placeholder="600"
+                  class="w-full p-2.5 border border-gray-300 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Modal Title</label>
+              <input 
+                type="text" 
+                [(ngModel)]="courseModal().title" 
+                placeholder="e.g. Master GDS & Launch Your Aviation Career"
+                class="w-full p-2.5 border border-gray-300 rounded-lg text-sm font-semibold outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Description</label>
+              <textarea 
+                rows="2"
+                [(ngModel)]="courseModal().description" 
+                placeholder="Course summary description..."
+                class="w-full p-2.5 border border-gray-300 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+              ></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1">Training Link URL</label>
+                <input 
+                  type="text" 
+                  [(ngModel)]="courseModal().enrollUrl" 
+                  placeholder="https://gds-training.vercel.app"
+                  class="w-full p-2.5 border border-gray-300 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1">Primary CTA Button</label>
+                <input 
+                  type="text" 
+                  [(ngModel)]="courseModal().primaryBtnText" 
+                  placeholder="Enroll Now"
+                  class="w-full p-2.5 border border-gray-300 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1">Secondary CTA Button</label>
+                <input 
+                  type="text" 
+                  [(ngModel)]="courseModal().secondaryBtnText" 
+                  placeholder="Learn GDS"
+                  class="w-full p-2.5 border border-gray-300 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+            </div>
+
+            <!-- Feature Highlights Cards -->
+            <div class="mt-6 border-t border-gray-100 pt-4">
+              <div class="flex items-center justify-between mb-3">
+                <h4 class="text-sm font-bold text-gray-800">Feature Highlight Badges</h4>
+                <button 
+                  (click)="addCourseFeature()" 
+                  class="text-xs font-bold text-blue-600 hover:text-blue-800"
+                >
+                  + Add Feature Badge
+                </button>
+              </div>
+              <div class="space-y-3">
+                @for (feature of courseModal().features; track $index) {
+                  <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 p-3 bg-slate-50 border border-slate-200 rounded-lg items-center">
+                    <div class="sm:col-span-2">
+                      <input 
+                        type="text" 
+                        [(ngModel)]="feature.icon" 
+                        placeholder="Icon (e.g. ✈️)"
+                        class="w-full p-2 text-center border border-gray-300 rounded-md text-sm"
+                      />
+                    </div>
+                    <div class="sm:col-span-5">
+                      <input 
+                        type="text" 
+                        [(ngModel)]="feature.title" 
+                        placeholder="Feature Title"
+                        class="w-full p-2 border border-gray-300 rounded-md text-sm"
+                      />
+                    </div>
+                    <div class="sm:col-span-4">
+                      <input 
+                        type="text" 
+                        [(ngModel)]="feature.subtitle" 
+                        placeholder="Subtitle"
+                        class="w-full p-2 border border-gray-300 rounded-md text-sm"
+                      />
+                    </div>
+                    <div class="sm:col-span-1 text-right">
+                      <button 
+                        (click)="removeCourseFeature($index)"
+                        class="text-xs font-bold text-red-500 hover:text-red-700"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Detailed Course Information -->
+            <div class="mt-6 border-t border-gray-100 pt-4">
+              <h4 class="text-sm font-bold text-gray-800 mb-3">Course Full Details & Syllabus</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-600 mb-1">Duration</label>
+                  <input 
+                    type="text" 
+                    [(ngModel)]="courseModal().details.duration" 
+                    placeholder="e.g. 4 Weeks (Live Classes)"
+                    class="w-full p-2 border border-gray-300 rounded-md text-sm"
+                  />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-600 mb-1">Fee & Discount Info</label>
+                  <input 
+                    type="text" 
+                    [(ngModel)]="courseModal().details.fee" 
+                    placeholder="e.g. BDT 12,500 (20% Off)"
+                    class="w-full p-2 border border-gray-300 rounded-md text-sm"
+                  />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-600 mb-1">Schedule</label>
+                  <input 
+                    type="text" 
+                    [(ngModel)]="courseModal().details.schedule" 
+                    placeholder="e.g. Sat & Tue (8 PM - 10 PM)"
+                    class="w-full p-2 border border-gray-300 rounded-md text-sm"
+                  />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-600 mb-1">Certification</label>
+                  <input 
+                    type="text" 
+                    [(ngModel)]="courseModal().details.certification" 
+                    placeholder="e.g. Certified GDS Specialist"
+                    class="w-full p-2 border border-gray-300 rounded-md text-sm"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <label class="text-xs font-semibold text-gray-600">Modules / Curriculum Points</label>
+                  <button 
+                    (click)="addCourseModule()" 
+                    class="text-xs font-bold text-blue-600 hover:text-blue-800"
+                  >
+                    + Add Module
+                  </button>
+                </div>
+                <div class="space-y-2">
+                  @for (mod of courseModal().details.modules; track $index) {
+                    <div class="flex gap-2 items-center">
+                      <input 
+                        type="text" 
+                        [(ngModel)]="courseModal().details.modules[$index]" 
+                        placeholder="Module details..."
+                        class="flex-1 p-2 border border-gray-300 rounded-md text-sm"
+                      />
+                      <button 
+                        (click)="removeCourseModule($index)"
+                        class="text-xs font-bold text-red-500 hover:text-red-700 px-2"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-gray-100 mt-6">
+            <button
+              (click)="saveCourseModal()"
+              [disabled]="saving()"
+              class="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 disabled:opacity-50 shadow-lg shadow-blue-100 transition-all"
+            >
+              {{ saving() ? 'Saving Course Details...' : 'Update Course Configuration' }}
+            </button>
+          </div>
+        </div>
+
       }
     </div>
   `
@@ -203,6 +426,52 @@ export class AdminSystemSettingsComponent implements OnInit {
   markup = { type: 'percentage', value: 0 };
   banners = signal<any[]>([]);
   heroBackgroundUrl = '';
+
+  courseModal = signal<{
+    enabled: boolean;
+    badgeText: string;
+    title: string;
+    description: string;
+    enrollUrl: string;
+    primaryBtnText: string;
+    secondaryBtnText: string;
+    delayMs: number;
+    features: Array<{ icon: string; title: string; subtitle: string }>;
+    details: {
+      duration: string;
+      fee: string;
+      schedule: string;
+      certification: string;
+      modules: string[];
+    };
+  }>({
+    enabled: true,
+    badgeText: 'Aviation Career Opportunity',
+    title: 'Master GDS & Launch Your Aviation Career',
+    description: 'Learn Sabre, Amadeus & Galileo Global Distribution Systems from industry experts. Become a certified GDS Ticketing & Reservation Specialist!',
+    enrollUrl: 'https://gds-training.vercel.app',
+    primaryBtnText: 'Enroll Now',
+    secondaryBtnText: 'Learn GDS',
+    delayMs: 600,
+    features: [
+      { icon: '✈️', title: 'Sabre & Amadeus', subtitle: 'Live Training' },
+      { icon: '📜', title: 'Certification', subtitle: 'Industry Approved' },
+      { icon: '💼', title: 'Job Placement', subtitle: 'OTA Support' }
+    ],
+    details: {
+      duration: '4 Weeks (Live Online + Hands-on Practice)',
+      fee: 'BDT 12,500 (Early Bird Discount)',
+      schedule: 'Saturday & Tuesday (8:00 PM - 10:00 PM)',
+      certification: 'Certified GDS Ticketing Specialist',
+      modules: [
+        'Sabre Red 360 Commands & PNR Creation',
+        'Amadeus Selling Platform Connect & Fare Quote',
+        'Ticket Issuance, Reissuance & Refund Procedures',
+        'OTA System Integration & Real-time Booking Engine'
+      ]
+    }
+  });
+
   loading = signal(true);
   saving = signal(false);
 
@@ -220,6 +489,81 @@ export class AdminSystemSettingsComponent implements OnInit {
       error: (err) => {
         console.error(err);
         this.loading.set(false);
+      }
+    });
+
+    this.adminService.getCourseModalSettings().subscribe({
+      next: (data) => {
+        if (data && Object.keys(data).length > 0) {
+          this.courseModal.set({
+            enabled: data.enabled ?? true,
+            badgeText: data.badgeText || 'Aviation Career Opportunity',
+            title: data.title || 'Master GDS & Launch Your Aviation Career',
+            description: data.description || 'Learn Sabre, Amadeus & Galileo Global Distribution Systems from industry experts. Become a certified GDS Ticketing & Reservation Specialist!',
+            enrollUrl: data.enrollUrl || 'https://gds-training.vercel.app',
+            primaryBtnText: data.primaryBtnText || 'Enroll Now',
+            secondaryBtnText: data.secondaryBtnText || 'Learn GDS',
+            delayMs: data.delayMs ?? 600,
+            features: data.features || [
+              { icon: '✈️', title: 'Sabre & Amadeus', subtitle: 'Live Training' },
+              { icon: '📜', title: 'Certification', subtitle: 'Industry Approved' },
+              { icon: '💼', title: 'Job Placement', subtitle: 'OTA Support' }
+            ],
+            details: data.details || {
+              duration: '4 Weeks (Live Online + Hands-on Practice)',
+              fee: 'BDT 12,500 (Early Bird Discount)',
+              schedule: 'Saturday & Tuesday (8:00 PM - 10:00 PM)',
+              certification: 'Certified GDS Ticketing Specialist',
+              modules: [
+                'Sabre Red 360 Commands & PNR Creation',
+                'Amadeus Selling Platform Connect & Fare Quote',
+                'Ticket Issuance, Reissuance & Refund Procedures',
+                'OTA System Integration & Real-time Booking Engine'
+              ]
+            }
+          });
+        }
+      },
+      error: (err) => console.error('Error fetching course modal settings:', err)
+    });
+  }
+
+  addCourseFeature() {
+    const current = this.courseModal();
+    current.features.push({ icon: '🎓', title: 'New Feature', subtitle: 'Details' });
+    this.courseModal.set({ ...current });
+  }
+
+  removeCourseFeature(index: number) {
+    const current = this.courseModal();
+    current.features.splice(index, 1);
+    this.courseModal.set({ ...current });
+  }
+
+  addCourseModule() {
+    const current = this.courseModal();
+    current.details.modules.push('New Course Module');
+    this.courseModal.set({ ...current });
+  }
+
+  removeCourseModule(index: number) {
+    const current = this.courseModal();
+    current.details.modules.splice(index, 1);
+    this.courseModal.set({ ...current });
+  }
+
+  saveCourseModal() {
+    console.log('🎓 Saving course modal settings:', this.courseModal());
+    this.saving.set(true);
+    this.adminService.updateCourseModalSettings(this.courseModal()).subscribe({
+      next: () => {
+        alert('Course Pop-up & Details updated successfully!');
+        this.saving.set(false);
+      },
+      error: (err) => {
+        console.error('Failed to save course modal settings:', err);
+        alert(`Failed to update course modal: ${err.error?.details || err.message || 'Unknown error'}`);
+        this.saving.set(false);
       }
     });
   }
@@ -304,3 +648,4 @@ export class AdminSystemSettingsComponent implements OnInit {
     });
   }
 }
+

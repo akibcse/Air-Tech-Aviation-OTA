@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { LucideAngularModule, LayoutDashboard, Users, Plane, Settings, ArrowLeft, Activity, Menu, X, Megaphone, Tags, Eye } from 'lucide-angular';
+import { LucideAngularModule, LayoutDashboard, Users, Plane, Settings, ArrowLeft, Activity, Menu, X, Megaphone, Tags, Eye, Sparkles } from 'lucide-angular';
 
 @Component({
   selector: 'app-admin-layout',
@@ -55,7 +55,7 @@ import { LucideAngularModule, LayoutDashboard, Users, Plane, Settings, ArrowLeft
         </main>
 
         <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 p-2">
-          <div class="grid grid-cols-8 gap-1 max-w-2xl mx-auto">
+          <div class="grid grid-cols-9 gap-1 max-w-2xl mx-auto">
             @for (item of menuItems; track item.path) {
               <a
                 [routerLink]="item.path"
@@ -64,7 +64,7 @@ import { LucideAngularModule, LayoutDashboard, Users, Plane, Settings, ArrowLeft
                 class="flex flex-col items-center gap-1 py-2 rounded-xl text-gray-500"
               >
                 <lucide-icon [name]="item.icon" class="w-4 h-4"></lucide-icon>
-                <span class="text-[10px] font-semibold">{{ item.shortLabel }}</span>
+                <span class="text-[9px] font-semibold truncate max-w-[40px]">{{ item.shortLabel }}</span>
               </a>
             }
           </div>
@@ -110,6 +110,7 @@ export class AdminLayoutComponent {
 
   menuItems = [
     { label: 'Dashboard', shortLabel: 'Home', path: '/admin', icon: LayoutDashboard },
+    { label: 'Course Pop-up', shortLabel: 'Course', path: '/admin/course-popup', icon: Sparkles },
     { label: 'Bookings', shortLabel: 'Orders', path: '/admin/bookings', icon: Plane },
     { label: 'Users', shortLabel: 'Users', path: '/admin/users', icon: Users },
     { label: 'Visitor Leads', shortLabel: 'Leads', path: '/admin/visitors', icon: Eye },
